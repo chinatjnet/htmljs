@@ -79,7 +79,7 @@ module.exports.controllers =
         if !error
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
-            status:"我在前端乱炖的《前端花名册》认领了我的名片，这里是我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
+            status:"我在@前端乱炖 的《前端花名册》认领了我的名片，这里是我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
   "/update":
     post:(req,res,next)->
       result = 

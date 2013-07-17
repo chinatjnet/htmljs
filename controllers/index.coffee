@@ -111,6 +111,9 @@ module.exports.controllers =
       func_card.add req.body,(error,card)->
         if error then next error
         else
+          sina.statuses.update 
+            access_token:res.locals.user.weibo_token
+            status:"我在@前端乱炖 的《前端花名册》添加了我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
           func_user.connectCard res.locals.user.id,card.id,(error)->
             if error then next error
             else
