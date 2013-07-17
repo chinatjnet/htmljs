@@ -163,13 +163,13 @@ module.exports.controllers =
               if req.body.pic
                 sina.statuses.upload 
                   access_token:res.locals.user.weibo_token
-                  pic:__dirname+req.body.pic
+                  pic:config.base_path+req.body.pic
                   status:"我在前端乱炖爆料了大神 "+card.nick+" 的真像，求围观，求吐槽！！http://www.html-js.com/card/"+req.params.id
               else
                 sina.statuses.update 
                   access_token:res.locals.user.weibo_token
                   status:"我在前端乱炖爆料了大神 "+card.nick+" 的八卦，求围观，求吐槽，求同扒！！http://www.html-js.com/card/"+req.params.id
-          res.redirect 'back'
+            res.redirect 'back'
   "/upload":
     "post":(req,res,next)->
       result = 
