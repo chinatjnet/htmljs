@@ -83,7 +83,7 @@ html
                 article.post(id="post-#{article.id}")
                   .entry-title
                     a.headpic(href="/user/#{article.user_id}")
-                      img(src="#{article.user_headpic}")
+                      img(src="#{article.user_headpic}",width=50,height=50)
                     h1.title
                       a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                     div.others
