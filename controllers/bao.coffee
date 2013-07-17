@@ -2,6 +2,7 @@ func_bao_comment = require './../functions/bao_comment.coffee'
 func_bao = require './../functions/bao.coffee'
 jade = require 'jade'
 path = require 'path'
+config = require './../config.coffee'
 Sina=require("./../lib/sdk/sina.js")
 sina=new Sina(config.sdks.sina)
 module.exports.controllers = 
