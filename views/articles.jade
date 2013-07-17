@@ -11,7 +11,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
     - locals.pageId=1;
     include header
     include article_cats
-    #content
+    #content.clearfix
       .left
         .module.new_warning
           | 新博客测试中，老博客地址：
@@ -92,3 +92,5 @@ html(xmlns:wb='http://open.weibo.com/wb')
       $('.actions a').tooltip({
           placement:"bottom"
       })
+
+    include footer

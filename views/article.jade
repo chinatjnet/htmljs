@@ -5,7 +5,7 @@ html
   body#article
     - locals.pageId=1;
     include header
-    #content
+    #content.clearfix
       .left
         article.post(id="post-#{article.id}")
           .entry-title
@@ -76,3 +76,5 @@ html
           .bd
             a(href="http://whmcs.hangssh.info/aff.php?aff=043",target="_blank")
               img(src="http://ww1.sinaimg.cn/bmiddle/6663ae3cjw1e0vq25avsjj.jpg")
+
+    include footer

@@ -13,7 +13,7 @@ html
   body#me
     - locals.pageId=3;
     include header
-    #content
+    #content.clearfix
       if !locals.q
         p.alert.alert-success
           | wellcome #{locals.user && locals.user.nick} ，这里是你的个人页面！
@@ -121,11 +121,7 @@ html
                   a.r(class="#{card.is_xiangqin?'':'active'}",data-key="is_xiangqin",data-value="0") 否
           else
               div.alert.alert-warning 你还没有自己的名片，不能设置状态
-    if !locals.user
-      #layer
-      #login_popup 
-        span 请先用新浪微博登录
-        a(href="/user/login")
+    include footer
     script(src='/assets/js/messageTip.js')
     script
       $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})

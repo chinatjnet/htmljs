@@ -6,7 +6,7 @@ html
   body#cards
     - locals.pageId=2;
     include header
-    #content
+    #content.clearfix
       //
         p.alert.alert-success
           | wellcome #{locals.user && locals.user.nick}
@@ -109,13 +109,8 @@ html
               .hd 广告位
               .bd
                 
-      script(src='http://s6.cnzz.com/stat.php?id=5259277&web_id=5259277&online=1&show=line', language='JavaScript')
-    a#gotop go top
-    if !locals.user
-      #layer
-      #login_popup 
-        span 请先用新浪微博登录
-        a(href="/user/login")
+    include footer
+    
     script
       $("img.lazy").lazyload();
       $("#gotop").click(function(){

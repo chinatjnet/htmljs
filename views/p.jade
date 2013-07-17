@@ -12,7 +12,7 @@ html
   body#me
     - locals.pageId=2;
     include header
-    #content
+    #content.clearfix
       .left
         if !locals.card
           p.alert.alert-warnint 此用户还没有创建名片
@@ -176,6 +176,7 @@ html
                 window.WBComment.init({
                   "id": "WBCommentFrame"
                 });
+    include footer
 
     div.
       <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
