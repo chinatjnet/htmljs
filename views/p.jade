@@ -74,7 +74,7 @@ html
                 span.key 每天工作时长
                 span.value #{card.shijian}
               .item.clearfix
-                a 请求完整资料
+                a(href="mailto:#{card.email}") 请求完整资料
           .card-article
             .title TA发表的原创文章
           if locals.articles
