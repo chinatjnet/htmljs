@@ -60,13 +60,13 @@ html
                 span.value #{card.weibo}
               .item.clearfix
                 span.key email
-                span.value #{card.email}
+                span.value #{card.email?"*********":""}
               .item.clearfix
                 span.key QQ
-                span.value #{card.qq}
+                span.value #{card.qq?"*********":""}
               .item.clearfix
                 span.key 手机号
-                span.value #{card.tel}
+                span.value #{card.tel?"*********":""}
               .item.clearfix
                 span.key 简介(工作经历)
                 span.value #{card.desc}
@@ -97,6 +97,8 @@ html
                         span.index View：
                         a.value #{article.visit_count}
                   .entry-content !{article.html}
+          else
+            p 暂无
       .right
         if locals.card
           div.count.module
