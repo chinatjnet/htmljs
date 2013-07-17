@@ -96,7 +96,7 @@ html
                       span.views.item
                         span.index View：
                         a.value #{article.visit_count}
-                  .entry-content !{article.html}
+                  .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/\n/g,"<br/>")}
           else
             p 暂无
       .right

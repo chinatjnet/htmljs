@@ -36,6 +36,7 @@ module.exports =
       where:
         user_id:id
         type:type
+      order: "id desc"
       limit:20
     .success (articles)->
       callback null,articles
