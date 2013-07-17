@@ -36,7 +36,7 @@ module.exports =
       where:
         user_id:id
         type:type
-        limit:20
+      limit:20
     .success (articles)->
       callback null,articles
     .error (error)->

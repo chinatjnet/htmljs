@@ -139,10 +139,9 @@ module.exports.controllers =
               func_card.addVisit card.id,res.locals.user||null
               if card then res.locals.card = card
               if card.user_id
-                func_article.getByUserIdAndType card.user_id||-1,1,(error,articles)->
+                func_article.getByUserIdAndType (card.user_id||-1),1,(error,articles)->
                   if error then next error
                   else
-                    console.log articles
                     res.locals.articles = articles
                     res.render 'p.jade'
               else
