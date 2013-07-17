@@ -8,10 +8,11 @@ md5 = require 'MD5'
 module.exports.controllers = 
   "/login":
     get:(req,res,next)->
-      res.redirect authorize.sina
+      res.locals.link = authorize.sina
         app_key:config.sdks.sina.app_key,
         redirect_uri:config.sdks.sina.redirect_uri
         client_id:config.sdks.sina.app_key
+      res.render 'login.jade'
   "/sina_cb":
     get:(req,res,next)->
       code = req.query.code

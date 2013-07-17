@@ -13,10 +13,10 @@ module.exports=(req,res,next)->
               res.locals.user = user
               next();
             else
-              next();
+              res.redirect '/user/login'
           else
-            next();
+            res.redirect '/user/login'
       else
-        next();
+        res.redirect '/user/login'
     else
-      next();
+      res.redirect '/user/login'
