@@ -13,6 +13,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
     include article_cats
     #content
       .left
+        .module.new_warning
+          | 新博客测试中，老博客地址：
+          a(href="http://p.html-js.com",target="_blank") 老博客
         .actions
           a.publish(href="/article/add",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 投递原创文章
           a.publish(href="/article/add/recommend",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 推荐在线文章
@@ -23,6 +26,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
           a.rss(href="/rss")
             img(src="/assets/images/rss.png")
         include page
+
         ul.article-list
           each article in articles
             article.post(id="post-#{article.id}")
