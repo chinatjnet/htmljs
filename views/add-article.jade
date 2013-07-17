@@ -1,0 +1,124 @@
+!!! 5
+html
+  head
+    include head
+    link(href='/assets/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
+    script(src='/assets/js/jquery.js')
+    script(src='/assets/js/bootstrap/bootstrap-transition.js')
+    script(src='/assets/js/bootstrap/bootstrap-modal.js')
+    script(src='/assets/js/bootstrap/bootstrap-tooltip.js')
+    script(src='/assets/js/Markdown.Converter.js')
+    script(src='/assets/js/Markdown.Sanitizer.js')
+    script(src='/assets/js/Markdown.Editor.js')
+    
+    style
+      #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
+      #insertImageDialog h4 { margin-bottom: 10px; }
+      #insertImageDialog input[type=text] { width: 260px; }
+      #insertImageDialog .loading-small { display:none; float: left; padding-right: 5px; }
+    
+  body
+    - locals.pageId=1;
+    include header
+    include article_cats
+    #content
+      form.form-horizontal#form(method='post')
+        fieldset
+          legend 发表新文章
+          .control-group
+            input#title(type='text', name='title', placeholder='文章标题')
+          .control-group
+            span 类目：
+            select(name="type")
+              for cat,i in cats
+                option(value="#{i}") #{cat}
+          .control-group
+            .wmd-panel
+              #wmd-button-bar
+              textarea.wmd-input#wmd-input(name="md")
+              .wmd-panel.wmd-preview
+                div 预览
+                #wmd-preview
+          .control-group
+            button.btn(type='submit') 发表
+      #myModal.modal.hide.fade.
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">插入图片</h3>
+        </div>
+        <div class="modal-body">
+            <input type="file" name="pic" id="file" />
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+          <button class="btn btn-primary">插入</button>
+        </div>
+    if !locals.user
+      #layer
+      #login_popup 
+        span 请先用新浪微博登录
+        a(href="/user/login")
+    script(src='/assets/js/ajaxfileupload.js')
+    script(src='/assets/js/loadingTip.js')
+    script(src='/assets/js/messageTip.js')
+    script
+      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
+      $("#login_popup").css({left:$(window).width()/2-125})
+      var converter1 = Markdown.getSanitizingConverter();
+      var editor1 = new Markdown.Editor(converter1);
+      editor1.run();
+      var converter2 = new Markdown.Converter();
+
+      converter2.hooks.chain("preConversion", function (text) {
+          return text.replace(/\b(a\w*)/gi, "*$1*");
+      });
+      
+      converter2.hooks.chain("plainLinkText", function (url) {
+          return "This is a link to " + url.replace(/^https?:\/\//, "");
+      });
+      $("#form").submit(function(e){
+        e.preventDefault()
+        $.ajax({
+          url:"/article/add",
+          type:"post",
+          data:$("#form").serialize(),
+          success:function(data){
+            if(data.success){
+              alert("发布成功")
+              window.location.href="/article"
+            }else{
+              alert(data.info)
+            }
+          },
+          error:function(){
+
+          }
+        })
+      })
+      editor1.hooks.set('insertImageDialog', function(callback) {
+        $("#myModal").modal("show");
+        $("#file")[0].onchange=function(){
+          $.ajaxFileUpload({
+            url:"/upload", 
+            secureuri:false,
+            fileElementId:'file',
+            dataType: 'json',
+            success: function (data, status)
+            {
+              if(data.success){
+                callback("/uploads/"+data.data.filename)
+                $("#myModal").modal("hide");
+              }else{
+                messageTip.show(data.info)
+                
+              }
+              loadingTip.hide()
+            },
+            error:function(){
+              
+              loadingTip.hide()
+            }
+          })
+        };
+        return true; // tell the editor that we'll take care of getting the image url
+      });

@@ -1,0 +1,6 @@
+if locals.comments
+  for comment in locals.comments
+    .bao_comment_item
+      .bao_comment_content
+        a(href="/user/#{comment.user_id}") #{comment.user_nick}
+        | ：#{comment.content} <span>(#{locals.moment(comment.createdAt).fromNow()})</span>

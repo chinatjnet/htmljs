@@ -1,0 +1,83 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title 前端花名册
+    link(href='/assets/css/bootstrap.css', type='text/css', rel='stylesheet', charset='utf-8')
+    link(href='/assets/css/main.css', type='text/css', rel='stylesheet', charset='utf-8')
+    link(href='/assets/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
+    script(src='/assets/js/jquery.js')
+  body
+    - locals.pageId=1;
+    include header
+    #content
+      form.form-horizontal#form(method='post')
+        fieldset
+          legend 推荐文章
+          input(type='hidden', name='type', value="2")
+          .control-group
+            input#url(type='text', name='quote_url', placeholder='文章在线地址')
+          .control-group
+            input#title(type='hidden', name='title', placeholder='文章在线地址')
+            textarea#html.hidden(name="html")
+            div.preview_title 标题预览：
+            #preview_title
+            div.preview_title  内容简介：
+            #preview_desc
+            div.preview_title  内容预览：
+            #preview
+          .control-group
+            button.btn#submit(type='button') 提交
+    if !locals.user
+      #layer
+      #login_popup 
+        span 请先用新浪微博登录
+        a(href="/user/login")
+    script(src='/assets/js/loadingTip.js')
+    script
+      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
+      $("#login_popup").css({left:$(window).width()/2-125})
+      $("#submit").click(function(e){
+        if(!$("#preview").html()){
+          loadingTip.show("远程提取中")
+          $.ajax({
+          url:"/article/online_to_local",
+          type:"post",
+          data:{
+            url:$("#url").val()
+          },
+          success:function(data){
+            if(data.success){
+              $("#title").val(data.data.title)
+              $("#html").val(data.data.content)
+              $("#preview").html(data.data.content)
+              $("#preview_title").html(data.data.title)
+              $("#preview_desc").html(data.data.desc)
+            }else{
+              alert(data.info)
+            }
+            loadingTip.hide()
+          },
+          error:function(){
+
+          }
+        })
+        }else{
+          $.ajax({
+          url:"/article/add/recommend",
+          type:"post",
+          data:$("#form").serialize(),
+          success:function(data){
+            if(data.success){
+              alert("发布成功")
+              window.location.href="/article"
+            }else{
+              alert(data.info)
+            }
+          },
+          error:function(){
+
+          }
+        })
+        }
+      });

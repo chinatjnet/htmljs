@@ -1,0 +1,145 @@
+!!! 5
+html
+  head
+    include head
+    style
+      
+      
+  body
+    - locals.pageId=2;
+    include header
+    #content
+      form.form-horizontal(method='post')
+        fieldset
+          legend 填写以下信息
+          span.label.label-warning(style='margin-bottom: 20px;') 您的关键信息不会被暴露，我们只会在《前端花名册》中暴露极少量信息，请放心填写。我们会利用这些信息来为您推荐工作、推荐活动、和其他服务。
+          input(type="hidden",name="head_pic",value="#{locals.weibo_info&&weibo_info.profile_image_url}")
+          .control-group
+            label.control-label
+              | 姓名（
+              span(style='color: #ff0000;') *
+              span.label.label-warning 保密
+              | ）
+            .controls
+              input(type='text', name='name', placeholder='')
+          .control-group
+            label.control-label
+              | 网名，昵称（
+              span(style='color: #ff0000;') *
+              | ）
+            .controls
+              input(type='text', name='nick', placeholder='',value="#{locals.weibo_info&&weibo_info.screen_name}")
+          .control-group
+            label.control-label
+              | 性别（
+              span(style='color: #ff0000;') *
+              | ）
+            .controls
+              label.radio.inline
+                input(type='radio', name='sex', value='男')
+                | 男
+              label.radio.inline
+                input(type='radio', name='sex', value='女')
+                | 女
+          .control-group
+            label.control-label
+              | 感情状况（
+              span(style='color: #ff0000;') *
+              | ）
+            .controls
+              label.radio.inline
+                input(type='radio', name='is_dan', value='单身')
+                | 单身
+              label.radio.inline
+                input(type='radio', name='is_dan', value='已婚')
+                | 已婚
+              label.radio.inline
+                input(type='radio', name='is_dan', value='恋爱中')
+                | 恋爱中
+          .control-group
+            label.control-label
+              | 所在城市（
+              span(style='color: #ff0000;') *
+              | ）
+            .controls
+              input(type='text', name='city', placeholder='',value="#{locals.weibo_info&&weibo_info.location}")
+          .control-group
+            label.control-label
+              | 职位（
+              span(style='color: #ff0000;') *
+              | ）
+            .controls
+              input(type='text', name='zhiwei', placeholder='')
+          .control-group
+            label.control-label
+              | 特长，擅长的技术（
+              span(style='color: #ff0000;') *
+              | ）
+            .controls
+              textarea(name='techang', style='width: 400px; height: 50px;')
+          .control-group
+            label.control-label 博客地址（带上http://）
+            .controls
+              input(type='text', name='blog', placeholder='')
+          .control-group
+            label.control-label 公司或大学
+            .controls
+              input(type='text', name='gongsi', placeholder='')
+          .control-group
+            label.control-label 每天的工作时间
+            .controls
+              label.radio.inline
+                input(type='radio', name='shijian', value='小于8小时')
+                | 小于8小时
+              label.radio.inline
+                input(type='radio', name='shijian', value='8小时')
+                | 8小时
+              label.radio.inline
+                input(type='radio', name='shijian', value='8-10小时')
+                | 8-10小时
+              label.radio.inline
+                input(type='radio', name='shijian', value='10小时以上')
+                | 10小时以上
+          .control-group
+            label.control-label 微博地址（带上http://）
+            .controls
+              input(type='text', name='weibo', placeholder='',value="http://weibo.com/#{locals.weibo_info&&weibo_info.id}")
+          .control-group
+            label.control-label github地址（带上http://）
+            .controls
+              input(type='text', name='github', placeholder='')
+          .control-group
+            label.control-label
+              | 常用邮箱（
+              span(style='color: #ff0000;') *
+              span.label.label-warning 保密
+              | ）
+            .controls
+              input(type='text', name='email', placeholder='')
+          .control-group
+            label.control-label
+              | QQ
+              span.label.label-warning 保密
+            .controls
+              input(type='text', name='qq', placeholder='')
+          .control-group
+            label.control-label
+              | 手机
+              span.label.label-warning 保密
+            .controls
+              input(type='text', name='tel', placeholder='')
+          .control-group
+            label.control-label 介绍下自己
+            .controls
+              textarea(name='desc', style='width: 400px; height: 100px;') #{locals.weibo_info&&weibo_info.description}
+          .control-group
+            .controls
+              button.btn(type='submit') 提交
+    if !locals.user
+      #layer
+      #login_popup 
+        span 请先用新浪微博登录
+        a(href="/user/login")
+    script
+      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
+      $("#login_popup").css({left:$(window).width()/2-125})

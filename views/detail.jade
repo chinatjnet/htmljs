@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  include header
+  #content
+    .wrapper
+      .article
+        h1.art_title #{article.title}
+        .art_content 
+        | !{article.content}
+          
+  include footer

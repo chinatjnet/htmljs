@@ -1,0 +1,189 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title 前端花名册
+    link(href='/assets/css/bootstrap.css', type='text/css', rel='stylesheet', charset='utf-8')
+    link(href='/assets/css/main.css', type='text/css', rel='stylesheet', charset='utf-8')
+    script(src='/assets/js/jquery.js')
+    script(src='/assets/js/lazyload.js')
+    style
+    script(src='/google_analytics_auto.js')
+  body#me
+    - locals.pageId=2;
+    include header
+    #content
+      .left
+        if !locals.card
+          p.alert.alert-warnint 此用户还没有创建名片
+        else
+          div.my_card
+            .hd 
+              | #{card.nick}的名片信息 
+            .bd
+              .item.clearfix
+                span.key 头像
+                span.value 
+                  img(src="#{card.head_pic||"http://www.gravatar.com/avatar/"+md5(card.email)+"?d=http://ww2.sinaimg.cn/mw690/6663ae3cgw1dw6f3l62w6j.jpg"}")
+              .item.clearfix
+                span.key 姓名
+                span.value #{card.name}
+              .item.clearfix
+                span.key 昵称
+                span.value #{card.nick}
+              .item.clearfix
+                span.key 性别
+                span.value #{card.sex}
+              .item.clearfix
+                span.key 感情状况
+                span.value #{card.is_dan}
+              .item.clearfix
+                span.key 城市
+                span.value #{card.city}
+              .item.clearfix
+                span.key 职位
+                span.value #{card.zhiwei}
+              .item.clearfix
+                span.key 特长
+                span.value #{card.techang}
+              .item.clearfix
+                span.key 公司
+                span.value #{card.gongsi}
+              .item.clearfix
+                span.key blog
+                span.value #{card.blog}
+              .item.clearfix
+                span.key github
+                span.value #{card.github}
+              .item.clearfix
+                span.key weibo
+                span.value #{card.weibo}
+              .item.clearfix
+                span.key email
+                span.value #{card.email}
+              .item.clearfix
+                span.key QQ
+                span.value #{card.qq}
+              .item.clearfix
+                span.key 手机号
+                span.value #{card.tel}
+              .item.clearfix
+                span.key 简介(工作经历)
+                span.value #{card.desc}
+              .item.clearfix
+                span.key 每天工作时长
+                span.value #{card.shijian}
+              .item.clearfix
+                a 请求完整资料
+          .card-article
+            .title TA发表的原创文章
+          if locals.articles
+            ul.article-list
+              each article in articles
+                article.post(id="post-#{article.id}")
+                  .entry-title
+                    a.headpic(href="/user/#{article.user_id}")
+                      img(src="#{article.user_headpic}")
+                    h1.title
+                      a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
+                    div.others
+                      span.author.vcard.item
+                        span.index 作者：
+                        a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+                      span.time.item
+                        span.index 时间：
+                        a.value #{moment(article.publish_time*1000).format("LLL")}
+                      span.views.item
+                        span.index View：
+                        a.value #{article.visit_count}
+                  .entry-content !{article.html}
+      .right
+        if locals.card
+          div.count.module
+            .hd 最近访问（#{card.visit_count||1}）
+            .bd.clearfix
+              div 
+                if locals.visitors
+                  each visitor in locals.visitors
+                    div.visitor
+                      a(href="/user/#{visitor.user_id}",title="#{visitor.user_nick}")
+                        img(src="#{visitor.user_headpic}")
+              //
+                div 
+                  span 赞：
+                  em #{card.zan_count||1}
+          div.module
+            .hd 分享
+            .bd
+              div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix
+                a.bds_tsina
+                a.bds_qzone
+                a.bds_tqq
+                a.bds_douban
+                a.bds_renren
+                a.shareCount
+          div.bao.module
+            .hd 爆料
+            .bd
+              .actions
+                a.act_pic 爆照片
+                  input#publish_pic(type='file',name='pic')
+                a.act_text 爆八卦
+              .publish-text
+                form#bao_form(action="/card/#{card.id}/bao",method="post")
+                  div
+                    img.publish_pic.hidden(src="")
+                    input#publishform_pic(type="hidden",name="pic")
+                  .publish-inner
+                    div
+                      textarea(name="content",placeholder="输入要八卦的内容")
+                    button.btn(type="submit") 提交
+              if locals.baos
+                .baos
+                  for bao in baos
+                    .bao-item 
+                      if bao.pic
+                        img.bao-pic(src="#{bao.pic}") 
+                      .bao-content 
+                        a(href="/user/#{bao.user_id}") #{bao.user_nick}
+                        | ：#{bao.content} <span>(#{moment(bao.createdAt).fromNow()})</span>
+                      .bao-action 
+                        a.comment(data-id="#{bao.id}") 评论(<em>#{bao.comment_count||0}</em>)
+                        a.zan(data-id="#{bao.id}") 赞(<em>#{bao.zan_count||0}</em>)
+                        a 分享
+                        .bao_comment.hidden
+                          .wrapper
+                            textarea(id="bao_content_#{bao.id}")
+                            a.btn.bao_comment_submit(data-id="#{bao.id}") 提交
+                            .comment-list
+                            
+                          
+                          
+          div.talk.module
+            .hd 讨论
+            .bd
+              script.
+                (function(){
+                var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
+                url = url.replace("url=auto", "url=" + document.URL); 
+                document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+                })();
+                </script>
+                <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
+                <script type="text/javascript">
+                window.WBComment.init({
+                  "id": "WBCommentFrame"
+                });
+
+    div.
+      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+      <script type="text/javascript" id="bdshell_js"></script>
+      <script type="text/javascript">
+      var bds_config={"bdText":"","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+      </script>
+    script(src='/assets/js/ajaxfileupload.js')
+    script(src='/assets/js/loadingTip.js')
+    script(src='/assets/js/messageTip.js')
+    script(src='/assets/js/card.js')
+      

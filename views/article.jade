@@ -1,0 +1,78 @@
+!!! 5
+html
+  head
+    include head
+  body#article
+    - locals.pageId=1;
+    include header
+    #content
+      .left
+        article.post(id="post-#{article.id}")
+          .entry-title
+            a.headpic
+              img(src="#{article.user_headpic}",width=50,height=50)
+            h1.title(href='http://p.html-js.com/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
+            div.others
+              span.author.vcard.item
+                span.index 作者：
+                a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+              span.time.item
+                span.index 时间：
+                a.value #{moment(article.publish_time*1000).format("LLL")}
+              span.views.item
+                span.index View：
+                a.value #{article.visit_count}
+                
+          .entry-content !{article.html.replace(/\n/g,"<br/>")}
+          .entry-meta
+          .comment
+            .bd
+              script.
+                (function(){
+                var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
+                url = url.replace("url=auto", "url=" + document.URL); 
+                document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+                })();
+                </script>
+                <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
+                <script type="text/javascript">
+                window.WBComment.init({
+                  "id": "WBCommentFrame"
+                });
+      .right
+        .module.text
+          .hd 关于“前端乱炖”
+          .bd
+            p 本博客正式转型，从个人博客向大众服务平台转型，一心一力为大家服务。
+            p 目前本博客提供，招聘，外包，求职，求外包的大众服务。
+            p 同时提供一些学习服务，例如精品推荐等。
+            p 后续还会推出更多服务，谢谢关注。
+            p 合作洽谈和其他事宜 请联系我：xinyu198736@gmail.com。
+        .module.text
+          .hd 订阅和交流
+          .bd
+            p. 
+              <wb:follow-button uid="1734409185" type="red_3" width="100%" height="24" ></wb:follow-button>
+              <wb:follow-button uid="1717808700" type="red_3" width="100%" height="24" ></wb:follow-button>
+            p 欢迎加入
+            p 前端乱炖情感群:46532005（千人群）
+            p 前端乱炖技术群：227896607
+            p 前端乱炖求职招聘群：12892863
+            p NodeJS乱炖: 95323225（千人群）
+            p 自由职业者: 275182059
+            p IOS 乱炖: 292062123
+        .module.recent
+          .hd 近期文章
+          .bd
+            if locals.recents
+              each recent in recents
+                div · <a href="http://p.html-js.com/article/#{recent.id}">#{recent.title}</a>
+        .module.text
+          .hd 微信公众账号
+          .bd
+            img(src="/assets/images/qrcode.jpg")
+        .module.text
+          .hd SSH广告
+          .bd
+            a(href="http://whmcs.hangssh.info/aff.php?aff=043",target="_blank")
+              img(src="http://ww1.sinaimg.cn/bmiddle/6663ae3cjw1e0vq25avsjj.jpg")

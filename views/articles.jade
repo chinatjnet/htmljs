@@ -1,0 +1,90 @@
+!!! 5
+html(xmlns:wb='http://open.weibo.com/wb')
+  head
+    include head
+    script(src='/assets/js/bootstrap/bootstrap-transition.js')
+    script(src='/assets/js/bootstrap/bootstrap-modal.js')
+    script(src='/assets/js/bootstrap/bootstrap-tooltip.js')
+    style
+    script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
+  body#articles
+    - locals.pageId=1;
+    include header
+    include article_cats
+    #content
+      .left
+        .actions
+          a.publish(href="/article/add",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 投递原创文章
+          a.publish(href="/article/add/recommend",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 推荐在线文章
+        .cats
+          a(href="/article",class="#{locals.filter_type?'':'active'}") 所有
+          for cat,i in cats
+            a(href="/article?filter=type|#{i}",class="#{locals.filter_type==i?'active':''}") #{cat}
+          a.rss(href="/rss")
+            img(src="/assets/images/rss.png")
+        include page
+        ul.article-list
+          each article in articles
+            article.post(id="post-#{article.id}")
+              .entry-title
+                a.headpic(href="/user/#{article.user_id}")
+                  img(src="#{article.user_headpic}",width="50",height="50")
+                h1.title
+                  a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') 【#{cats[article.type]}】#{article.title}
+                div.others
+                  span.author.vcard.item
+                    span.index 作者：
+                    a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+                  span.time.item
+                    span.index 时间：
+                    a.value #{moment(article.publish_time*1000).format("LLL")}
+                  span.views.item
+                    span.index View：
+                    a.value #{article.visit_count}
+                  if article.quote_url
+                    span.views.item
+                      a.value(href="#{article.quote_url}",target="_blank") 原文链接
+              .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/\n/g,"<br/>")}
+
+              .entry-meta
+      .right
+        .module.text
+          .hd 关于“前端乱炖”
+          .bd
+            p 本博客正式转型，从个人博客向大众服务平台转型，一心一力为大家服务。
+            p 目前本博客提供，招聘，外包，求职，求外包的大众服务。
+            p 同时提供一些学习服务，例如精品推荐等。
+            p 后续还会推出更多服务，谢谢关注。
+            p 合作洽谈和其他事宜 请联系我：xinyu198736@gmail.com。
+        .module.text
+          .hd 订阅和交流
+          .bd
+            p. 
+              <wb:follow-button uid="1734409185" type="red_3" width="100%" height="24" ></wb:follow-button>
+              <wb:follow-button uid="1717808700" type="red_3" width="100%" height="24" ></wb:follow-button>
+            p 欢迎加入
+            p 前端乱炖情感群:46532005（千人群）
+            p 前端乱炖技术群：227896607
+            p 前端乱炖求职招聘群：12892863
+            p NodeJS乱炖: 95323225（千人群）
+            p 自由职业者: 275182059
+            p IOS 乱炖: 292062123
+        .module.recent
+          .hd 近期文章
+          .bd
+            if locals.recents
+              each recent in recents
+                div · <a href="/article/#{recent.id}">#{recent.title}</a>
+        .module.text
+          .hd 微信公众账号
+          .bd
+            img(src="/assets/images/qrcode.jpg")
+        .module.text
+          .hd SSH广告
+          .bd
+            a(href="http://whmcs.hangssh.info/aff.php?aff=043",target="_blank")
+              img(src="http://ww1.sinaimg.cn/bmiddle/6663ae3cjw1e0vq25avsjj.jpg")
+    script
+      $('.actions a').tooltip({
+          placement:"bottom"
+      })
