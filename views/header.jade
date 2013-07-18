@@ -20,3 +20,8 @@
               a(href="/learn") 公开课
             li(class="#{locals.pageId==6?'active':''}")
               a(href="/qa") 问答
+          if locals.user
+            ul.right-nav
+              li #{user.nick}
+              li
+                a(href="/user/login") 退出
