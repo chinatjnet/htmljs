@@ -1,5 +1,5 @@
-func_user = require './../functions/user.coffee'
-func_card = require './../functions/card.coffee'
+func_user = __F 'user'
+func_card = __F 'card'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js")
 Sina=require("./../lib/sdk/sina.js")

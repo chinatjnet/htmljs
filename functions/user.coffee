@@ -1,22 +1,8 @@
-config = require("./../config.coffee")
-Sequelize = require("sequelize")
-sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysql_password,
-  define:
-    underscored: false
-    freezeTableName: true
-    charset: 'utf8'
-    collate: 'utf8_general_ci'
-)
-models =
-  users: require("./../models/users.coffee")
-  cards: require("./../models/cards.coffee")
-  visit_log: require './../models/card_visit_log'
-  
-User = sequelize.define("users", models.users)
+User = __M 'users'
 User.sync()
-Card = sequelize.define("cards", models.cards)
+Card = __M 'cards'
 Card.sync()
-VisitLog = sequelize.define 'card_visit_log',models.visit_log
+VisitLog = __M 'card_visit_log'
 VisitLog.sync()
 
 

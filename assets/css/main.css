@@ -70,7 +70,7 @@
 #cards .right .module .bd{font-size:12px;padding:10px;color:#666;}
 #card #bdshare,#me #bdshare{float:none;}
 #card .bao .actions a,#me .bao .actions a{margin-right:20px;}
-#article{background:#efefef;}#article .post .entry-title .headpic{float:left;margin-right:20px;}
+#article{background:#efefef;}#article .post .entry-title .headpic{float:left;margin-right:20px;margin-top:10px;}
 #article .post .entry-title .title{font-size:16px;line-height:30px;margin:0;color:#404040;font-weight:normal;}
 #article .post .entry-title .item{font-size:12px;margin-right:20px;}#article .post .entry-title .item .index{color:#aaa;}
 #article .post .entry-title .item .value{color:#888;}

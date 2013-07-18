@@ -1,7 +1,7 @@
-func_user = require './../functions/user.coffee'
-func_card = require './../functions/card.coffee'
-func_bao = require './../functions/bao.coffee'
-func_article = require './../functions/article.coffee'
+func_user = __F 'user'
+func_card = __F 'card'
+func_bao = __F 'bao'
+func_article = __F 'article'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
 md5 = require 'MD5'

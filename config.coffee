@@ -6,6 +6,7 @@ config =
   mysql_password:"" #数据库密码
   upload_path:__dirname+"/uploads/"
   base_path:__dirname
+  script_ext:".coffee"
   sdks:
     sina:
       app_key:"659341943"

@@ -1,29 +1,17 @@
-config = require("./../config.coffee")
-Sequelize = require("sequelize")
-sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysql_password,
-  define:
-    underscored: false
-    freezeTableName: true
-    charset: 'utf8'
-    collate: 'utf8_general_ci'
-)
-models =
-  articles: require("./../models/articles.coffee")
-  visit_logs: require("./../models/article_visit_log.coffee")
-Article = sequelize.define("articles", models.articles)
+
+Article = __M 'articles'
 Article.sync()
-Visit_log = sequelize.define("article_visit_logs", models.visit_logs)
+Visit_log = __M 'article_visit_logs'
 Visit_log.sync()
 
 cache = 
   recent:[]
-  
 module.exports =  
   getAll:(page,count,condition,callback)->
     query = 
       offset: (page - 1) * count
       limit: count
-      order: "id desc"
+      order: "sort desc,id desc"
     if condition then query.where = condition
     Article.findAll(query)
     .success (articles)->

@@ -35,7 +35,12 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 a.headpic(href="/user/#{article.user_id}")
                   img(src="#{article.user_headpic}",width="50",height="50")
                 h1.title
-                  a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') 【#{cats[article.type]}】#{article.title}
+                  a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') 
+                    if article.sort == 100000
+                      |[置顶]
+                    if article.is_yuanchuang == 1
+                      |[原创]
+                    |#{article.title}
                 div.others
                   span.author.vcard.item
                     span.index 作者：

@@ -3,6 +3,8 @@ html
   head
     include head
     title 前端乱炖-#{article.title}
+    style
+      #bdshare a{}
   body#article
     - locals.pageId=1;
     include header
@@ -11,7 +13,7 @@ html
         article.post(id="post-#{article.id}")
           .entry-title
             a.headpic
-              img(src="#{article.user_headpic}",width=50,height=50)
+              img(src="#{article.user_headpic}",width=70,height=70)
             h1.title(href='http://p.html-js.com/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
             div.others
               span.author.vcard.item
@@ -23,6 +25,14 @@ html
               span.views.item
                 span.index View：
                 a.value #{article.visit_count}
+              div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:70px;")
+                span(style="float:left;line-height:30px;") 分享：
+                a.bds_tsina
+                a.bds_qzone
+                a.bds_tqq
+                a.bds_douban
+                a.bds_renren
+                a.shareCount
                 
           .entry-content !{article.html.replace(/\n/g,"<br/>")}
           .entry-meta
@@ -77,5 +87,11 @@ html
           .bd
             a(href="http://whmcs.hangssh.info/aff.php?aff=043",target="_blank")
               img(src="http://ww1.sinaimg.cn/bmiddle/6663ae3cjw1e0vq25avsjj.jpg")
-
+    p.
+      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+      <script type="text/javascript" id="bdshell_js"></script>
+      <script type="text/javascript">
+      var bds_config={"bdText":"这小子不错啊，分享给大家，快来吃他！@前端乱炖","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+      </script>
     include footer

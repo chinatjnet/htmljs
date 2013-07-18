@@ -1,5 +1,5 @@
-func_user = require './../functions/user.coffee'
-func_article = require './../functions/article.coffee'
+func_user = __F 'user'
+func_article = __F 'article'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
 md5 = require 'MD5'

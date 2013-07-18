@@ -16,10 +16,13 @@ module.exports =
   is_publish:
     defaultValue:0
     type:"tinyint"
+  is_yuanchuang:
+    defaultValue:0
+    type:"tinyint"
   sort:"int"
   is_top:"tinyint"
   type:
-    type:"int" #1原创，2精品推荐，3实例学习，4其他
+    type:"int" 
     defaultValue:1
   quote_url:"varchar(255)" #引用原文url
   desc:"text"

@@ -6,3 +6,6 @@ module.exports =
   weibo_token:"varchar(100)"
   weibo_refresh:"varchar(100)"
   card_id:"int"
+  is_admin:
+    defaultValue:0
+    type:"tinyint"

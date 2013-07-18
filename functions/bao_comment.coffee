@@ -1,18 +1,6 @@
-config = require("./../config.coffee")
-Sequelize = require("sequelize")
-sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysql_password,
-  define:
-    underscored: false
-    freezeTableName: true
-    charset: 'utf8'
-    collate: 'utf8_general_ci'
-)
-models =
-  baos: require("./../models/baos.coffee")
-  bao_comments: require("./../models/bao_comments.coffee")
-Bao = sequelize.define("baos", models.baos)
+Bao = __M 'baos'
 Bao.sync()
-Comments = sequelize.define("bao_comments", models.bao_comments)
+Comments = __M 'bao_comments'
 Comments.sync()
 
 module.exports =  

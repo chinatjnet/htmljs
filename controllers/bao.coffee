@@ -1,5 +1,5 @@
-func_bao_comment = require './../functions/bao_comment.coffee'
-func_bao = require './../functions/bao.coffee'
+func_bao_comment = __F 'bao_comment'
+func_bao = __F 'bao'
 jade = require 'jade'
 path = require 'path'
 config = require './../config.coffee'
