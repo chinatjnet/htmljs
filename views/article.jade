@@ -87,7 +87,7 @@ html
           .bd
             a(href="http://whmcs.hangssh.info/aff.php?aff=043",target="_blank")
               img(src="http://ww1.sinaimg.cn/bmiddle/6663ae3cjw1e0vq25avsjj.jpg")
-    - locals.shareImgs = article.content.match(/img\s*?src=["|'](.*?)["|']/);
+    - locals.shareImgs = article.html.match(/img\s*?src=["|'](.*?)["|']/);
     p.
       <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
       <script type="text/javascript" id="bdshell_js"></script>
