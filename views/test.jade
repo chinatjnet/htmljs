@@ -1,0 +1,74 @@
+body
+  img#image(style="width:800px;height:800px;")
+  canvas#canvas(style="width:800px;height:800px;")
+  canvas#canvas2(style="width:800px;height:800px;")
+  #con(style="position:relative;")
+  script(src="/assets/js/jquery.js")
+  script
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var canvas2 = document.getElementById("canvas2");
+    var ctx2 = canvas2.getContext("2d");
+    var sourceImg = document.createElement('img');
+    var imgs =[]
+    sourceImg.onload = function(){
+      ctx.drawImage(sourceImg,0,0);
+      var sourceData = ctx.getImageData(0, 0, 800, 800);
+      console.log(sourceData);
+      var ret = ctx2.createImageData( 800, 800 )
+      for (var i=0;i<sourceData.data.length;i+=4){
+        if(Math.floor(i/50)%2==0&&Math.floor(i/16000)%2==0){ //
+          ret.data[i] = sourceData.data[i];
+          ret.data[i+1] = sourceData.data[i+1];
+          ret.data[i+2] = sourceData.data[i+2];
+          ret.data[i+3] = sourceData.data[i+3];
+        }else{
+          ret.data[i] = 0;
+          ret.data[i+1] = 0;
+          ret.data[i+2] = 0;
+          ret.data[i+3] = 0;
+        }
+      }
+      ctx2.putImageData(ret,0,0)
+      var img = document.createElement("img")
+      img.src=canvas2.toDataURL()
+      img.style.position = "absolute";
+      img.style.left = "0"
+      img.style.top="0"
+      $("#con")[0].appendChild(img)
+      imgs.push(img)
+      var ret = ctx2.createImageData( 800, 800 )
+      for (var i=0;i<sourceData.data.length;i+=4){
+        if(!(Math.floor(i/50)%2==0&&Math.floor(i/16000)%2==0)){ //
+          ret.data[i] = sourceData.data[i];
+          ret.data[i+1] = sourceData.data[i+1];
+          ret.data[i+2] = sourceData.data[i+2];
+          ret.data[i+3] = sourceData.data[i+3];
+        }else{
+          ret.data[i] = 0;
+          ret.data[i+1] = 0;
+          ret.data[i+2] = 0;
+          ret.data[i+3] = 0;
+        }
+      }
+      ctx2.putImageData(ret,0,0)
+      var img = document.createElement("img")
+      img.src=canvas2.toDataURL()
+      img.style.position = "absolute";
+      img.style.left = "0"
+      img.style.top="0"
+      $("#con")[0].appendChild(img)
+      imgs.push(img)
+      var index = 0;
+      var count = 0;
+      setInterval(function(){
+        count++;
+        index = count%2
+        imgs[index].style.display="block";
+        imgs[index===0?1:0].style.display="none";
+      },0)
+      
+      
+    }
+    sourceImg.src="http://www.html-js.com/uploads/1369576197164-81674BBE8E4EE5913E20931968F76680_310x310.jpg_450x10000.jpg.jpg";
+    

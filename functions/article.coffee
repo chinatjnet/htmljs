@@ -36,6 +36,7 @@ module.exports =
       where:
         user_id:id
         type:type
+        is_publish:1
       order: "id desc"
       limit:20
     .success (articles)->

@@ -13,7 +13,8 @@ rss = require 'rss'
 module.exports.controllers = 
   "/":
     "get":(req,res,next)->
-      condition = null
+      condition = 
+        is_publish:1
       if req.query.filter
         condition=condition||{}
         req.query.filter.split(":").forEach (f)->
@@ -25,6 +26,7 @@ module.exports.controllers =
         1:"原创"
         2:"精品推荐"
         3:"实例学习"
+
       func_article.count condition,(error,count)->
         if error then next error
         else

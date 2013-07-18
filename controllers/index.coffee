@@ -192,6 +192,9 @@ module.exports.controllers =
       else
         result.info = "错误的图片文件"
         res.send result  
+  "/test":
+    "get":(req,res,next)->
+      res.render 'test.jade'
 module.exports.filters = 
   "/article/add":
     get:['checkLogin',"checkCard"]
