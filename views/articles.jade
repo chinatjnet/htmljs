@@ -27,7 +27,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
           a.rss(href="/rss")
             img(src="/assets/images/rss.png")
         include page
-
+        
         ul.article-list
           each article in articles
             article.post(id="post-#{article.id}")

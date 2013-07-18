@@ -3,9 +3,7 @@ html
   head
     meta(charset='utf-8')
     title 前端花名册
-    link(href='/assets/css/bootstrap.css', type='text/css', rel='stylesheet', charset='utf-8')
-    link(href='/assets/css/main.css', type='text/css', rel='stylesheet', charset='utf-8')
-    script(src='/assets/js/jquery.js')
+    include head
     script(src='/assets/js/lazyload.js')
     style
     script(src='/google_analytics_auto.js')
@@ -51,13 +49,16 @@ html
                 span.value #{card.gongsi}
               .item.clearfix
                 span.key blog
-                span.value #{card.blog}
+                span.value 
+                  a(href="#{card.blog}",target="_blank") #{card.blog}
               .item.clearfix
                 span.key github
-                span.value #{card.github}
+                span.value 
+                  a(href="#{card.github}",target="_blank") #{card.github}
               .item.clearfix
                 span.key weibo
-                span.value #{card.weibo}
+                span.value 
+                  a(href="#{card.weibo}",target="_blank") #{card.weibo}
               .item.clearfix
                 span.key email
                 span.value #{card.email?"*********":""}
