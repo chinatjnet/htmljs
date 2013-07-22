@@ -25,13 +25,16 @@ module.exports =
     .error (error)->
       callback error
   getById:(id,callback)->
-    Card.find
-      where:
-        id:id
-    .success (card)->
-      callback null,card
-    .error (error)->
-      callback error
+    if !id
+      callback null,null
+    else
+      Card.find
+        where:
+          id:id
+      .success (card)->
+        callback null,card
+      .error (error)->
+        callback error
   add:(data,callback)->
     Card.create(data)
     .success (card)->

@@ -199,7 +199,7 @@ module.exports.filters =
   "/article/add":
     get:['checkLogin',"checkCard"]
   "/cards":
-    get:['checkLogin',"checkCard","card_hot","card_recent"]
+    get:['freshLogin',"checkCard","card_hot","card_recent"]
   "/card/:id":
     get:['freshLogin','getBao']
   "/add-card":
