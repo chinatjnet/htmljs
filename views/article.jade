@@ -34,7 +34,7 @@ html
                 a.bds_renren
                 a.shareCount
                 
-          .entry-content !{article.html.replace(/([^>])\n+([^<])/g,"$1<br/>$2")}
+          .entry-content !{article.html.replace(/([^>])\n\n([^<])/g,"$1<br/>$2")}
           .entry-meta
           .comment
             .bd
