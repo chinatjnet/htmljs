@@ -33,8 +33,7 @@ html
                 a.bds_douban
                 a.bds_renren
                 a.shareCount
-                
-          .entry-content !{article.html.replace(/([^>])\n\n([^<])/g,"$1<br/>$2")}
+          .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2")}
           .entry-meta
           .comment
             .bd
