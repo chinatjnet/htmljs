@@ -3,7 +3,7 @@ func_card = __F 'card'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js")
 Sina=require("./../lib/sdk/sina.js")
-sina=new Sina(config.sdks.sina)
+
 md5 = require 'MD5'
 module.exports.controllers = 
   "/login":
@@ -20,10 +20,11 @@ module.exports.controllers =
         app_key:config.sdks.sina.app_key,
         redirect_uri:config.sdks.sina.redirect_uri
         client_id:config.sdks.sina.app_key
+      _sina=new Sina(config.sdks.sina)
       if !code
         res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
         return
-      sina.oauth.accesstoken code,(error,data)->
+      _sina.oauth.accesstoken code,(error,data)->
         if error 
           res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
         else
@@ -41,7 +42,7 @@ module.exports.controllers =
               .error (error)->
                 res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
             else
-              sina.users.show
+              _sina.users.show
                 access_token:access_token
                 uid:data.uid
                 method:"get"
@@ -77,6 +78,7 @@ module.exports.controllers =
           result.success= 1
         res.send result
         if !error
+          sina=new Sina(config.sdks.sina)
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
             status:"我在@前端乱炖 的《前端花名册》认领了我的名片，这里是我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
