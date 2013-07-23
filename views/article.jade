@@ -17,7 +17,7 @@ html
             h1.title(href='http://p.html-js.com/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
             div.others
               span.author.vcard.item
-                span.index 作者：
+                span.index #{article.quote_url?"推荐者":"作者"}：
                 a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
               span.time.item
                 span.index 时间：
@@ -25,6 +25,9 @@ html
               span.views.item
                 span.index View：
                 a.value #{article.visit_count}
+              if article.quote_url
+                span.views.item
+                  a.value(href="#{article.quote_url}",target="_blank") 原文链接
               div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:70px;")
                 span(style="float:left;line-height:30px;") 分享：
                 a.bds_tsina
