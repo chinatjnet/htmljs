@@ -62,11 +62,11 @@ html
                     if card.blog || card.github || card.weibo
                       span.sns
                         if card.blog
-                          a.blog(href='#{card.blog}', target='_blank') blog
+                          a.blog(href='#{card.blog}', target='_blank',title="博客地址") blog
                         if card.github
-                          a.github(href='#{card.github}', target='_blank') github
+                          a.github(href='#{card.github}', target='_blank',title="github地址") github
                         if card.weibo
-                          a.weibo(href='#{card.weibo}', target='_blank') weibo
+                          a.weibo(href='#{card.weibo}', target='_blank',title="微博地址") weibo
                   div
                     span.key 性别
                     span.value ：#{card.sex}

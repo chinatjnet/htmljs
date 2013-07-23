@@ -57,9 +57,10 @@
 #cards{background:#efefef;}#cards .head_pic{float:left;}
 #cards .search{margin-bottom:5px;}
 #cards .f2er-list{padding:0;margin:0;width:1000px;}
-#cards .f2er-list .sns a{padding-left:10px;}
-#cards .f2er-list .sns .github{background:url(/assets/images/github.png) no-repeat center center;height:20px;width:20px;display:inline-block;text-indent:-1000px;overflow:hidden;}
-#cards .f2er-list .sns .weibo{background:url(/assets/images/icon-weibo.png?d) no-repeat center center;height:20px;width:20px;display:inline-block;text-indent:-1000px;overflow:hidden;}
+#cards .f2er-list .sns{margin-left:10px;}#cards .f2er-list .sns a{padding-left:5px;}
+#cards .f2er-list .sns .blog{background:url(/assets/images/icon-blog.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
+#cards .f2er-list .sns .github{background:url(/assets/images/github.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
+#cards .f2er-list .sns .weibo{background:url(/assets/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;}
 #cards .f2er-list li a{word-wrap:normal;word-break:break-all;}
 #cards .f2er-list li .key{color:#aaa;margin-left:10px;}
