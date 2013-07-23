@@ -387,6 +387,22 @@
 .f2er-list{
   .sns{
     a{padding-left:10px;}
+    .github{
+      background: url(/assets/images/github.png) no-repeat center center;
+      height: 20px;
+      width:20px;
+      display: inline-block;
+      text-indent: -1000px;
+      overflow: hidden;
+    }
+    .weibo{
+      background: url(/assets/images/icon-weibo.png?d) no-repeat center center;
+      height: 20px;
+      width:20px;
+      display: inline-block;
+      text-indent: -1000px;
+      overflow: hidden;
+    }
   }
 }
 .f2er-list li{
@@ -679,14 +695,52 @@ display: block;
       a{
         margin-right:10px;
         img{
-          width:30px;
-          height:30px;
+          height:50px;
+          border:1px solid #ddd;
         }
       }
       .me-join{
         margin-top:20px;
         .label{
           
+        }
+      }
+    }
+  }
+  #speaker{
+    .bd{
+      padding:10px 0;
+    }
+    .head_pic{
+      float:left;
+    }
+    .infos{
+      float:left;
+      margin-left:20px;
+      width:700px;
+      .who{
+        font-size:14px;
+        margin:0;
+        line-height: 25px;
+        .btn{
+          margin-left:10px;
+          height:25px;
+          line-height: 20px;
+        }
+        em{
+          font-weight: bold;
+          font-style: normal;
+          font-size:16px;
+        }
+      }
+      .topic{
+        font-size:14px;
+        margin:10px 0;
+        em{
+          font-weight: bold;
+          color:#c54d1a;
+          font-style: normal;
+          font-size:16px;
         }
       }
     }

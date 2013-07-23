@@ -62,11 +62,11 @@ html
                     if card.blog || card.github || card.weibo
                       span.sns
                         if card.blog
-                          a(href='#{card.blog}', target='_blank') blog
+                          a.blog(href='#{card.blog}', target='_blank') blog
                         if card.github
-                          a(href='#{card.github}', target='_blank') github
+                          a.github(href='#{card.github}', target='_blank') github
                         if card.weibo
-                          a(href='#{card.weibo}', target='_blank') weibo
+                          a.weibo(href='#{card.weibo}', target='_blank') weibo
                   div
                     span.key 性别
                     span.value ：#{card.sex}
@@ -136,7 +136,13 @@ html
                 alert("认领成功")
                 window.location.href=window.location.href
               }else{
-                alert(data.info)
+                if(data.isnotlogin){
+                  alert("请先登录")
+                  window.location.href="/user/login"
+                }else{
+                  alert(data.info)
+                }
+                
               }
             },
             error:function(){

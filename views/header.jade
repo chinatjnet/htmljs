@@ -12,14 +12,9 @@
               a(href="/cards") 花名册
             li(class="#{locals.pageId==3?'active':''}")
               a(href="/user") 我的名片
-            li(class="#{locals.pageId==4?'active':''}")
-              a(href="/coms") 公司&招聘
-            li(class="#{locals.pageId==5?'active':''}")
-              a(href="/coms") 外包小组
-            li(class="#{locals.pageId==6?'active':''}")
-              a(href="/learn") 公开课
-            li(class="#{locals.pageId==6?'active':''}")
-              a(href="/qa") 问答
+            //
+              li(class="#{locals.pageId==4?'active':''}")
+                a(href="/act") 活动平台
           if locals.user
             ul.right-nav
               li #{user.nick}

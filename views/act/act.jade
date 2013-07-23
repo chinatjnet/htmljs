@@ -6,6 +6,7 @@ html
     style
       
   body#act
+    - locals.pageId=4;
     include ./../header
     #content.clearfix
       #main_banner
@@ -35,12 +36,20 @@ html
         .bd 
           p.label 活动中产生的吃喝费用，休闲消费，讲师补贴。由第三方企业赞助。谢谢他们对前端事业的支持。
           .logos
-            a
-              img()
-            a
-              img()
+            a(href="http://www.host-700.com",target="_blank")
+              img(src="http://htmljs.b0.upaiyun.com/images/logo-host700.png")
+            a(href="http://www.souche.com",target="_blank")
+              img(src="http://htmljs.b0.upaiyun.com/images/logo-souche.png")
       #speaker.module
         .hd 讲师&主题
-        .bd 
-          
+        .bd.clearfix 
+          .head_pic
+            img(src="http://img02.taobaocdn.com/tps/i2/T1OA6hXgxbXXXMNuYv-150-150.jpg",width="150")
+          .infos
+            h2.who 
+              | 主持：<em>莫大（孙悟空）</em>
+              a.btn(href="",target="_blank") 他的名片
+            .topic 主题：<em>《第一次分享第一次分享》</em>
+            .desc 介绍：五一前我说要把前端乱炖整个改版的，其实我本地已经在跑一个新的前端乱炖了，跟现在的已经完全不是一个东西了，变成了一个平台化的产品，只是自
+              
 

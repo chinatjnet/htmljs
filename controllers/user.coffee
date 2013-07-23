@@ -115,6 +115,6 @@ module.exports.filters =
   "/:id":
     get:['checkLogin']
   "/connet-card":
-    post:['checkLogin',"checkCard"]
+    post:['checkLoginJson',"checkCard"]
   "/update":
     post:['checkLogin',"checkCard"]
