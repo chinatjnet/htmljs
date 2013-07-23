@@ -8,7 +8,7 @@ config =
   script_ext:".coffee"
   sdks:
     sina:
-      app_key:"659341943"
-      app_secret:"248cb8f87511e04f8778c438c1f20fd8"
+      app_key:""
+      app_secret:""
       redirect_uri : 'http://www.html-js.com/user/sina_cb'
 module.exports = config
