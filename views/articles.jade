@@ -43,7 +43,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     |#{article.title}
                 div.others
                   span.author.vcard.item
-                    span.index 作者：
+                    span.index #{article.quote_url?"推荐者":"作者"}：
                     a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
                   span.time.item
                     span.index 时间：
