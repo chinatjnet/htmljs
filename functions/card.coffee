@@ -88,7 +88,8 @@ module.exports =
     Visit_log.findAll
       where:
         card_id:cardId
-      limit:8
+      limit:20
+      order: "updatedAt desc"
     .success (logs)->
       callback null,logs
     .error (error)->
