@@ -70,11 +70,20 @@ module.exports =
         card.updateAttributes
           visit_count: if card.visit_count then (card.visit_count+1) else 1
         if visitor
-          Visit_log.create
-            card_id:cardId
-            user_id:visitor.id
-            user_nick:visitor.nick
-            user_headpic:visitor.head_pic
+          Visit_log.find
+            where:
+              card_id:cardId
+              user_id:visitor.id
+          .success (v)->
+            if v
+              v.updateAttributes
+                user_headpic:visitor.head_pic
+            else
+              Visit_log.create
+                card_id:cardId
+                user_id:visitor.id
+                user_nick:visitor.nick
+                user_headpic:visitor.head_pic
   getVisitors:(cardId,callback)->
     Visit_log.findAll
       where:
