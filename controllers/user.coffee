@@ -113,7 +113,7 @@ module.exports.filters =
   "/":
     get:['checkLogin',"checkCard"]
   "/:id":
-    get:['checkLogin']
+    get:['freshLogin']
   "/connet-card":
     post:['checkLoginJson',"checkCard"]
   "/update":
