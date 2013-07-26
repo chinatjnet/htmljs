@@ -15,6 +15,7 @@ module.exports.controllers =
     "get":(req,res,next)->
       condition = 
         is_publish:1
+        is_yuanchuang:1
       if req.query.filter
         condition=condition||{}
         req.query.filter.split(":").forEach (f)->

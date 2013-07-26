@@ -20,12 +20,13 @@ html(xmlns:wb='http://open.weibo.com/wb')
         .actions
           a.publish(href="/article/add",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 投递原创文章
           a.publish(href="/article/add/recommend",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 推荐在线文章
-        .cats
-          a(href="/article",class="#{locals.filter_type?'':'active'}") 所有
-          for cat,i in cats
-            a(href="/article?filter=type|#{i}",class="#{locals.filter_type==i?'active':''}") #{cat}
-          a.rss(href="/rss")
-            img(src="/assets/images/rss.png")
+        //
+          .cats
+            a(href="/article",class="#{locals.filter_type?'':'active'}") 所有
+            for cat,i in cats
+              a(href="/article?filter=type|#{i}",class="#{locals.filter_type==i?'active':''}") #{cat}
+            a.rss(href="/rss")
+              img(src="/assets/images/rss.png")
         include page
         
         ul.article-list
