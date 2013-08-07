@@ -1,5 +1,5 @@
 .clearfix:after,.clearfix:before,.headerCon:before{display:table;content:"";overflow:hidden;}.headerCon:after,.clearfix:after{clear:both;}.headerCon,.clearfix{zoom:1;}
-
+@green:#5bb793;
 .hidden{
   display:none !important;
 }
@@ -137,8 +137,16 @@
 }
 #footer{
   .wrapper{
-    width:960px;
+    width:940px;
     margin:30px auto;
+  }
+  .module{
+    .bd{
+      padding:0;
+    }
+  }
+  ul{
+    margin:0;
   }
   .links{
     li{
@@ -546,6 +554,123 @@ width:310px;
   }
 
 }
+
+#reads,#read{
+
+  .left{
+    float:left;
+    width:100%;
+    .actions{
+    background: #fff;
+    padding:10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    .cat{
+      margin:0 10px;
+    }
+    .cat.active{
+      color:#aaa;
+    }
+      .publish{
+        height:30px;
+        line-height: 30px;
+        background: #5bb793 url(../images/button+.png) no-repeat 0 -1px;
+        padding-left: 30px;
+        padding-right: 10px;
+        border-radius: 3px;
+        display: inline-block;
+        color: #fff;
+        margin-left:10px;
+      }
+      .publish:hover{
+          background-color: #35b382; 
+      }
+    }
+  }
+  background: #efefef;
+  .article-list{
+    margin:0;
+    padding:0;
+  }
+    .post{
+    background: #fff;
+    margin-bottom: 10px;
+    padding:10px;
+    border-radius:3px;
+    .entry-title{
+      height:35px;
+
+      .headpic{
+        float: left;
+        margin-right: 20px;
+      }
+      .title{
+        font-size:12px;
+        line-height: 18px;
+        margin:0;
+        color: #404040;
+        font-weight: normal;
+      }
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+        .index{
+          color:#aaa;
+        }
+        .value{
+          color:#888;
+        }
+      }
+    }
+    .entry-content{
+      padding:20px 0;
+      color:#404040;
+      h1,h2,h3,h4,h5{
+        font-size:1.5em;
+      }
+      p{
+        font-size:14px;
+        line-height:20px;
+        margin:10px 0;
+      }
+    }
+  }
+    
+
+}
+#read{
+  article.post{
+    background: #fff;
+    border-radius: 5px;
+    padding:20px;
+    .entry-title{
+      height:70px;
+
+      .headpic{
+        float: left;
+        margin-right: 20px;
+      }
+      .title{
+        font-size:18px;
+        line-height: 30px;
+        margin:0;
+        color: #404040;
+        font-weight: normal;
+      }
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+        .index{
+          color:#aaa;
+        }
+        .value{
+          color:#888;
+        }
+      }
+    }
+  }
+
+}
 #articles,#article{
 
   .left{
@@ -672,11 +797,47 @@ display: block;
 
 #act{
   background: #efefef;
+  .module{
+    border-radius: 3px;
+  }
   #main_banner{
+    width:100%;
+    background: #fff;
+    border-radius: 3px;
+    overflow: hidden;
     img{
-      width:940px;
-      height:300px;
-      border-radius: 5px;
+     border-radius: 3px; 
+    }
+    .main_pic{
+      width:700px;
+      float:left;
+    }
+    .infos{
+      width:200px;
+      float:left;
+      font-size: 14px;
+      padding:20px;
+      background: #eee;
+      height:200px;
+      color:#404040;
+      .inner{
+        margin-top: 30px;
+      }
+      .share{
+        float:left !important;
+        margin:0 !important;
+        width:150px !important;
+      }
+      .item{
+        line-height: 30px;
+        .key{
+          color:#666;
+          float:left;
+        }
+        .value{
+          color:#333;
+        }
+      }
     }
   }
   #joiners{
@@ -692,8 +853,9 @@ display: block;
       }
       .me-join{
         margin-top:20px;
-        .label{
-
+        .alert{
+          margin:0;
+          margin-top:20px;
         }
       }
     }
@@ -752,6 +914,46 @@ display: block;
           font-style: normal;
           font-size:16px;
         }
+      }
+    }
+  }
+}
+#acts{
+  background: #f1f1f1;
+  .no-act{
+
+  }
+  .act-item{
+    background: #fff;
+    border-radius: 3px;
+    .act-pic{
+      width:698px;
+      float:left;
+    }
+    .act-infos{
+      width:200px;
+      float:left;
+      font-size: 14px;
+      padding:20px;
+      background: @green;
+      height:200px;
+      color:#fff;
+      p{
+        line-height:20px;
+        margin-bottom: 5px;
+        font-size: 14px;
+        a{
+          color:#fff;
+          text-decoration: none;
+        }
+      }
+      .act-time{
+        color:#ddd;
+         font-size: 12px;
+      }
+      .act-location{
+        color:#ddd;
+        font-size: 12px;
       }
     }
   }

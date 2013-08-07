@@ -1,0 +1,59 @@
+!!! 5
+html(xmlns:wb='http://open.weibo.com/wb')
+  head
+    include head
+    title 前端乱炖
+    script(src='/assets/js/bootstrap/bootstrap-transition.js')
+    script(src='/assets/js/bootstrap/bootstrap-modal.js')
+    script(src='/assets/js/bootstrap/bootstrap-tooltip.js')
+    style
+    script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
+  body#reads
+    - locals.pageId=4;
+    include header
+    include article_cats
+    #content.clearfix
+      .left
+        .actions
+          a(href="/read",class="cat #{locals.cat=='all'?'active':''}") 大家在读
+          a(href="/read/me",class="cat #{locals.cat!='all'?'active':''}") 我的阅读
+          a.publish(href="/read/add/recommend",data-original-title="收藏您想读的文章") 收藏在线文章
+          a.publish(href="javascript:window.location.href='http://www.html-js.com/read/add/recommend?url='+encodeURIComponent(window.location.href);",data-original-title="收集按钮，拖动到浏览器收藏栏，看到喜欢的文章点击即可收藏") 收集到前端乱炖
+        include page
+        
+        ul.article-list
+          if articles.length
+            each article in articles
+              article.post(id="post-#{article.id}")
+                .entry-title
+                  a.headpic(href="/user/#{article.user_id}")
+                    img(src="#{article.user_headpic}",width="35",height="35")
+                  h1.title
+                    a(href='/read/#{article.id}', title='#{article.title}', rel='bookmark') 
+                      if article.sort == 100000
+                        |[置顶]
+                      if article.is_yuanchuang == 1
+                        |[原创]
+                      |#{article.title}
+                  div.others
+                    span.author.vcard.item
+                      span.index #{article.quote_url?"收藏者":"作者"}：
+                      a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+                    span.time.item
+                      span.index 时间：
+                      a.value #{moment(article.publish_time*1000).format("LLL")}
+                    span.views.item
+                      span.index View：
+                      a.value #{article.visit_count}
+                    if article.quote_url
+                      span.views.item
+                        a.value(href="#{article.quote_url}",target="_blank") 原文链接
+          else
+            li(style="text-align:center;") 还没有文章耶，赶紧去收藏新文章吧！！
+              a(href="/read/add/recommend") 去收藏
+    script
+      $('.actions a').tooltip({
+          placement:"bottom"
+      })
+
+    include footer

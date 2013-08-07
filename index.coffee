@@ -20,7 +20,7 @@ app.configure ->
   app.use express.cookieParser()
   app.use express.cookieSession(secret: 'fd2afdsafdvcxzjaklfdsa')
   app.use express.methodOverride()
-  
+  app.locals.assets_head = config.assets_head
   app.use app.router
   rainbow.route(app, {  
     controllers: '/controllers/',

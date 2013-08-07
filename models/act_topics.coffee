@@ -1,0 +1,10 @@
+module.exports = 
+  id:"int"
+  act_id:"int"
+  type:"int"
+  user_nick:"varchar(100)"
+  user_name:"varchar(100)"
+  user_headpic:"varchar(255)"
+  user_id:"int"
+  title:"varchar(200)"
+  desc:"text"

@@ -8,12 +8,12 @@ html
     link(href='/assets/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
     script(src='/assets/js/jquery.js')
   body
-    - locals.pageId=1;
+    - locals.pageId=4;
     include header
     #content
       form.form-horizontal#form(method='post')
         fieldset
-          legend 推荐文章
+          legend 收藏文章
           input(type='hidden', name='type', value="2")
           .control-group
             input#url(type='text', name='quote_url', placeholder='文章在线地址')
@@ -28,15 +28,68 @@ html
             #preview
           .control-group
             button.btn#submit(type='button') 提交
-    if !locals.user
-      #layer
-      #login_popup 
-        span 请先用新浪微博登录
-        a(href="/user/login")
     script(src='/assets/js/loadingTip.js')
     script
-      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
-      $("#login_popup").css({left:$(window).width()/2-125})
+      function getQueryString(name)
+        {
+            // 如果链接没有参数，或者链接中不存在我们要获取的参数，直接返回空
+            if(location.href.indexOf("?")==-1 || location.href.indexOf(name+'=')==-1)
+            {
+                return '';
+            }
+         
+            // 获取链接中参数部分
+            var queryString = location.href.substring(location.href.indexOf("?")+1);
+         
+            // 分离参数对 ?key=value&key2=value2
+            var parameters = queryString.split("&");
+         
+            var pos, paraName, paraValue;
+            for(var i=0; i<parameters.length; i++)
+            {
+                // 获取等号位置
+                pos = parameters[i].indexOf('=');
+                if(pos == -1) { continue; }
+         
+                // 获取name 和 value
+                paraName = parameters[i].substring(0, pos);
+                paraValue = parameters[i].substring(pos + 1);
+         
+                // 如果查询的name等于当前name，就返回当前值，同时，将链接中的+号还原成空格
+                if(paraName == name)
+                {
+                    return unescape(paraValue.replace(/\+/g, " "));
+                }
+            }
+            return '';
+        };
+        if(getQueryString("url")){
+          var url = decodeURIComponent(getQueryString("url"))
+          loadingTip.show("远程提取中")
+          $.ajax({
+          url:"/article/online_to_local",
+          type:"post",
+          data:{
+            url:url
+          },
+          success:function(data){
+            if(data.success){
+              $("#title").val(data.data.title)
+              $("#html").val(data.data.content)
+              $("#preview").html(data.data.content)
+              $("#preview_title").html(data.data.title)
+              $("#preview_desc").html(data.data.desc)
+              $("#url").val(url)
+            }else{
+              alert(data.info)
+            }
+            loadingTip.hide()
+          },
+          error:function(){
+
+          }
+        })
+        }
       $("#submit").click(function(e){
         if(!$("#preview").html()){
           loadingTip.show("远程提取中")
@@ -70,7 +123,7 @@ html
           success:function(data){
             if(data.success){
               alert("发布成功")
-              window.location.href="/article"
+              window.location.href="/read/me"
             }else{
               alert(data.info)
             }
