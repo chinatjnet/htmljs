@@ -97,7 +97,7 @@ html
                 ol
                   each hot in hots
                     li
-                      a(href="/card/#{hot.id}") #{hot.nick}
+                      a(href="/card/#{hot.id}") #{hot.nick}(#{hot.visit_count})
           if locals.recents
             .module
               .hd 最新加入
