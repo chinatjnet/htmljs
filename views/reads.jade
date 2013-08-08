@@ -19,6 +19,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
           a(href="/read/me",class="cat #{locals.cat!='all'?'active':''}") 我的阅读
           a.publish(href="/read/add/recommend",data-original-title="收藏您想读的文章") 收藏在线文章
           a.publish(href="javascript:window.location.href='http://www.html-js.com/read/add/recommend?url='+encodeURIComponent(window.location.href);",data-original-title="收集按钮，拖动到浏览器收藏栏，看到喜欢的文章点击即可收藏") 收集到前端乱炖
+          a(href="https://chrome.google.com/webstore/detail/%E5%89%8D%E7%AB%AF%E4%B9%B1%E7%82%96-%E9%98%85%E8%AF%BB%E6%94%B6%E8%97%8F%E5%B7%A5%E5%85%B7/lehlponmkllmkdnkcehbpbofldpmklki",target="_blank") chrome插件版收藏工具
         include page
         
         ul.article-list
