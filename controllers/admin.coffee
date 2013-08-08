@@ -10,6 +10,12 @@ module.exports.controllers =
         if error then next error
         else
           res.redirect 'back'
+  "/article/:id/del":
+    get:(req,res,next)->
+      F_article.delete req.params.id,req.query,(error)->
+        if error then next error
+        else
+          res.redirect 'back'
   "/upload":
     get:(req,res,next)->
       res.render 'admin/upload.jade'

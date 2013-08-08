@@ -34,6 +34,7 @@ html
               a(href="/admin/article/#{article.id}/update?sort=#{article.id}") 取消置顶
             else
               a(href="/admin/article/#{article.id}/update?sort=100000") 置顶
+            a(href="/admin/article/#{article.id}/del") kill 
           td.types 
             for cat,i in cats
               a(href="/admin/article/#{article.id}/update?type=#{i}",class="#{article.type==i?'active':''}") #{cat}

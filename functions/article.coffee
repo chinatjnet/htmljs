@@ -55,6 +55,21 @@ module.exports =
       callback null,article
     .error (error)->
       callback error
+  'delete':(id,callback)->
+    Article.find
+      where:
+        id:id
+    .success (art)->
+      if art
+        art.destory()
+        .success ()->
+          callback null
+        .error (e)->
+          callback e
+      else
+        calllback new Error '不存在'
+    .error (e)->
+      callback e
   count:(condition,callback)->
     query = {}
     if condition then query.where = condition
