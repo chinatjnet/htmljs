@@ -67,7 +67,7 @@ module.exports =
         .error (e)->
           callback e
       else
-        calllback new Error '不存在'
+        callback new Error '不存在'
     .error (e)->
       callback e
   count:(condition,callback)->
