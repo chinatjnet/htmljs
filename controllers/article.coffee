@@ -87,7 +87,7 @@ module.exports.controllers =
                 if titlematch then t=titlematch[1] 
                 result.data= 
                   url:url
-                  title:parseResult.title||t
+                  title:(parseResult.title||t).replace(/^\s*|\s*$/,"")
                   content:parseResult.content
                   desc:parseResult.desc
                   real_url:s.request.href
