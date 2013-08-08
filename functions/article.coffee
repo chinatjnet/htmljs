@@ -61,7 +61,7 @@ module.exports =
         id:id
     .success (art)->
       if art
-        art.destory()
+        art.destroy()
         .success ()->
           callback null
         .error (e)->
