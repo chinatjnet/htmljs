@@ -12,7 +12,7 @@ module.exports.controllers =
           res.redirect 'back'
   "/article/:id/del":
     get:(req,res,next)->
-      F_article.delete req.params.id,req.query,(error)->
+      F_article.delete req.params.id,(error)->
         if error then next error
         else
           res.redirect 'back'
