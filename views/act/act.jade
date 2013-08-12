@@ -19,13 +19,13 @@ html
           .inner
             div.item 
               span.key 时间：
-              span.value 8月5日
+              span.value #{moment(act.time).format("LLL")}
             div.item  
               span.key 地点：
-              span.value 杭州市西湖区福云咖啡。
+              span.value #{act.location}
             div.item  
               span.key 规模：
-              span.value 限制30人
+              span.value 限制#{act.person_limit}人
             div.item  
               span.key 分享：
               div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:70px;")

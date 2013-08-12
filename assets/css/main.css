@@ -131,7 +131,8 @@
 #act #speaker .infos .who em{font-weight:bold;font-style:normal;font-size:16px;}
 #act #speaker .infos .topic{font-size:14px;margin:10px 0;}#act #speaker .infos .topic em{font-weight:bold;color:#c54d1a;font-style:normal;font-size:16px;}
 #acts{background:#f1f1f1;}
-#acts .act-item{background:#fff;border-radius:3px;}#acts .act-item .act-pic{width:698px;float:left;}
+#acts .act-item{background:#fff;border-radius:3px;margin-bottom:20px;}#acts .act-item .act-pic{width:698px;float:left;}
 #acts .act-item .act-infos{width:200px;float:left;font-size:14px;padding:20px;background:#5bb793;height:200px;color:#fff;}#acts .act-item .act-infos p{line-height:20px;margin-bottom:5px;font-size:14px;}#acts .act-item .act-infos p a{color:#fff;text-decoration:none;}
 #acts .act-item .act-infos .act-time{color:#ddd;font-size:12px;}
 #acts .act-item .act-infos .act-location{color:#ddd;font-size:12px;}
+#acts .act-item .act-infos .act-action{margin-top:20px;}#acts .act-item .act-infos .act-action a{font-weight:bold;text-decoration:underline;}

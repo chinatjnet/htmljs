@@ -4,7 +4,7 @@ module.exports.controllers =
     get:(req,res,next)->
       page = req.params.page || 1
       count = 20
-      func_act.getAll page,count,null,(error,acts)->
+      func_act.getAll page,count,{is_publish:1},(error,acts)->
         res.locals.acts = acts
         res.render 'act/index.jade'
 
@@ -18,8 +18,12 @@ module.exports.controllers =
           res.redirect '/act'
   "/:id":
     get:(req,res,next)->
-      res.render 'act/act.jade'
+      func_act.getById req.params.id,(error,act)->
+        if error then next error
+        else
+          res.locals.act = act
+          res.render 'act/act.jade'
 module.exports.filters = 
   "/add":
-    get:['checkAdmin']
-    post:['checkAdmin']
+    get:['checkLogin','checkAdmin']
+    post:['checkLogin','checkAdmin']

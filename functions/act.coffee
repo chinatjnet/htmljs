@@ -7,7 +7,17 @@ module.exports =
       callback null,act
     .error (e)->
       callback e
-
+  getById:(id,callback)->
+    Act.find
+      where:
+        id:id
+    .success (act)->
+      if act 
+        callback null,act
+      else
+        callback new Error '不存在的活动'
+    .error (e)->
+      callback e
   getAll:(page,count,condition,callback)->
     query = 
       offset: (page - 1) * count

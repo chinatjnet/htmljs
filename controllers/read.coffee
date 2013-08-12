@@ -3,14 +3,14 @@ module.exports.controllers =
   "/":
     get:(req,res,next)->
       page = req.query.page || 1
-      count = 30
+      count = 20
       condition = {is_yuanchuang:0}
       res.locals.cat = "all"
-      func_article.count condition,(error,count)->
+      func_article.count condition,(error,total)->
         if error then next error
         else
-          res.locals.total=count
-          res.locals.totalPage=Math.ceil(count/20)
+          res.locals.total=total
+          res.locals.totalPage=Math.ceil(total/count)
           res.locals.page = (req.query.page||1)
           func_article.getAll page,count,condition,(error,articles)->
             if error then next error
