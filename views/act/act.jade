@@ -35,23 +35,16 @@ html
                 a.bds_renren
                 a.shareCount
       #joiners.module
-        .hd 报名（12/30）
+        .hd 报名（#{joiners.length}/#{act.person_limit}）
         .bd 
           .joiners
-            a
-              img(src="http://tp1.sinaimg.cn/1717808700/180/5656122350/1",width=50,height=50)
-            a
-              img(src="http://tp1.sinaimg.cn/1717808700/180/5656122350/1",width=50,height=50)
-            a
-              img(src="http://tp1.sinaimg.cn/1717808700/180/5656122350/1",width=50,height=50)
-            a
-              img(src="http://tp1.sinaimg.cn/1717808700/180/5656122350/1",width=50,height=50)
-            a
-              img(src="http://tp1.sinaimg.cn/1717808700/180/5656122350/1",width=50,height=50)
-            a
-              img(src="http://tp1.sinaimg.cn/1717808700/180/5656122350/1",width=50,height=50)
+            for joiner in joiners
+              a(href="/user/#{joiner.user_id}",target="_blank")
+                img(src="#{joiner.user_headpic}",width=50,height=50)
+            if !joiners.length
+              div 还没有人报名，快点抢占吧！
           .me-join
-            a.btn() 我也要报名
+            a#join_submit.btn() 我也要报名
             p
               .alert 希望报名后可以准时参加，现场会签到记录。
       #supporters.module
@@ -87,5 +80,21 @@ html
       var bds_config={"bdText":"《》@前端乱炖","bdPic":"","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
       document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
       </script>
+    script
+      $("#join_submit").click(function(){
+        $.ajax({
+          url:"/act/#{act.id}/join",
+          dataType:"json",
+          type:"post",
+          success:function(data){
+          if(data.success){
+          alert("报名成功！")
+            window.location.href=window.location.href;
+          }else{
+          alert(data.info)
+          }
+          }
+          })
+        })
               
 

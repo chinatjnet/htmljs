@@ -22,8 +22,24 @@ module.exports.controllers =
         if error then next error
         else
           res.locals.act = act
-          res.render 'act/act.jade'
+          func_act.getAllJoiners req.params.id,(error,joiners)->
+            res.locals.joiners = joiners ||[]
+            res.render 'act/act.jade'
+  "/:id/join":
+    post:(req,res,next)->
+      result = 
+        success:0
+      func_act.addJoiner req.params.id,res.locals.user,(error,joiner)->
+        if error 
+          result.info = error.message
+          res.send result
+        else
+          result.success = 1
+          result.data = joiner
+          res.send result
 module.exports.filters = 
   "/add":
     get:['checkLogin','checkAdmin']
     post:['checkLogin','checkAdmin']
+  "/:id/join":
+    post:['checkLogin','checkCard']
