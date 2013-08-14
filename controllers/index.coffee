@@ -187,29 +187,22 @@ module.exports.controllers =
         pack_name = (new Date()).getTime()+"-"+pack.name
         targetPath = config.upload_path+pack_name
         fs.rename sourcePath, targetPath, (err) ->
-          if err
-            result.info = err.message
-            res.send result
-            return
-          else
-            result.success = 1
-            result.data = 
-              filename:"http://htmljs.b0.upaiyun.com/uploads/"+pack_name
+          
           upyun = new UPYun(config.upyun_bucketname, config.upyun_username, config.upyun_password)
           fileContent = fs.readFileSync(targetPath)
           md5Str = md5(fileContent)
           upyun.setContentMD5(md5Str)
           upyun.setFileSecret('bac')
           upyun.writeFile '/uploads/'+pack_name, fileContent, false,(error, data)->
-            console.log error
-            console.log data
-            if !error
-              result.success=1
+            if error
+              result.info = error.message
+              res.send result
+              return
+            else
+              result.success = 1
               result.data = 
                 filename:"http://htmljs.b0.upaiyun.com/uploads/"+pack_name
-            else
-              result.info=error.message
-          res.send result
+            res.send result
       else
         result.info = "错误的图片文件"
         res.send result  
