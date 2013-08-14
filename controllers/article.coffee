@@ -126,9 +126,11 @@ module.exports.controllers =
         else
           res.locals.visitors = visitors
           func_article.getById req.params.id,(error,article)->
-            res.locals.article = article
-            func_article.addVisit req.params.id,res.locals.user||null
-            res.render 'article.jade'
+            if error then next error
+            else
+              res.locals.article = article
+              func_article.addVisit req.params.id,res.locals.user||null
+              res.render 'article.jade'
 module.exports.filters = 
   "/add":
     get:['checkLogin',"checkCard"]
