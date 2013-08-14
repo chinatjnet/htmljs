@@ -11,7 +11,7 @@ sina=new Sina(config.sdks.sina)
 moment = require 'moment'
 path = require 'path'
 fs = require 'fs'
-UPYun=require("./../../../lib/upyun.js").UPYun
+UPYun=require("./../lib/upyun.js").UPYun
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
