@@ -184,7 +184,8 @@ module.exports.controllers =
       pack = req.files['pic']
       if pack && (pack.type == 'image/jpeg'||pack.type == "image/jpg"||pack.type=="image/png")
         sourcePath = pack.path
-        targetPath = config.upload_path+(new Date()).getTime()+"-"+pack.name
+        pack_name = (new Date()).getTime()+"-"+pack.name
+        targetPath = config.upload_path+pack_name
         fs.rename sourcePath, targetPath, (err) ->
           if err
             result.info = err.message
@@ -193,21 +194,21 @@ module.exports.controllers =
           else
             result.success = 1
             result.data = 
-              filename:targetPath.replace(config.upload_path,"")
+              filename:"http://htmljs.b0.upaiyun.com/uploads/"+pack_name
           upyun = new UPYun(config.upyun_bucketname, config.upyun_username, config.upyun_password)
           fileContent = fs.readFileSync(targetPath)
           md5Str = md5(fileContent)
           upyun.setContentMD5(md5Str)
           upyun.setFileSecret('bac')
-          upyun.writeFile '/'+pack.name, fileContent, false,(error, data)->
+          upyun.writeFile '/uploads/'+pack_name, fileContent, false,(error, data)->
             console.log error
             console.log data
             if !error
               result.success=1
-              result.data.url = "http://htmljs.b0.upaiyun.com/"+pack.name
+              result.data = 
+                filename:"http://htmljs.b0.upaiyun.com/uploads/"+pack_name
             else
               result.info=error.message
-            #res.end(JSON.stringify(result))
           res.send result
       else
         result.info = "错误的图片文件"
