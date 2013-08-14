@@ -1,5 +1,6 @@
 module.exports = (req,res,next)->
-  condition = null
+  condition = 
+    is_yuanchuang:1
   page = req.query.page || 1
   count = req.query.count || 30
   (__F 'article').count condition,(error,_count)->
