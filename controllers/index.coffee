@@ -190,10 +190,10 @@ module.exports.controllers =
             result.data = 
               filename:targetPath.replace(config.upload_path,"")
           upyun = new UPYun(config.upyun_bucketname, config.upyun_username, config.upyun_password)
-          # fileContent = fs.readFileSync(targetPath)
-          # md5Str = md5(fileContent)
-          # upyun.setContentMD5(md5Str)
-          # upyun.setFileSecret('bac')
+          fileContent = fs.readFileSync(targetPath)
+          md5Str = md5(fileContent)
+          upyun.setContentMD5(md5Str)
+          upyun.setFileSecret('bac')
           upyun.writeFile '/'+pack.name, fileContent, false,(error, data)->
             console.log error
             console.log data
