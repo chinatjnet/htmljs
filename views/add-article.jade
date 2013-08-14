@@ -106,7 +106,7 @@ html
             success: function (data, status)
             {
               if(data.success){
-                callback("/uploads/"+data.data.filename)
+                callback(data.data.filename)
                 $("#myModal").modal("hide");
               }else{
                 messageTip.show(data.info)
