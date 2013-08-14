@@ -11,6 +11,7 @@ sina=new Sina(config.sdks.sina)
 moment = require 'moment'
 path = require 'path'
 fs = require 'fs'
+UPYun=require("./../../../lib/upyun.js").UPYun
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
@@ -188,6 +189,18 @@ module.exports.controllers =
             result.success = 1
             result.data = 
               filename:targetPath.replace(config.upload_path,"")
+          upyun = new UPYun(config.upyun_bucketname, config.upyun_username, config.upyun_password)
+          fileContent = fs.readFileSync(targetPath)
+          md5Str = md5(fileContent)
+          upyun.setContentMD5(md5Str)
+          upyun.setFileSecret('bac')
+          upyun.writeFile '/'+filename, fileContent, false,(error, data)->
+            if !error
+              result.success=1
+              result.data.url = "http://htmljs.b0.upaiyun.com/"+filename
+            else
+              result.info=error.message
+            #res.end(JSON.stringify(result))
           res.send result
       else
         result.info = "错误的图片文件"

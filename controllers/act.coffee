@@ -42,4 +42,4 @@ module.exports.filters =
     get:['checkLogin','checkAdmin']
     post:['checkLogin','checkAdmin']
   "/:id/join":
-    post:['checkLogin','checkCard']
+    post:['checkLoginJson','checkCard']

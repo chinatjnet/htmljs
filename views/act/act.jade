@@ -53,11 +53,9 @@ html
           p.alert 活动中产生的吃喝费用，场地费用，讲师补贴。由第三方企业赞助。谢谢他们对前端事业的支持。
             a(href="") 我是企业我要赞助 
             a(href="") 个人赞助
-          .logos
-            a(href="http://www.host-700.com",target="_blank")
-              img(src="http://htmljs.b0.upaiyun.com/images/logo-host700.png")
-            a(href="http://www.souche.com",target="_blank")
-              img(src="http://htmljs.b0.upaiyun.com/images/logo-souche.png")
+          .logos.
+            !{act.partner}
+            
       #speaker.module
         .hd 讲师&主题
         .bd.clearfix 
@@ -87,11 +85,17 @@ html
           dataType:"json",
           type:"post",
           success:function(data){
+
           if(data.success){
           alert("报名成功！")
             window.location.href=window.location.href;
           }else{
+          if(data.isnotlogin){
+          window.location.href="/user/login"
+          }else{
           alert(data.info)
+          }
+          
           }
           }
           })
