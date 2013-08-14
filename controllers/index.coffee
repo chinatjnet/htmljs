@@ -4,7 +4,7 @@ func_bao = __F 'bao'
 func_article = __F 'article'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
-md5 = require 'MD5'
+#md5 = require 'MD5'
 Sina=require("./../lib/sdk/sina.js")
 RSS=require 'rss'
 sina=new Sina(config.sdks.sina)
@@ -12,6 +12,11 @@ moment = require 'moment'
 path = require 'path'
 fs = require 'fs'
 UPYun=require("./../lib/upyun.js").UPYun
+md5 = (string)->
+    crypto = require('crypto')
+    md5sum = crypto.createHash('md5')
+    md5sum.update(string, 'utf8')
+    return md5sum.digest('hex')
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
