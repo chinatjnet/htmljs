@@ -194,10 +194,10 @@ module.exports.controllers =
           md5Str = md5(fileContent)
           upyun.setContentMD5(md5Str)
           upyun.setFileSecret('bac')
-          upyun.writeFile '/'+filename, fileContent, false,(error, data)->
+          upyun.writeFile '/'+pack.name, fileContent, false,(error, data)->
             if !error
               result.success=1
-              result.data.url = "http://htmljs.b0.upaiyun.com/"+filename
+              result.data.url = "http://htmljs.b0.upaiyun.com/"+pack.name
             else
               result.info=error.message
             #res.end(JSON.stringify(result))
