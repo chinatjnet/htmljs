@@ -76,30 +76,21 @@ html
                 span.value #{card.shijian}
               .item.clearfix
                 a(href="mailto:#{card.email}") 请求完整资料
-          .card-article
-            .title TA发表的原创文章
-          if locals.articles
-            ul.article-list
-              each article in articles
-                article.post(id="post-#{article.id}")
-                  .entry-title
-                    a.headpic(href="/user/#{article.user_id}")
-                      img(src="#{article.user_headpic}",width=50,height=50)
-                    h1.title
-                      a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
-                    div.others
-                      span.author.vcard.item
-                        span.index 作者：
-                        a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
-                      span.time.item
-                        span.index 时间：
-                        a.value #{moment(article.publish_time*1000).format("LLL")}
-                      span.views.item
-                        span.index View：
-                        a.value #{article.visit_count}
-                  .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/\n/g,"<br/>")}
-          else
-            p 暂无
+          div.talk.module
+            .hd 讨论
+            .bd
+              script.
+                (function(){
+                var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
+                url = url.replace("url=auto", "url=" + document.URL); 
+                document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+                })();
+                </script>
+                <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
+                <script type="text/javascript">
+                window.WBComment.init({
+                  "id": "WBCommentFrame"
+                });
       .right
         if locals.card
           div.count.module
@@ -176,21 +167,7 @@ html
                             
                           
                           
-          div.talk.module
-            .hd 讨论
-            .bd
-              script.
-                (function(){
-                var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
-                url = url.replace("url=auto", "url=" + document.URL); 
-                document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
-                })();
-                </script>
-                <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
-                <script type="text/javascript">
-                window.WBComment.init({
-                  "id": "WBCommentFrame"
-                });
+          
     include footer
 
     div.
