@@ -110,6 +110,7 @@ module.exports.controllers =
         user_nick:res.locals.user.nick
         user_headpic:res.locals.user.head_pic
         publish_time:new Date().getTime()/1000
+        is_yuanchuang:1
         is_publish:0
       result = 
         success:0
@@ -138,7 +139,7 @@ module.exports.filters =
   "/add/recommend":
     get:['checkLogin',"checkCard"]
     post:['checkLogin',"checkCard"]
-  "/":
-    get:['getRecent']
+  
+
   "/:id":
     get:['getRecent']
