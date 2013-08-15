@@ -20,7 +20,32 @@ md5 = (string)->
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
-      res.redirect '/article'
+      condition = 
+        is_publish:1
+        is_yuanchuang:1
+      if req.query.filter
+        condition=condition||{}
+        req.query.filter.split(":").forEach (f)->
+          kv = f.split '|'
+          if kv.length
+            condition[kv[0]]=kv[1]
+            res.locals["filter_"+kv[0]]=kv[1]
+      res.locals.types=
+        1:"原创"
+        2:"精品推荐"
+        3:"实例学习"
+
+      func_article.count condition,(error,count)->
+        if error then next error
+        else
+          res.locals.total=count
+          res.locals.totalPage=Math.ceil(count/20)
+          res.locals.page = (req.query.page||1)
+          func_article.getAll res.locals.page,20,condition,(error,articles)->
+            if error then next error
+            else
+              res.locals.articles = articles
+              res.render 'articles.jade'
   "/rss":
     "get":(req,res,next)->
       feed = new RSS
