@@ -246,5 +246,7 @@ module.exports.filters =
     post:['checkLogin']
   "/edit-card":
     get:['checkLogin',"checkCard"]
+  "/":
+    get:['getRecent']
   "/card/:id/bao":
     post:['checkLogin',"checkCard"]
