@@ -2,13 +2,13 @@ htmljs
 ======
 
 前端乱炖博客的repo。http://www.html-js.com
-
+====
 约定模式：
-
+====
 * 整个系统从数据到最终逻辑分为五层：1.models，2.functions，3.filters，4.routes，5.views
 
 各部分的功能：
-
+====
 * models，使用sequelize将数据库操作抽象化，使用其规定格式定义数据对象，完全不需要关心数据库的问题。
 * functions，在sequelize上又一层操作封装，主要是各种数据操作，将其封装，供不同的routes或者filters调用。
 * filters，一些复用route的合集，例如用户检查，权限检查，通用module，总之就是各种抽象。
@@ -17,7 +17,7 @@ htmljs
 
 
 全局方法：
-
+====
 使用封装的几个全局方法可以节省大量重复代码。
 
 * __M 调用方法即可返回一个Model对象，此对象是一个sequelize的model对象，可以直接操作数据库。省去了写初始化配置的代码。
@@ -26,13 +26,13 @@ htmljs
 * __R 未实现，调用方法直接生成常用route，大量节省普通crud的代码量
 
 特点：
-
+====
 * 不需要写routes配置，routes是按照controllers中的文件夹和文件结构自动生成的，这样一是不需手写配置，二是方便逻辑分离和维护。
 * 无需关心数据库，所有数据的东西都用sequelize来操作。
 * 一些全局方法，自动完成冗余代码，减少重复劳动。
 
 其他：
-
+====
 * libs 通用的库
 * uploads 上传临时文件
 * assets 静态文件，使用less直接编译
