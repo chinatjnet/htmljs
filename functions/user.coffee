@@ -5,8 +5,7 @@ Card.sync()
 VisitLog = __M 'card_visit_log'
 VisitLog.sync()
 
-
-module.exports =  
+func_user =  
   getByWeiboId:(id,callback)->
     User.find
       where:
@@ -15,20 +14,7 @@ module.exports =
       callback null,user
     .error (error)->
       callback error
-  add:(data,callback)->
-    User.create(data)
-    .success (user)->
-      callback null,user
-    .error (error)->
-      callback error
-  getById:(id,callback)->
-    User.find
-      where:
-        id:id
-    .success (user)->
-      callback null,user
-    .error (error)->
-      callback error
+ 
   connectCard:(uid,cardId,callback)->
     User.find
       where:
@@ -77,3 +63,6 @@ module.exports =
           callback error
     .error (error)->
       callback error
+
+__FC func_user,User,['update','count','delete','getById','getAll','add']
+module.exports = func_user

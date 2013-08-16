@@ -1,4 +1,11 @@
 #header
-  a(href="/admin/articles") 投稿管理
-  a(href="/admin/upload") 传图片
+  ul.nav.nav-pills
+    li(class="#{pageId==1?'active':''}")
+      a(href="/admin/articles") 原创文章管理
+    li(class="#{pageId==2?'active':''}")
+      a(href="/admin/reads") reads
+    li(class="#{pageId==3?'active':''}")
+      a(href="/admin/acts") acts
+    li(class="#{pageId==4?'active':''}")
+      a(href="/admin/upload") 传图片
   

@@ -6,7 +6,7 @@ Visit_log.sync()
 
 cache = 
   recent:[]
-module.exports =  
+func_article =  
   getAll:(page,count,condition,callback)->
     query = 
       offset: (page - 1) * count
@@ -31,14 +31,6 @@ module.exports =
       callback null,articles
     .error (error)->
       callback error
-  getById:(id,callback)->
-    Article.find
-      where:
-        id:id
-    .success (article)->
-      callback null,article
-    .error (error)->
-      callback error
   getByUrl:(url,callback)->
     Article.find
       where:
@@ -53,41 +45,6 @@ module.exports =
       article.updateAttributes
         sort:article.id
       callback null,article
-    .error (error)->
-      callback error
-  'delete':(id,callback)->
-    Article.find
-      where:
-        id:id
-    .success (art)->
-      if art
-        art.destroy()
-        .success ()->
-          callback null
-        .error (e)->
-          callback e
-      else
-        callback new Error '不存在'
-    .error (e)->
-      callback e
-  count:(condition,callback)->
-    query = {}
-    if condition then query.where = condition
-    Article.count(query)
-    .success (count)->
-      callback null,count
-    .error (error)->
-      callback error
-  update:(id,data,callback)->
-    Article.find
-      where:
-        id:id
-    .success (article)->
-      article.updateAttributes(data)
-      .success ()->
-        callback null,article
-      .error (error)->
-        callback error
     .error (error)->
       callback error
   addVisit:(articleId,visitor)->
@@ -115,3 +72,5 @@ module.exports =
       callback error
   getRecent:(callback)->
     callback null,cache.recent
+__FC func_article,Article,['update','count','delete','getById']
+module.exports=func_article

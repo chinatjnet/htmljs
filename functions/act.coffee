@@ -2,35 +2,9 @@ Act = __M 'acts'
 Act.sync()
 ActJoiner = __M 'act_joiners'
 ActJoiner.sync()
-module.exports = 
-  add:(data,callback)->
-    Act.create(data)
-    .success (act)->
-      callback null,act
-    .error (e)->
-      callback e
-  getById:(id,callback)->
-    Act.find
-      where:
-        id:id
-    .success (act)->
-      if act 
-        callback null,act
-      else
-        callback new Error '不存在的活动'
-    .error (e)->
-      callback e
-  getAll:(page,count,condition,callback)->
-    query = 
-      offset: (page - 1) * count
-      limit: count
-      order: "id desc"
-    if condition then query.where = condition
-    Act.findAll(query)
-    .success (acts)->
-      callback null,acts
-    .error (error)->
-      callback error
+
+
+func_act = 
   addJoiner:(act_id,user,callback)->
     ActJoiner.find
       where:
@@ -58,3 +32,5 @@ module.exports =
       callback null,ajs
     .error (e)->
       callback e
+__FC func_act,Act,['delete','update','add','getById','getAll','count']
+module.exports = func_act

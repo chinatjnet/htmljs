@@ -4,61 +4,13 @@ Visit_log = __M 'card_visit_log'
 Visit_log.sync()
 
 
-module.exports =  
-  getAll:(page,count,condition,callback)->
-    query = 
-      offset: (page - 1) * count
-      limit: count
-      order: "id desc"
-    if condition then query.where = condition
-    Card.findAll(query)
-    .success (cards)->
-      callback null,cards
-    .error (error)->
-      callback error
+func_card =  
   getByUserId:(id,callback)->
     Card.find
       where:
         user_id:id
     .success (card)->
       callback null,card
-    .error (error)->
-      callback error
-  getById:(id,callback)->
-    if !id
-      callback null,null
-    else
-      Card.find
-        where:
-          id:id
-      .success (card)->
-        callback null,card
-      .error (error)->
-        callback error
-  add:(data,callback)->
-    Card.create(data)
-    .success (card)->
-      callback null,card
-    .error (error)->
-      callback error
-  count:(condition,callback)->
-    query = {}
-    if condition then query.where = condition
-    Card.count(query)
-    .success (count)->
-      callback null,count
-    .error (error)->
-      callback error
-  update:(id,data,callback)->
-    Card.find
-      where:
-        id:id
-    .success (card)->
-      card.updateAttributes(data)
-      .success ()->
-        callback null,card
-      .error (error)->
-        callback error
     .error (error)->
       callback error
   addVisit:(cardId,visitor)->
@@ -112,3 +64,6 @@ module.exports =
       callback null,cards
     .error (error)->
       callback error
+
+__FC func_card,Card,['update','count','delete','getById','getAll','add']
+module.exports = func_card
