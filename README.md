@@ -1,4 +1,4 @@
 htmljs
 ======
 
-私密项目，嗯
+前端乱炖博客的repo。http://www.html-js.com
