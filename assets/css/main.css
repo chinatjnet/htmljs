@@ -41,6 +41,7 @@
 #me .card-article .title{line-height:30px;margin-top:20px;}
 #me .module{margin-left:10px;background:#fff;border-radius:5px;padding:15px 20px;margin-bottom:10px;}#me .module .hd{line-height:25px;color:#333;font-size:16px;height:30px;}
 #me .count .visitor{float:left;margin-right:5px;margin-bottom:5px;}#me .count .visitor img{width:30px;height:30px;}
+#me .talk{margin-left:0;}
 #me .setting{margin-left:10px;background:#fff;border-radius:5px;padding:10px 20px;}#me .setting .hd{line-height:50px;color:#333;font-size:16px;}
 #me .setting .item{margin-bottom:15px;}#me .setting .item .key{float:left;width:90px;color:#999;}
 #me .setting .item .value{float:left;color:#404040;width:300px;}
@@ -117,7 +118,7 @@
 #act{background:#efefef;}#act .module{border-radius:3px;}
 #act #main_banner{width:100%;background:#fff;border-radius:3px;overflow:hidden;}#act #main_banner img{border-radius:3px;}
 #act #main_banner .main_pic{width:700px;float:left;}
-#act #main_banner .infos{width:200px;float:left;font-size:14px;padding:20px;background:#eee;height:200px;color:#404040;}#act #main_banner .infos .inner{margin-top:30px;}
+#act #main_banner .infos{width:200px;float:left;font-size:14px;padding:20px;background:#fff;height:200px;color:#404040;}#act #main_banner .infos .inner{margin-top:30px;}
 #act #main_banner .infos .share{float:left !important;margin:0 !important;width:150px !important;}
 #act #main_banner .infos .item{line-height:30px;}#act #main_banner .infos .item .key{color:#666;float:left;}
 #act #main_banner .infos .item .value{color:#333;}

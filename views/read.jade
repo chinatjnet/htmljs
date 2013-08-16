@@ -2,62 +2,65 @@
 html
   head
     include head
-    title 前端乱炖-#{article.title}
+    title 前端乱炖-#{locals.article&&article.title}
     style
       #bdshare a{}
   body#read
     - locals.pageId=4;
     include header
     #content.clearfix
-      .left
-        article.post(id="post-#{article.id}")
-          .entry-title
-            a.headpic
-              img(src="#{article.user_headpic}",width=70,height=70)
-            h1.title(href='http://p.html-js.com/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
-            div.others
-              span.author.vcard.item
-                span.index #{article.quote_url?"推荐者":"作者"}：
-                a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
-              span.time.item
-                span.index 时间：
-                a.value #{moment(article.publish_time*1000).format("LLL")}
-              span.views.item
-                span.index View：
-                a.value #{article.visit_count}
-              if article.quote_url
+      if !article
+        p.alert 不存在的阅读篇章
+      else
+        .left
+          article.post(id="post-#{article.id}")
+            .entry-title
+              a.headpic
+                img(src="#{article.user_headpic}",width=70,height=70)
+              h1.title(href='http://p.html-js.com/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
+              div.others
+                span.author.vcard.item
+                  span.index #{article.quote_url?"推荐者":"作者"}：
+                  a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+                span.time.item
+                  span.index 时间：
+                  a.value #{moment(article.publish_time*1000).format("LLL")}
                 span.views.item
-                  a.value(href="#{article.quote_url}",target="_blank") 原文链接
-              div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:70px;")
-                span(style="float:left;line-height:30px;") 分享：
-                a.bds_tsina
-                a.bds_qzone
-                a.bds_tqq
-                a.bds_douban
-                a.bds_renren
-                a.shareCount
-          .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2")}
-          .entry-meta
-          .comment
-            .bd 
-              script.
-                (function(){
-                var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
-                url = url.replace("url=auto", "url=" + document.URL); 
-                document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
-                })();
-                </script>
-                <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
-                <script type="text/javascript">
-                window.WBComment.init({
-                  "id": "WBCommentFrame"
-                });
-    - locals.shareImgs = article.html.match(/img\s*?src=["|'](.*?)["|']/);
-    p.
-      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
-      <script type="text/javascript" id="bdshell_js"></script>
-      <script type="text/javascript">
-      var bds_config={"bdText":"《#{article.title.replace(/\n/g,'')}》@前端乱炖","bdPic":"#{locals.shareImgs&&shareImgs[1]}","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
-      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-      </script>
+                  span.index View：
+                  a.value #{article.visit_count}
+                if article.quote_url
+                  span.views.item
+                    a.value(href="#{article.quote_url}",target="_blank") 原文链接
+                div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:70px;")
+                  span(style="float:left;line-height:30px;") 分享：
+                  a.bds_tsina
+                  a.bds_qzone
+                  a.bds_tqq
+                  a.bds_douban
+                  a.bds_renren
+                  a.shareCount
+            .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2")}
+            .entry-meta
+            .comment
+              .bd 
+                script.
+                  (function(){
+                  var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
+                  url = url.replace("url=auto", "url=" + document.URL); 
+                  document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+                  })();
+                  </script>
+                  <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
+                  <script type="text/javascript">
+                  window.WBComment.init({
+                    "id": "WBCommentFrame"
+                  });
+        - locals.shareImgs = article.html.match(/img\s*?src=["|'](.*?)["|']/);
+        p.
+          <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+          <script type="text/javascript" id="bdshell_js"></script>
+          <script type="text/javascript">
+          var bds_config={"bdText":"《#{article.title.replace(/\n/g,'')}》@前端乱炖","bdPic":"#{locals.shareImgs&&shareImgs[1]}","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+          document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+          </script>
     include footer
