@@ -2,6 +2,7 @@ func_user = __F 'user'
 func_card = __F 'card'
 func_bao = __F 'bao'
 func_article = __F 'article'
+func_info = __F 'info'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
 #md5 = require 'MD5'
@@ -160,6 +161,7 @@ module.exports.controllers =
   "/card/:id":
     get:(req,res,next)->
       res.locals.md5 = md5
+
       func_card.getById req.params.id,(error,card)->
         if error then next error
         else
@@ -169,7 +171,17 @@ module.exports.controllers =
               res.locals.visitors = visitors
               func_card.addVisit card.id,res.locals.user||null
               if card then res.locals.card = card
-              if card.user_id
+              if card.user_id && res.locals.user
+                func_info.add 
+                  target_user_id:card.user_id
+                  type:1
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:req.originalUrl
+                  target_path_name:"名片"
+                ,()->
+                  console.log 'success'
                 func_article.getByUserIdAndType (card.user_id||-1),1,(error,articles)->
                   if error then next error
                   else
@@ -247,6 +259,6 @@ module.exports.filters =
   "/edit-card":
     get:['checkLogin',"checkCard"]
   "/":
-    get:['getRecent']
+    get:['freshLogin','getRecent']
   "/card/:id/bao":
     post:['checkLogin',"checkCard"]

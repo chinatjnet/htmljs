@@ -1,5 +1,6 @@
 func_user = __F 'user'
 func_article = __F 'article'
+func_info = __F 'info'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
 md5 = require 'MD5'
@@ -122,6 +123,7 @@ module.exports.controllers =
         res.send result
   "/:id":
     "get":(req,res,next)->
+
       func_article.getVisitors req.params.id,(error,visitors)->
         if error then next error
         else
@@ -129,6 +131,17 @@ module.exports.controllers =
           func_article.getById req.params.id,(error,article)->
             if error then next error
             else
+              if article.user_id && res.locals.user
+                func_info.add 
+                  target_user_id:article.user_id
+                  type:1
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:req.originalUrl
+                  target_path_name:"原创文章:"+article.title
+                ,()->
+                  console.log 'success'
               res.locals.article = article
               func_article.addVisit req.params.id,res.locals.user||null
               res.render 'article.jade'
@@ -140,6 +153,7 @@ module.exports.filters =
     get:['checkLogin',"checkCard"]
     post:['checkLogin',"checkCard"]
   
-
+  "/":
+    get:['freshLogin','getRecent','get_infos']
   "/:id":
-    get:['getRecent']
+    get:['freshLogin','getRecent','get_infos']
