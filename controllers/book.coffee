@@ -19,6 +19,18 @@ module.exports.controllers =
         if error then next error
         else
           res.redirect 'back'
+  "/isbn_to_info":
+    "get":(req,res,next)->
+      result = 
+        success :0
+        info:""
+      request.get {url:'https://api.douban.com/v2/book/isbn/'+req.query.isbn}, (e, r, body)->
+        if e 
+          result.info = e.message
+        else
+          result.success = 1
+          result.data = JSON.parse body
+        res.send result
 module.exports.filters = 
   "/":
     get:['freshLogin','checkCard','book/all-books','book/my-book']
