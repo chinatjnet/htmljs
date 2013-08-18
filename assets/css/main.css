@@ -142,7 +142,8 @@
 #books{background:#efefef;}#books ul,#books li{list-style:none;padding:0;margin:0;}
 #books .alert{margin:10px 0;padding:10px;}#books .alert em{color:#999;}
 #books #bdshare{margin:0 !important;}
-#books .mybooks{padding:0px;background:none;}#books .mybooks .bd{padding:0;width:750px;}
+#books .mybooks{padding:0px;background:none;}#books .mybooks .show_control{font-size:12px;float:right;line-height:30px;}
+#books .mybooks .bd{padding:0;width:750px;}
 #books .mybooks li{width:205px;padding:10px;background:#fff;border-radius:5px;margin-right:10px;margin-bottom:20px;line-height:20px;display:inline-block;*float:left;vertical-align:top;}#books .mybooks li .pic{display:block;margin:0 auto;width:70px;float:left;}
 #books .mybooks li .infos{width:110px;float:left;margin-left:10px;color:#404040;font-size:12px;}#books .mybooks li .infos .action a{padding:0;}
 #books .fix-ad{padding:10px;}#books .fix-ad .bd{padding:0;}
