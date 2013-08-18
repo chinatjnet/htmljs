@@ -139,3 +139,10 @@
 #acts .act-item .act-infos .act-time{color:#ddd;font-size:12px;}
 #acts .act-item .act-infos .act-location{color:#ddd;font-size:12px;}
 #acts .act-item .act-infos .act-action{margin-top:20px;}#acts .act-item .act-infos .act-action a{font-weight:bold;text-decoration:underline;}
+#books{background:#efefef;}#books ul,#books li{list-style:none;padding:0;margin:0;}
+#books .alert{margin:10px 0;padding:10px;}#books .alert em{color:#999;}
+#books #bdshare{margin:0 !important;}
+#books .mybooks li{width:120px;display:inline-block;*float:left;vertical-align:top;}
+#books .fix-ad .item{float:left;margin-right:10px;}
+#books .book-list{width:1000px;}#books .book-list li{width:270px;padding:15px;background:#fff;border-radius:5px;margin-right:20px;margin-bottom:20px;line-height:20px;display:inline-block;*float:left;vertical-align:top;}#books .book-list li .pic{display:block;margin:0 auto;width:70px;float:left;}
+#books .book-list li .infos{float:left;margin-left:10px;color:#404040;font-size:12px;}#books .book-list li .infos .action a{padding:0;}

@@ -12,6 +12,7 @@ sina=new Sina(config.sdks.sina)
 moment = require 'moment'
 path = require 'path'
 fs = require 'fs'
+request = require 'request'
 UPYun=require("./../lib/upyun.js").UPYun
 md5 = (string)->
     crypto = require('crypto')
@@ -243,6 +244,37 @@ module.exports.controllers =
       else
         result.info = "错误的图片文件"
         res.send result  
+  "/online_to_local":
+    "post":(req,res,next)->
+      result = 
+        success:0
+        info:""
+      pack =  req.body.url
+      pack_name = (new Date()).getTime()+"-"+md5(req.body.url)
+      targetPath = config.upload_path+pack_name
+      request req.body.url,(e,r,body)->
+        if e 
+          result.info = e.message
+          res.send result
+        else
+          upyun = new UPYun(config.upyun_bucketname, config.upyun_username, config.upyun_password)
+          fileContent = fs.readFileSync(targetPath)
+          md5Str = md5(fileContent)
+          upyun.setContentMD5(md5Str)
+          upyun.setFileSecret('bac')
+          upyun.writeFile '/uploads/'+pack_name, fileContent, false,(error, data)->
+            if error
+              result.info = error.message
+              res.send result
+              return
+            else
+              result.success = 1
+              result.data = 
+                filename:"http://htmljs.b0.upaiyun.com/uploads/"+pack_name
+            res.send result
+        
+      .pipe(fs.createWriteStream(targetPath))
+          
   "/test":
     "get":(req,res,next)->
       res.render 'test.jade'

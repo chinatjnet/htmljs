@@ -129,6 +129,12 @@ html
             .controls
               input(type='text', name='tel', placeholder='')
           .control-group
+            label.control-label
+              | 收货地址
+              span.label.label-warning 保密
+            .controls
+              input.input-xxlarge(type='text', name='address', placeholder='详细收货地址+邮编+姓名,用于收取礼物或者实物卡片，填了有惊喜')
+          .control-group
             label.control-label 介绍下自己
             .controls
               textarea(name='desc', style='width: 400px; height: 100px;') #{locals.weibo_info&&weibo_info.description}

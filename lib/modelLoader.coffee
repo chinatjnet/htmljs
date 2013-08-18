@@ -73,7 +73,7 @@ global.__FC = (func,model,methods)->
           where:
             id:id
         .success (m)->
-          m.destroy(data)
+          m.destroy()
           .success ()->
             callback null,m
           .error (error)->

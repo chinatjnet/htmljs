@@ -16,6 +16,8 @@
               a(href="/user") 我的名片
             li(class="#{locals.pageId==5?'active':''}")
               a(href="/act") 活动平台
+            li(class="#{locals.pageId==6?'active':''}")
+              a(href="/book") 免费送书
           if locals.user
             ul.right-nav
               li #{user.nick}

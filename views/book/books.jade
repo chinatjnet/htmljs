@@ -1,0 +1,100 @@
+!!! 5
+html
+  head
+    include ./../head
+    title 前端乱炖-免费送书
+    script(src='/assets/js/lazyload.js')
+  body#books
+    - locals.pageId=6;
+    include ./../header
+    #content.clearfix
+      .main.clearfix
+        .left
+          ul.alert 
+            li 送书活动
+            li 博主因为要搬家，所以将所有的技术书籍都免费送给各位同仁，再不送出去，这些技术都要过时了！！希望拿到书的同学能够用心学习，发挥书的最大价值。
+            li 送书免费，每人最多三本，邮费自付，我会发顺丰到付。默认接受此条件，不能接受的同学请勿参与！
+            li 把此活动分享给朋友：
+              .share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:70px;")
+                a.bds_tsina
+                a.bds_qzone
+                a.bds_tqq
+                a.bds_douban
+                a.bds_renren
+                a.shareCount
+          p.alert  
+            if !locals.user
+              | 请先登录再操作，<a href="/user/login">点此登录</a>
+            else if !locals.card
+              | 您还没有加入花名册，不能操作，<a href="/cards">点此领取或者创建花名册</a>
+            else if !(locals.card.address&&locals.card.tel)
+              | 必须填写收货地址和手机号才能领取，<a href="/edit-card">点此修改信息</a>
+            else
+              | 您的手机号：<em>#{card.tel} </em>
+              | 收货地址：<em>#{card.address} </em>
+              | 如有不符，<a href="/edit-card">点此修改信息</a>
+          .module.mybooks
+            .hd 我已经索取的书籍
+            .bd
+              if locals.mybooks&&locals.mybooks.length
+                each book in locals.mybooks
+                  li
+                    div.pic
+                      img.lazy(data-original='#{book.pic}', width='100')
+                    div.infos
+                      div 
+                        a(href="#{book.url}",target="_blank") 《#{book.title}》
+                      div 作者：#{book.author}
+                      div 原价：#{book.price.toFixed(2)}
+              else
+                div 暂无
+          include ./../page
+          ul.book-list.clearfix
+            each book in books
+              li
+                div.pic
+                  img.lazy(data-original='#{book.pic}', width='100')
+                div.infos
+                  div 
+                    a(href="#{book.url}",target="_blank") 《#{book.title}》
+                  div 作者：#{book.author}
+                  div 原价：#{book.price.toFixed(2)}
+                  div.action 
+                    if book.is_selled
+                      span 已被#{book.user_nick} 领取
+                    else
+                      a.buy(href="/book/#{book.id}/buy") 我要这本书
+                  div 
+        .right
+          .module.fix-ad
+              .hd 广告位
+              .bd.clearfix
+                .item
+                  | <a href="http://www.aliyun.com/cps/rebate?from_uid=z5Ie3yFvk5Q=" target="_blank"><img src="http://pic.yupoo.com/sinaweibo597038041/CTnk0XIM/medish.jpg" width="200"></a>
+                .item
+                  a(href="https://manager.host700.com/aff.php?aff=043",target="_blank")
+                    img(src="http://host700.b0.upaiyun.com/ad/300250.jpg",width="200")
+                .item.
+                  <a target="_blank" href="http://union.dangdang.com/transfer.php?from=P-315457&ad_type=30&sys_id=1&backurl=http%3A%2F%2Funion.dangdang.com%2Fddimg%2Furl%3Fid%3D110"><img src="http://union.dangdang.com/ddimg?id=110"  alt=" " border="0"/></a>
+    include ./../footer
+    p.
+      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+      <script type="text/javascript" id="bdshell_js"></script>
+      <script type="text/javascript">
+      var bds_config={"bdText":"@前端乱炖 博主免费送书啦，让自己那已经落灰的技术书籍们重新散发其无限的价值，详情关注：",'bdPic':'http://htmljs.b0.upaiyun.com/uploads/fsdfdjslkjfsldkfjsdf.jpg',"snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+      </script>
+    script
+      $("img.lazy").lazyload();
+      $("#gotop").click(function(){
+      $('html,body').animate({
+      scrollTop:0
+      })
+      })
+      $(".buy").click(function(e){
+        e.preventDefault();
+        if(confirm("领取后不能取消，而且每人只能领取3本书，确定领取？")){
+          window.location.href=$(this).attr("href")
+        }
+        })
+      

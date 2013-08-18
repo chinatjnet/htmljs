@@ -18,6 +18,7 @@ module.exports =
   shijian:"varchar(20)"
   is_dan:"varchar(20)"
   head_pic:"varchar(255)"
+  address:"varchar(1000)"
   is_zhaopin:
     type:"tinyint"
     defaultValue:0
