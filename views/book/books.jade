@@ -66,6 +66,7 @@ html
                       a.buy(href="/book/#{book.id}/buy") 我要这本书
                   div 
         .right
+
           .module.fix-ad
               .hd 广告位
               .bd.clearfix
@@ -79,6 +80,19 @@ html
                   <a target="_blank" href="http://union.dangdang.com/transfer.php?from=P-315457&ad_type=30&sys_id=1&backurl=http%3A%2F%2Funion.dangdang.com%2Fddimg%2Furl%3Fid%3D110"><img src="http://union.dangdang.com/ddimg?id=110"  alt=" " border="0"/></a>
                 .item.
                   <script charset="gbk" src="http://p.tanx.com/ex?i=mm_43670940_4176129_13672601"></script>
+          .module.comment
+            script.
+              (function(){
+              var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&border=1&brandline=y&fontsize=12&ralateuid=1711694513&appkey=659341943&dpc=1";
+              url = url.replace("url=auto", "url=" + document.URL); 
+              document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+              })();
+              </script>
+              <script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
+              <script type="text/javascript">
+              window.WBComment.init({
+                "id": "WBCommentFrame"
+              });
     include ./../footer
     p.
       <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
