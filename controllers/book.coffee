@@ -1,5 +1,7 @@
 func_book = __F 'book'
 request = require 'request'
+config = require './../config.coffee'
+Sina=require("./../lib/sdk/sina.js")
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
@@ -21,6 +23,10 @@ module.exports.controllers =
       func_book.sellToUser req.params.id,res.locals.user,(error,book)->
         if error then next error
         else
+          sina=new Sina(config.sdks.sina)
+          sina.statuses.update 
+            access_token:res.locals.user.weibo_token
+            status:"我在@前端乱炖 免费获得了一本《"+book.title+"》,名额有限，速度来抢！http://t.cn/zQBeZUO"
           res.redirect 'back'
   "/:id/del":
     get:(req,res,next)->
