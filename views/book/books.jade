@@ -50,6 +50,7 @@ html
                 div 暂无
           .module.mybooks
             .hd 我发布的书籍
+              a(href="/book/add",style="font-size:12px;padding-left:10px;") （发布免费书籍）
             ul.bd
               if locals.myPubBooks&&locals.myPubBooks.length
                 each book in locals.myPubBooks
@@ -59,10 +60,11 @@ html
                     div.infos
                       div 
                         a(href="#{book.url}",target="_blank") 《#{book.title}》
-                      div 作者：#{book.author}
-                      div 原价：#{book.price.toFixed(2)}
-                      div 
-                        a.del(href="/book/#{book.id}/del") 删除
+                      if book.user_id
+                        div 被 <a href="/user/#{book.user_id}" target="_blank"/>#{book.user_nick}</a> 领取
+                      else
+                        div 
+                          a.del(href="/book/#{book.id}/del") 删除
               else
                 div 暂无
           

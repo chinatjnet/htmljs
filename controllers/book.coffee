@@ -53,7 +53,7 @@ module.exports.filters =
   "/":
     get:['freshLogin','checkCard','book/all-books','book/my-book','book/my-pub-book']
   "/add":
-    post:['checkLogin']
+    post:['checkLogin','book/check-add']
   "/:id/del":
     get:['checkLogin']
   "/:id/buy":

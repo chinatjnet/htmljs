@@ -12,21 +12,21 @@ html
     #content.clearfix
       form(action="",method="post")
         fieldset
-          label isbn
-          input#isbn.input-large(type="text",placeholder="isbn",name="isbn")
-          button.btn#isbn_to_info(type="button") 查询
+          label isbn(可以在<a href="http://book.douban.com/subject_search?search_text=%E6%90%9C%E7%B4%A2&cat=1001" target="_blank">豆瓣</a>查询)
+          input#isbn.input-xlarge(type="text",placeholder="输入isbn号码，可以自动填写书籍信息",name="isbn")
+          button.btn#isbn_to_info(type="button",style="margin-left:20px;vertical-align:top;") 查询
           label 书名
           input.input-xxlarge(type="text",placeholder="书名",name="title")
-          label desc
-          textarea(placeholder="desc",name="desc")
-          label pic
-          input(type="text",placeholder="pic",name="pic")
+          label 简介
+          textarea(placeholder="简介",name="desc")
+          label 封面图片
+          input(type="text",placeholder="自动填充，请等待",name="pic")
           label 地址
           input.input(type="text",placeholder="地址",name="url")
-          label price
-          input.input(type="text",placeholder="price",name="price")
-          label author
-          input.input-xxlarge(type="text",placeholder="author",name="author")
+          label 价格
+          input.input(type="text",placeholder="价格",name="price")
+          label 作者
+          input.input-xxlarge(type="text",placeholder="作者",name="author")
           div
             button.btn(type="submit") 提交
       
@@ -34,7 +34,9 @@ html
     script(src='/assets/js/loadingTip.js')
     script(src='/assets/js/messageTip.js')
     script
+
       $("#isbn_to_info").click(function(){
+          loadingTip.show("抓取中")
           $.ajax({
             url:"/book/isbn_to_info",
             dataType:"json",
@@ -49,13 +51,7 @@ html
                   messageTip.show(data.data.msg)
                 }else{
                   book= data.data
-                  $("input[name='title']").val(book.title)
-                  $("textarea[name='desc']").val(book.summary)
-                  $("input[name='pic']").val(book.images.large)
-                  $("input[name='price']").val((book.price.replace(/[^0-9.]/,"")*1).toFixed(2))
-                  $("input[name='url']").val(book.alt)
-                  $("input[name='author']").val(book.author.join(" "))
-                  $("textarea[name='author_desc']").val(book.author_intro)
+                  
                   if(book.images.large){
                     loadingTip.show("封面上传中")
                     $("#cover_status").html("封面正在上传中")
@@ -67,22 +63,39 @@ html
                         url:book.images.large
                       },
                       success:function(data){
+                       $("input[name='title']").val(book.title)
+                        $("textarea[name='desc']").val(book.summary)
+                        $("input[name='pic']").val(book.images.large)
+                        $("input[name='price']").val((book.price.replace(/[^0-9.]/,"")*1).toFixed(2))
+                        $("input[name='url']").val(book.alt)
+                        $("input[name='author']").val(book.author.join(" "))
+                        $("textarea[name='author_desc']").val(book.author_intro)
+                        
                         if(data.success){
                           $("input[name='pic']").val(data.data.filename)
                           
                         }else{
-                          alert("封面上传失败")
+                          alert("封面上传失败,请重试")
                         }
-                        
+                       loadingTip.hide()
                       }
                     })
+                  }else{
+                  loadingTip.hide()
+                  $("input[name='title']").val(book.title)
+                  $("textarea[name='desc']").val(book.summary)
+                  $("input[name='pic']").val(book.images.large)
+                  $("input[name='price']").val((book.price.replace(/[^0-9.]/,"")*1).toFixed(2))
+                  $("input[name='url']").val(book.alt)
+                  $("input[name='author']").val(book.author.join(" "))
+                  $("textarea[name='author_desc']").val(book.author_intro)
                   }
                  
                 }
               }else{
                 messageTip.show(data.info)
               }
-              loadingTip.hide()
+              
             },
             error:function(){
               loadingTip.hide()
