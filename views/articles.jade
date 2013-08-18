@@ -117,7 +117,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
       $('.actions a').tooltip({
           placement:"bottom"
       })
-      $("#info_read").click(function(){
+      $("#info_read").click(function(e){
+        e.preventDefault();
         $.ajax({
           url:"/info/read",
           type:"post",
