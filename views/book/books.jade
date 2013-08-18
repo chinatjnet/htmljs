@@ -61,7 +61,7 @@ html
                   div 原价：#{book.price.toFixed(2)}
                   div.action 
                     if book.is_selled
-                      span 已被#{book.user_nick} 领取
+                      span 已被 <a href="/user/#{book.user_id}" target="_blank"/>#{book.user_nick}</a> 领取
                     else
                       a.buy(href="/book/#{book.id}/buy") 我要这本书
                   div 
