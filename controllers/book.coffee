@@ -9,6 +9,9 @@ module.exports.controllers =
     get:(req,res,next)->
       res.render 'book/add.jade'
     post:(req,res,next)->
+      req.body.pub_user_id = res.locals.user.id
+      req.body.pub_user_nick = res.locals.user.nick
+
       func_book.add req.body,(error,callback)->
         if error then next error
         else
@@ -19,6 +22,21 @@ module.exports.controllers =
         if error then next error
         else
           res.redirect 'back'
+  "/:id/del":
+    get:(req,res,next)->
+      func_book.getById req.params.id,(error,book)->
+        if error then next error
+        else if book
+          if res.locals.user.id == book.pub_user_id
+            book.destroy().success ()->
+              res.redirect 'back'
+            .error (e)->
+              next(e)
+          else
+            next new Error '没有权限'
+        else
+          next new Error '不存在的书籍'
+      
   "/isbn_to_info":
     "get":(req,res,next)->
       result = 
@@ -33,8 +51,10 @@ module.exports.controllers =
         res.send result
 module.exports.filters = 
   "/":
-    get:['freshLogin','checkCard','book/all-books','book/my-book']
+    get:['freshLogin','checkCard','book/all-books','book/my-book','book/my-pub-book']
   "/add":
-    post:['checkLogin','checkAdmin']
+    post:['checkLogin']
+  "/:id/del":
+    get:['checkLogin']
   "/:id/buy":
     get:['checkLogin','checkCard','book/check-user']

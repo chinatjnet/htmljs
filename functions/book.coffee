@@ -29,6 +29,14 @@ func_book =
       callback null,books
     .error (e)->
       callback e
-__FC func_book,Book,['add','getAll','delete','update','count']
+  getByPubUserId:(userId,callback)->
+    Book.findAll
+      where:
+        pub_user_id:userId
+    .success (books)->
+      callback null,books
+    .error (e)->
+      callback e
+__FC func_book,Book,['add','getAll','delete','update','count','getById']
 
 module.exports = func_book

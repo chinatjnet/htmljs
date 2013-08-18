@@ -979,6 +979,7 @@ display: block;
     padding: 0;
     margin:0;
   }
+
   .alert{
     em{
       color: #999;
@@ -990,28 +991,19 @@ display: block;
     margin:0 !important;
   }
   .mybooks{
-    li{
-      width:120px;
-      
-      display: inline-block;
-      *float:left;
-      vertical-align: top;
+    padding:0px;
+    background: none;
+    .bd{
+      padding:0;
+      width:1000px;
+
     }
-  }
-  .fix-ad{
-    .item{
-      float:left;
-      margin-right: 10px;
-    }
-  }
-  .book-list{
-    width:1000px;
     li{
-      width:270px;
-      padding:15px;
+     width:205px;
+      padding:10px;
       background: #fff;
       border-radius: 5px;
-      margin-right: 20px;
+      margin-right: 10px;
       margin-bottom: 20px;
       line-height: 20px;
       display: inline-block;
@@ -1024,12 +1016,77 @@ display: block;
         float:left;
       }
       .infos{
-        width:185px;
+        width:110px;
         float:left;
         margin-left:10px;
         color: #404040;
         font-size:12px;
         .action{
+          a{
+            padding:0;
+          }
+        }
+      }
+    }
+  }
+  .fix-ad{
+    padding:10px;
+    .bd{
+      padding:0;
+    }
+    .item{
+      float:left;
+      margin-top: 10px;
+    }
+  }
+  .left{
+    width:700px;
+    float:left;
+  }
+  .right{
+    width:220px;
+    float:left;
+    margin-left: 20px;
+  }
+  .book-list{
+    width:750px;
+    padding:0px;
+    background: none;
+    .bd{
+      padding:0;
+      width:750px;
+
+    }
+    .item{
+      width:205px;
+      padding:10px;
+      background: #fff;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      line-height: 20px;
+      display: inline-block;
+      *float:left;
+      vertical-align: top;
+      .pic{
+        display: block;
+        margin:0 auto;
+        width:70px;
+        float:left;
+      }
+      .infos{
+        width:125px;
+        float:left;
+        margin-left:10px;
+        color: #404040;
+        font-size:12px;
+        .action{
+          .btn{
+            line-height: 18px;
+            padding:3px 5px;
+            height:18px;
+            font-size: 12px;
+          }
           a{
             padding:0;
           }
