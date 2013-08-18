@@ -3,3 +3,5 @@ module.exports = (req,res,next)->
     (__F 'book').getByUserId res.locals.user.id,(error,books)->
       res.locals.mybooks = books
       next()
+  else
+    next()
