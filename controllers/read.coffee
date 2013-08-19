@@ -1,4 +1,5 @@
 func_article = __F 'article'
+func_info = __F 'info'
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
@@ -43,6 +44,17 @@ module.exports.controllers =
         else
           res.locals.visitors = visitors
           func_article.getById req.params.id,(error,article)->
+            if article.user_id && res.locals.user
+              func_info.add 
+                target_user_id:article.user_id
+                type:1
+                source_user_id:res.locals.user.id
+                source_user_nick:res.locals.user.nick
+                time:new Date()
+                target_path:req.originalUrl
+                target_path_name:" 收藏的文章:"+article.title
+              ,()->
+                console.log 'success'
             res.locals.article = article
             func_article.addVisit req.params.id,res.locals.user||null
             res.render 'read.jade'
@@ -72,6 +84,8 @@ module.exports.filters =
   "/me":
     get:['checkLogin','checkCard']
     post:[]
+  "/:id":
+    get:['freshLogin']
   "/add/recommend":
     get:['checkLogin',"checkCard"]
     post:['checkLogin',"checkCard"]
