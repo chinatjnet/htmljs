@@ -36,5 +36,6 @@ app.configure ->
   
   app.locals.moment= require 'moment'
   app.locals.moment.lang('zh-cn');
+  app.locals.assets_head = config.assets_head
 app.configure "development", ->
   app.use express.errorHandler()

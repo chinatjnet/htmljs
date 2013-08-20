@@ -2,14 +2,14 @@
 html
   head
     include head
-    link(href='/assets/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
-    script(src='/assets/js/jquery.js')
-    script(src='/assets/js/bootstrap/bootstrap-transition.js')
-    script(src='/assets/js/bootstrap/bootstrap-modal.js')
-    script(src='/assets/js/bootstrap/bootstrap-tooltip.js')
-    script(src='/assets/js/Markdown.Converter.js')
-    script(src='/assets/js/Markdown.Sanitizer.js')
-    script(src='/assets/js/Markdown.Editor.js')
+    link(href='#{assets_head}/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
+    script(src='#{assets_head}/js/jquery.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    script(src='#{assets_head}/js/Markdown.Converter.js')
+    script(src='#{assets_head}/js/Markdown.Sanitizer.js')
+    script(src='#{assets_head}/js/Markdown.Editor.js')
     
     style
       #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
@@ -59,9 +59,9 @@ html
       #login_popup 
         span 请先用新浪微博登录
         a(href="/user/login")
-    script(src='/assets/js/ajaxfileupload.js')
-    script(src='/assets/js/loadingTip.js')
-    script(src='/assets/js/messageTip.js')
+    script(src='#{assets_head}/js/ajaxfileupload.js')
+    script(src='#{assets_head}/js/loadingTip.js')
+    script(src='#{assets_head}/js/messageTip.js')
     script
       $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
       $("#login_popup").css({left:$(window).width()/2-125})

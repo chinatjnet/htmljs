@@ -3,14 +3,14 @@ html
   head
     include ./../head
     title 前端乱炖-活动
-    link(href='/assets/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
-    script(src='/assets/js/jquery.js')
-    script(src='/assets/js/bootstrap/bootstrap-transition.js')
-    script(src='/assets/js/bootstrap/bootstrap-modal.js')
-    script(src='/assets/js/bootstrap/bootstrap-tooltip.js')
-    script(src='/assets/js/Markdown.Converter.js')
-    script(src='/assets/js/Markdown.Sanitizer.js')
-    script(src='/assets/js/Markdown.Editor.js')
+    link(href='#{assets_head}/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
+    script(src='#{assets_head}/js/jquery.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    script(src='#{assets_head}/js/Markdown.Converter.js')
+    script(src='#{assets_head}/js/Markdown.Sanitizer.js')
+    script(src='#{assets_head}/js/Markdown.Editor.js')
   body#act-add
     - locals.pageId=5;
     include ./../header
@@ -54,9 +54,9 @@ html
           <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
           <button class="btn btn-primary">插入</button>
         </div>
-    script(src='/assets/js/ajaxfileupload.js')
-    script(src='/assets/js/loadingTip.js')
-    script(src='/assets/js/messageTip.js')
+    script(src='#{assets_head}/js/ajaxfileupload.js')
+    script(src='#{assets_head}/js/loadingTip.js')
+    script(src='#{assets_head}/js/messageTip.js')
     script
       var converter1 = Markdown.getSanitizingConverter();
       var editor1 = new Markdown.Editor(converter1);

@@ -3,9 +3,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
   head
     include head
     title 前端乱炖
-    script(src='/assets/js/bootstrap/bootstrap-transition.js')
-    script(src='/assets/js/bootstrap/bootstrap-modal.js')
-    script(src='/assets/js/bootstrap/bootstrap-tooltip.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
     style
     script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
   body#articles
@@ -38,7 +38,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
             for cat,i in cats
               a(href="/article?filter=type|#{i}",class="#{locals.filter_type==i?'active':''}") #{cat}
             a.rss(href="/rss")
-              img(src="/assets/images/rss.png")
+              img(src="#{assets_head}/images/rss.png")
         include page
         
         ul.article-list
@@ -107,7 +107,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
         .module.text
           .hd 微信公众账号
           .bd
-            img(src="/assets/images/qrcode.jpg")
+            img(src="#{assets_head}/images/qrcode.jpg")
         .module.text
           .hd SSH广告
           .bd

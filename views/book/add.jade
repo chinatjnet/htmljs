@@ -3,8 +3,8 @@ html
   head
     include ./../head
     title 前端乱炖-活动
-    link(href='/assets/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
-    script(src='/assets/js/jquery.js')
+    link(href='#{assets_head}/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
+    script(src='#{assets_head}/js/jquery.js')
     
   body#act-add
     - locals.pageId=5;
@@ -30,9 +30,9 @@ html
           div
             button.btn(type="submit") 提交
       
-    script(src='/assets/js/ajaxfileupload.js')
-    script(src='/assets/js/loadingTip.js')
-    script(src='/assets/js/messageTip.js')
+    script(src='#{assets_head}/js/ajaxfileupload.js')
+    script(src='#{assets_head}/js/loadingTip.js')
+    script(src='#{assets_head}/js/messageTip.js')
     script
 
       $("#isbn_to_info").click(function(){
