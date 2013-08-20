@@ -1,4 +1,4 @@
-.pagination.pagination-mini
+.pagination.pagination-mini.clearfix
   pageList = []
   page = page*1
   totalPage = totalPage*1
@@ -36,3 +36,5 @@
     else
       li
         a(href="?page=#{page+1}") Next
+
+  .total.label 共 #{total} 
