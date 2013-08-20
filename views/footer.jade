@@ -28,7 +28,11 @@
             li
               a(href='http://lisie.hdu.edu.cn/passionke/') 柯激情的个人主页
     .module
-      div Power By NodeJS <a href="https://github.com/xinyu198736/htmljs">Github repo</a>
+      div Power By NodeJS 
+    .module
+      .hd Github Repo
+      .bd.
+        <div class="github-widget" data-repo="xinyu198736/htmljs"></div>
 script.
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36222024-3']);
@@ -39,3 +43,10 @@ script.
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+script(src="/assets/js/githubRepoWidget.js")
+
+#gotop TOP
+script
+  $("#gotop").click(function(){
+    $("html,body").animate({scrollTop:0})
+    })

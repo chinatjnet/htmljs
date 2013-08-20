@@ -22,8 +22,7 @@
 #header .navbar-inner{background:#5bb793;border:none;color:#fff;}#header .navbar-inner a{text-shadow:none;color:#fff;}
 #header .navbar-inner .active a{color:#5bb793;background:#fff;}
 #header .right-nav{float:right;margin:0;}#header .right-nav li{list-style:none;line-height:40px;margin-left:10px;float:left;}
-#footer .wrapper{width:940px;margin:30px auto;}
-#footer .module .bd{padding:0;}
+#footer .wrapper{width:940px;margin:30px auto;}#footer .wrapper .module{margin-left:0;}#footer .wrapper .module .bd{padding:0;}
 #footer ul{margin:0;}
 #footer .links li{float:left;margin-right:20px;list-style:none;}
 .f2er-list li{position:relative;}.f2er-list li .renling{position:absolute;right:10px;top:10px;}
