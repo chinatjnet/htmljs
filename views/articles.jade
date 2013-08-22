@@ -65,24 +65,10 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   if article.quote_url
                     span.views.item
                       a.value(href="#{article.quote_url}",target="_blank") 原文链接
-              .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/\n/g,"<br/>")}
+              .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")}
 
               .entry-meta
       .right
-        div.module
-          .hd 广告
-          .bd.
-            <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-8166279959459646";
-            /* card 页面广告 */
-            google_ad_slot = "4248227757";
-            google_ad_width = 300;
-            google_ad_height = 250;
-            //-->
-            </script>
-            <script type="text/javascript"
-            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
         .module.text
           .hd 订阅和交流
           .bd
@@ -107,10 +93,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
           .bd
             img(src="#{assets_head}/images/qrcode.jpg")
         .module.text
-          .hd SSH广告
-          .bd
-            a(href="https://manager.host700.com/aff.php?aff=043",target="_blank")
-              img(src="http://host700.b0.upaiyun.com/ad/300250.jpg")
+          .hd 广告
+          .bd 暂无
     script
       $('.actions a').tooltip({
           placement:"bottom"
