@@ -17,7 +17,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
         .actions
           a(href="/read",class="cat #{locals.cat=='all'?'active':''}") 大家在读
           a(href="/read/me",class="cat #{locals.cat!='all'?'active':''}") 我的阅读
-          a.publish(href="/read/add/recommend",data-original-title="收藏您想读的文章") 收藏在线文章
           a.publish(href="javascript:window.location.href='http://www.html-js.com/read/add/recommend?url='+encodeURIComponent(window.location.href);",data-original-title="收集按钮，拖动到浏览器收藏栏，看到喜欢的文章点击即可收藏") 收集到前端乱炖
           a(href="https://chrome.google.com/webstore/detail/%E5%89%8D%E7%AB%AF%E4%B9%B1%E7%82%96-%E9%98%85%E8%AF%BB%E6%94%B6%E8%97%8F%E5%B7%A5%E5%85%B7/lehlponmkllmkdnkcehbpbofldpmklki",target="_blank") chrome插件版收藏工具
         include page
@@ -49,6 +48,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     if article.quote_url
                       span.views.item
                         a.value(href="#{article.quote_url}",target="_blank") 原文链接
+                .entry-content
+                  div !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300)}
           else
             li(style="text-align:center;") 还没有文章耶，赶紧去收藏新文章吧！！
               a(href="/read/add/recommend") 去收藏
