@@ -66,8 +66,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     span.views.item
                       a.value(href="#{article.quote_url}",target="_blank") 原文链接
               .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")}
-
-              .entry-meta
+        include page
       .right
         .module.text
           .hd 订阅和交流
