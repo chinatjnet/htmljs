@@ -13,7 +13,8 @@
 #gotop{position:fixed;right:50px;bottom:20px;display:block;width:50px;height:50px;background:#aaa;color:#fff;line-height:50px;text-align:center;cursor:pointer;}
 .group{margin-bottom:10px;}
 .group .label{margin:0 5px;}
-.pagination{margin-bottom:5px;margin-left:0;}
+.pagination{margin-bottom:5px;margin-left:0;}.pagination ul{display:inline-block;}
+.pagination .total{font-size:12px;display:inline-block;margin-left:10px;vertical-align:top;}
 .table td{font-size:12px;height:18px;padding:0 20px;}
 .search input{height:20px;}
 .search button{height:25px;}
@@ -96,6 +97,7 @@
 #reads .post .entry-title .item .value,#read .post .entry-title .item .value{color:#888;}
 #reads .post .entry-content,#read .post .entry-content{padding:20px 0;color:#404040;}#reads .post .entry-content h1,#read .post .entry-content h1,#reads .post .entry-content h2,#read .post .entry-content h2,#reads .post .entry-content h3,#read .post .entry-content h3,#reads .post .entry-content h4,#read .post .entry-content h4,#reads .post .entry-content h5,#read .post .entry-content h5{font-size:1.5em;}
 #reads .post .entry-content p,#read .post .entry-content p{font-size:14px;line-height:20px;margin:10px 0;}
+#reads .post .entry-content{font-size:12px;line-height:18px;}#reads .post .entry-content br{height:0;line-height:0;font-size:0;}
 #read article.post{background:#fff;border-radius:5px;padding:20px;}#read article.post .entry-title{height:70px;}#read article.post .entry-title .headpic{float:left;margin-right:20px;}
 #read article.post .entry-title .title{font-size:18px;line-height:30px;margin:0;color:#404040;font-weight:normal;}
 #read article.post .entry-title .item{font-size:12px;margin-right:20px;}#read article.post .entry-title .item .index{color:#aaa;}
