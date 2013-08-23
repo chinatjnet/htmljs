@@ -2,9 +2,9 @@
 .headerCon:after,.clearfix:after{clear:both;}
 .headerCon,.clearfix{zoom:1;}
 .hidden{display:none !important;}
-.loading-tip{position:fixed;top:0;height:20px;line-height:20px;padding:2px 5px;background:#f4e8ab;color:#333;display:none;z-index:10000;right:30px;box-shadow:1px 1px 1px #ddd;}
-.message-tip{position:fixed;top:200px;left:45%;height:20px;line-height:20px;padding:2px 10px;border-radius:15px;background:#f4e8ab;color:#333;border:1px solid #dac55f;opacity:0;z-index:10000;-webkit-animation:zoomIn 400ms ease both;-webkit-backface-visibility:visible;-moz-animation:zoomIn 400ms ease both;-moz-backface-visibility:visible;-o-animation:zoomIn 400ms ease both;-o-backface-visibility:visible;animation:zoomIn 400ms ease both;}
-.message-tip.show{opacity:1;-webkit-animation:zoomOut 400ms ease both;-webkit-backface-visibility:visible;-moz-animation:zoomOut 400ms ease both;-moz-backface-visibility:visible;-o-animation:zoomOut 400ms ease both;-o-backface-visibility:visible;animation:zoomOut 400ms ease both;}
+@-webkit-keyframes zoomOut{0%{opacity:0;-webkit-transform:scale(0.6);} 100%{opacity:1;-webkit-transform:scale(1);}}@-webkit-keyframes zoomIn{0%{opacity:1;-webkit-transform:scale(0.6);} 100%{opacity:0;-webkit-transform:scale(0);}}@-moz-keyframes zoomOut{0%{opacity:0;-moz-transform:scale(0.6);} 100%{opacity:1;-moz-transform:scale(1);}}@-o-keyframes zoomOut{0%{opacity:0;-o-transform:scale(0.6);} 100%{opacity:1;-o-transform:scale(1);}}@keyframes zoomOut{0%{opacity:0;transform:scale(0.6);} 100%{opacity:1;transform:scale(1);}}.loading-tip{position:fixed;top:0;height:20px;line-height:20px;padding:2px 5px;background:#f4e8ab;color:#333;display:none;z-index:10000;right:30px;box-shadow:1px 1px 1px #ddd;}
+.message-tip{position:fixed;top:200px;left:45%;height:20px;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;line-height:20px;padding:2px 10px;border-radius:15px;background:#f4e8ab;color:#333;border:1px solid #dac55f;opacity:0;z-index:10000;-webkit-animation:zoomIn 400ms ease both;-webkit-backface-visibility:visible;-moz-animation:zoomIn 400ms ease both;-moz-backface-visibility:visible;-o-animation:zoomIn 400ms ease both;-o-backface-visibility:visible;animation:zoomIn 400ms ease both;}
+.message-tip.show{opacity:1;-webkit-animation:zoomOut 200ms ease both;-webkit-backface-visibility:visible;-moz-animation:zoomOut 200ms ease both;-moz-backface-visibility:visible;-o-animation:zoomOut 200ms ease both;-o-backface-visibility:visible;animation:zoomOut 200ms ease both;}
 .module{background:#fff;border-radius:5px;padding:15px 20px;margin-bottom:10px;}.module .hd .right_more{font-size:12px;float:right;padding-right:10px;}
 .module .hd{line-height:30px;color:#333;font-size:18px;height:40px;font-weight:bold;color:#666;}
 .module .bd{font-size:12px;padding:10px;color:#666;}
@@ -67,6 +67,7 @@
 #cards .f2er-list .sns .weibo{background:url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;}#cards .f2er-list li .zan{position:absolute;top:10px;right:10px;line-height:17px;color:#999;cursor:pointer;}#cards .f2er-list li .zan .icon{vertical-align:top;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
 #cards .f2er-list li .zan .icon:hover{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
+#cards .f2er-list li .zan .icon:hover+em{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
 #cards .f2er-list li .zan em{font-style:normal;padding:0 5px;}
 #cards .f2er-list li .zan span{padding:0 5px;}
 #cards .f2er-list li a{word-wrap:normal;word-break:break-all;}

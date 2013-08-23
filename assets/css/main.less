@@ -3,6 +3,29 @@
 .hidden{
   display:none !important;
 }
+
+@-webkit-keyframes zoomOut {
+    0% { opacity: 0; -webkit-transform: scale(.6); }
+    100% { opacity: 1; -webkit-transform: scale(1); }
+}
+@-webkit-keyframes zoomIn {
+    0% { opacity: 1; -webkit-transform: scale(.6); }
+    100% { opacity: 0; -webkit-transform: scale(0); }
+}
+@-moz-keyframes zoomOut {
+    0% { opacity: 0; -moz-transform: scale(.6); }
+    100% { opacity: 1; -moz-transform: scale(1); }
+}
+
+@-o-keyframes zoomOut {
+    0% { opacity: 0; -o-transform: scale(.6); }
+    100% { opacity: 1; -o-transform: scale(1); }
+}
+
+@keyframes zoomOut {
+    0% { opacity: 0; transform: scale(.6); }
+    100% { opacity: 1; transform: scale(1); }
+}
 .loading-tip{
   position:fixed;
   top:0;
@@ -21,7 +44,8 @@
   top:200px;
   left:45%;
   height:20px;
-
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
   line-height:20px;
   padding:2px 10px;
   border-radius: 15px;
@@ -41,13 +65,13 @@
 }
 .message-tip.show{
   opacity:1;
-  -webkit-animation: zoomOut 400ms ease both;
+  -webkit-animation: zoomOut 200ms ease both;
   -webkit-backface-visibility: visible;
-  -moz-animation: zoomOut 400ms ease both;
+  -moz-animation: zoomOut 200ms ease both;
   -moz-backface-visibility: visible;
-  -o-animation: zoomOut 400ms ease both;
+  -o-animation: zoomOut 200ms ease both;
   -o-backface-visibility: visible;
-  animation: zoomOut 400ms ease both;
+  animation: zoomOut 200ms ease both;
 }
 .module{
     background:#fff;
@@ -464,6 +488,10 @@
       transition: all .2s ease-in-out;
     }
     .icon:hover{
+      -webkit-transform: scale(1.2, 1.2);
+      transform: scale(1.2, 1.2);
+    }
+    .icon:hover+em{
       -webkit-transform: scale(1.2, 1.2);
       transform: scale(1.2, 1.2);
     }

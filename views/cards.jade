@@ -116,7 +116,7 @@ html
               .bd
                 
     include footer
-    
+    script(src="#{assets_head}/js/messageTip.js")
     script
       $("img.lazy").lazyload();
       $("#gotop").click(function(){
@@ -136,6 +136,7 @@ html
             },
             success:function(data){
               if(data.success){
+                messageTip.show("Great!")
                 $("em",$(self)).html(data.zan_count)
               }else{
               }
