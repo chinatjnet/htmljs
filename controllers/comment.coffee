@@ -18,6 +18,5 @@ module.exports.controllers =
         res.send comment
 
 module.exports.filters = 
-  "/":
-    get:[]
+  "/add":
     post:[]
