@@ -46,6 +46,17 @@ func_card =
       callback null,logs
     .error (error)->
       callback error
+  addZan:(cardId,callback)->
+    Card.find
+      where:
+        id:cardId
+    .success (card)->
+      if card
+        card.updateAttributes
+          zan_count: if card.zan_count then (card.zan_count+1) else 1
+      callback null,card.zan_count
+    .error (e)->
+      callback e
   getHots:(callback)->
     Card.findAll
       offset: 0
@@ -64,6 +75,16 @@ func_card =
       callback null,cards
     .error (error)->
       callback error
-
-__FC func_card,Card,['update','count','delete','getById','getAll','add']
+  getAll:(page,count,condition,callback)->
+    query = 
+      offset: (page - 1) * count
+      limit: count
+      order: "zan_count+visit_count desc"
+    if condition then query.where = condition
+    Card.findAll(query)
+    .success (ms)->
+      callback null,ms
+    .error (e)->
+      callback e
+__FC func_card,Card,['update','count','delete','getById','add']
 module.exports = func_card

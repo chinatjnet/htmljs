@@ -214,6 +214,13 @@ module.exports.controllers =
                   access_token:res.locals.user.weibo_token
                   status:"我在@前端乱炖 爆料了大神 "+card.nick+" 的八卦，求围观，求吐槽，求同扒！！http://www.html-js.com/card/"+req.params.id
             res.redirect 'back'
+  "/card/:id/zan":
+    post:(req,res,next)->
+      result = 
+        success:1
+      func_card.addZan req.params.id,(error,count)->
+        result.zan_count = count
+        res.send result
   "/upload":
     "post":(req,res,next)->
       result = 
@@ -285,6 +292,8 @@ module.exports.filters =
     get:['freshLogin',"checkCard","card_hot","card_recent"]
   "/card/:id":
     get:['freshLogin','getBao']
+  "/card/:id/zan":
+    post:['checkLogin']
   "/add-card":
     get:['checkLogin',"checkCard"]
     post:['checkLogin']

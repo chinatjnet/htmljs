@@ -89,6 +89,11 @@ html
                       span.renling 已被认领
                     else
                       a.renling(data-id="#{card.id}") 认领此名片 
+                a.zan(data-id="#{card.id}")
+                  .icon-heart 
+                  em #{card.zan_count||0}
+                  .icon-eye-open
+                  span #{card.visit_count||0}
         .right
           if locals.hots
             .module
@@ -121,6 +126,25 @@ html
       })
       $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
       $("#login_popup").css({left:$(window).width()/2-125})
+      $("a.zan").click(function(){
+        var id = $(this).data("id");
+          var self=this;
+          $.ajax("/card/"+id+"/zan",{
+            dataType:"json",
+            type:"post",
+            data:{
+            },
+            success:function(data){
+              if(data.success){
+                $("em",$(self)).html(data.zan_count)
+              }else{
+              }
+            },
+            error:function(){
+
+            }
+          })
+        })
       $("a.renling").click(function(){
         if(confirm("你只能认领一次名片，确定这是您的名片并认领？")){
           var id = $(this).data("id");
