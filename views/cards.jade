@@ -47,8 +47,8 @@ html
           a.label(href="?filter=is_zhaopin|1",class="#{locals.filter_is_zhaopin=='1'?'label-success':''}") 在招人
           a.label(href="?filter=is_jiehuo|1",class="#{locals.filter_is_jiehuo=='1'?'label-success':''}") 想接活
           a.label(href="?filter=is_xiangqin|1",class="#{locals.filter_is_xiangqin=='1'?'label-success':''}") 找对象
-          a.label(href="?filter=sex|女",class="#{locals.filter_is_xiangqin=='1'?'label-success':''}") 女生
-          a.label(href="?filter=is_dan|单身",class="#{locals.filter_is_xiangqin=='1'?'label-success':''}") 单身
+          a.label(href="?filter=sex|女",class="#{locals.filter_sex=='女'?'label-success':''}") 女生
+          a.label(href="?filter=is_dan|单身",class="#{locals.filter_is_dan=='单身'?'label-success':''}") 单身
       .main.clearfix
         .left
           include page
