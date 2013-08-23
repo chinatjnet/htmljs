@@ -16,6 +16,11 @@ html
           p.alert.alert-warnint 此用户还没有创建名片
         else
           div.my_card
+            a.zan(data-id="#{card.id}")
+              .icon-heart.icon 
+              em #{card.zan_count||0}
+              .icon-eye-open.icon
+              span #{card.visit_count||0}
             .hd 
               | #{card.nick}的名片信息 
             .bd
@@ -181,4 +186,25 @@ html
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
     script(src='#{assets_head}/js/card.js')
+    script
+      $("a.zan").click(function(){
+        var id = $(this).data("id");
+          var self=this;
+          $.ajax("/card/"+id+"/zan",{
+            dataType:"json",
+            type:"post",
+            data:{
+            },
+            success:function(data){
+              if(data.success){
+                messageTip.show("Great!")
+                $("em",$(self)).html(data.zan_count)
+              }else{
+              }
+            },
+            error:function(){
+
+            }
+          })
+        })
       

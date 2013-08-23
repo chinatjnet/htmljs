@@ -261,6 +261,7 @@
     overflow: hidden;
   }
   .my_card{
+    position: relative;
     width:560px;
     background:#fff;
     border-radius:5px;
@@ -475,34 +476,7 @@
   color:#666;
   margin-right:10px;
   box-shadow: 1px 1px 2px #ddd;
-  .zan{
-    position: absolute;
-    top:10px;
-    right:10px;
-    line-height: 17px;
-    color:#999;
-    cursor: pointer;
-    .icon{
-      vertical-align: top;
-      -webkit-transition: all .2s ease-in-out;
-      transition: all .2s ease-in-out;
-    }
-    .icon:hover{
-      -webkit-transform: scale(1.2, 1.2);
-      transform: scale(1.2, 1.2);
-    }
-    .icon:hover+em{
-      -webkit-transform: scale(1.2, 1.2);
-      transform: scale(1.2, 1.2);
-    }
-    em{
-      font-style: normal;
-      padding:0 5px;
-    }
-    span{
-      padding:0 5px;
-    }
-  }
+  position: relative;
 }
 .f2er-list li a{
   word-wrap: normal;
@@ -553,6 +527,37 @@ width:310px;
 #card,#me{
   #bdshare{
     float:none;
+  }
+  
+}
+#cards,#me{
+  .zan{
+    position: absolute;
+    top:10px;
+    right:10px;
+    line-height: 17px;
+    color:#999;
+    cursor: pointer;
+    .icon{
+      vertical-align: top;
+      -webkit-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+    }
+    .icon:hover{
+      -webkit-transform: scale(1.2, 1.2);
+      transform: scale(1.2, 1.2);
+    }
+    .icon:hover+em{
+      -webkit-transform: scale(1.2, 1.2);
+      transform: scale(1.2, 1.2);
+    }
+    em{
+      font-style: normal;
+      padding:0 5px;
+    }
+    span{
+      padding:0 5px;
+    }
   }
 }
 #card,#me{

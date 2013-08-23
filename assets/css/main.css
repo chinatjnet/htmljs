@@ -35,7 +35,7 @@
 #me{background:#efefef;}#me .left{float:left;width:600px;}
 #me .right{float:left;width:340px;}
 #me .article-list{width:100%;overflow:hidden;}
-#me .my_card{width:560px;background:#fff;border-radius:5px;padding:10px 20px;margin-bottom:10px;}#me .my_card .edit{float:right;font-size:12px;}
+#me .my_card{position:relative;width:560px;background:#fff;border-radius:5px;padding:10px 20px;margin-bottom:10px;}#me .my_card .edit{float:right;font-size:12px;}
 #me .my_card .hd{line-height:50px;color:#333;font-size:16px;}
 #me .my_card .item{margin-bottom:15px;}#me .my_card .item .key{float:left;width:90px;color:#999;}
 #me .my_card .item .value{float:left;color:#404040;width:360px;}
@@ -65,11 +65,7 @@
 #cards .f2er-list .sns .blog{background:url(http://htmljs.b0.upaiyun.com/images/icon-blog.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list .sns .github{background:url(http://htmljs.b0.upaiyun.com/images/github.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list .sns .weibo{background:url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
-#cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;}#cards .f2er-list li .zan{position:absolute;top:10px;right:10px;line-height:17px;color:#999;cursor:pointer;}#cards .f2er-list li .zan .icon{vertical-align:top;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
-#cards .f2er-list li .zan .icon:hover{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
-#cards .f2er-list li .zan .icon:hover+em{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
-#cards .f2er-list li .zan em{font-style:normal;padding:0 5px;}
-#cards .f2er-list li .zan span{padding:0 5px;}
+#cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;position:relative;}
 #cards .f2er-list li a{word-wrap:normal;word-break:break-all;}
 #cards .f2er-list li .key{color:#aaa;margin-left:10px;}
 #cards .f2er-list li .shanchang .key{float:left;}
@@ -81,6 +77,11 @@
 #cards .right{float:left;width:200px;margin-left:20px;padding-top:65px;}#cards .right .module{margin-left:10px;background:#fff;border-radius:5px;padding:15px 20px;margin-bottom:10px;}#cards .right .module .hd{line-height:30px;color:#333;font-size:18px;height:40px;font-weight:bold;color:#666;}
 #cards .right .module .bd{font-size:12px;padding:10px;color:#666;}
 #card #bdshare,#me #bdshare{float:none;}
+#cards .zan,#me .zan{position:absolute;top:10px;right:10px;line-height:17px;color:#999;cursor:pointer;}#cards .zan .icon,#me .zan .icon{vertical-align:top;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
+#cards .zan .icon:hover,#me .zan .icon:hover{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
+#cards .zan .icon:hover+em,#me .zan .icon:hover+em{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
+#cards .zan em,#me .zan em{font-style:normal;padding:0 5px;}
+#cards .zan span,#me .zan span{padding:0 5px;}
 #card .bao .actions a,#me .bao .actions a{margin-right:20px;}
 #article{background:#efefef;}#article .post .entry-title .headpic{float:left;margin-right:20px;margin-top:10px;}
 #article .post .entry-title .title{font-size:16px;line-height:30px;margin:0;color:#404040;font-weight:normal;}
