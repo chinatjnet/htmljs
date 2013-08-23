@@ -117,9 +117,9 @@ module.exports.controllers =
         if error then next error
         else
           res.locals.total=count
-          res.locals.totalPage=Math.ceil(count/20)
+          res.locals.totalPage=Math.ceil(count/40)
           res.locals.page = (req.query.page||1)
-          func_card.getAll res.locals.page,20,condition,(error,cards)->
+          func_card.getAll res.locals.page,40,condition,(error,cards)->
             if error then next error
             else
               res.locals.cards = cards
