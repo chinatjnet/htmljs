@@ -145,6 +145,7 @@ html
             }
           })
         })
+      $("a.zan")[0].onselectstart = function(){return false;}
       $("a.renling").click(function(){
         if(confirm("你只能认领一次名片，确定这是您的名片并认领？")){
           var id = $(this).data("id");
