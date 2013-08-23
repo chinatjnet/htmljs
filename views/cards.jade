@@ -90,9 +90,9 @@ html
                     else
                       a.renling(data-id="#{card.id}") 认领此名片 
                 a.zan(data-id="#{card.id}")
-                  .icon-heart 
+                  .icon-heart.icon 
                   em #{card.zan_count||0}
-                  .icon-eye-open
+                  .icon-eye-open.icon
                   span #{card.visit_count||0}
         .right
           if locals.hots

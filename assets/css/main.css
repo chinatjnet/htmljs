@@ -65,7 +65,8 @@
 #cards .f2er-list .sns .blog{background:url(http://htmljs.b0.upaiyun.com/images/icon-blog.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list .sns .github{background:url(http://htmljs.b0.upaiyun.com/images/github.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list .sns .weibo{background:url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
-#cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;}#cards .f2er-list li .zan{position:absolute;top:10px;right:10px;line-height:17px;color:#999;cursor:pointer;}#cards .f2er-list li .zan .icon-heart{vertical-align:top;}
+#cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;}#cards .f2er-list li .zan{position:absolute;top:10px;right:10px;line-height:17px;color:#999;cursor:pointer;}#cards .f2er-list li .zan .icon{vertical-align:top;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
+#cards .f2er-list li .zan .icon:hover{-webkit-transform:scale(1.2, 1.2);transform:scale(1.2, 1.2);}
 #cards .f2er-list li .zan em{font-style:normal;padding:0 5px;}
 #cards .f2er-list li .zan span{padding:0 5px;}
 #cards .f2er-list li a{word-wrap:normal;word-break:break-all;}
