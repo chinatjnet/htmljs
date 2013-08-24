@@ -47,6 +47,14 @@ func_article =
       callback null,article
     .error (error)->
       callback error
+  addComment:(articleId)->
+    Article.find
+      where:
+        id:articleId
+    .success (article)->
+      if article
+        article.updateAttributes
+          comment_count: if article.comment_count then (article.comment_count+1) else 1
   addVisit:(articleId,visitor)->
     Article.find
       where:

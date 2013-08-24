@@ -62,6 +62,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   span.views.item
                     span.index View：
                     a.value #{article.visit_count}
+                  span.views.item
+                    span.index 评论：
+                    a.value #{article.comment_count}
                   if article.quote_url
                     span.views.item
                       a.value(href="#{article.quote_url}",target="_blank") 原文链接
