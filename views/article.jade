@@ -29,6 +29,9 @@ html
                 span.views.item
                   span.index View：
                   a.value #{article.visit_count}
+                span.views.item
+                  span.index 评论：
+                  a.value #{article.comment_count}
                 if article.quote_url
                   span.views.item
                     a.value(href="#{article.quote_url}",target="_blank") 原文链接
@@ -156,8 +159,7 @@ html
             if(data.isnotlogin){
               alert("请先登录")
                 window.location.href="/user/login"
-            }
-            if(data.success){
+            }else if(data.success){
             $("#comment-text").val("")
             var html = Mustache.render(comment_tpl,data.comment);
               $(".comment-list").prepend(html)
