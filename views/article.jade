@@ -52,7 +52,11 @@ html
                 textarea.input-block-level#comment-text(placeholder="参与讨论，共创奇迹。支持markdown语法")
                 .btn.comment-submit#comment-submit 发表评论
               .comment-list
-                
+          .comment-layer
+            span.count
+              i.icon-comment
+              |#{article.comment_count}
+            span.input 看着不错？点评几句把，TA需要您的鼓励和支持。      
               script#comment-tpl(type="text/template")
                 .comment-item.clearfix
                   a.headpic
@@ -104,10 +108,23 @@ html
         document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
         </script>
     include footer
-    script(src="/assets/js/mustache.js")
-    script(src="/assets/js/messageTip.js")
-    script(src="/assets/js/loadingTip.js")
+    script(src="#{assets_head}/js/mustache.js")
+    script(src="#{assets_head}/js/messageTip.js")
+    script(src="#{assets_head}/js/loadingTip.js")
     script
+      $(window).scroll(function(){
+        if($(window).scrollTop()+$(window).height()>=$(".comment").offset().top){
+          $(".comment-layer").addClass("hidden")
+        }else{
+        $(".comment-layer").removeClass("hidden")
+        }
+        })
+      $(".comment-layer").click(function(){
+        $("html,body").animate({
+          scrollTop:$(".comment").offset().top-200
+          })
+        $(".comment textarea").focus()
+        })
       var comment_tpl = $("#comment-tpl").html()
       loadingTip.show("评论加载中")
       $.ajax({

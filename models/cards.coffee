@@ -33,3 +33,6 @@ module.exports =
     defaultValue:0
   visit_count:"int" #卡片访问量
   zan_count:"int"
+  comment_count:
+    type:"int"
+    defaultValue:0

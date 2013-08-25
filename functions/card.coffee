@@ -57,6 +57,15 @@ func_card =
       callback null,card.zan_count
     .error (e)->
       callback e
+  addComment:(cardId)->
+    Card.find
+      where:
+        id:cardId
+    .success (card)->
+      if card
+        card.updateAttributes
+          comment_count: if card.comment_count then (card.comment_count+1) else 1
+    .error (e)->
   getHots:(callback)->
     Card.findAll
       offset: 0
