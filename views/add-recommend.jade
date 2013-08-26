@@ -18,12 +18,11 @@ html
           .control-group
             input#url(type='text', name='quote_url', placeholder='文章在线地址')
           .control-group
-            input#title(type='hidden', name='title', placeholder='文章在线地址')
             textarea#html.hidden(name="html")
             div.preview_title 标题预览：
-            #preview_title
+            input#preview_title.input-block-level(name='title')
             div.preview_title  内容简介：
-            textarea#preview_desc.input-block-level
+            textarea#preview_desc.input-block-level(name="desc")
             div.preview_title  内容预览：
             #preview
           .control-group
@@ -77,8 +76,8 @@ html
               $("#title").val(data.data.title)
               $("#html").val(data.data.content)
               $("#preview").html(data.data.content)
-              $("#preview_title").html(data.data.title)
-              $("#preview_desc").html(data.data.desc)
+              $("#preview_title").val(data.data.title)
+              $("#preview_desc").val(data.data.desc)
               $("#url").val(url)
             }else{
               alert(data.info)
@@ -104,8 +103,8 @@ html
               $("#title").val(data.data.title)
               $("#html").val(data.data.content)
               $("#preview").html(data.data.content)
-              $("#preview_title").html(data.data.title)
-              $("#preview_desc").html(data.data.desc)
+              $("#preview_title").val(data.data.title)
+              $("#preview_desc").val(data.data.desc)
             }else{
               alert(data.info)
             }
