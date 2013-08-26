@@ -88,7 +88,7 @@ module.exports.controllers =
             who_nick:res.locals.user.nick
             target_url:"/card/"+card.id
             target_name:"["+card.nick+"的个人名片]"
-            action:"添加了个人名片："
+            action:"认领了个人名片："
             desc:'<li class="card clearfix"><div class="head_pic"><img src="'+res.locals.user.head_pic+'"  class="lazy"  style="display: inline;"></div><div class="car-infos"><div><span class="key">昵称</span>：'+card.nick+'<span class="sns"><a href="'+card.weibo+'" target="_blank" title="微博地址" class="weibo">weibo</a></span></div><div><span class="key">性别</span><span class="value">：'+card.sex+'</span><span class="key">感情状况</span><span class="value">：'+card.is_dan+'</span><span class="key">城市</span><span class="value">：'+card.city+'</span><span class="key">职位</span><span class="value">：'+card.zhiwei+'</span><span class="key">工作时间</span><span class="value">：'+card.shijian+'</span></div><div class="shanchang clearfix"><span class="key">擅长：</span><span class="value">'+card.desc+'</span></div></div></li>'
           
   "/update":
