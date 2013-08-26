@@ -42,9 +42,9 @@ global.__FC = (func,model,methods)->
       func.add = (data,callback)->
         model.create(data)
         .success (m)->
-          callback null,m
+          callback&&callback null,m
         .error (error)->
-          callback error
+          callback&&callback error
     else if m == "update"
       func.update = (id,data,callback)->
         model.find

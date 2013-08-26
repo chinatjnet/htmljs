@@ -1,0 +1,28 @@
+!!! 5
+html
+  head
+    include head
+    title 前端乱炖 - 首页
+    style
+      #bdshare a{}
+    script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
+  body#index
+    - locals.pageId=0;
+    include header
+    #content.clearfix
+      .module.timelines
+        each timeline in timelines
+          .timeline-item.clearfix
+            .user
+              .headpic(href="/user/#{timeline.who_id}") 
+                img(src="#{timeline.who_headpic}")
+            .infos
+              .action 
+                a.nick(href="/user/#{timeline.who_id}") #{timeline.who_nick}
+                |#{timeline.action}
+                a.title(href="#{timeline.target_url}") #{timeline.target_name}
+                span.time #{moment(timeline.createdAt).fromNow()}
+              .desc !{timeline.desc}
+        
+    //include footer
+    
