@@ -3,7 +3,7 @@ func_card = __F 'card'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js")
 Sina=require("./../lib/sdk/sina.js")
-
+func_timeline = __F 'timeline'
 md5 = require 'MD5'
 module.exports.controllers = 
   "/login":
