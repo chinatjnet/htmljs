@@ -169,4 +169,14 @@
 #read .comment-layer{width:920px;}#read .comment-layer .input{width:860px;}
 #index .timeline-item{margin-top:20px;}#index .timeline-item .user{float:left;width:80px;}#index .timeline-item .user .headpic{border-radius:30px;height:50px;width:50px;display:block;border:3px solid #fff;box-shadow:0px 0px 3px #aaa;}#index .timeline-item .user .headpic img{border-radius:30px;height:50px;width:50px;}
 #index .timeline-item .infos{float:left;width:800px;}#index .timeline-item .infos .action{line-height:50px;}#index .timeline-item .infos .action .time{padding-left:10px;color:#999;}
-#index .timeline-item .infos .desc{background:#efefef;border-radius:5px;padding:15px;}
+#index .timeline-item .infos .desc{background:#efefef;border-radius:5px;padding:15px;}#index .timeline-item .infos .desc .card{position:relative;background:#fff;border-radius:5px;list-style:none;margin:0;padding:15px;font-size:12px;color:#666;box-shadow:2px 2px 2px #ddd;}#index .timeline-item .infos .desc .card .head_pic{float:left;width:80px;}#index .timeline-item .infos .desc .card .head_pic img{width:60px;height:60px;}
+#index .timeline-item .infos .desc .card .car-infos{float:left;width:500px;}
+#index .timeline-item .infos .desc .card .renling{position:absolute;right:10px;top:25px;}
+#index .timeline-item .infos .desc .card .sns{margin-left:10px;}#index .timeline-item .infos .desc .card .sns a{padding-left:5px;}
+#index .timeline-item .infos .desc .card .sns .blog{background:url(http://htmljs.b0.upaiyun.com/images/icon-blog.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
+#index .timeline-item .infos .desc .card .sns .github{background:url(http://htmljs.b0.upaiyun.com/images/github.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
+#index .timeline-item .infos .desc .card .sns .weibo{background:url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
+#index .timeline-item .infos .desc .card a{word-wrap:normal;word-break:break-all;}
+#index .timeline-item .infos .desc .card .key{color:#aaa;margin-left:10px;}
+#index .timeline-item .infos .desc .card .shanchang .key{float:left;}
+#index .timeline-item .infos .desc .card .shanchang .value{float:left;width:460px;}

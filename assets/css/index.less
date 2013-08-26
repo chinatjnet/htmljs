@@ -12,7 +12,7 @@
         img{
           border-radius: 30px;
           height:50px;
-        width:50px;
+          width:50px;
         }
       }
       float:left;
@@ -32,6 +32,80 @@
         background: #efefef;
         border-radius: 5px;
         padding:15px;
+
+        .card{
+          position:relative;
+          background:#fff;
+          border-radius: 5px;
+          list-style: none;
+          margin:0;
+          padding:15px;
+          font-size:12px;
+          color:#666;
+          box-shadow: 2px 2px 2px #ddd;
+          .head_pic{
+            float:left;
+            width:80px;
+            img{
+              width:60px;
+              height:60px;
+            }
+          }
+          .car-infos{
+            float:left;
+            width:500px;
+          }
+          .renling{
+            position:absolute;
+            right:10px;
+            top:25px;
+          }
+          .sns{
+            margin-left: 10px;
+            a{padding-left:5px;}
+            .blog{
+              background: url(http://htmljs.b0.upaiyun.com/images/icon-blog.png) no-repeat center center;
+              height: 15px;
+              width:15px;
+              display: inline-block;
+              text-indent: -1000px;
+              overflow: hidden;
+            }
+            .github{
+              background: url(http://htmljs.b0.upaiyun.com/images/github.png) no-repeat center center;
+              height: 15px;
+              width:15px;
+              display: inline-block;
+              text-indent: -1000px;
+              overflow: hidden;
+            }
+            .weibo{
+              background: url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;
+              height: 15px;
+              width:15px;
+              display: inline-block;
+              text-indent: -1000px;
+              overflow: hidden;
+            }
+          }
+
+          a{
+            word-wrap: normal;
+            word-break: break-all;
+          }
+          .key{color:#aaa;margin-left:10px;}
+
+          .shanchang{
+            .key{
+              float:left;
+            }
+            .value{
+              float:left;
+              width:460px;
+            }
+
+          }
+        }
       }
     }
   }

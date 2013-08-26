@@ -22,7 +22,9 @@ html
                 |#{timeline.action}
                 a.title(href="#{timeline.target_url}") #{timeline.target_name}
                 span.time #{moment(timeline.createdAt).fromNow()}
-              .desc !{timeline.desc}
+              if timeline.desc
+                .desc !{timeline.desc}
+              
         
     //include footer
     

@@ -48,7 +48,6 @@ module.exports.controllers =
           res.send result
           return
         else
-          console.log comments
           jade.renderFile path.join(__dirname,'../','views/bao_comment_item.jade'), { pretty: false, locals: {comments:comments,moment:(require 'moment')} }, (err, html)->
             if err 
               result.info = err.message

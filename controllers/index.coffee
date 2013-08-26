@@ -26,10 +26,9 @@ module.exports.controllers =
       func_timeline.getAll 1,20,null,(error,timelines)->
         if error then next error
         else
-          if timelines.length < 10
+          if timelines.length < 0
             res.redirect '/article'
             return
-          console.log timelines
           res.locals.timelines = timelines
           res.render 'index.jade'
   "/rss":
@@ -131,6 +130,14 @@ module.exports.controllers =
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
             status:"我在@前端乱炖 的《前端花名册》添加了我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
+          func_timeline.add 
+            who_id:res.locals.user.id
+            who_headpic:res.locals.user.head_pic
+            who_nick:res.locals.user.nick
+            target_url:"/card/"+card.id
+            target_name:"["+card.nick+"的个人名片]"
+            action:"添加了个人名片："
+            desc:'<li class="card clearfix"><div class="head_pic"><img src="'+res.locals.user.head_pic+'"  class="lazy"  style="display: inline;"></div><div class="car-infos"><div><span class="key">昵称</span>：'+card.nick+'<span class="sns"><a href="'+card.weibo+'" target="_blank" title="微博地址" class="weibo">weibo</a></span></div><div><span class="key">性别</span><span class="value">：'+card.sex+'</span><span class="key">感情状况</span><span class="value">：'+card.is_dan+'</span><span class="key">城市</span><span class="value">：'+card.city+'</span><span class="key">职位</span><span class="value">：'+card.zhiwei+'</span><span class="key">工作时间</span><span class="value">：'+card.shijian+'</span></div><div class="shanchang clearfix"><span class="key">擅长：</span><span class="value">'+card.desc+'</span></div></div></li>'
           func_user.connectCard res.locals.user.id,card.id,(error)->
             if error then next error
             else

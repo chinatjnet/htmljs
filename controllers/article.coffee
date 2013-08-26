@@ -86,7 +86,6 @@ module.exports.controllers =
           res.send result
         else
           request.get url,(e,s,entry)->
-            console.log s 
             if e 
               result.info = e.message
               res.send result

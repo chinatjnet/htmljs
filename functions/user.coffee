@@ -32,7 +32,7 @@ func_user =
               user.updateAttributes
                 card_id:cardId
               .success ()->
-                callback null,user
+                callback null,user,card
                 
               .error (error)->
                 callback error
