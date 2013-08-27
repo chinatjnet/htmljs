@@ -98,13 +98,14 @@
 #read .actions .publish:hover{background-color:#35b382;}
 #reads{background:#f3f8f6;}#reads #content{margin-top:20px;padding-top:0;}
 #reads header{width:900px;margin:0 auto;position:relative;}#reads header .logo{color:#bc7311;margin-top:20px;display:block;}
-#reads .actions{float:left;position:absolute;top:30px;left:180px;padding:10px;margin-bottom:10px;border-radius:3px;}#reads .actions a{color:#aaa;font-size:16px;padding-right:10px;}
+#reads .actions{float:left;position:absolute;top:30px;left:180px;padding:10px;width:700px;margin-bottom:10px;border-radius:3px;}#reads .actions a{color:#aaa;font-size:16px;padding-right:10px;}
 #reads .actions a.active,#reads .actions a:hover{color:#b2571a;}
+#reads .actions a.tool{float:right;width:60px;height:60px;font-size:12px;text-align:center;border-radius:120px;border:3px solid #b2571a;color:#666;cursor:pointer;padding:0;margin-top:-30px;line-height:60px;}
 #reads .actions .publish{height:30px;line-height:30px;background:#5bb793 url(../images/button+.png) no-repeat 0 -1px;padding-left:30px;padding-right:10px;border-radius:3px;display:inline-block;color:#fff;margin-left:10px;}
 #reads .actions .publish:hover{background-color:#35b382;}
 #reads .article-list{margin:0;padding:0;width:1000px;}
 #reads .post{margin-bottom:10px;padding:10px;border-radius:3px;width:220px;display:inline-block;vertical-align:top;}#reads .post .title{font-size:16px;line-height:20px;margin:10px 0;color:#404040;font-weight:normal;}#reads .post .title a{color:#b2571a;}
-#reads .post .entry-title{height:35px;}#reads .post .entry-title .headpic{float:left;margin-right:20px;}
+#reads .post .entry-title{height:40px;overflow:hidden;}#reads .post .entry-title .headpic{float:left;margin-right:20px;}
 #reads .post .entry-title .item{font-size:12px;margin-right:20px;}#reads .post .entry-title .item .index{color:#aaa;}
 #reads .post .entry-title .item .value{color:#888;}
 #reads .post .entry-content{padding:0px 0;color:#404040;word-break:break-all;max-height:160px;overflow:hidden;}#reads .post .entry-content h1,#reads .post .entry-content h2,#reads .post .entry-content h3,#reads .post .entry-content h4,#reads .post .entry-content h5{font-size:1.5em;}
