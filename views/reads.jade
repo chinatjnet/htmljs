@@ -2,7 +2,7 @@
 html(xmlns:wb='http://open.weibo.com/wb')
   head
     include head
-    title 前端乱炖
+    title 前端乱炖-随阅
     script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
@@ -10,15 +10,17 @@ html(xmlns:wb='http://open.weibo.com/wb')
     script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
   body#reads
     - locals.pageId=4;
-    include header
-    include article_cats
-    #content.clearfix
-      .left
-        .actions
+    header
+      a.logo(href="/read") 
+        img(src="#{assets_head}/images/suiyue-logo.png",width=150)
+      .actions
           a(href="/read",class="cat #{locals.cat=='all'?'active':''}") 大家在读
           a(href="/read/me",class="cat #{locals.cat!='all'?'active':''}") 我的阅读
-          a.publish(href="javascript:window.location.href='http://www.html-js.com/read/add/recommend?url='+encodeURIComponent(window.location.href);",data-original-title="收集按钮，拖动到浏览器收藏栏，看到喜欢的文章点击即可收藏") 收集到前端乱炖
-          a(href="https://chrome.google.com/webstore/detail/%E5%89%8D%E7%AB%AF%E4%B9%B1%E7%82%96-%E9%98%85%E8%AF%BB%E6%94%B6%E8%97%8F%E5%B7%A5%E5%85%B7/lehlponmkllmkdnkcehbpbofldpmklki",target="_blank",style="padding-left:10px;") chrome插件版收藏工具
+          a(href="/") 回->前端乱炖
+          //a.publish(href="javascript:window.location.href='http://www.html-js.com/read/add/recommend?url='+encodeURIComponent(window.location.href);",data-original-title="收集按钮，拖动到浏览器收藏栏，看到喜欢的文章点击即可收藏") 收集到前端乱炖
+          //a(href="https://chrome.google.com/webstore/detail/%E5%89%8D%E7%AB%AF%E4%B9%B1%E7%82%96-%E9%98%85%E8%AF%BB%E6%94%B6%E8%97%8F%E5%B7%A5%E5%85%B7/lehlponmkllmkdnkcehbpbofldpmklki",target="_blank",style="padding-left:10px;") chrome插件版收藏工具
+        
+    #content.clearfix
         include page
         
         ul.article-list
@@ -28,31 +30,30 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 .entry-title
                   a.headpic(href="/user/#{article.user_id}")
                     img(src="#{article.user_headpic}",width="35",height="35")
-                  h1.title
-                    a(href='/read/#{article.id}', title='#{article.title}', rel='bookmark') 
-                      if article.sort == 100000
-                        |[置顶]
-                      if article.is_yuanchuang == 1
-                        |[原创]
-                      |#{article.title}
+                  
                   div.others
                     span.author.vcard.item
                       span.index #{article.quote_url?"收藏者":"作者"}：
                       a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
                     span.time.item
-                      span.index 时间：
                       a.value #{moment(article.publish_time*1000).format("LLL")}
-                    span.views.item
-                      span.index View：
-                      a.value #{article.visit_count}
-                    span.views.item
-                      span.index 评论：
-                      a.value #{article.comment_count}
-                    if article.quote_url
-                      span.views.item
-                        a.value(href="#{article.quote_url}",target="_blank") 原文链接
+                    
+                    
+                h1.title
+                    a(href='/read/#{article.id}', title='#{article.title}', rel='bookmark') 
+                      |#{article.title}
                 .entry-content
                   div !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300)}
+                .entry-others
+                  if article.quote_url
+                    span.views.item
+                      a.value(href="#{article.quote_url}",target="_blank") 原文链接
+                  span.views.item
+                      span.index View：
+                      a.value #{article.visit_count}
+                  span.views.item
+                    span.index 评论：
+                    a.value #{article.comment_count}
           else
             li(style="text-align:center;") 还没有文章耶，赶紧去收藏新文章吧！！
               a(href="/read/add/recommend") 去收藏
@@ -62,4 +63,3 @@ html(xmlns:wb='http://open.weibo.com/wb')
           placement:"bottom"
       })
 
-    include footer
