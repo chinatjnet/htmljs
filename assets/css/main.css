@@ -196,11 +196,11 @@
 #index .timeline-item .infos .desc .card .key{color:#aaa;margin-left:10px;}
 #index .timeline-item .infos .desc .card .shanchang .key{float:left;}
 #index .timeline-item .infos .desc .card .shanchang .value{float:left;width:460px;}
-#qas .actions{padding-bottom:5px;}#qas .actions .right-actions{float:right;}#qas .actions .right-actions a{padding:0 10px;line-height:30px;color:#5bb793;}
+#qas{background:#efefef;}#qas .actions{padding-bottom:5px;}#qas .actions .right-actions{float:right;}#qas .actions .right-actions a{padding:0 10px;line-height:30px;color:#5bb793;}
 #qas .actions .right-actions a.active,#qas .actions .right-actions a:hover{color:#666;}
 #qas .qa-list{border:1px solid #f3f3f3;}
 #qas .left{width:700px;margin:0 auto;}
-#qas .qa-item.yooo{background:#f3f3f3;}
+#qas .qa-item.yooo{background:#eee;}
 #qas .qa-item{background:#fff;border-radius:5px;padding:10px;}#qas .qa-item .entry-title{height:50px;position:relative;}#qas .qa-item .entry-title .headpic{float:left;margin-right:20px;}
 #qas .qa-item .entry-title .title{font-size:16px;line-height:30px;margin:0;font-weight:normal;}#qas .qa-item .entry-title .title a{color:#333;}
 #qas .qa-item .entry-title .item{font-size:12px;margin-right:20px;}#qas .qa-item .entry-title .item .index{color:#aaa;}
@@ -210,3 +210,6 @@
 #qas .qa-item .entry-content{padding:20px 0;word-break:break-all;color:#404040;}#qas .qa-item .entry-content h1,#qas .qa-item .entry-content h2,#qas .qa-item .entry-content h3,#qas .qa-item .entry-content h4,#qas .qa-item .entry-content h5{font-size:1.5em;}
 #qas .qa-item .entry-content p{font-size:14px;line-height:20px;margin:10px 0;}
 #qa-add #content{width:700px;margin:0 auto;}
+#qa{background:#efefef;}#qa #content{width:700px;margin:0 auto;}
+#qa .qa-title{height:50px;border-bottom:1px solid #ddd;}#qa .qa-title .title{font-size:20px;line-height:50px;}
+#qa .qa-content{padding:10px;font-size:14px;color:#404040;}

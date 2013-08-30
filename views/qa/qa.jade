@@ -1,0 +1,30 @@
+!!! 5
+html
+  head
+    include ./../head
+    title 前端乱炖-问答
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    style
+      #act{
+        background:url(http://htmljs.b0.upaiyun.com/images/act1-bg.jpg) no-repeat center top;
+        background-attachment:fixed;
+      }
+  body#qa
+    - locals.pageId=7;
+    include ./../header
+    #content.clearfix
+      .left
+        .module
+          .qa-title
+            .title #{question.title}
+          .qa-content
+            .desc !{question.html}
+        .qa-answers.module
+          .hd 回答
+          .bd 功能开发中
+    script
+      $('.user a').tooltip({
+          placement:"bottom"
+      })
+                
+

@@ -33,10 +33,18 @@ module.exports.controllers =
             desc:q.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
         
         res.send result
-
+  "/:id":
+    "get":(req,res,next)->
+      func_question.getById req.params.id,(error,question)->
+        if error then next error
+        else
+          res.locals.question = question
+          res.render 'qa/qa.jade'
 module.exports.filters = 
   "/":
     get:['qa/all-question']
   "/add":
     get:['checkLogin']
     post:['checkLogin']
+  "/:id":
+    get:['freshLogin']
