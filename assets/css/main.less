@@ -142,12 +142,19 @@
 
 #header{
   .navbar-inner{
+    height:35px;
+    min-height: 35px;
     background: #5bb793;
     border:none;
     color:#fff;
+    line-height: 30px;
     a{
       text-shadow:none;
       color:#fff;
+      line-height: 35px;
+      padding-top:0;
+      padding-bottom: 0;
+
     }
     .active a{
       color:#5bb793;
@@ -623,6 +630,19 @@ width:310px;
   #content{
     margin-top: 20px;
     padding-top: 0;
+    width:700px;
+    h1{
+ font-size: 18px;
+      }
+      h2{
+      font-size: 16px;
+    }
+    h3{
+      font-size: 14px;
+    }
+    h4,h5{
+
+    }
   }
   header{
     width:900px;
@@ -642,6 +662,7 @@ width:310px;
     padding:10px;
     margin-bottom: 10px;
     border-radius: 3px;
+    width:700px;
     a{
       
       color:#aaa;
@@ -650,6 +671,20 @@ width:310px;
     }
     a.active,a:hover{
       color:#b2571a;
+    }
+    a.tool{
+      float:right;
+      width:60px;
+      height:60px;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 120px;
+      border: 3px solid #b2571a;
+      color:#666;
+      cursor: pointer;
+      padding:0;
+      margin-top: -30px;
+      line-height:60px;
     }
       .publish{
         height:30px;
@@ -668,7 +703,7 @@ width:310px;
     }
 }
 #reads{
-  background: #f3f8f6;
+  background: #f7fcfc;
   #content{
     margin-top: 20px;
     padding-top: 0;
@@ -736,7 +771,7 @@ width:310px;
     width:1000px;
   }
     .post{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding:10px;
     border-radius:3px;
     width:220px;
@@ -775,8 +810,9 @@ width:310px;
       padding:0px 0;
       color:#404040;
       word-break: break-all;
-      max-height: 160px;
+      max-height: 125px;
       overflow: hidden;
+      color:#999;
       h1,h2,h3,h4,h5{
         font-size:1.5em;
       }
@@ -1277,3 +1313,4 @@ display: block;
 }
 @import 'comment.less';
 @import 'index.less';
+@import 'qa.less';

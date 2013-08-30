@@ -1,0 +1,54 @@
+!!! 5
+html
+  head
+    include ./../head
+    title 前端乱炖-问答
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    style
+      #act{
+        background:url(http://htmljs.b0.upaiyun.com/images/act1-bg.jpg) no-repeat center top;
+        background-attachment:fixed;
+      }
+  body#qas
+    - locals.pageId=7;
+    include ./../header
+    #content.clearfix
+      .left
+        .actions
+          a.btn(href="/qa/add") <i class="icon-plus icon-white"></i>我要提问
+          .right-actions
+            - console.log(locals.filter_is_answered*1===1);
+            a(class="#{locals.filter_is_answered===undefined?'active':''}",href="/qa") 全部问题
+            a(class="#{locals.filter_is_answered==='0'?'active':''}",href="/qa?filter=is_answered|0") 未回答
+            a(class="#{locals.filter_is_answered==='1'?'active':''}",href="?filter=is_answered|1") 已回答
+        if locals.questions
+          .qa-list
+            each question,i in questions
+              .qa-item(class="#{i%2==0?'yooo':''}")
+                .entry-title
+                  h1.title
+                    a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
+                      |#{question.title}
+                  div.others
+                    span.author.vcard.item
+                      span.index 提问者：
+                      a.value.url.fn(rel='author', href='/user/#{question.user_id}') #{question.user_nick}
+                    span.time.item
+                      span.index 时间：
+                      a.value #{moment(question.createdAt).fromNow()}
+                    span.views.item
+                      span.index View：
+                      a.value #{question.visit_count}
+                    span.views.item
+                      span.index 回答：
+                      a.value #{question.answer_count}
+                  div.user
+                    a(data-original-title="#{question.user_nick}")
+                      img(src="#{question.user_headpic}")
+          include ../page
+    script
+      $('.user a').tooltip({
+          placement:"bottom"
+      })
+                
+
