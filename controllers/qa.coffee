@@ -65,4 +65,4 @@ module.exports.filters =
   "/:id":
     get:['freshLogin','qa/get-answers']
   "/:id/add":
-    post:['checkLogin']
+    post:['checkLoginJson']
