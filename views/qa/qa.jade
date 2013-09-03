@@ -104,7 +104,10 @@ html
           type:"post",
           data:$("#form").serialize(),
           success:function(data){
-            if(data.success){
+            if(data.isnotlogin){
+              alert("请先登录")
+                window.location.href="/user/login"
+            }else if(data.success){
               window.location.href="/qa/#{question.id}"
             }else{
               alert(data.info)
