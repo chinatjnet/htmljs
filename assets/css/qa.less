@@ -26,7 +26,6 @@ background:#efefef;
   }
   .qa-item{
     background: #fff;
-    border-radius:5px;
     padding:10px;
     .entry-title{
       height:50px;
@@ -100,6 +99,9 @@ background:#efefef;
 
     }
   }
+  .main{
+    margin-top: 20px;
+  }
   .qa-title{
     height:50px;
     border-bottom: 1px solid #ddd;
@@ -112,5 +114,51 @@ background:#efefef;
     padding:10px;
     font-size: 14px;
     color: #404040;
+  }
+  .answer-list{
+    .answer-item{
+      border-bottom: 1px solid #ddd;
+      padding:10px 0;
+      h1,h2,h3,h4,h5{
+        font-size:1.5em;
+      }
+      .ans-user{
+        margin-top:10px;
+        a{
+          float:right;
+          line-height: 20px;
+          color: #666;
+        }
+        .nick,.time{
+          width:120px;
+          text-align: left;
+          margin-left: 40px;
+          padding-left: 10px;
+        }
+        .time{
+          color:#999;
+        }
+        img{
+          width:40px;
+          height:40px;
+          float:left;
+        }
+      }
+    }
+  }
+  .publish{
+    legend{
+      margin:0;
+    }
+    .control-group{
+      margin-top:10px;
+    }
+    .fake-form{
+      padding-top: 10px;
+      textarea{
+        width:650px;
+        border-radius: 3px;
+      }
+    }
   }
 }

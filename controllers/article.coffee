@@ -109,10 +109,11 @@ module.exports.controllers =
       
       res.render 'add-article.jade'
     "post":(req,res,next)->
-      
+      html = safeConverter.makeHtml req.body.md
+      match = html.match(/<img[^>]+?src="([^"]+?)"/)
       data = 
         md:req.body.md
-        html:safeConverter.makeHtml req.body.md
+        html:html
         title:req.body.title
         type:req.body.type
         user_id:res.locals.user.id
@@ -120,7 +121,8 @@ module.exports.controllers =
         user_headpic:res.locals.user.head_pic
         publish_time:new Date().getTime()/1000
         is_yuanchuang:1
-        is_publish:0
+        is_publish:if res.locals.user.is_admin then 1 else 0
+        main_pic:if match then match[1] else null
       result = 
         success:0
       func_article.add data,(error,article)->
@@ -135,7 +137,7 @@ module.exports.controllers =
             target_url:"/article/"+article.id
             target_name:article.title
             action:"发表了原创文章："
-            desc:article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
+            desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
         res.send result
   "/:id":
     "get":(req,res,next)->

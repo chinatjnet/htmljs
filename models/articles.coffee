@@ -26,4 +26,5 @@ module.exports =
     defaultValue:1
   quote_url:"varchar(255)" #引用原文url
   desc:"text"
+  main_pic:"varchar(255)"
   

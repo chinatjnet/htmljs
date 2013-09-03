@@ -1,5 +1,6 @@
 func_question = __F 'question'
 func_timeline = __F 'timeline'
+func_answer = __F 'answer'
 pagedown = require("pagedown")
 safeConverter = pagedown.getSanitizingConverter()
 moment = require 'moment'
@@ -40,6 +41,21 @@ module.exports.controllers =
         else
           res.locals.question = question
           res.render 'qa/qa.jade'
+  "/:id/add":
+    post:(req,res,next)->
+      result = 
+        success:0
+      req.body.html = safeConverter.makeHtml req.body.md
+      req.body.user_id = res.locals.user.id
+      req.body.user_headpic = res.locals.user.head_pic
+      req.body.user_nick = res.locals.user.nick
+      req.body.question_id = req.params.id
+      func_answer.add req.body,(error,q)->
+        if error 
+          result.info = error.message
+        else
+          result.success = 1
+        res.send result
 module.exports.filters = 
   "/":
     get:['qa/all-question']
@@ -47,4 +63,6 @@ module.exports.filters =
     get:['checkLogin']
     post:['checkLogin']
   "/:id":
-    get:['freshLogin']
+    get:['freshLogin','qa/get-answers']
+  "/:id/add":
+    post:['checkLogin']

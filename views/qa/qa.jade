@@ -3,7 +3,21 @@ html
   head
     include ./../head
     title 前端乱炖-问答
+    link(href='#{assets_head}/css/Markdown.Editor.css', type='text/css', rel='stylesheet', charset='utf-8')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    script(src='#{assets_head}/js/Markdown.Converter.js')
+    script(src='#{assets_head}/js/Markdown.Sanitizer.js')
+    script(src='#{assets_head}/js/Markdown.Editor.js')
+    
+    style
+      #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
+      #insertImageDialog h4 { margin-bottom: 10px; }
+      #insertImageDialog input[type=text] { width: 260px; }
+      #insertImageDialog .loading-small { display:none; float: left; padding-right: 5px; }
+    
     style
       #act{
         background:url(http://htmljs.b0.upaiyun.com/images/act1-bg.jpg) no-repeat center top;
@@ -14,17 +28,118 @@ html
     include ./../header
     #content.clearfix
       .left
-        .module
+        .module.main
           .qa-title
             .title #{question.title}
           .qa-content
             .desc !{question.html}
         .qa-answers.module
           .hd 回答
-          .bd 功能开发中
+          .bd 
+            .answer-list
+              each ans in answers
+                .answer-item
+                  .ans-con !{ans.html}
+                  .ans-user.clearfix
+                    a(href="/user/#{ans.user_id}")
+                      img(src="#{ans.user_headpic}")
+                      .nick #{ans.user_nick}
+                      .time #{moment(ans.createdAt).fromNow()}
+        .add-answer.module
+          .hd 我来回答
+          .publish.bd 
+            form.form-horizontal#form(method='post')
+              fieldset
+                .fake-form
+                  textarea(placeholder="我来回答")
+                .real-form.hidden
+                  .control-group
+                    .wmd-panel
+                      #wmd-button-bar
+                      textarea.wmd-input#wmd-input(name="md",placeholder='详细问题')
+                      .wmd-panel.wmd-preview
+                        div 预览
+                        #wmd-preview
+                  .control-group
+                    button.btn(type='submit') 发表
+            #myModal.modal.hide.fade.
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">插入图片</h3>
+              </div>
+              <div class="modal-body">
+                  <input type="file" name="pic" id="file" />
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                <button class="btn btn-primary">插入</button>
+              </div>
+    script(src='#{assets_head}/js/ajaxfileupload.js')
+    script(src='#{assets_head}/js/loadingTip.js')
+    script(src='#{assets_head}/js/messageTip.js')
     script
-      $('.user a').tooltip({
-          placement:"bottom"
+      $(".fake-form textarea").click(function(){
+        $(".fake-form").addClass("hidden")
+        $(".real-form").removeClass("hidden")
+        $(".real-form textarea").focus();
+        })
+      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
+      $("#login_popup").css({left:$(window).width()/2-125})
+      var converter1 = Markdown.getSanitizingConverter();
+      var editor1 = new Markdown.Editor(converter1);
+      editor1.run();
+      var converter2 = new Markdown.Converter();
+
+      converter2.hooks.chain("preConversion", function (text) {
+          return text.replace(/\b(a\w*)/gi, "*$1*");
+      });
+      
+      converter2.hooks.chain("plainLinkText", function (url) {
+          return "This is a link to " + url.replace(/^https?:\/\//, "");
+      });
+      $("#form").submit(function(e){
+        e.preventDefault()
+        $.ajax({
+          url:"/qa/#{question.id}/add",
+          type:"post",
+          data:$("#form").serialize(),
+          success:function(data){
+            if(data.success){
+              window.location.href="/qa/#{question.id}"
+            }else{
+              alert(data.info)
+            }
+          },
+          error:function(){
+
+          }
+        })
       })
+      editor1.hooks.set('insertImageDialog', function(callback) {
+        $("#myModal").modal("show");
+        $("#file")[0].onchange=function(){
+          $.ajaxFileUpload({
+            url:"/upload", 
+            secureuri:false,
+            fileElementId:'file',
+            dataType: 'json',
+            success: function (data, status)
+            {
+              if(data.success){
+                callback(data.data.filename)
+                $("#myModal").modal("hide");
+              }else{
+                messageTip.show(data.info)
                 
+              }
+              loadingTip.hide()
+            },
+            error:function(){
+              
+              loadingTip.hide()
+            }
+          })
+        };
+        return true; // tell the editor that we'll take care of getting the image url
+      });    
 

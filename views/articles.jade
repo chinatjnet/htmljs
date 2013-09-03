@@ -2,7 +2,7 @@
 html(xmlns:wb='http://open.weibo.com/wb')
   head
     include head
-    title 前端乱炖
+    title 前端乱炖-专栏
     script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
@@ -27,9 +27,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     |访问了您的
                     a(href="#{info.target_path}") #{info.target_path_name} 
                     |（#{moment(info.time).format("LLL")}）
-        .actions
-          a.publish(href="/article/add",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 投递原创文章
-          //a.publish(href="/article/add/recommend",data-original-title="每个人都可以在这里投稿，审核通过后即可给您提供展示空间和其他渠道的宣传展示") 推荐在线文章
+        
         //
           .cats
             a(href="/article",class="#{locals.filter_type?'':'active'}") 所有
@@ -68,9 +66,16 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   if article.quote_url
                     span.views.item
                       a.value(href="#{article.quote_url}",target="_blank") 原文链接
-              .entry-content !{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")}
+              .entry-content.clearfix 
+                if article.main_pic
+                  img.main_pic(src="#{article.main_pic}")
+                |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")}
         include page
       .right
+        .actions.module
+          a.publish(href="/article/add",data-original-title="") 添加文章
+
+          a.btn.blue(href="",data-original-title="在发表五篇审核通过的文章后，即可自动成为专栏作者") 成为专栏作者
         .module.text
           .hd 订阅和交流
           .bd
