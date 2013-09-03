@@ -1,6 +1,7 @@
 func_answer = __F 'answer'
 module.exports = (req,res,next)->
-  condition = null
+  condition = 
+    question_id:req.params.id
   page = req.query.page || 1
   count = req.query.count || 30
   (__F 'answer').count condition,(error,_count)->
