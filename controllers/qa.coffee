@@ -39,6 +39,8 @@ module.exports.controllers =
       func_question.getById req.params.id,(error,question)->
         if error then next error
         else
+          question.updateAttributes
+            visit_count:question.visit_count*1+1
           res.locals.question = question
           res.render 'qa/qa.jade'
   "/:id/add":
