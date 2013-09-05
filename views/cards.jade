@@ -70,6 +70,9 @@ html
                         if card.weibo
                           a.weibo(href='#{card.weibo}', target='_blank',title="微博地址") weibo
                   div
+                    span.key 经验值：
+                    span.value #{card.user?card.user.coin:0}
+                  div
                     span.key 性别
                     span.value ：#{card.sex}
                     span.key 感情状况
@@ -96,6 +99,7 @@ html
                   em #{card.zan_count||0}
                   .icon-eye-open.icon
                   span #{card.visit_count||0}
+                  
           include page
         .right
           if locals.hots

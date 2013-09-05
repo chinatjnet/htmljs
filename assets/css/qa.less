@@ -16,13 +16,15 @@ background:#efefef;
   }
   .qa-list{
     border:1px solid #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
   }
   .left{
     width:700px;
     margin:0 auto;
   }
   .qa-item.yooo{
-    background: #efefef;
+    background: #F7F7F7;
   }
   .qa-item{
     background: #fff;
@@ -122,11 +124,48 @@ background:#efefef;
       h1,h2,h3,h4,h5{
         font-size:1.5em;
       }
+      .ans-con{
+        float:left;
+        width:600px;
+        margin-left: 10px;
+      }
       .ans-user{
-        margin-top:10px;
-        a{
-          float:right;
-          line-height: 20px;
+        float:left;
+        padding-top: 3px;
+        width:40px;
+        .zan{
+          margin-top: 10px;
+          background: #efefef;
+          border: 1px solid #eee;
+          width:38px;
+          height:40px;
+          display: inline-block;
+          border-radius: 3px;
+          text-align: center;
+          overflow: hidden;
+          em{
+            display: block;
+            font-style: normal;
+            line-height: 25px;
+            color:#999;
+          }
+          i{
+            display:block;margin-top:-1px;margin-left:10px;width:0; height:0; border-width:8px 8px; border-style:solid; border-color:#efefef #efefef @green #efefef;
+          }
+        }
+        .zan:hover{
+          background: @green;
+          em{
+            color:#fff;
+          }
+          i{
+            border-color:@green @green #fff @green;
+          }
+        }
+        img{
+          border-radius: 5px;
+        }
+        .user{
           color: #666;
         }
         .nick,.time{

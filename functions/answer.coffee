@@ -38,5 +38,16 @@ func_answer =
           callback e
     .error (e)->
       callback e
-__FC func_answer,Ans,['getAll','getById','delete','update','count']
+  getAll:(page,count,condition,callback)->
+    query = 
+      offset: (page - 1) * count
+      limit: count
+      order: "zan_count desc,id desc"
+    if condition then query.where = condition
+    Ans.findAll(query)
+    .success (ans)->
+      callback null,ans
+    .error (error)->
+      callback error
+__FC func_answer,Ans,['getById','delete','update','count']
 module.exports = func_answer

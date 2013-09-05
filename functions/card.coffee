@@ -1,9 +1,15 @@
 Card = __M 'cards'
-Card.sync()
+
 Visit_log = __M 'card_visit_log'
+
+User = __M 'users'
+
+User.hasOne Card,{foreignKey:"user_id"}
+Card.belongsTo User,{foreignKey:"user_id"}
+Card.sync()
 Visit_log.sync()
-
-
+User.sync()
+#Card.hasOne User,{foreignKey:"card_id"}
 func_card =  
   getByUserId:(id,callback)->
     Card.find
@@ -88,7 +94,8 @@ func_card =
     query = 
       offset: (page - 1) * count
       limit: count
-      order: "zan_count+visit_count desc"
+      order: "users.coin desc,cards.zan_count+cards.visit_count desc"
+      include:[User]
     if condition then query.where = condition
     Card.findAll(query)
     .success (ms)->

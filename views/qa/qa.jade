@@ -36,22 +36,35 @@ html
         .qa-answers.module
           .hd 回答
           .bd 
-            .answer-list
-              each ans in answers
-                .answer-item
-                  .ans-con !{ans.html}
-                  .ans-user.clearfix
-                    a(href="/user/#{ans.user_id}")
-                      img(src="#{ans.user_headpic}")
-                      .nick #{ans.user_nick}
-                      .time #{moment(ans.createdAt).fromNow()}
+            if !answers.length
+              div 暂无回答
+            else
+              .answer-list
+                each ans in answers
+                  .answer-item.clearfix
+                    .ans-user.clearfix
+                      a.user(href="/user/#{ans.user_id}")
+                        img(src="#{ans.user_headpic}")
+                        //.nick #{ans.user_nick}
+                        //.time #{moment(ans.createdAt).fromNow()}
+                      a.zan(href="#",data-id="#{ans.id}") 
+                        
+                        |<i class="icon-thumbs-up"></i>
+                        em #{ans.zan_count||0}
+                      
+                    .ans-con 
+                      .con-hd 
+                        a(href="/user/#{ans.user_id}") #{ans.user_nick}
+                        |的回答：
+                      .con-bd !{ans.html}
+                    
         .add-answer.module
           .hd 我来回答
           .publish.bd 
             form.form-horizontal#form(method='post')
               fieldset
                 .fake-form
-                  textarea(placeholder="我来回答")
+                  textarea(placeholder="我来回答,支持markdown语法")
                 .real-form.hidden
                   .control-group
                     .wmd-panel
@@ -78,6 +91,26 @@ html
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
     script
+      $(".zan").click(function(e){
+        e.preventDefault();
+        var self=this;
+        $.ajax({
+          url:"/qa/answer/"+$(this).attr("data-id")+"/zan",
+          type:"post",
+          dataType:"json",
+          success:function(data){
+          if(data.isnotlogin){
+              alert("请先登录")
+                window.location.href="/user/login"
+            }else if(data.success){
+              $("em",self).html(data.answer.zan_count)
+            }else{
+              alert(data.info)
+            }
+            
+          }
+          })
+        })
       $(".fake-form textarea").click(function(){
         $(".fake-form").addClass("hidden")
         $(".real-form").removeClass("hidden")

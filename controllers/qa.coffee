@@ -43,6 +43,20 @@ module.exports.controllers =
             visit_count:question.visit_count*1+1
           res.locals.question = question
           res.render 'qa/qa.jade'
+  "/answer/:id/zan":
+    post:(req,res,next)->
+      result = 
+        success:0
+      func_answer.getById req.params.id,(error,ans)->
+        if error
+          result.info = error.message
+        else
+          (__F 'coin').add 1,ans.user_id,res.locals.user.nick+" 顶了你的回答"
+          ans.updateAttributes
+            zan_count:ans.zan_count*1+1
+          result.success = 1
+          result.answer = ans
+        res.send result
   "/:id/add":
     post:(req,res,next)->
       result = 
@@ -67,4 +81,6 @@ module.exports.filters =
   "/:id":
     get:['freshLogin','qa/get-answers']
   "/:id/add":
+    post:['checkLoginJson']
+  "/answer/:id/zan":
     post:['checkLoginJson']
