@@ -13,6 +13,14 @@ module.exports.controllers =
         redirect_uri:config.sdks.sina.redirect_uri+(if req.query.redirect then ("?redirect="+req.query.redirect) else "")
         client_id:config.sdks.sina.app_key
       res.render 'login.jade'
+  "/logout":
+    get:(req,res,next)->
+      res.cookie '_p', "", 
+        expires: new Date(Date.now() + 1000*60*60*24*7)
+        httpOnly: true
+        domain:"html-js.com"
+      req.session = null
+      res.redirect req.query.redirect || '/user'
   "/sina_cb":
     get:(req,res,next)->
       code = req.query.code

@@ -38,6 +38,10 @@ module.exports.controllers =
           result.data = joiner
           res.send result
 module.exports.filters = 
+  "/":
+    get:['freshLogin']
+  "/:id":
+    get:['freshLogin']
   "/add":
     get:['checkLogin','checkAdmin']
     post:['checkLogin','checkAdmin']

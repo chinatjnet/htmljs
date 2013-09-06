@@ -21,6 +21,9 @@ app.configure ->
   app.use express.cookieSession(secret: 'fd2afdsafdvcxzjaklfdsa')
   app.use express.methodOverride()
   app.locals.assets_head = config.assets_head
+  app.use (req,res,next)->
+    res.locals.url = req.url
+    next()
   app.use app.router
   rainbow.route(app, {  
     controllers: '/controllers/',

@@ -26,4 +26,8 @@
             ul.right-nav
               li #{user.nick}
               li
-                a(href="/user/login") 退出
+                a(href="/user/logout?redirect=#{encodeURIComponent(locals.url)}") 退出
+          else
+            ul.right-nav
+              li
+                a(href="/user/login?redirect=#{encodeURIComponent(locals.url)}") 登录
