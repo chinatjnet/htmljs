@@ -33,6 +33,17 @@ html
             .title #{question.title}
           .qa-content
             .desc !{question.html}
+          .qa-user.clearfix
+            .action 
+              if locals.user && locals.user.id==question.user_id
+                a(href="/qa/#{question.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
+              a 分享
+            .user
+              img(src="#{question.user_headpic}")
+              .nick
+                a(href="/user/#{question.user_id}") #{question.user_nick} 
+                em(title="经验值") #{question.user.coin||0}
+              .time #{moment(question.createdAt).fromNow()}
         .qa-answers.module
           .hd 回答
           .bd 
@@ -41,7 +52,7 @@ html
             else
               .answer-list
                 each ans in answers
-                  .answer-item.clearfix
+                  .answer-item.clearfix(id="answer-#{ans.id}")
                     .ans-user.clearfix
                       a.user(href="/user/#{ans.user_id}")
                         img(src="#{ans.user_headpic}")
@@ -55,8 +66,11 @@ html
                     .ans-con 
                       .con-hd 
                         a(href="/user/#{ans.user_id}") #{ans.user_nick}
-                        |的回答：<span style="color:#999;">(#{moment(ans.createdAt).fromNow()})</span>
+                        |<span style="color:#999;">(#{moment(ans.createdAt).fromNow()})</span>
                       .con-bd !{ans.html}
+                      .con-action
+                        if locals.user && locals.user.id == ans.user_id
+                          a(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
                     
         .add-answer.module
           .hd 我来回答

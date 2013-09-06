@@ -1,6 +1,10 @@
 Ans = __M 'answers'
 Ans.sync()
 Question = __M 'questions'
+
+Question.hasMany Ans,{foreignKey:"question_id"}
+Ans.belongsTo Question,{foreignKey:"question_id"}
+
 func_answer = 
   getByQuestionId:(q_id,page,count,condition,callback)->
     query = 
@@ -49,5 +53,16 @@ func_answer =
       callback null,ans
     .error (error)->
       callback error
+  getByIdWithQuestion:(id,callback)->
+    Ans.find
+      where:
+        id:id
+      include:[Question]
+    .success (ans)->
+      if not ans then callback new Error '不存在的回答'
+      else
+        callback null,ans
+    .error (e)->
+      callback e
 __FC func_answer,Ans,['getById','delete','update','count']
 module.exports = func_answer

@@ -41,10 +41,41 @@ module.exports.controllers =
         if error then next error
         else if not question then next new Error '不存在的问题'
         else
-          question.updateAttributes
-            visit_count:question.visit_count*1+1
+          func_question.update question.id,{visit_count:question.visit_count*1+1}
           res.locals.question = question
           res.render 'qa/qa.jade'
+  "/:id/edit":
+    "get":(req,res,next)->
+      func_question.getById req.params.id,(error,question)->
+        if error then next error
+        else if not question then next new Error '不存在的问题'
+        else if question.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的问题'
+        else
+          res.locals.question = question
+          res.render 'qa/edit-question.jade'
+    "post":(req,res,next)->
+      req.body.html = safeConverter.makeHtml req.body.md
+      func_question.update req.params.id,req.body,(error)->
+        if error 
+          next error
+        else
+          res.redirect '/qa/'+req.params.id
+  "/answer/:id/edit":
+    get:(req,res,next)->
+      func_answer.getByIdWithQuestion req.params.id,(error,ans)->
+        if error then next error
+        else if not ans then next new Error '不存在的回答'
+        else if ans.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的回答'
+        else
+          res.locals.answer = ans
+          res.render 'qa/edit-answer.jade'
+    "post":(req,res,next)->
+      req.body.html = safeConverter.makeHtml req.body.md
+      func_answer.update req.params.id,req.body,(error)->
+        if error 
+          next error
+        else
+          res.redirect '/qa/'+req.body.question_id+"#answer-"+req.params.id
   "/answer/:id/zan":
     post:(req,res,next)->
       result = 
@@ -82,6 +113,12 @@ module.exports.filters =
     post:['checkLogin']
   "/:id":
     get:['freshLogin','qa/get-answers']
+  "/:id/edit":
+    get:['checkLogin']
+    post:['checkLogin']
+  "/answer/:id/edit":
+    get:['checkLogin']
+    post:['checkLogin']
   "/:id/add":
     post:['checkLoginJson']
   "/answer/:id/zan":

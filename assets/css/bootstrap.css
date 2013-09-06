@@ -2308,7 +2308,9 @@ table th[class*="span"],
 .dropdown-submenu:focus > a > [class*=" icon-"] {
   background-image: url("../images/glyphicons-halflings-white.png");
 }
-
+.icon-gray{
+  background-image: url("../images/glyphicons-halflings-gray.png");
+}
 .icon-glass {
   background-position: 0      0;
 }

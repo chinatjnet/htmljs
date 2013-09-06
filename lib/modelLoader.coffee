@@ -54,11 +54,11 @@ global.__FC = (func,model,methods)->
         .success (m)->
           m.updateAttributes(data)
           .success ()->
-            callback null,m
+            callback&&callback null,m
           .error (error)->
-            callback error
+            callback&&callback error
         .error (error)->
-          callback error
+          callback&&callback error
     else if m == "count"
       func.count = (condition,callback)->
         query={}
