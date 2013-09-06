@@ -23,6 +23,7 @@ global.__FC = (func,model,methods)->
           where:
             id:id
         .success (m)->
+          
           callback null,m
         .error (e)->
           callback e

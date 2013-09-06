@@ -7,6 +7,7 @@ User = __M 'users'
 User.hasOne Card,{foreignKey:"user_id"}
 Card.belongsTo User,{foreignKey:"user_id"}
 Card.sync()
+User.sync()
 Visit_log.sync()
 User.sync()
 #Card.hasOne User,{foreignKey:"card_id"}

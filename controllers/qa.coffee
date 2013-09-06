@@ -24,6 +24,7 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
+          console.log q
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
