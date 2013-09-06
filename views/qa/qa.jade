@@ -55,7 +55,7 @@ html
                     .ans-con 
                       .con-hd 
                         a(href="/user/#{ans.user_id}") #{ans.user_nick}
-                        |的回答：
+                        |的回答：<ins style="color:#999;">(#{moment(ans.createdAt).fromNow()})</ins>
                       .con-bd !{ans.html}
                     
         .add-answer.module
