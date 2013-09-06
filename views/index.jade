@@ -10,20 +10,30 @@ html
     - locals.pageId=0;
     include header
     #content.clearfix
-      .module.timelines
-        each timeline in timelines
-          .timeline-item.clearfix
-            .user
-              .headpic(href="/user/#{timeline.who_id}") 
-                img(src="#{timeline.who_headpic}")
-            .infos
-              .action 
-                a.nick(href="/user/#{timeline.who_id}") #{timeline.who_nick}
-                |#{timeline.action}
-                a.title(href="#{timeline.target_url}") #{timeline.target_name}
-                span.time #{moment(timeline.createdAt).fromNow()}
-              if timeline.desc
-                .desc.clearfix !{timeline.desc}
+      .left
+        .module.timelines
+          each timeline in timelines
+            .timeline-item.clearfix
+              .user
+                .headpic(href="/user/#{timeline.who_id}") 
+                  img(src="#{timeline.who_headpic}")
+              .infos
+                .action 
+                  a.nick(href="/user/#{timeline.who_id}") #{timeline.who_nick}
+                  |#{timeline.action}
+                  a.title(href="#{timeline.target_url}") #{timeline.target_name}
+                  span.time #{moment(timeline.createdAt).fromNow()}
+                if timeline.desc
+                  .desc.clearfix !{timeline.desc}
+      .right
+        .module
+          .hd 开发进度
+          .bd
+            p 本站的功能都在不断开发完善中，这里是开发进度。
+            ul 
+              li 9-6：问答可以编辑问题和答案，修复诸多登录相关的体验问题，回答没有提交时下次打开可以恢复内容。
+              li 9-5：问答可以添加回答和赞功能，添加经验值系统，不过还没有全站打通
+              li 9-3：问答频道上线
               
         
     //include footer
