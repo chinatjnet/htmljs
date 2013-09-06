@@ -13,10 +13,10 @@ module.exports=(req,res,next)->
               res.locals.user = user
               next();
             else
-              res.redirect '/user/login'
+              res.redirect '/user/login?redirect='+encodeURIComponent(req.url)
           else
-            res.redirect '/user/login'
+            res.redirect '/user/login?redirect='+encodeURIComponent(req.url)
       else
-        res.redirect '/user/login'
+        res.redirect '/user/login?redirect='+encodeURIComponent(req.url)
     else
-      res.redirect '/user/login'
+      res.redirect '/user/login?redirect='+encodeURIComponent(req.url)

@@ -130,6 +130,10 @@ html
       converter2.hooks.chain("plainLinkText", function (url) {
           return "This is a link to " + url.replace(/^https?:\/\//, "");
       });
+      $("#wmd-input").val(localStorage.getItem("textarea_qa_#{question.id}"))
+      $("#wmd-input").keyup(function(){
+        localStorage.setItem("textarea_qa_#{question.id}",this.value)
+        })
       $("#form").submit(function(e){
         e.preventDefault()
         $.ajax({
@@ -139,8 +143,9 @@ html
           success:function(data){
             if(data.isnotlogin){
               alert("请先登录")
-                window.location.href="/user/login"
+                window.location.href='/user/login?redirect='+encodeURIComponent(window.location.href)
             }else if(data.success){
+            localStorage.setItem("textarea_qa_#{question.id}","")
               window.location.href="/qa/#{question.id}"
             }else{
               alert(data.info)
