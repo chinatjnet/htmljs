@@ -42,23 +42,26 @@ module.exports.controllers =
       
       func_article.getVisitors req.params.id,(error,visitors)->
         if error then next error
-        else
+        else 
           res.locals.visitors = visitors
           func_article.getById req.params.id,(error,article)->
-            if article.user_id && res.locals.user
-              func_info.add 
-                target_user_id:article.user_id
-                type:1
-                source_user_id:res.locals.user.id
-                source_user_nick:res.locals.user.nick
-                time:new Date()
-                target_path:req.originalUrl
-                target_path_name:" 收藏的文章:"+article.title
-              ,()->
-                console.log 'success'
-            res.locals.article = article
-            func_article.addVisit req.params.id,res.locals.user||null
-            res.render 'read.jade'
+            if error then next error
+            else if not article then next new Error '不存在的阅读'
+            else
+              if article.user_id && res.locals.user
+                func_info.add 
+                  target_user_id:article.user_id
+                  type:1
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:req.originalUrl
+                  target_path_name:" 收藏的文章:"+article.title
+                ,()->
+                  console.log 'success'
+              res.locals.article = article
+              func_article.addVisit req.params.id,res.locals.user||null
+              res.render 'read.jade'
   "/add/recommend":
     "get":(req,res,next)->
       res.render 'add-recommend.jade'

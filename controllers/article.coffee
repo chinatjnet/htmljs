@@ -148,6 +148,7 @@ module.exports.controllers =
           res.locals.visitors = visitors
           func_article.getById req.params.id,(error,article)->
             if error then next error
+            else if not article then next new Error '不存在的文章'
             else
               if article.user_id && res.locals.user
                 func_info.add 
