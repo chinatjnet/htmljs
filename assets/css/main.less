@@ -576,19 +576,37 @@ width:310px;
 #article
 {
   background: #efefef;
+  .right{
+    .module.count{
+      span{
+        padding-right: 10px;
+        color: #999;
+      }
+    }
+    .module.user{
+      .item{
+        margin-top: 10px;
+        font-size: 12px;
+        color:#999;
+      }
+    }
+  }
   .post{
     .entry-title{
+       border-bottom: 1px solid #eee;
+       padding-bottom: 10px;
       .headpic{
         float: left;
         margin-right: 20px;
         margin-top:10px;
       }
       .title{
-        font-size:16px;
+        font-size:20px;
         line-height: 30px;
         margin:0;
         color: #404040;
         font-weight: normal;
+
       }
       .item{
         font-size: 12px;
@@ -602,7 +620,7 @@ width:310px;
       }
     }
     .entry-content{
-      color:#404040;
+      color:#555;
       padding:20px 0;
       h1,h2,h3,h4,h5{
         font-size:1.5em;

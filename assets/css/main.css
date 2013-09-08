@@ -83,11 +83,13 @@
 #cards .zan em,#me .zan em{font-style:normal;padding:0 5px;}
 #cards .zan span,#me .zan span{padding:0 5px;}
 #card .bao .actions a,#me .bao .actions a{margin-right:20px;}
-#article{background:#efefef;}#article .post .entry-title .headpic{float:left;margin-right:20px;margin-top:10px;}
-#article .post .entry-title .title{font-size:16px;line-height:30px;margin:0;color:#404040;font-weight:normal;}
+#article{background:#efefef;}#article .right .module.count span{padding-right:10px;color:#999;}
+#article .right .module.user .item{margin-top:10px;font-size:12px;color:#999;}
+#article .post .entry-title{border-bottom:1px solid #eee;padding-bottom:10px;}#article .post .entry-title .headpic{float:left;margin-right:20px;margin-top:10px;}
+#article .post .entry-title .title{font-size:20px;line-height:30px;margin:0;color:#404040;font-weight:normal;}
 #article .post .entry-title .item{font-size:12px;margin-right:20px;}#article .post .entry-title .item .index{color:#aaa;}
 #article .post .entry-title .item .value{color:#888;}
-#article .post .entry-content{color:#404040;padding:20px 0;word-wrap:break-word;word-break:break-all;}#article .post .entry-content h1,#article .post .entry-content h2,#article .post .entry-content h3,#article .post .entry-content h4,#article .post .entry-content h5{font-size:1.5em;}
+#article .post .entry-content{color:#555;padding:20px 0;word-wrap:break-word;word-break:break-all;}#article .post .entry-content h1,#article .post .entry-content h2,#article .post .entry-content h3,#article .post .entry-content h4,#article .post .entry-content h5{font-size:1.5em;}
 #article .post .entry-content p{font-size:14px;line-height:20px;margin:20px 0;}
 #article .post .entry-content img{display:block;}
 #article article{background:#fff;border-radius:5px;padding:20px;}
