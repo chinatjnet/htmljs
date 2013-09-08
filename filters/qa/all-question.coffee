@@ -5,8 +5,13 @@ module.exports = (req,res,next)->
     req.query.filter.split(":").forEach (f)->
       kv = f.split '|'
       if kv.length
-        condition[kv[0]]=kv[1]
+        if match = kv[1].match /^not(.*)$/
+          condition[kv[0]] = 
+            ne:match[1]*1
+        else
+          condition[kv[0]]=kv[1]
         res.locals["filter_"+kv[0]]=kv[1]
+  console.log condition
   page = req.query.page || 1
   count = req.query.count || 20
   (__F 'question').count condition,(error,_count)->

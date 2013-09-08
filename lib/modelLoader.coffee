@@ -28,12 +28,20 @@ global.__FC = (func,model,methods)->
         .error (e)->
           callback e
     else if m == 'getAll'
-      func.getAll = (page,count,condition,callback)->
+      func.getAll = (page,count,condition,order,group,callback)->
+        if arguments.length == 4
+          callback = order
+          order = null
+          group = null
+        else if arguments.length == 5
+          callback = group
+          group = null
         query = 
           offset: (page - 1) * count
           limit: count
-          order: "id desc"
+          order: order || "id desc"
         if condition then query.where = condition
+        if group then query.group = group
         model.findAll(query)
         .success (ms)->
           callback null,ms

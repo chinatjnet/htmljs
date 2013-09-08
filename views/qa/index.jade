@@ -18,13 +18,15 @@ html
           a.btn(href="/qa/add") <i class="icon-plus icon-white"></i>我要提问
           .right-actions
             - console.log(locals.filter_is_answered*1===1);
-            a(class="#{locals.filter_is_answered===undefined?'active':''}",href="/qa") 全部问题
-            a(class="#{locals.filter_is_answered==='0'?'active':''}",href="/qa?filter=is_answered|0") 未回答
-            a(class="#{locals.filter_is_answered==='1'?'active':''}",href="?filter=is_answered|1") 已回答
+            a(class="#{(locals.filter_answer_count===undefined&&locals.filter_user_id==undefined)?'active':''}",href="/qa") 全部问题
+            a(class="#{locals.filter_answer_count==='0'?'active':''}",href="/qa?filter=answer_count|0") 未回答
+            a(class="#{locals.filter_answer_count==='not0'?'active':''}",href="?filter=answer_count|not0") 已回答
+            if locals.user
+              a(class="#{locals.filter_user_id==user.id?'active':''}",href="?filter=user_id|#{user.id}") 我的提问
         if locals.questions
           .qa-list
             each question,i in questions
-              .qa-item(class="#{i%2==0?'yooo':''}")
+              .qa-item(class="#{i%2==1?'yooo':''}")
                 .entry-title
                   h1.title
                     a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
@@ -46,6 +48,25 @@ html
                     a(data-original-title="#{question.user_nick}")
                       img(src="#{question.user_headpic}")
           include ../page
+      .right
+        .module
+          .hd 我是什么？
+          .bd 
+            p 2013年9月出生。
+            p 致力于为您解决各类技术问题。
+            p 问问题，回答问题，讨论问题，互相学习，共同成长。
+        .module
+          .hd 常见问题？
+          .bd 
+            a(href="") 问题的回答是如何排序的？
+        .module
+          .hd 热门问题
+          .bd 
+            if locals.hot_questions
+              each q in hot_questions
+                div 
+                  a(href="/qa/#{q.id}") #{q.title}
+                  span (浏览：#{q.visit_count} 回答：#{q.answer_count})
     script
       $('.user a').tooltip({
           placement:"bottom"

@@ -24,7 +24,7 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
-          console.log q
+          (__F 'coin').add 5,res.locals.user.id,"发布了一条问题"
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
@@ -107,7 +107,7 @@ module.exports.controllers =
         res.send result
 module.exports.filters = 
   "/":
-    get:['freshLogin','qa/all-question']
+    get:['freshLogin','qa/all-question','qa/hot-question']
   "/add":
     get:['checkLogin']
     post:['checkLogin']

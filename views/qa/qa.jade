@@ -17,12 +17,7 @@ html
       #insertImageDialog h4 { margin-bottom: 10px; }
       #insertImageDialog input[type=text] { width: 260px; }
       #insertImageDialog .loading-small { display:none; float: left; padding-right: 5px; }
-    
-    style
-      #act{
-        background:url(http://htmljs.b0.upaiyun.com/images/act1-bg.jpg) no-repeat center top;
-        background-attachment:fixed;
-      }
+   
   body#qa
     - locals.pageId=7;
     include ./../header
@@ -34,10 +29,11 @@ html
           .qa-content
             .desc !{question.html}
           .qa-user.clearfix
-            .action 
+            .action
               if locals.user && locals.user.id==question.user_id
                 a(href="/qa/#{question.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
-              a 分享
+              a#bdshare.bdshare_t.bds_tools.get-codes-bdshare(style="float:none;") 
+                span.bds_more(style="background:none !important;float:none;display:inline;padding:0;") 分享
             .user
               img(src="#{question.user_headpic}")
               .nick
@@ -101,6 +97,21 @@ html
                 <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
                 <button class="btn btn-primary">插入</button>
               </div>
+      .right
+        .module.count
+          .bd
+            span 浏览数：#{question.visit_count}
+            span 回答数：#{question.answer_count}
+        .module.share
+          .hd 分享
+          .bd 
+            div#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:0px;")
+              a.bds_tsina
+              a.bds_qzone
+              a.bds_tqq
+              a.bds_douban
+              a.bds_renren
+              a.shareCount
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
@@ -202,4 +213,10 @@ html
         };
         return true; // tell the editor that we'll take care of getting the image url
       });    
-
+    p.
+      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+      <script type="text/javascript" id="bdshell_js"></script>
+      <script type="text/javascript">
+      var bds_config={"bdText":"【#{question.title}】分享自 @前端乱炖 问答频道，点击查看问题：","bdPic":"","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+      </script>
