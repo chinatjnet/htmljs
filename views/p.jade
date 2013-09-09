@@ -168,104 +168,104 @@ html
                           
           
     include footer
+    if locals.card
+      div.
+        <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+        var bds_config={"bdText":"这小子不错啊，分享给大家，快来吃他！@前端乱炖","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+        </script>
+      script(src='#{assets_head}/js/ajaxfileupload.js')
+      script(src='#{assets_head}/js/loadingTip.js')
+      script(src='#{assets_head}/js/messageTip.js')
+      script(src='#{assets_head}/js/card.js')
+      script
+        $("a.zan").click(function(){
+          var id = $(this).data("id");
+            var self=this;
+            $.ajax("/card/"+id+"/zan",{
+              dataType:"json",
+              type:"post",
+              data:{
+              },
+              success:function(data){
+                if(data.success){
+                  messageTip.show("Great!")
+                  $("em",$(self)).html(data.zan_count)
+                }else{
+                }
+              },
+              error:function(){
 
-    div.
-      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
-      <script type="text/javascript" id="bdshell_js"></script>
-      <script type="text/javascript">
-      var bds_config={"bdText":"这小子不错啊，分享给大家，快来吃他！@前端乱炖","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
-      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-      </script>
-    script(src='#{assets_head}/js/ajaxfileupload.js')
-    script(src='#{assets_head}/js/loadingTip.js')
-    script(src='#{assets_head}/js/messageTip.js')
-    script(src='#{assets_head}/js/card.js')
-    script
-      $("a.zan").click(function(){
-        var id = $(this).data("id");
-          var self=this;
-          $.ajax("/card/"+id+"/zan",{
-            dataType:"json",
-            type:"post",
-            data:{
-            },
-            success:function(data){
-              if(data.success){
-                messageTip.show("Great!")
-                $("em",$(self)).html(data.zan_count)
-              }else{
               }
-            },
-            error:function(){
-
-            }
-          })
-        })
-    script(src="#{assets_head}/js/mustache.js")
-    script
-      $(window).scroll(function(){
-        if($(window).scrollTop()+$(window).height()>=$(".comment").offset().top){
-          $(".comment-layer").addClass("hidden")
-        }else{
-        $(".comment-layer").removeClass("hidden")
-        }
-        })
-      $(".comment-layer").click(function(){
-        $("html,body").animate({
-          scrollTop:$(".comment").offset().top-200
-          })
-        $(".comment textarea").focus()
-        })
-      var comment_tpl = $("#comment-tpl").html()
-      loadingTip.show("评论加载中")
-      $.ajax({
-        url:"/comment/card_#{card.id}",
-        type:"get",
-        dataType:"json",
-        success:function(data){
-          loadingTip.hide("正在提交中")
-            if(data.success){
-            for(var i=0;i<data.comments.length;i++){
-            var comment = data.comments[i]
-              var html = Mustache.render(comment_tpl,comment);
-              $(".comment-list").append(html)
-            }
-            }else{
-            alert(data.info)
-            }
-            
-        }
-        })
-      $("#comment-submit").click(function(){
-        var text = $("#comment-text").val();
-        if(!text){
-          messageTip.show("请输入评论内容");
-        }else{
-          loadingTip.show("正在提交中")
-          $.ajax({
-            url:"/comment/add",
-            type:"post",
-            data:{
-              md:text,
-              target_id:"card_#{card.id}"
-            },
-            dataType:"json",
-            success:function(data){
-            loadingTip.hide()
-
-            if(data.isnotlogin){
-              alert("请先登录")
-                window.location.href="/user/login"
-            }else if(data.success){
-            $("#comment-text").val("")
-            var html = Mustache.render(comment_tpl,data.comment);
-              $(".comment-list").prepend(html)
-            }else{
-              alert(data.info)
-            }
-            
-            }
             })
-        }
-        })
+          })
+      script(src="#{assets_head}/js/mustache.js")
+      script
+        $(window).scroll(function(){
+          if($(window).scrollTop()+$(window).height()>=$(".comment").offset().top){
+            $(".comment-layer").addClass("hidden")
+          }else{
+          $(".comment-layer").removeClass("hidden")
+          }
+          })
+        $(".comment-layer").click(function(){
+          $("html,body").animate({
+            scrollTop:$(".comment").offset().top-200
+            })
+          $(".comment textarea").focus()
+          })
+        var comment_tpl = $("#comment-tpl").html()
+        loadingTip.show("评论加载中")
+        $.ajax({
+          url:"/comment/card_#{card.id}",
+          type:"get",
+          dataType:"json",
+          success:function(data){
+            loadingTip.hide("正在提交中")
+              if(data.success){
+              for(var i=0;i<data.comments.length;i++){
+              var comment = data.comments[i]
+                var html = Mustache.render(comment_tpl,comment);
+                $(".comment-list").append(html)
+              }
+              }else{
+              alert(data.info)
+              }
+              
+          }
+          })
+        $("#comment-submit").click(function(){
+          var text = $("#comment-text").val();
+          if(!text){
+            messageTip.show("请输入评论内容");
+          }else{
+            loadingTip.show("正在提交中")
+            $.ajax({
+              url:"/comment/add",
+              type:"post",
+              data:{
+                md:text,
+                target_id:"card_#{card.id}"
+              },
+              dataType:"json",
+              success:function(data){
+              loadingTip.hide()
+
+              if(data.isnotlogin){
+                alert("请先登录")
+                  window.location.href="/user/login"
+              }else if(data.success){
+              $("#comment-text").val("")
+              var html = Mustache.render(comment_tpl,data.comment);
+                $(".comment-list").prepend(html)
+              }else{
+                alert(data.info)
+              }
+              
+              }
+              })
+          }
+          })
       
