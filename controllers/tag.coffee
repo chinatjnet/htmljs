@@ -25,6 +25,14 @@ module.exports.controllers =
             action:"添加了一个新标签："
             desc:tag.desc
           res.redirect '/tag'
+  "/:id":
+    get:(req,res,next)->
+      func_tag.getById req.params.id,(error,tag)->
+        if error then next error
+        else if not tag then next new Error '不存在的标签'
+        else
+          res.locals.tag = tag
+          res.render 'tag/tag.jade'
   "/:id/edit":
     get:(req,res,next)->
       func_tag.getById req.params.id,(error,tag)->

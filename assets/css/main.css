@@ -251,3 +251,7 @@
 #tags .tag-item .tag-edit{padding-left:10px;}
 #tags .tag-item .tag-keywords{color:#999;line-height:20px;}
 #tags .tag-item .tag-desc{color:#666;font-size:12px;margin-top:5px;}
+#tag{background:#efefef;}#tag .tag-name{font-size:20px;font-weight:bold;line-height:30px;color:#404040;color:#5bb793;}
+#tag .tag-edit{padding-left:10px;}
+#tag .tag-keywords{color:#999;line-height:20px;}
+#tag .tag-desc{color:#666;font-size:12px;margin-top:5px;}

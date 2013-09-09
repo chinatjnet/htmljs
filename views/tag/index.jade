@@ -2,7 +2,7 @@
 html
   head
     include ./../head
-    title 前端乱炖-问答
+    title 前端乱炖-标签
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
     
   body#tags
@@ -16,7 +16,7 @@ html
           .tag-list
             each tag,i in tags
               .tag-item(class="#{i%2==1?'yooo':''}")
-                a.tag-name(href="") #{tag.name}
+                a.tag-name(href="/tag/#{tag.id}") #{tag.name}
                 a.tag-edit(href="/tag/#{tag.id}/edit") <i class="icon-edit icon-gray"></i>
                 .tag-keywords 别名：#{tag.keywords}
                 .tag-desc !{tag.desc.substr(0,200)}
