@@ -25,7 +25,7 @@ module.exports.controllers =
     get:(req,res,next)->
       page = req.query.page || 1
       count = req.query.count || 20
-      func_timeline.count condition,(error,_count)->
+      func_timeline.count null,(error,_count)->
         if error then next error
         else
           res.locals.total=_count
