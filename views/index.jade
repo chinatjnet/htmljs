@@ -25,6 +25,7 @@ html
                   span.time #{moment(timeline.createdAt).fromNow()}
                 if timeline.desc
                   .desc.clearfix !{timeline.desc}
+          include page
       .right
         .module
           .hd 公告

@@ -23,14 +23,22 @@ md5 = (string)->
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
-      func_timeline.getAll 1,20,null,(error,timelines)->
+      page = req.query.page || 1
+      count = req.query.count || 20
+      func_timeline.count condition,(error,_count)->
         if error then next error
         else
-          if timelines.length < 0
-            res.redirect '/article'
-            return
-          res.locals.timelines = timelines
-          res.render 'index.jade'
+          res.locals.total=_count
+          res.locals.totalPage=Math.ceil(_count/count)
+          res.locals.page = (req.query.page||1)
+          func_timeline.getAll page,count,null,(error,timelines)->
+            if error then next error
+            else
+              if timelines.length < 0
+                res.redirect '/article'
+                return
+              res.locals.timelines = timelines
+              res.render 'index.jade'
   "/rss":
     "get":(req,res,next)->
       feed = new RSS
