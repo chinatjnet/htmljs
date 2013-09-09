@@ -10,13 +10,13 @@
               a(href="/article") 专栏
             li(class="#{locals.pageId==7?'active':''}")
               a(href="/qa") 问答
+            li(class="#{locals.pageId==8?'active':''}")
+              a(href="/tag") 标签
             //- li(class="#{locals.pageId==4?'active':''}")
             //-   a(href="/read") 阅读
             li(class="#{locals.pageId==2?'active':''}")
               a(href="/cards") 花名册
 
-            li(class="#{locals.pageId==3?'active':''}")
-              a(href="/user") 我的名片
             li(class="#{locals.pageId==5?'active':''}")
               a(href="/act") 活动平台
             li(class="#{locals.pageId==6?'active':''}")
@@ -24,7 +24,8 @@
             
           if locals.user
             ul.right-nav
-              li #{user.nick}
+              li 
+                a(href="/user") #{user.nick}
               li
                 a(href="/user/logout?redirect=#{encodeURIComponent(locals.url)}") 退出
           else
