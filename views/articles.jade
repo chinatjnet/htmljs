@@ -35,7 +35,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
               a(href="/article?filter=type|#{i}",class="#{locals.filter_type==i?'active':''}") #{cat}
             a.rss(href="/rss")
               img(src="#{assets_head}/images/rss.png")
-        include page
         
         ul.article-list
           each article in articles
