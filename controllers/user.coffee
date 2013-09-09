@@ -30,11 +30,11 @@ module.exports.controllers =
         client_id:config.sdks.sina.app_key
       _sina=new Sina(config.sdks.sina)
       if !code
-        res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
+        res.send '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
         return
       _sina.oauth.accesstoken code,(error,data)->
         if error 
-          res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
+          res.send '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
         else
           access_token = data.access_token
           func_user.getByWeiboId data.uid,(error,user)->
@@ -48,7 +48,7 @@ module.exports.controllers =
                   domain:"html-js.com"
                 res.redirect req.query.redirect||"/user"
               .error (error)->
-                res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
+                res.send '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
             else
               _sina.users.show
                 access_token:access_token
@@ -56,11 +56,11 @@ module.exports.controllers =
                 method:"get"
               ,(error,data)->
                 if error 
-                  res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
+                  res.send '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
                 else
                   func_user.add {nick:data.screen_name,weibo_id:data.id,weibo_token:access_token,head_pic:data.profile_image_url},(error,user)->
                     if error
-                      res.end '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
+                      res.send '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
                     else
                       res.cookie '_p', user.id+":"+md5(user.weibo_token), 
                         expires: new Date(Date.now() + 1000*60*60*24*7)
