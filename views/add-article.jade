@@ -85,7 +85,7 @@ html
           data:$("#form").serialize(),
           success:function(data){
             if(data.success){
-              alert("发布成功")
+              alert("发布成功，等待审核中")
               window.location.href="/article"
             }else{
               alert(data.info)
