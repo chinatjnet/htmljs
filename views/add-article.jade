@@ -28,7 +28,7 @@ html
           legend 发表新文章
           .control-group
             input#title(type='text', name='title', placeholder='文章标题')
-          .control-group
+          .control-group.hidden
             span 类目：
             select(name="type")
               for cat,i in cats
@@ -85,7 +85,7 @@ html
           data:$("#form").serialize(),
           success:function(data){
             if(data.success){
-              alert("发布成功，等待审核中")
+              alert("发布成功，等待审核中fsdfsdf")
               window.location.href="/article"
             }else{
               alert(data.info)
