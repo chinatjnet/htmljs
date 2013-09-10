@@ -27,7 +27,7 @@ html
           .qa-title
             .title #{question.title}
           .qa-content
-            .desc !{question.html}
+            .desc !{question.html.replace(/<code>/g,"<code class='language-javascript'>")}
           .qa-user.clearfix
             .action
               if locals.user && locals.user.id==question.user_id
@@ -63,7 +63,7 @@ html
                       .con-hd 
                         a(href="/user/#{ans.user_id}") #{ans.user_nick}
                         |<span style="color:#999;">(#{moment(ans.createdAt).fromNow()})</span>
-                      .con-bd !{ans.html}
+                      .con-bd !{ans.html.replace(/<code>/g,"<code class='language-javascript'>")}
                       .con-action
                         if locals.user && locals.user.id == ans.user_id
                           a(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
