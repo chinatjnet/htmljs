@@ -59,14 +59,6 @@ html
           .hd 常见问题？
           .bd 
             a(href="/qa/7") 问题的回答是如何排序的？
-        .module.recent_answers
-          .hd 最新回答
-          .bd 
-            if locals.recent_answers
-              each ans in recent_answers
-                div.item 
-                  span #{ans.user_nick}：
-                  a(href="/qa/#{ans.question_id}#answer-#{ans.id}",style="word-break:break-all;") #{ans.html.replace(/<[^>]*?>/g,"").substr(0,50)+"..."}
         .module.hot_questions
           .hd 热门问题
           .bd 
@@ -75,6 +67,15 @@ html
                 div.item 
                   a(href="/qa/#{q.id}") #{q.title}
                   // span (浏览：#{q.visit_count} 回答：#{q.answer_count})
+        .module.recent_answers
+          .hd 最新回答
+          .bd 
+            if locals.recent_answers
+              each ans in recent_answers
+                div.item 
+                  span #{ans.user_nick}：
+                  a(href="/qa/#{ans.question_id}#answer-#{ans.id}",style="word-break:break-all;") #{ans.html.replace(/<[^>]*?>/g,"").substr(0,50)+"..."}
+        
     script
       $('.user a').tooltip({
           placement:"bottom"
