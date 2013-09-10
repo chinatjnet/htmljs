@@ -36,7 +36,7 @@ html
                     div 预览
                     #wmd-preview
               .control-group
-                button.btn(type='submit') 发表
+                button.btn#submit(type='submit') 发表
           #myModal.modal.hide.fade.
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -76,22 +76,16 @@ html
       });
       $("#form").submit(function(e){
         e.preventDefault()
-        $.ajax({
-          url:"/qa/add",
-          type:"post",
-          data:$("#form").serialize(),
-          success:function(data){
+          HtmlJS.util.ajax("/qa/add",$("#form").serialize(),"post",function(data){
             if(data.success){
               alert("发布成功")
               window.location.href="/qa"
             }else{
               alert(data.info)
             }
-          },
-          error:function(){
+          },function(){
 
-          }
-        })
+          },$("#submit"))
       })
       editor1.hooks.set('insertImageDialog', function(callback) {
         $("#myModal").modal("show");

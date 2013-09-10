@@ -1,13 +1,21 @@
 var HtmlJS =HtmlJS||{};
 HtmlJS.util = function(){
   return {
-    ajax:function(url,data,type,success,error){
+    ajax:function(url,data,type,success,error,btn){
+      if(btn){
+        btn.attr("disabled","disabled");
+        btn.attr("data-text",btn.html()).html("提交中...")
+      }
       $.ajax({
         url:url,
         data:data,
         dataType:"json",
         type:type,
         success:function(data){
+          if(btn){
+            btn.attr("disabled","");
+            btn.html(btn.attr("data-text"))
+          }
           if(data.isnotlogin){
               alert("请先登录")
                 window.location.href='/user/login?redirect='+encodeURIComponent(window.location.href)
@@ -18,6 +26,10 @@ HtmlJS.util = function(){
             }
         },
         error:function(e){
+          if(btn){
+            btn.attr("disabled","");
+            btn.html(btn.attr("data-text"))
+          }
           error(e);
         }
       })
