@@ -136,22 +136,16 @@ html
       $("a.zan").click(function(){
         var id = $(this).data("id");
           var self=this;
-          $.ajax("/card/"+id+"/zan",{
-            dataType:"json",
-            type:"post",
-            data:{
-            },
-            success:function(data){
+          HtmlJS.util.ajax("/card/"+id+"/zan",{},"post",function(data){
               if(data.success){
                 messageTip.show("Great!")
                 $("em",$(self)).html(data.zan_count)
               }else{
               }
-            },
-            error:function(){
+            },function(){
 
-            }
-          })
+            })
+         
         })
       $("a.zan")[0].onselectstart = function(){return false;}
       $("a.renling").click(function(){

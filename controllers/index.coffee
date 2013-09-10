@@ -218,8 +218,13 @@ module.exports.controllers =
     post:(req,res,next)->
       result = 
         success:1
-      func_card.addZan req.params.id,(error,count)->
-        result.zan_count = count
+      func_card.addZan req.params.id,res.locals.user.id,(error,count)->
+        if error 
+          result.info = error.message
+          result.success = 0
+        else
+
+          result.zan_count = count
         res.send result
   "/upload":
     "post":(req,res,next)->
@@ -299,5 +304,7 @@ module.exports.filters =
     get:['checkLogin',"checkCard"]
   "/":
     get:['freshLogin','getRecent']
+  "/card/:id/zan":
+    post:['checkLoginJson']
   "/card/:id/bao":
     post:['checkLogin',"checkCard"]

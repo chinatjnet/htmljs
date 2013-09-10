@@ -3,7 +3,8 @@ Card = __M 'cards'
 Visit_log = __M 'card_visit_log'
 
 User = __M 'users'
-
+CardZanHistory = __M 'card_zan_history'
+CardZanHistory.sync()
 User.hasOne Card,{foreignKey:"user_id"}
 Card.belongsTo User,{foreignKey:"user_id"}
 Card.sync()
@@ -53,17 +54,28 @@ func_card =
       callback null,logs
     .error (error)->
       callback error
-  addZan:(cardId,callback)->
-    Card.find
+  addZan:(cardId,userId,callback)->
+    CardZanHistory.find
       where:
-        id:cardId
-    .success (card)->
-      if card
-        card.updateAttributes
-          zan_count: if card.zan_count then (card.zan_count+1) else 1
-      callback null,card.zan_count
-    .error (e)->
-      callback e
+        card_id:cardId
+        user_id:userId
+    .success (his)->
+      if his
+        callback new Error '已经给这位【大叔/阿姨】点过赞了，如果你点上瘾了，那为毛放弃治疗！'
+      else
+        CardZanHistory.create
+          card_id:cardId
+          user_id:userId
+        Card.find
+          where:
+            id:cardId
+        .success (card)->
+          if card
+            card.updateAttributes
+              zan_count: if card.zan_count then (card.zan_count+1) else 1
+          callback null,card.zan_count
+        .error (e)->
+          callback e
   addComment:(cardId)->
     Card.find
       where:
