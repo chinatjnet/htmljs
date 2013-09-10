@@ -1,69 +1,119 @@
-.com { color: #93a1a1; }
-.lit { color: #195f91; }
-.pun, .opn, .clo { color: #93a1a1; }
-.fun { color: #dc322f; }
-.str, .atv { color: #D14; }
-.kwd, .linenums .tag { color: #1e347b; }
-.typ, .atn, .dec, .var { color: teal; }
-.pln { color: #48484c; }
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
 
-.prettyprint {
-  padding: 8px;
-  background-color: #f7f7f9;
-  border: 1px solid #e1e1e8;
-}
-.prettyprint.linenums {
-  -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
-     -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
-          box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
-}
-
-/* Specify class=linenums on a pre to get line numbering */
-ol.linenums {
-  margin: 0 0 0 33px; /* IE indents via margin-left */
-} 
-ol.linenums li {
-  padding-left: 12px;
-  color: #bebec5;
-  line-height: 18px;
-  text-shadow: 0 1px 0 #fff;
-}
-code, pre {
-  padding: 0 3px 2px;
-  font-family: Menlo, Monaco, "Courier New", monospace;
-  font-size: 12px;
-  color: #333333;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-code {
-  padding: 3px 4px;
-  color: #d14;
-  background-color: #f7f7f9;
-  border: 1px solid #E1E1E8;
-  border-image: initial;
-}
-pre {
-  display: block;
-  padding: 8.5px;
-  margin: 0 0 9px;
-  font-size: 12px;
-  line-height: 18px;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+code[class*="language-"],
+pre[class*="language-"] {
+  color: black;
+  text-shadow: 0 1px white;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  direction: ltr;
+  text-align: left;
   white-space: pre;
-  white-space: pre-wrap;
-  word-break: break-all;
+  word-spacing: normal;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
 }
-pre.prettyprint {
-  margin-bottom: 18px;
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background: #b3d4fc;
 }
-pre code {
-  padding: 0;
-  background-color: transparent;
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  text-shadow: none;
+  background: #b3d4fc;
+}
+
+@media print {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: slategray;
+}
+
+.token.punctuation {
+  color: #999;
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number {
+  color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string {
+  color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #a67f59;
+  background: hsla(0,0%,100%,.5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a;
+}
+
+
+.token.regex,
+.token.important {
+  color: #e90;
+}
+
+.token.important {
+  font-weight: bold;
+}
+
+.token.entity {
+  cursor: help;
 }
