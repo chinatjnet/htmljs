@@ -107,7 +107,7 @@ module.exports.controllers =
         res.send result
 module.exports.filters = 
   "/":
-    get:['freshLogin','qa/all-question','qa/hot-question']
+    get:['freshLogin','qa/all-question','qa/hot-question','qa/recent-answers']
   "/add":
     get:['checkLogin']
     post:['checkLogin']

@@ -10,7 +10,7 @@ module.exports = (req,res,next)->
       res.locals.total=_count
       res.locals.totalPage=Math.ceil(_count/count)
       res.locals.page = (req.query.page||1)
-      (__F 'answer').getAll page,count,condition,(error,answers)->
+      (__F 'answer').getAll page,count,condition,"zan_count desc,id desc",(error,answers)->
         if error then next error
         else
           res.locals.answers = answers

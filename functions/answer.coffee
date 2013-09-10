@@ -42,17 +42,18 @@ func_answer =
           callback e
     .error (e)->
       callback e
-  getAll:(page,count,condition,callback)->
+  getAllWithQuestion:(page,count,condition,order,callback)->
     query = 
       offset: (page - 1) * count
       limit: count
-      order: "zan_count desc,id desc"
+      order: order || "id desc"
+      include:[Question]
     if condition then query.where = condition
     Ans.findAll(query)
-    .success (ans)->
-      callback null,ans
-    .error (error)->
-      callback error
+    .success (answers)->
+      callback null,answers
+    .error (e)->
+      callback e
   getByIdWithQuestion:(id,callback)->
     Ans.find
       where:
@@ -64,5 +65,5 @@ func_answer =
         callback null,ans
     .error (e)->
       callback e
-__FC func_answer,Ans,['getById','delete','update','count']
+__FC func_answer,Ans,['getAll','getById','delete','update','count']
 module.exports = func_answer
