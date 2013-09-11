@@ -2,7 +2,7 @@
 html
   head
     meta(charset='utf-8')
-    title 前端花名册
+    title 前端花名册-#{locals.card?card.nick:""}
     include head
     script(src='#{assets_head}/js/lazyload.js')
     style
