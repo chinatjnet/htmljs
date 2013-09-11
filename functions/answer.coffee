@@ -18,6 +18,8 @@ func_answer =
     .success (ans)->
       if not ans then callback new Error '不存在的回答'
       else
+        ans.updateAttributes
+          comment_count:ans.comment_count*1+1
         Comment.create
           answer_id:answer_id
           user_id:user_id

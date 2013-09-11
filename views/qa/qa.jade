@@ -66,7 +66,13 @@ html
                       .con-bd !{ans.html.replace(/<code>/g,"<code class='language-javascript'>")}
                       .con-action
                         if locals.user && locals.user.id == ans.user_id
-                          a(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
+                          a.edit(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
+                        a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.comment_count}
+                      .con-comments.hidden(data-answer-id="#{ans.id}")
+                        .comment-list(data-answer-id="#{ans.id}") 
+                        .comment-publish
+                          textarea.comment-content.input-block-level(placeholder="发表一些对此回答的看法",data-answer-id="#{ans.id}")
+                          .btn.comment-submit(data-answer-id="#{ans.id}") 提交评论
                     
         .add-answer.module
           .hd 我来回答
@@ -112,10 +118,22 @@ html
               a.bds_douban
               a.bds_renren
               a.shareCount
+    script#comment-tpl(type="text/template")
+      .comment-item.clearfix
+        div.con 
+          span.author.vcard.item
+            a.value.url.fn(rel='author', href='/user/{{user.id}}') {{user.nick}}：
+          span.content {{{content}}}
+          span.time {{createdAt}}
+          span.action 
+            a.reply(data-nick="{{user.nick}}") 回复
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
+    script(src='#{assets_head}/js/mustache.js')
+    script(src='#{assets_head}/js/moment.js')
     script
+      var comment_tpl = $("#comment-tpl").html()
       $(".zan").click(function(e){
         e.preventDefault();
         var self=this;
@@ -134,6 +152,61 @@ html
             }
             
           }
+          })
+        })
+      moment.lang('zh-cn')
+      $(".add_comment").click(function(e){
+        e.preventDefault()
+        var con_comments= $(".con-comments[data-answer-id="+$(this).attr("data-answer-id")+"]")
+        loadingTip.show("努力加载中")
+        HtmlJS.util.ajax("/qa/answer/"+$(this).attr("data-answer-id")+"/comment",{},"get",function(data){
+            if(data.success){
+              if(data.comments.length>0){
+              $(".comment-list",con_comments).html("")
+              }else{
+              $(".comment-list",con_comments).html("暂无评论")
+              }
+              data.comments.forEach(function(comment){
+                comment.createdAt=moment(comment.createdAt).fromNow();
+                var html = Mustache.render(comment_tpl,comment);
+                
+                $(".comment-list",con_comments).append(html)
+                })
+            }else{
+              alert(data.info)
+            }
+            con_comments.removeClass("hidden")
+              loadingTip.hide("努力加载中")
+          },function(){
+            loadingTip.hide("努力加载中")
+          })
+          
+        })
+      $(".con-comments").click(function(e){
+        if($(e.target).hasClass("reply")){
+          $("textarea",this).val("@"+$(e.target).attr("data-nick")+" ").focus()
+          $("textarea",this)[0].setSelectionRange($("textarea",this)[0].value.length, $("textarea",this)[0].value.length)
+        }
+        })
+      $(".comment-submit").click(function(){
+        var con_comments= $(".con-comments[data-answer-id="+$(this).attr("data-answer-id")+"]")
+        loadingTip.show("努力提交中")
+        HtmlJS.util.ajax("/qa/answer/"+$(this).attr("data-answer-id")+"/comment",{content:$($(".comment-content[data-answer-id="+$(this).attr("data-answer-id")+"]")).val()},"post",function(data){
+            if(data.success){
+              if($(".comment-list .comment-item",con_comments).length==0){
+                $(".comment-list",con_comments).html("")
+              }
+              data.comment.createdAt=moment(data.comment.createdAt).fromNow();
+                var html = Mustache.render(comment_tpl,data.comment);
+                
+                $(".comment-list",con_comments).append(html)
+                $("textarea",con_comments).val("")
+            }else{
+              alert(data.info)
+            }
+            loadingTip.hide("努力加载中")
+          },function(){
+            loadingTip.hide("努力加载中")
           })
         })
       $(".fake-form textarea").click(function(){

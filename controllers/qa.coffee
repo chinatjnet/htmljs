@@ -80,11 +80,11 @@ module.exports.controllers =
     get:(req,res,next)->
       result = 
         success:0
-      func_answer.getCommentsByAnswerId req.params.id,(error,answers)->
+      func_answer.getCommentsByAnswerId req.params.id,(error,comments)->
         if error 
           result.info = error.message
         else
-          result.answers = answers
+          result.comments = comments
           result.success = 1
         res.send result
     "post":(req,res,next)->
@@ -94,7 +94,9 @@ module.exports.controllers =
         if error 
           result.info = error.message
         else
-          result.comment = comment
+          result.comment = comment.selectedValues
+          result.comment.user = res.locals.user
+          console.log comment
           result.success = 1
         res.send result
   "/answer/:id/zan":
@@ -142,4 +144,6 @@ module.exports.filters =
   "/:id/add":
     post:['checkLoginJson']
   "/answer/:id/zan":
+    post:['checkLoginJson']
+  "/answer/:id/comment":
     post:['checkLoginJson']

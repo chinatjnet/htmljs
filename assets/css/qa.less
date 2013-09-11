@@ -222,7 +222,7 @@ background:#efefef;
       }
       .ans-con{
         float:left;
-        width:550px;
+        width:560px;
         margin-left: 10px;
         font-size: 14px;
         color:#404040;
@@ -236,6 +236,13 @@ background:#efefef;
             font-size: 12px;
             margin-right: 10px;
             i{
+              -webkit-transform: scale(0.8); 
+              -moz-transform: scale(0.8);
+              vertical-align: -3px;
+            }
+          }
+          .edit{
+            i{
               -webkit-transform: scale(0.6); 
               -moz-transform: scale(0.6);
               vertical-align: -3px;
@@ -243,7 +250,41 @@ background:#efefef;
           }
         }
       }
-
+      .comment-publish{
+        margin-top: 10px;
+        textarea{
+          height:60px;
+        }
+      }
+      .con-comments{
+        margin-top: 10px;
+        background: #f3f3f3;
+        padding:10px;
+        border-radius: 5px;
+        .comment-list{
+          font-size: 12px;
+          .comment-item{
+            border-bottom: 1px dashed #ddd;
+            padding:8px 0;
+            .content{
+              color:#666;
+            }
+            .time{
+              padding-left: 10px;
+              color:#999;
+            }
+            .reply{
+              display:none;
+              cursor:pointer;
+            }
+          }
+          .comment-item:hover{
+            .reply{
+              display:inline;
+            }
+          }
+        }
+      }
       .ans-user{
         float:left;
         padding-top: 3px;
