@@ -15,3 +15,6 @@ module.exports =
   sort:
     type:"int"
     defaultValue:0
+  is_unused:
+    type:"tinyint"
+    defaultValue:0

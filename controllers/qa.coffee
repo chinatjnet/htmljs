@@ -44,6 +44,12 @@ module.exports.controllers =
           func_question.update question.id,{visit_count:question.visit_count*1+1}
           res.locals.question = question
           res.render 'qa/qa.jade'
+  "/answer/:id/update":
+    "get":(req,res,next)->
+      func_answer.update req.params.id,req.query,(error,question)->
+        if error then next error
+        else
+          res.redirect 'back'
   "/:id/edit":
     "get":(req,res,next)->
       func_question.getById req.params.id,(error,question)->
@@ -133,6 +139,8 @@ module.exports.filters =
   "/add":
     get:['checkLogin']
     post:['checkLogin']
+  "/answer/:id/update":
+    get:['checkLogin','checkAdmin']
   "/:id":
     get:['freshLogin','qa/get-answers']
   "/:id/edit":

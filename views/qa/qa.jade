@@ -47,32 +47,35 @@ html
               div 暂无回答
             else
               .answer-list
-                each ans in answers
-                  .answer-item.clearfix(id="answer-#{ans.id}")
-                    .ans-user.clearfix
-                      a.user(href="/user/#{ans.user_id}")
-                        img(src="#{ans.user_headpic}")
-                        //.nick #{ans.user_nick}
-                        //.time #{moment(ans.createdAt).fromNow()}
-                      a.zan(href="#",data-id="#{ans.id}") 
+                each ans,i in answers
+                  if !ans.is_unused
+                    .answer-item.clearfix(id="answer-#{ans.id}",style="opacity:#{(10-i)/10}")
+                      .ans-user.clearfix
+                        a.user(href="/user/#{ans.user_id}")
+                          img(src="#{ans.user_headpic}")
+                          //.nick #{ans.user_nick}
+                          //.time #{moment(ans.createdAt).fromNow()}
+                        a.zan(href="#",data-id="#{ans.id}") 
+                          
+                          |<i class="icon-thumbs-up"></i>
+                          em #{ans.zan_count||0}
                         
-                        |<i class="icon-thumbs-up"></i>
-                        em #{ans.zan_count||0}
-                      
-                    .ans-con 
-                      .con-hd 
-                        a(href="/user/#{ans.user_id}") #{ans.user_nick}
-                        |<span style="color:#999;">(#{moment(ans.createdAt).fromNow()})</span>
-                      .con-bd !{ans.html.replace(/<code>/g,"<code class='language-javascript'>")}
-                      .con-action
-                        if locals.user && locals.user.id == ans.user_id
-                          a.edit(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
-                        a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.comment_count}
-                      .con-comments.hidden(data-answer-id="#{ans.id}")
-                        .comment-list(data-answer-id="#{ans.id}") 
-                        .comment-publish
-                          textarea.comment-content.input-block-level(placeholder="发表一些对此回答的看法",data-answer-id="#{ans.id}")
-                          .btn.comment-submit(data-answer-id="#{ans.id}") 提交评论
+                      .ans-con 
+                        .con-hd 
+                          a(href="/user/#{ans.user_id}") #{ans.user_nick}
+                          |<span style="color:#999;">(#{moment(ans.createdAt).fromNow()})</span>
+                        .con-bd !{ans.html.replace(/<code>/g,"<code class='language-javascript'>")}
+                        .con-action
+                          if locals.user && locals.user.id == ans.user_id
+                            a.edit(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
+                          a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.comment_count}
+                          if locals.user&&locals.user.is_admin
+                            a(href="/qa/answer/#{ans.id}/update?is_unused=1") 无用
+                        .con-comments.hidden(data-answer-id="#{ans.id}")
+                          .comment-list(data-answer-id="#{ans.id}") 
+                          .comment-publish
+                            textarea.comment-content.input-block-level(placeholder="发表一些对此回答的看法",data-answer-id="#{ans.id}")
+                            .btn.comment-submit(data-answer-id="#{ans.id}") 提交评论
                     
         .add-answer.module
           .hd 我来回答
@@ -103,6 +106,33 @@ html
                 <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
                 <button class="btn btn-primary">插入</button>
               </div>
+        .qa-unused.module
+          .hd 无用回答
+          .bd
+            .answer-list
+              each ans in answers
+                if ans.is_unused
+                  .answer-item.clearfix(id="answer-#{ans.id}")
+                    .ans-user.clearfix
+                      a.user(href="/user/#{ans.user_id}")
+                        img(src="#{ans.user_headpic}")
+                        //.nick #{ans.user_nick}
+                        //.time #{moment(ans.createdAt).fromNow()}
+                      
+                    .ans-con 
+                      .con-hd 
+                        a.nick(href="/user/#{ans.user_id}") #{ans.user_nick}
+                        |<span style="color:#999;">(#{moment(ans.createdAt).fromNow()})</span>
+                      .con-bd !{ans.html.replace(/<code>/g,"<code class='language-javascript'>")}
+                      .con-action
+                        if locals.user&&locals.user.is_admin
+                          a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.comment_count}
+                          a(href="/qa/answer/#{ans.id}/update?is_unused=0") 有用
+                      .con-comments.hidden(data-answer-id="#{ans.id}")
+                        .comment-list(data-answer-id="#{ans.id}") 
+                        .comment-publish
+                          textarea.comment-content.input-block-level(placeholder="发表一些对此回答的看法",data-answer-id="#{ans.id}")
+                          .btn.comment-submit(data-answer-id="#{ans.id}") 提交评论
       .right
         .module.count
           .bd

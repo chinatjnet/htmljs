@@ -26,7 +26,7 @@ html
         if locals.questions
           .qa-list
             each question,i in questions
-              .qa-item(class="#{i%2==1?'yooo':''}")
+              .qa-item(class="#{i%2==1?'yooo':''} #{question.answer_count==0?'unanswered':''}")
                 .entry-title
                   h1.title
                     a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
