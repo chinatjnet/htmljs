@@ -210,6 +210,7 @@
 #qas .qa-list{border:1px solid #f3f3f3;border-radius:5px;overflow:hidden;}
 #qas .left{width:650px;float:left;overflow:hidden;}
 #qas .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:35px;}#qas .right .recent_answers .item{border-bottom:1px solid #eee;padding:5px 0;}
+#qas .right .hot_questions .item{border-bottom:1px solid #eee;padding:5px 0;}
 #qas .qa-item.yooo{background:#F7F7F7;}
 #qas .qa-item{background:#fff;padding:10px;}#qas .qa-item .entry-title{height:50px;position:relative;}#qas .qa-item .entry-title .headpic{float:left;margin-right:20px;}
 #qas .qa-item .entry-title .title{font-size:16px;line-height:30px;margin:0;font-weight:normal;}#qas .qa-item .entry-title .title a{color:#333;}

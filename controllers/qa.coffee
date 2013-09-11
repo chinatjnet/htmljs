@@ -76,17 +76,36 @@ module.exports.controllers =
           next error
         else
           res.redirect '/qa/'+req.body.question_id+"#answer-"+req.params.id
+  "/answer/:id/comment":
+    get:(req,res,next)->
+      result = 
+        success:0
+      func_answer.getCommentsByAnswerId req.params.id,(error,answers)->
+        if error 
+          result.info = error.message
+        else
+          result.answers = answers
+          result.success = 1
+        res.send result
+    "post":(req,res,next)->
+      result = 
+        success:0
+      func_answer.addComment req.params.id,res.locals.user.id,req.body.content,(error,comment)->
+        if error 
+          result.info = error.message
+        else
+          result.comment = comment
+          result.success = 1
+        res.send result
   "/answer/:id/zan":
     post:(req,res,next)->
       result = 
         success:0
-      func_answer.getById req.params.id,(error,ans)->
+      func_answer.addZan req.params.id,res.locals.user.id,(error,ans)->
         if error
           result.info = error.message
         else
           (__F 'coin').add 1,ans.user_id,res.locals.user.nick+" 顶了你的回答"
-          ans.updateAttributes
-            zan_count:ans.zan_count*1+1
           result.success = 1
           result.answer = ans
         res.send result
@@ -105,6 +124,7 @@ module.exports.controllers =
         else
           result.success = 1
         res.send result
+
 module.exports.filters = 
   "/":
     get:['freshLogin','qa/all-question','qa/hot-question','qa/recent-answers']
