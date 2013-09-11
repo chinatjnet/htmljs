@@ -32,7 +32,7 @@ func_answer =
     Comment.findAll
       where:
         answer_id:answer_id
-      order:"id desc"
+      order:"id"
       include:[User]
     .success (answers)->
       callback null,answers
