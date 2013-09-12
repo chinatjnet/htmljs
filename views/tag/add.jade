@@ -27,7 +27,7 @@ html
               if locals.tag
                 input(type="hidden",name="id",value="#{tag.id}")
               .control-group
-                input#title(type='text', value = "#{locals.tag?tag.name:''}",name='name', placeholder='标签名')
+                input#title(type='text', value = "#{locals.tag?tag.name:''}",name='name', placeholder='标签名',disabled=locals.tag)
               .control-group
                 input#keywords(type='text',value = "#{locals.tag?tag.keywords:''}", name='keywords', placeholder='关键词（英文逗号分隔）')
               .control-group

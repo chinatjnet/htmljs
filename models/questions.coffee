@@ -18,3 +18,4 @@ module.exports =
   sort:
     type:"int"
     defaultValue:0
+  tagNames:"varchar(255)"

@@ -20,7 +20,7 @@ html
   body#qa-add
     - locals.pageId=7;
     include ../header
-    #content
+    #content.clearfix
       .left
         .module
           form.form-horizontal#form(method='post')
@@ -35,6 +35,16 @@ html
                   .wmd-panel.wmd-preview
                     div 预览
                     #wmd-preview
+              if locals.tags
+                .control-group
+                  .tags
+                    input#tags(type="hidden",name="tags",value="")
+                    input#tagNames(type="hidden",name="tagNames",value="")
+                    span.tags-hd 问题标签：
+                    span.tags-bd 
+                      each tag,i in tags
+                        span.label(data-id="#{tag.id}",data-original-title="#{tag.desc}",title="#{tag.desc}") #{tag.name}
+                      a(href="/tag/add",target="_blank",style="padding-left:10px;font-size:12px;") 添加新标签
               .control-group
                 button.btn#submit(type='submit') 发表
           #myModal.modal.hide.fade.
@@ -49,6 +59,8 @@ html
               <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
               <button class="btn btn-primary">插入</button>
             </div>
+          
+
       .right 
         .module
           .hd 提示
@@ -57,12 +69,28 @@ html
             div 可以使用markdown语法，可以插入图片。
             div 分享到微博可以让更多人关注并回答问题。
             div 提问前请阅读：<a href="/qa/7" target="_blank">问答系统指南</a>
+    include ../footer
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
+
     script
-      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
-      $("#login_popup").css({left:$(window).width()/2-125})
+      $(".tags .label").click(function(){
+        $(this).toggleClass("label-success");
+        var selectedTags = []
+        var selectedTagNames=[]
+        $(".tags .label").each(function(i,tag){
+          if($(tag).hasClass("label-success")){
+            selectedTags.push($(tag).attr("data-id"))
+              selectedTagNames.push($(tag).html())
+          }
+          })
+        $("#tags").val(selectedTags.join(","))
+        $("#tagNames").val(selectedTagNames.join(","))
+        })
+      $('.tags .label').tooltip({
+          placement:"bottom"
+      })
       var converter1 = Markdown.getSanitizingConverter();
       var editor1 = new Markdown.Editor(converter1);
       editor1.run();

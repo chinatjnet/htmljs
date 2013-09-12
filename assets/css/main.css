@@ -8,7 +8,7 @@
 .module{background:#fff;border-radius:5px;padding:15px 20px;margin-bottom:10px;}.module .hd .right_more{font-size:12px;float:right;padding-right:10px;}
 .module .hd{line-height:30px;color:#333;font-size:16px;height:30px;font-weight:bold;color:#666;}
 .module .bd{font-size:12px;padding:0px;color:#666;}
-#content{width:940px;margin:20px auto;padding-top:50px;}#content .btn{height:30px;border:none;padding:0;background:#5bb793;padding-left:10px;padding-right:10px;border-radius:3px;display:inline-block;color:#fff;line-height:30px;}
+#content{width:940px;margin:20px auto;padding-top:50px;}#content .btn{height:27px;border:none;line-height:30px;padding:0;background:#5bb793;padding-left:10px;padding-right:10px;display:inline-block;color:#fff;line-height:27px;}
 #content .btn:hover{background:#30b380;}
 #content .btn.blue{background:#68a4d1;}
 #gotop{position:fixed;right:50px;bottom:20px;display:block;width:50px;height:50px;background:#aaa;color:#fff;line-height:50px;text-align:center;cursor:pointer;}
@@ -218,6 +218,7 @@
 #qas .qa-item .entry-title .title{font-size:16px;line-height:30px;margin:0;font-weight:normal;}#qas .qa-item .entry-title .title a{color:#333;}
 #qas .qa-item .entry-title .item{font-size:12px;margin-right:20px;}#qas .qa-item .entry-title .item .index{color:#aaa;}
 #qas .qa-item .entry-title .item .value{color:#999;}
+#qas .qa-item .entry-title .tags a{margin-right:5px;}
 #qas .qa-item .entry-title .user{position:absolute;right:10px;top:7px;}#qas .qa-item .entry-title .user a{display:block;}
 #qas .qa-item .entry-title .user img{width:40px;height:40px;}
 #qas .qa-item .entry-content{padding:20px 0;word-break:break-all;color:#404040;}#qas .qa-item .entry-content h1,#qas .qa-item .entry-content h2,#qas .qa-item .entry-content h3,#qas .qa-item .entry-content h4,#qas .qa-item .entry-content h5{font-size:1.5em;}
@@ -225,6 +226,7 @@
 #qa-add{background:#efefef;}
 #qa-add .left{width:650px;float:left;overflow:hidden;}#qa-add .left .module{padding-top:10px;}
 #qa-add .right{width:270px;margin-left:20px;float:left;overflow:hidden;}#qa-add .right .module.count span{font-size:14px;color:#999;padding-right:10px;}
+#qa-add .tags .label{margin:0 3px;cursor:pointer;}
 #qa{background:#efefef;}
 #qa .left{width:650px;float:left;overflow:hidden;}
 #qa .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:20px;}#qa .right .module.count span{font-size:14px;color:#999;padding-right:10px;}
@@ -266,3 +268,16 @@
 #tag .tag-edit{padding-left:10px;}
 #tag .tag-keywords{color:#999;line-height:20px;}
 #tag .tag-desc{color:#666;font-size:12px;margin-top:5px;}
+#tag .qa-list{border:1px solid #f3f3f3;border-radius:5px;overflow:hidden;}
+#tag .qa-item.yooo{background:#F7F7F7;}
+#tag .qa-item.unanswered{background:#f1fff1;border-top:1px solid #deeadd;margin-top:-1px;border-bottom:1px solid #deeadd;}
+#tag .qa-item{background:#fff;padding:10px;position:relative;}#tag .qa-item .tip{position:absolute;right:0;top:0;width:40px;height:16px;font-size:12px;line-height:16px;text-align:center;background:#68a4d1;color:#fff;z-index:10;}
+#tag .qa-item .entry-title{height:50px;position:relative;}#tag .qa-item .entry-title .headpic{float:left;margin-right:20px;}
+#tag .qa-item .entry-title .title{font-size:16px;line-height:30px;margin:0;font-weight:normal;}#tag .qa-item .entry-title .title a{color:#333;}
+#tag .qa-item .entry-title .item{font-size:12px;margin-right:20px;}#tag .qa-item .entry-title .item .index{color:#aaa;}
+#tag .qa-item .entry-title .item .value{color:#999;}
+#tag .qa-item .entry-title .tags a{margin-right:5px;}
+#tag .qa-item .entry-title .user{position:absolute;right:10px;top:7px;}#tag .qa-item .entry-title .user a{display:block;}
+#tag .qa-item .entry-title .user img{width:40px;height:40px;}
+#tag .qa-item .entry-content{padding:20px 0;word-break:break-all;color:#404040;}#tag .qa-item .entry-content h1,#tag .qa-item .entry-content h2,#tag .qa-item .entry-content h3,#tag .qa-item .entry-content h4,#tag .qa-item .entry-content h5{font-size:1.5em;}
+#tag .qa-item .entry-content p{font-size:14px;line-height:20px;margin:10px 0;}

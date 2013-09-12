@@ -34,18 +34,24 @@ html
                     a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
                       |#{question.title}
                   div.others
-                    span.author.vcard.item
-                      span.index 提问者：
-                      a.value.url.fn(rel='author', href='/user/#{question.user_id}') #{question.user_nick}
-                    span.time.item
-                      span.index 时间：
-                      a.value #{moment(question.createdAt).fromNow()}
+                    //
+                      span.author.vcard.item
+                        span.index 提问者：
+                        a.value.url.fn(rel='author', href='/user/#{question.user_id}') #{question.user_nick}
+                    
                     span.views.item
                       span.index View：
                       a.value #{question.visit_count}
                     span.views.item
                       span.index 回答：
                       a.value #{question.answer_count}
+                    if question.tagNames
+                      - var tags = question.tagNames.split(",")
+                      span.tags.item
+                        each tag in tags
+                          a.value(href="/tag/n/#{tag}") #{tag}
+                    span.time.item
+                      a.value #{moment(question.createdAt).fromNow()}
                     if locals.user&&locals.user.is_admin
                       span.views.item
                         span.index 操作：

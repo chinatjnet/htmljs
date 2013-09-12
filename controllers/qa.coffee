@@ -24,6 +24,8 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
+          if req.body.tags
+            func_question.addTagsToQuestion q.id,req.body.tags.split(",")
           (__F 'coin').add 5,res.locals.user.id,"发布了一条问题"
           func_timeline.add 
             who_id:res.locals.user.id
@@ -143,7 +145,7 @@ module.exports.filters =
   "/":
     get:['freshLogin','qa/all-question','qa/hot-question','qa/recent-answers']
   "/add":
-    get:['checkLogin']
+    get:['checkLogin','tag/all-tags']
     post:['checkLogin']
   "/:id/update":
     get:['checkLogin','checkAdmin']
