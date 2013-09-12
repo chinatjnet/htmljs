@@ -19,7 +19,7 @@ html
                 a.tag-name(href="/tag/#{tag.id}") #{tag.name}
                 a.tag-edit(href="/tag/#{tag.id}/edit") <i class="icon-edit icon-gray"></i>
                 .tag-keywords 别名：#{tag.keywords}
-                .tag-desc !{tag.desc.substr(0,200)}
+                .tag-desc !{tag.desc_md.substr(0,200)}
                 .tag-action
                   
 
