@@ -19,7 +19,7 @@ html
               
               h1.title(href='http://p.html-js.com/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
               
-            .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2")}
+            .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2").replace(/<code>/g,"<code class='language-javascript'>")}
             .entry-meta
           .comment.module
             .hd 评论

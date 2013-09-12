@@ -65,6 +65,7 @@ module.exports.controllers =
         else if not question then next new Error '不存在的问题'
         else if !res.locals.user.is_admin && question.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的问题'
         else
+          
           res.locals.question = question
           res.render 'qa/edit-question.jade'
     "post":(req,res,next)->
