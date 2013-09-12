@@ -3,7 +3,7 @@ HtmlJS.util = function(){
   return {
     ajax:function(url,data,type,success,error,btn){
       if(btn){
-        btn.attr("disabled","disabled");
+       btn.prop("disabled",true);
         btn.attr("data-text",btn.html()).html("提交中...")
       }
       $.ajax({
@@ -13,7 +13,7 @@ HtmlJS.util = function(){
         type:type,
         success:function(data){
           if(btn){
-            btn.attr("disabled","");
+            btn.prop("disabled",false);
             btn.html(btn.attr("data-text"))
           }
           if(data.isnotlogin){
@@ -27,7 +27,7 @@ HtmlJS.util = function(){
         },
         error:function(e){
           if(btn){
-            btn.attr("disabled","");
+            btn.prop("disabled",false);
             btn.html(btn.attr("data-text"))
           }
           error(e);

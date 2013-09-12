@@ -213,7 +213,8 @@
 #qas .right .hot_questions .item{border-bottom:1px solid #eee;padding:5px 0;}
 #qas .qa-item.yooo{background:#F7F7F7;}
 #qas .qa-item.unanswered{background:#f1fff1;border-top:1px solid #deeadd;margin-top:-1px;border-bottom:1px solid #deeadd;}
-#qas .qa-item{background:#fff;padding:10px;}#qas .qa-item .entry-title{height:50px;position:relative;}#qas .qa-item .entry-title .headpic{float:left;margin-right:20px;}
+#qas .qa-item{background:#fff;padding:10px;position:relative;}#qas .qa-item .tip{position:absolute;right:0;top:0;width:40px;height:16px;font-size:12px;line-height:16px;text-align:center;background:#68a4d1;color:#fff;z-index:10;}
+#qas .qa-item .entry-title{height:50px;position:relative;}#qas .qa-item .entry-title .headpic{float:left;margin-right:20px;}
 #qas .qa-item .entry-title .title{font-size:16px;line-height:30px;margin:0;font-weight:normal;}#qas .qa-item .entry-title .title a{color:#333;}
 #qas .qa-item .entry-title .item{font-size:12px;margin-right:20px;}#qas .qa-item .entry-title .item .index{color:#aaa;}
 #qas .qa-item .entry-title .item .value{color:#999;}

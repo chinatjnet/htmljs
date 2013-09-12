@@ -3272,7 +3272,8 @@ button.close {
 }
 
 .btn.disabled,
-.btn[disabled] {
+.btn[disabled]
+.btn:disabled {
   cursor: default;
   background-image: none;
   opacity: 0.65;
