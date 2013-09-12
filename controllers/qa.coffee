@@ -63,7 +63,7 @@ module.exports.controllers =
       func_question.getById req.params.id,(error,question)->
         if error then next error
         else if not question then next new Error '不存在的问题'
-        else if question.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的问题'
+        else if !res.locals.user.is_admin && question.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的问题'
         else
           res.locals.question = question
           res.render 'qa/edit-question.jade'
@@ -154,7 +154,7 @@ module.exports.filters =
   "/:id":
     get:['freshLogin','qa/get-answers']
   "/:id/edit":
-    get:['checkLogin']
+    get:['checkLogin','tag/all-tags']
     post:['checkLogin']
   "/answer/:id/edit":
     get:['checkLogin']

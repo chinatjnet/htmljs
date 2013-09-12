@@ -20,40 +20,75 @@ html
   body#qa-add
     - locals.pageId=7;
     include ../header
-    #content
-      form.form-horizontal#form(method='post')
-        fieldset
-          legend 编辑问题
-          .control-group
-            input(type="hidden",name="id",value="#{question.id}")
-            input#title(type='text', name='title', placeholder='简单描述',value="#{question.title}")
-          .control-group
-            .wmd-panel
-              #wmd-button-bar
-              textarea.wmd-input#wmd-input(name="md",placeholder='详细问题') #{question.md}
-              .wmd-panel.wmd-preview
-                div 预览
-                #wmd-preview
-          .control-group
-            button.btn(type='submit') 发表
-      #myModal.modal.hide.fade.
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">插入图片</h3>
-        </div>
-        <div class="modal-body">
-            <input type="file" name="pic" id="file" />
-        </div>
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-          <button class="btn btn-primary">插入</button>
-        </div>
+    #content.clearfix
+      .left
+        .module
+          form.form-horizontal#form(method='post')
+            fieldset
+              legend 编辑问题
+              .control-group
+                input(type="hidden",name="id",value="#{question.id}")
+                input#title(type='text', name='title', placeholder='简单描述',value="#{question.title}")
+              .control-group
+                .wmd-panel
+                  #wmd-button-bar
+                  textarea.wmd-input#wmd-input(name="md",placeholder='详细问题') #{question.md}
+                  .wmd-panel.wmd-preview
+                    div 预览
+                    #wmd-preview
+              if locals.tags
+                .control-group
+                  .tags
+                    input#tags(type="hidden",name="tags",value="")
+                    input#tagNames(type="hidden",name="tagNames",value="")
+                    span.tags-hd 问题标签：
+                    span.tags-bd 
+                      each tag,i in tags
+                        span.label(data-id="#{tag.id}",data-original-title="#{tag.desc}",title="#{tag.desc}") #{tag.name}
+                      a(href="/tag/add",target="_blank",style="padding-left:10px;font-size:12px;") 添加新标签
+              .control-group
+                button.btn(type='submit') 发表
+          #myModal.modal.hide.fade.
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">插入图片</h3>
+            </div>
+            <div class="modal-body">
+                <input type="file" name="pic" id="file" />
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+              <button class="btn btn-primary">插入</button>
+            </div>
+      .right 
+        .module
+          .hd 提示
+          .bd 
+            div 标题中需带有问号和疑问语气。
+            div 可以使用markdown语法，可以插入图片。
+            div 分享到微博可以让更多人关注并回答问题。
+            div 提问前请阅读：<a href="/qa/7" target="_blank">问答系统指南</a>
+    include ../footer
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
     script
-      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
-      $("#login_popup").css({left:$(window).width()/2-125})
+      $(".tags .label").click(function(){
+        $(this).toggleClass("label-success");
+        var selectedTags = []
+        var selectedTagNames=[]
+        $(".tags .label").each(function(i,tag){
+          if($(tag).hasClass("label-success")){
+            selectedTags.push($(tag).attr("data-id"))
+              selectedTagNames.push($(tag).html())
+          }
+          })
+        $("#tags").val(selectedTags.join(","))
+        $("#tagNames").val(selectedTagNames.join(","))
+        })
+      $('.tags .label').tooltip({
+          placement:"bottom"
+      })
       var converter1 = Markdown.getSanitizingConverter();
       var editor1 = new Markdown.Editor(converter1);
       editor1.run();

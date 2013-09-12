@@ -30,10 +30,15 @@ html
             .desc !{question.html.replace(/<code>/g,"<code class='language-javascript'>")}
           .qa-user.clearfix
             .action
-              if locals.user && locals.user.id==question.user_id
+              if locals.user.is_admin || (locals.user && locals.user.id==question.user_id)
                 a(href="/qa/#{question.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
               a#bdshare.bdshare_t.bds_tools.get-codes-bdshare(style="float:none;") 
                 span.bds_more(style="background:none !important;float:none;display:inline;padding:0;") 分享
+              if question.tagNames
+                - var tags = question.tagNames.split(",")
+                span.tags.item
+                  each tag in tags
+                    a.label.value(href="/tag/n/#{tag}") #{tag}
             .user
               img(src="#{question.user_headpic}")
               .nick
