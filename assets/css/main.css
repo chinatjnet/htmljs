@@ -227,7 +227,8 @@
 #qa-add .left{width:650px;float:left;overflow:hidden}#qa-add .left .module{padding-top:10px}
 #qa-add .left .control-group{width:610px}
 #qa-add .right{width:270px;margin-left:20px;float:left;overflow:hidden}#qa-add .right .module.count span{font-size:14px;color:#999;padding-right:10px}
-#qa-add .tags .label{margin:0 3px;cursor:pointer}
+#qa-add .tags-hd{float:left}
+#qa-add .tags .label{float:left;margin:0 3px;cursor:pointer;margin-bottom:5px}
 #qa{background:#efefef}
 #qa .left{width:650px;float:left;overflow:hidden}
 #qa .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:20px}#qa .right .module.count span{font-size:14px;color:#999;padding-right:10px}
