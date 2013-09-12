@@ -44,9 +44,9 @@ module.exports.controllers =
       feed = new RSS
         title: "前端乱炖，前端人才资源学习资源集散地",
         description: "前端乱炖，前端人才资源学习资源集散地",
-        feed_url: 'http://www.html-js.com/rss.xml',
-        site_url: 'http://www.html-js.com',
-        image_url: 'http://www.html-js.com/icon.png',
+        feed_url: 'http://f2e.html-js.com/rss.xml',
+        site_url: 'http://f2e.html-js.com',
+        image_url: 'http://f2e.html-js.com/icon.png',
         author: "芋头"
       func_article.getAll 1,20,null,(error,articles)->
         if error then next error
@@ -64,9 +64,9 @@ module.exports.controllers =
       feed = new RSS
         title: "前端乱炖，前端人才资源学习资源集散地",
         description: "前端乱炖，前端人才资源学习资源集散地",
-        feed_url: 'http://www.html-js.com/rss.xml',
-        site_url: 'http://www.html-js.com',
-        image_url: 'http://www.html-js.com/icon.png',
+        feed_url: 'http://f2e.html-js.com/rss.xml',
+        site_url: 'http://f2e.html-js.com',
+        image_url: 'http://f2e.html-js.com/icon.png',
         author: "芋头"
       func_article.getAll 1,20,null,(error,articles)->
         if error then next error
@@ -137,7 +137,7 @@ module.exports.controllers =
         else
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
-            status:"我在@前端乱炖 的《前端花名册》添加了我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
+            status:"我在@前端乱炖 的《前端花名册》添加了我的名片，欢迎收藏：http://f2e.html-js.com/user/"+res.locals.user.id
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
@@ -208,11 +208,11 @@ module.exports.controllers =
                 sina.statuses.upload 
                   access_token:res.locals.user.weibo_token
                   pic:config.base_path+req.body.pic
-                  status:"我在@前端乱炖 爆料了大神 "+card.nick+" 的真像，求围观，求吐槽！！http://www.html-js.com/card/"+req.params.id
+                  status:"我在@前端乱炖 爆料了大神 "+card.nick+" 的真像，求围观，求吐槽！！http://f2e.html-js.com/card/"+req.params.id
               else
                 sina.statuses.update 
                   access_token:res.locals.user.weibo_token
-                  status:"我在@前端乱炖 爆料了大神 "+card.nick+" 的八卦，求围观，求吐槽，求同扒！！http://www.html-js.com/card/"+req.params.id
+                  status:"我在@前端乱炖 爆料了大神 "+card.nick+" 的八卦，求围观，求吐槽，求同扒！！http://f2e.html-js.com/card/"+req.params.id
             res.redirect 'back'
   "/card/:id/zan":
     post:(req,res,next)->
