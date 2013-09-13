@@ -26,11 +26,15 @@ html
         if locals.questions
           .qa-list
             each question,i in questions
-              .qa-item(class="#{i%2==1?'yooo':''} #{question.answer_count==0?'unanswered':''}")
-                if question.sort == 10000
-                  .tip 置顶
+              .qa-item(class="#{i%2==1?'yooo':''} #{question.answer_count==0?'':''}")
+                
+                
                 .entry-title
                   h1.title
+                    if question.answer_count == 0
+                      span.label.tip.new New
+                    else if question.sort == 10000
+                      span.label.tip.top 置顶
                     a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
                       |#{question.title}
                   div.others

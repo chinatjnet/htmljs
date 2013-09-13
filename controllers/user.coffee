@@ -111,7 +111,7 @@ module.exports.controllers =
         res.send result
   "/":
     get:(req,res,next)->
-      res.render 'me.jade'
+      res.render 'user/index.jade'
   "/:id":
     get:(req,res,next)->
       res.locals.md5 = md5

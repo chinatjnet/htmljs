@@ -59,7 +59,7 @@ background:#efefef;
     padding:10px;
     position: relative;
     .tip{
-      position: absolute;
+      // position: absolute;
       right:0;
       top:0;
       width:40px;
@@ -70,6 +70,13 @@ background:#efefef;
       background: @blue;
       color: #fff;
       z-index: 10;
+      padding:1px 4px;
+      font-weight: normal;
+      font-size: 12px;
+      vertical-align: 2px;
+    }
+    .tip.new{
+      background: #cb7a65;
     }
     .entry-title{
       height:50px;
@@ -79,10 +86,10 @@ background:#efefef;
         margin-right: 20px;
       }
       .title{
-        font-size:16px;
+        font-size:17px;
         line-height: 30px;
         margin:0;
-        
+        font-weight: bold;
         font-weight: normal;
         a{
           color: #333;
@@ -205,7 +212,6 @@ background:#efefef;
     margin-top: 20px;
   }
   .qa-title{
-    height:50px;
     border-bottom: 1px solid #ddd;
     .title{
       font-size: 20px;
