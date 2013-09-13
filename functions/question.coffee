@@ -26,10 +26,18 @@ func_question =
     .error (e)->
       callback e
   addTagsToQuestion:(question_id,tagIds)->
-    tagIds.forEach (tagid)->
-      QuestionTag.create
+    QuestionTag.findAll
+      where:
         questionId:question_id
-        tagId:tagid
+    .success (qts)->
+      qts.forEach (qt)->
+        qt.destroy()
+      tagIds.forEach (tagid)->
+        QuestionTag.create
+          questionId:question_id
+          tagId:tagid
+
+      
   getTagsById:(question_id,callback)->
     
 __FC func_question,Question,['delete','update','add','getAll','count']

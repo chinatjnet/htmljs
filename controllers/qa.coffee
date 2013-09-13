@@ -70,10 +70,12 @@ module.exports.controllers =
           res.render 'qa/edit-question.jade'
     "post":(req,res,next)->
       req.body.html = safeConverter.makeHtml req.body.md
-      func_question.update req.params.id,req.body,(error)->
+      func_question.update req.params.id,req.body,(error,question)->
         if error 
           next error
         else
+          if req.body.tags
+            func_question.addTagsToQuestion question.id,req.body.tags.split(",")
           res.redirect '/qa/'+req.params.id
   "/answer/:id/edit":
     get:(req,res,next)->
