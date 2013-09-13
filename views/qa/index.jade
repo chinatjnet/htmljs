@@ -45,13 +45,14 @@ html
                     span.views.item
                       span.index 回答：
                       a.value #{question.answer_count}
+                    span.time.item
+                      a.value #{moment(question.createdAt).fromNow()}
                     if question.tagNames
                       - var tags = question.tagNames.split(",")
                       span.tags.item
                         each tag in tags
                           a.value(href="/tag/n/#{tag}") #{tag}
-                    span.time.item
-                      a.value #{moment(question.createdAt).fromNow()}
+                    
                     if locals.user&&locals.user.is_admin
                       span.views.item
                         span.index 操作：
