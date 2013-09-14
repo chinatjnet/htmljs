@@ -59,7 +59,7 @@ html
                           a.value(href="/tag/n/#{tag}") #{tag}
                     
                     if locals.user&&locals.user.is_admin
-                      span.views.item
+                      span.actions.item
                         span.index 操作：
                         a(href="/qa/#{question.id}/update?sort=10000") 置顶
                         a(href="/qa/#{question.id}/update?is_hot=1") hot

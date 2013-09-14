@@ -136,11 +136,11 @@
 #articles .left .cats,#article .left .cats{background:#fff;padding:10px;margin-bottom:10px;border-radius:3px}#articles .left .cats a,#article .left .cats a{border-right:1px solid #ddd;padding:0 10px;font-size:16px;color:#999}
 #articles .left .cats a.active,#article .left .cats a.active{color:#333}
 #articles .right,#article .right{float:left;width:250px;margin-left:10px}
-#articles,#me{background:#efefef}#articles .article-list,#me .article-list{margin:0;padding:0}#articles .article-list .post,#me .article-list .post{background:#fff;margin-bottom:30px;padding:20px;border-radius:5px}#articles .article-list .post .entry-title,#me .article-list .post .entry-title{height:50px}#articles .article-list .post .entry-title .headpic,#me .article-list .post .entry-title .headpic{float:left;margin-right:20px}
-#articles .article-list .post .entry-title .title,#me .article-list .post .entry-title .title{font-size:16px;line-height:30px;margin:0;color:#404040;font-weight:normal}
-#articles .article-list .post .entry-title .item,#me .article-list .post .entry-title .item{font-size:12px;margin-right:20px}#articles .article-list .post .entry-title .item .index,#me .article-list .post .entry-title .item .index{color:#aaa}
-#articles .article-list .post .entry-title .item .value,#me .article-list .post .entry-title .item .value{color:#888}
-#articles .article-list .post .entry-content,#me .article-list .post .entry-content{padding:20px 0;word-break:break-all;color:#404040}#articles .article-list .post .entry-content .main_pic,#me .article-list .post .entry-content .main_pic{float:left;max-width:300px;margin-right:20px;margin-bottom:20px}
+#articles,#me{background:#efefef}#articles .article-list,#me .article-list{margin:0;padding:0}#articles .article-list .post,#me .article-list .post{background:#fff;margin-bottom:10px;padding:20px;border-radius:5px}#articles .article-list .post .entry-title,#me .article-list .post .entry-title{height:50px}#articles .article-list .post .entry-title .headpic,#me .article-list .post .entry-title .headpic{float:left;margin-right:20px}
+#articles .article-list .post .entry-title .title a,#me .article-list .post .entry-title .title a{font-size:18px;line-height:30px;margin:0;color:#111;font-weight:normal}
+#articles .article-list .post .entry-title .item,#me .article-list .post .entry-title .item{font-size:12px;margin-right:20px}#articles .article-list .post .entry-title .item .index,#me .article-list .post .entry-title .item .index{color:#bbb}
+#articles .article-list .post .entry-title .item .value,#me .article-list .post .entry-title .item .value{color:#999}
+#articles .article-list .post .entry-content,#me .article-list .post .entry-content{padding:20px 0;word-break:break-all;color:#666}#articles .article-list .post .entry-content .main_pic,#me .article-list .post .entry-content .main_pic{float:left;max-width:300px;margin-right:20px;margin-bottom:20px}
 #articles .article-list .post .entry-content h1,#me .article-list .post .entry-content h1,#articles .article-list .post .entry-content h2,#me .article-list .post .entry-content h2,#articles .article-list .post .entry-content h3,#me .article-list .post .entry-content h3,#articles .article-list .post .entry-content h4,#me .article-list .post .entry-content h4,#articles .article-list .post .entry-content h5,#me .article-list .post .entry-content h5{font-size:1.5em}
 #articles .article-list .post .entry-content p,#me .article-list .post .entry-content p{font-size:14px;line-height:20px;margin:10px 0}
 #act{background:#efefef}#act .module{border-radius:3px}
@@ -211,7 +211,8 @@
 #qas{background:#efefef}#qas .actions{padding-bottom:5px}#qas .actions .right-actions{float:right}#qas .actions .right-actions a{padding:0 10px;line-height:30px;color:#5bb793}
 #qas .actions .right-actions a.active,#qas .actions .right-actions a:hover{color:#666}
 #qas .left{width:650px;float:left;overflow:hidden}
-#qas .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:35px}#qas .right .recent_answers .item{border-bottom:1px solid #eee;padding:5px 0}
+#qas .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:35px}#qas .right a{color:#7fb7a1}
+#qas .right .recent_answers .item{border-bottom:1px solid #eee;padding:5px 0}
 #qas .right .hot_questions .item{border-bottom:1px solid #eee;padding:5px 0}
 #qas .qa-list{border:1px solid #f3f3f3;border-radius:5px;overflow:hidden}
 #qas .qa-item.yooo{background:#f7f7f7}
@@ -223,6 +224,7 @@
 #qas .qa-item .entry-title .title{font-size:17px;line-height:30px;margin:0;font-weight:bold;font-weight:normal}#qas .qa-item .entry-title .title a{color:#333}
 #qas .qa-item .entry-title .item{font-size:12px;margin-right:20px}#qas .qa-item .entry-title .item .index{color:#aaa}
 #qas .qa-item .entry-title .item .value{color:#999}
+#qas .qa-item .entry-title .actions a{margin-right:5px}
 #qas .qa-item .entry-title .tags a{margin-right:5px}
 #qas .qa-item .entry-title .user{position:absolute;right:10px;top:7px}#qas .qa-item .entry-title .user a{display:block}
 #qas .qa-item .entry-title .user img{width:40px;height:40px}
