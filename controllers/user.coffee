@@ -10,9 +10,12 @@ module.exports.controllers =
     get:(req,res,next)->
       res.locals.link = authorize.sina
         app_key:config.sdks.sina.app_key,
-        redirect_uri:config.sdks.sina.redirect_uri+(if req.query.redirect then ("?redirect="+req.query.redirect) else "")
+        redirect_uri:config.sdks.sina.redirect_uri+(if req.query.redirect then ("?redirect="+req.query.redirect) else "?") + (if req.query.mini then "&mini=1" else "")
         client_id:config.sdks.sina.app_key
-      res.render 'login.jade'
+      if req.query.mini 
+        res.render 'minilogin.jade'
+      else
+        res.render 'login.jade'
   "/logout":
     get:(req,res,next)->
       res.cookie '_p', "", 
@@ -26,7 +29,7 @@ module.exports.controllers =
       code = req.query.code
       link = authorize.sina
         app_key:config.sdks.sina.app_key,
-        redirect_uri:config.sdks.sina.redirect_uri
+        redirect_uri:config.sdks.sina.redirect_uri+(if req.query.redirect then ("?redirect="+req.query.redirect) else "?") + (if req.query.mini then "&mini=1" else "")
         client_id:config.sdks.sina.app_key
       _sina=new Sina(config.sdks.sina)
       if !code
@@ -46,7 +49,10 @@ module.exports.controllers =
                   expires: new Date(Date.now() + 1000*60*60*24*7)
                   httpOnly: true
                   domain:"html-js.com"
-                res.redirect req.query.redirect||"/user"
+                if req.query.mini
+                  res.send '<script>parent.window.HtmlJS.util.logincallback&&parent.window.HtmlJS.util.logincallback()</script>'
+                else
+                  res.redirect req.query.redirect||"/user"
               .error (error)->
                 res.send '绑定错误:'+error.message+'，请<a href='+link+'>重新绑定</a>'
             else
@@ -66,7 +72,10 @@ module.exports.controllers =
                         expires: new Date(Date.now() + 1000*60*60*24*7)
                         httpOnly: true
                         domain:"html-js.com"
-                      res.redirect req.query.redirect||"/user"
+                      if req.query.mini
+                        res.send '<script>parent.window.HtmlJS.util.logincallback&&parent.window.HtmlJS.util.logincallback()</script>'
+                      else
+                        res.redirect req.query.redirect||"/user"
   "/connet-card":
     post:(req,res,next)->
       result = 

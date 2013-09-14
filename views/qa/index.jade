@@ -20,7 +20,6 @@ html
             - console.log(locals.filter_is_answered*1===1);
             a(class="#{(locals.filter_answer_count===undefined&&locals.filter_user_id==undefined)?'active':''}",href="/qa") 全部问题
             a(class="#{locals.filter_answer_count==='0'?'active':''}",href="/qa?filter=answer_count|0") 未回答
-            a(class="#{locals.filter_answer_count==='not0'?'active':''}",href="?filter=answer_count|not0") 已回答
             if locals.user
               a(class="#{locals.filter_user_id==user.id?'active':''}",href="?filter=user_id|#{user.id}") 我的提问
         if locals.questions

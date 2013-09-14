@@ -227,6 +227,7 @@ html
       $(".comment-submit").click(function(){
         var con_comments= $(".con-comments[data-answer-id="+$(this).attr("data-answer-id")+"]")
         loadingTip.show("努力提交中")
+          var self = this;
         HtmlJS.util.ajax("/qa/answer/"+$(this).attr("data-answer-id")+"/comment",{content:$($(".comment-content[data-answer-id="+$(this).attr("data-answer-id")+"]")).val()},"post",function(data){
             if(data.success){
               if($(".comment-list .comment-item",con_comments).length==0){
@@ -243,7 +244,27 @@ html
             loadingTip.hide("努力加载中")
           },function(){
             loadingTip.hide("努力加载中")
-          },$(this))
+          },$(this),function(){
+            HtmlJS.util.ajax("/qa/answer/"+$(self).attr("data-answer-id")+"/comment",{content:$($(".comment-content[data-answer-id="+$(self).attr("data-answer-id")+"]")).val()},"post",function(data){
+              if(data.success){
+                if($(".comment-list .comment-item",con_comments).length==0){
+                  $(".comment-list",con_comments).html("")
+                }
+                data.comment.createdAt=moment(data.comment.createdAt).fromNow();
+                  var html = Mustache.render(comment_tpl,data.comment);
+                  
+                  $(".comment-list",con_comments).append(html)
+                  $("textarea",con_comments).val("")
+              }else{
+                alert(data.info)
+              }
+              loadingTip.hide("努力加载中")
+            },function(){
+              loadingTip.hide("努力加载中")
+            },$(this),function(){
+              
+            })
+          })
         })
       $(".fake-form textarea").click(function(){
         $(".fake-form").addClass("hidden")
@@ -284,7 +305,20 @@ html
             }
           },function(){
 
-          },$("#submit"))
+          },$("#submit"),function(){
+            HtmlJS.util.ajax("/qa/#{question.id}/add",$("#form").serialize(),"post",function(data){
+              if(data.success){
+                localStorage.setItem("textarea_qa_#{question.id}","")
+                window.location.href="/qa/#{question.id}"
+              }else{
+                alert(data.info)
+              }
+            },function(){
+
+            },$("#submit"),function(){
+              
+            })
+          })
        
       })
       editor1.hooks.set('insertImageDialog', function(callback) {

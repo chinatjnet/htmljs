@@ -224,10 +224,30 @@
   left:0;
   z-index:10000;
 }
-#login_popup{
+.login_iframe{
+  position:fixed;
+                    top:100px;
+                    width:600px;
+                    height:430px;
+                    
+                    display:block;
+                    border:5px solid @green;
+                    box-shadow: 0 0 5px @green;
+                    z-index:10001;
+                    background: #efefef;
+}
+.login_layer{
+  position: absolute;
+  left:0;
+  top:0;
+  background: #111;
+  opacity: 0.7;
+  z-index:10000;
+}
+.login_popup{
   position:relative;
-  margin:100px auto;
-  width:400px;
+  
+  width:600px;
   height:160px;
   background:#fff;
   border-radius:5px;
@@ -254,7 +274,12 @@
     color:#666;
   }
 }
+#login_popup{
+margin:100px auto;
+}
+#minilogin_popup{
 
+}
 .fb-like{padding-left:20px;}
 
 
