@@ -194,28 +194,33 @@ html
       $(".add_comment").click(function(e){
         e.preventDefault()
         var con_comments= $(".con-comments[data-answer-id="+$(this).attr("data-answer-id")+"]")
-        loadingTip.show("努力加载中")
-        HtmlJS.util.ajax("/qa/answer/"+$(this).attr("data-answer-id")+"/comment",{},"get",function(data){
-            if(data.success){
-              if(data.comments.length>0){
-              $(".comment-list",con_comments).html("")
+        if(con_comments.hasClass("hidden")){
+          loadingTip.show("努力加载中")
+          HtmlJS.util.ajax("/qa/answer/"+$(this).attr("data-answer-id")+"/comment",{},"get",function(data){
+              if(data.success){
+                if(data.comments.length>0){
+                $(".comment-list",con_comments).html("")
+                }else{
+                $(".comment-list",con_comments).html("暂无评论")
+                }
+                data.comments.forEach(function(comment){
+                  comment.createdAt=moment(comment.createdAt).fromNow();
+                  var html = Mustache.render(comment_tpl,comment);
+                  
+                  $(".comment-list",con_comments).append(html)
+                  })
               }else{
-              $(".comment-list",con_comments).html("暂无评论")
+                alert(data.info)
               }
-              data.comments.forEach(function(comment){
-                comment.createdAt=moment(comment.createdAt).fromNow();
-                var html = Mustache.render(comment_tpl,comment);
-                
-                $(".comment-list",con_comments).append(html)
-                })
-            }else{
-              alert(data.info)
-            }
-            con_comments.removeClass("hidden")
+              con_comments.removeClass("hidden")
+                loadingTip.hide("努力加载中")
+            },function(){
               loadingTip.hide("努力加载中")
-          },function(){
-            loadingTip.hide("努力加载中")
-          })
+            })
+        }else{
+          con_comments.addClass("hidden")
+        }
+        
           
         })
       $(".con-comments").click(function(e){
