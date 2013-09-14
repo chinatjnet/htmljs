@@ -135,7 +135,8 @@
 #articles .left .title a,#article .left .title a{overflow:hidden;height:30px;display:block}
 #articles .left .cats,#article .left .cats{background:#fff;padding:10px;margin-bottom:10px;border-radius:3px}#articles .left .cats a,#article .left .cats a{border-right:1px solid #ddd;padding:0 10px;font-size:16px;color:#999}
 #articles .left .cats a.active,#article .left .cats a.active{color:#333}
-#articles .right,#article .right{float:left;width:250px;margin-left:10px}
+#articles .right,#article .right{float:left;width:250px;margin-left:10px}#articles .right a,#article .right a{color:#6fb79b}
+#articles .right .item,#article .right .item{border-bottom:1px solid #eee;padding:5px 0}
 #articles,#me{background:#efefef}#articles .article-list,#me .article-list{margin:0;padding:0}#articles .article-list .post,#me .article-list .post{background:#fff;margin-bottom:10px;padding:20px;border-radius:5px}#articles .article-list .post .entry-title,#me .article-list .post .entry-title{height:50px}#articles .article-list .post .entry-title .headpic,#me .article-list .post .entry-title .headpic{float:left;margin-right:20px}
 #articles .article-list .post .entry-title .title a,#me .article-list .post .entry-title .title a{font-size:18px;line-height:30px;margin:0;color:#111;font-weight:normal}
 #articles .article-list .post .entry-title .item,#me .article-list .post .entry-title .item{font-size:12px;margin-right:20px}#articles .article-list .post .entry-title .item .index,#me .article-list .post .entry-title .item .index{color:#bbb}
@@ -211,7 +212,7 @@
 #qas{background:#efefef}#qas .actions{padding-bottom:5px}#qas .actions .right-actions{float:right}#qas .actions .right-actions a{padding:0 10px;line-height:30px;color:#5bb793}
 #qas .actions .right-actions a.active,#qas .actions .right-actions a:hover{color:#666}
 #qas .left{width:650px;float:left;overflow:hidden}
-#qas .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:35px}#qas .right a{color:#7fb7a1}
+#qas .right{width:270px;margin-left:20px;float:left;overflow:hidden;padding-top:35px}#qas .right a{color:#6fb79b}
 #qas .right .recent_answers .item{border-bottom:1px solid #eee;padding:5px 0}
 #qas .right .hot_questions .item{border-bottom:1px solid #eee;padding:5px 0}
 #qas .qa-list{border:1px solid #f3f3f3;border-radius:5px;overflow:hidden}

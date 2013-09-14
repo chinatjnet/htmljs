@@ -86,7 +86,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
           .bd
             if locals.recents
               each recent in recents
-                div · <a href="/article/#{recent.id}">#{recent.title}</a>
+                div.item <a href="/article/#{recent.id}">#{recent.title}</a>
         .module.text
           .hd 微信公众账号
           .bd
