@@ -33,6 +33,8 @@ html
                   h1.title
                     if question.answer_count == 0
                       span.label.tip.new New
+                    else if question.answer_count >=7
+                      span.label.tip.hot HOT
                     else if question.sort == 10000
                       span.label.tip.top 置顶
                     a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
