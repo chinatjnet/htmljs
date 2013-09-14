@@ -74,7 +74,7 @@ html
                           if locals.user && locals.user.id == ans.user_id
                             a.edit(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
                           a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.comment_count}
-                          a(target="_blank",href="http://service.weibo.com/share/share.php?url=#{encodeURIComponent("http://f2e.html-js.com/qa/"+question.id+"#answer-"+ans.id)}&title=分享自@前端乱炖 的精彩回答【#{question.title}】#{ans.user_nick}：#{ans.md}&appkey=659341943") 分享
+                          a(target="_blank",href="http://service.weibo.com/share/share.php?url=#{encodeURIComponent("http://f2e.html-js.com/qa/"+question.id+"#answer-"+ans.id)}&title=分享自@前端乱炖 的精彩回答【#{question.title}】#{ans.user_nick}：#{ans.md.substr(0,100)}&appkey=659341943") 分享
                           if locals.user&&locals.user.is_admin
                             a(href="/qa/answer/#{ans.id}/update?is_unused=1") 无用
                         .con-comments.hidden(data-answer-id="#{ans.id}")
