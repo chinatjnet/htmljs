@@ -15,7 +15,7 @@
 .group{margin-bottom:10px}
 .group .label{margin:0 5px}
 .pagination{margin-bottom:5px;margin-left:0}.pagination ul{display:inline-block}
-.pagination .total{font-size:12px;display:inline-block;margin-left:10px;vertical-align:top}
+.pagination .total{font-size:14px;display:inline-block;margin-left:10px;vertical-align:top;line-height:23px}
 .table td{font-size:12px;height:18px;padding:0 20px}
 .search input{height:20px}
 .search button{height:25px}
@@ -263,7 +263,7 @@
 #qa .answer-list .answer-item .ans-user img{width:40px;height:40px;float:left}
 #qa .publish legend{margin:0}
 #qa .publish .control-group{margin-top:10px}
-#qa .publish .fake-form{padding-top:10px}#qa .publish .fake-form textarea{width:650px;border-radius:3px}
+#qa .publish .fake-form{padding-top:10px}#qa .publish .fake-form textarea{width:600px;border-radius:3px}
 #tags{background:#efefef}#tags .tag-list{margin-top:10px;width:1000px}
 #tags .tag-item{width:270px;display:inline-block;vertical-align:top;background:#fff;padding:15px;border-radius:5px;margin-right:15px;margin-bottom:10px}#tags .tag-item .tag-name{font-size:20px;font-weight:bold;line-height:30px;color:#404040;color:#5bb793}
 #tags .tag-item .tag-edit{padding-left:10px}
@@ -290,7 +290,7 @@
 #user{background:#efefef}#user .top-info .head-pic{float:left;width:100px;margin:20px 0}
 #user .my_card{float:left;width:800px;margin:20px 0}#user .my_card .item{margin-right:50px;margin-bottom:20px;font-size:13px;padding-left:5px;line-height:18px}#user .my_card .item .key{color:#404040;padding-right:10px}
 #user .my_card .item .value{color:#999}
-#user .my_card .sns{margin-left:10px}#user .my_card .sns a{padding-left:5px}
+#user .my_card .sns a{padding-left:5px}
 #user .my_card .sns .blog{background:url(http://htmljs.b0.upaiyun.com/images/icon-blog.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden}
 #user .my_card .sns .github{background:url(http://htmljs.b0.upaiyun.com/images/github.png) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden}
 #user .my_card .sns .weibo{background:url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden}
