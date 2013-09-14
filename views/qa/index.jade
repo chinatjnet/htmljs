@@ -32,7 +32,7 @@ html
                   h1.title
                     if question.answer_count == 0
                       span.label.tip.new New
-                    else if question.answer_count >=7
+                    else if question.answer_count >=7 || question.is_hot
                       span.label.tip.hot HOT
                     else if question.sort == 10000
                       span.label.tip.top 置顶
@@ -62,6 +62,8 @@ html
                       span.views.item
                         span.index 操作：
                         a(href="/qa/#{question.id}/update?sort=10000") 置顶
+                        a(href="/qa/#{question.id}/update?is_hot=1") hot
+                        a(href="/qa/#{question.id}/update?is_hot=0") nohot
                   div.user
                     a(data-original-title="#{question.user_nick}")
                       img(src="#{question.user_headpic}")

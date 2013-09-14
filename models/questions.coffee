@@ -15,6 +15,9 @@ module.exports =
   is_answered:
     type:"tinyint"
     defaultValue:0
+  is_hot:
+    type:"tinyint"
+    defaultValue:0
   sort:
     type:"int"
     defaultValue:0
