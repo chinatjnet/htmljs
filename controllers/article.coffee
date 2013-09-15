@@ -137,7 +137,7 @@ module.exports.controllers =
             target_url:"/article/"+article.id
             target_name:article.title
             action:"发表了专栏文章："
-            desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300)..replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+            desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
         res.send result
   "/:id":
     "get":(req,res,next)->
