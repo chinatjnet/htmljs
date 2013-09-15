@@ -61,7 +61,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
               .entry-content.clearfix 
                 if article.main_pic
                   img.main_pic(src="#{article.main_pic}")
-                |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")}
+                |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
         include page
       .right
         .actions.module

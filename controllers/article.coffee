@@ -70,7 +70,7 @@ module.exports.controllers =
             target_url:"/read/"+article.id
             target_name:article.title
             action:"收藏了文章："
-            desc:article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
+            desc:article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
         res.send result
   "/online_to_local":
     "post":(req,res,next)->
