@@ -281,8 +281,6 @@ html
         $(".real-form").removeClass("hidden")
         $(".real-form textarea").focus();
       }
-      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
-      $("#login_popup").css({left:$(window).width()/2-125})
       var converter1 = Markdown.getSanitizingConverter();
       var editor1 = new Markdown.Editor(converter1);
       editor1.run();

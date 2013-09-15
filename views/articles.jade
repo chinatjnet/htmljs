@@ -44,8 +44,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                 div.others
                   span.author.vcard.item
-                    span.index #{article.quote_url?"推荐者":"作者"}：
-                    a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+                    span.index From：
+                    a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}的专栏
                   span.time.item
                     span.index 时间：
                     a.value #{moment(article.publish_time*1000).format("LLL")}
@@ -58,6 +58,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   if article.quote_url
                     span.views.item
                       a.value(href="#{article.quote_url}",target="_blank") 原文链接
+                  if locals.user && (user.is_admin||user.id==article.user_id)
+                    span.views.item
+                      a.value(href="/article/#{article.id}/edit") 编辑
               .entry-content.clearfix 
                 if article.main_pic
                   img.main_pic(src="#{article.main_pic}")
@@ -65,35 +68,39 @@ html(xmlns:wb='http://open.weibo.com/wb')
         include page
       .right
         .actions.module
-          a.publish(href="/article/add",data-original-title="") 添加文章
+          a.btn(href="/article/add",data-original-title="",style="margin-right:10px;") 
+            i.icon-plus.icon-white
+            |添加文章
 
           a.btn.blue(href="",data-original-title="在发表五篇审核通过的文章后，即可自动成为专栏作者") 成为专栏作者
-        .module.text
-          .hd 订阅和交流
-          .bd
-            p.
-              <wb:follow-button uid="1734409185" type="red_3" width="100%" height="24" ></wb:follow-button>
-              <wb:follow-button uid="1717808700" type="red_3" width="100%" height="24" ></wb:follow-button>
-            p 欢迎加入
-            p 前端乱炖情感群:46532005（千人群）
-            p 前端乱炖技术群：227896607
-            p 前端乱炖求职招聘群：12892863
-            p NodeJS乱炖: 95323225（千人群）
-            p 自由职业者: 275182059
-            p IOS 乱炖: 292062123
+        //
+          .module.text
+            .hd 订阅和交流
+            .bd
+              p.
+                <wb:follow-button uid="1734409185" type="red_3" width="100%" height="24" ></wb:follow-button>
+                <wb:follow-button uid="1717808700" type="red_3" width="100%" height="24" ></wb:follow-button>
+              p 欢迎加入
+              p 前端乱炖情感群:46532005（千人群）
+              p 前端乱炖技术群：227896607
+              p 前端乱炖求职招聘群：12892863
+              p NodeJS乱炖: 95323225（千人群）
+              p 自由职业者: 275182059
+              p IOS 乱炖: 292062123
         .module.recent
           .hd 近期文章
           .bd
             if locals.recents
               each recent in recents
                 div.item <a href="/article/#{recent.id}">#{recent.title}</a>
-        .module.text
-          .hd 微信公众账号
-          .bd
-            img(src="#{assets_head}/images/qrcode.jpg")
-        .module.text
-          .hd 广告
-          .bd 暂无
+        //
+          .module.text
+            .hd 微信公众账号
+            .bd
+              img(src="#{assets_head}/images/qrcode.jpg")
+          .module.text
+            .hd 广告
+            .bd 暂无
     script
       $('.actions a').tooltip({
           placement:"bottom"

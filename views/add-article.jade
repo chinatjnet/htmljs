@@ -10,55 +10,49 @@ html
     script(src='#{assets_head}/js/Markdown.Converter.js')
     script(src='#{assets_head}/js/Markdown.Sanitizer.js')
     script(src='#{assets_head}/js/Markdown.Editor.js')
-    
+    script
+      var article_id = #{locals.article?article.id:0}
     style
       #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
       #insertImageDialog h4 { margin-bottom: 10px; }
       #insertImageDialog input[type=text] { width: 260px; }
       #insertImageDialog .loading-small { display:none; float: left; padding-right: 5px; }
     
-  body
+  body#add-article
     - locals.pageId=1;
+
     include header
-    include article_cats
     #content
-      form.form-horizontal#form(method='post')
-        input(type='hidden', name='is_yuanchuang',value="1")
-        fieldset
-          legend 发表新文章
-          .control-group
-            input#title(type='text', name='title', placeholder='文章标题')
-          .control-group.hidden
-            span 类目：
-            select(name="type")
-              for cat,i in cats
-                option(value="#{i}") #{cat}
-          .control-group
-            .wmd-panel
-              #wmd-button-bar
-              textarea.wmd-input#wmd-input(name="md")
-              .wmd-panel.wmd-preview
-                div 预览
-                #wmd-preview
-          .control-group
-            button.btn#submit(type='submit') 发表
-      #myModal.modal.hide.fade.
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">插入图片</h3>
-        </div>
-        <div class="modal-body">
-            <input type="file" name="pic" id="file" />
-        </div>
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-          <button class="btn btn-primary">插入</button>
-        </div>
-    if !locals.user
-      #layer
-      #login_popup 
-        span 请先用新浪微博登录
-        a(href="/user/login")
+      .module
+        form.form-horizontal#form(method='post')
+          input(type='hidden', name='is_yuanchuang',value="1")
+          fieldset
+            legend #{locals.article?"编辑文章":"发表新文章"}
+            if locals.article
+              input(type="hidden",name="id",value="#{article.id}")
+            .control-group
+              input#title(type='text', name='title', placeholder='文章标题',value="#{locals.article?article.title:''}")
+            .control-group
+              .wmd-panel
+                #wmd-button-bar
+                textarea.wmd-input#wmd-input(name="md",placeholder="文章内容，markdown语法") #{locals.article?article.md:''}
+                .wmd-panel.wmd-preview
+                  div 预览
+                  #wmd-preview
+            .control-group
+              button.btn#submit(type='submit') 发表
+        #myModal.modal.hide.fade.
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">插入图片</h3>
+          </div>
+          <div class="modal-body">
+              <input type="file" name="pic" id="file" />
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button class="btn btn-primary">插入</button>
+          </div>
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
@@ -77,13 +71,22 @@ html
       converter2.hooks.chain("plainLinkText", function (url) {
           return "This is a link to " + url.replace(/^https?:\/\//, "");
       });
+      if(!article_id){
+       $("#wmd-input").val(localStorage.getItem("textarea_article_add"))
+        $("#wmd-input").keyup(function(){
+          localStorage.setItem("textarea_article_add",this.value)
+          })
+      }
+       
       $("#form").submit(function(e){
         e.preventDefault()
         
-        HtmlJS.util.ajax("/article/add",$("#form").serialize(),"post",function(data){
+        HtmlJS.util.ajax("",$("#form").serialize(),"post",function(data){
             if(data.success){
-              alert("发布成功，等待审核中")
+             !article.id&&alert("发布成功，等待审核中")
              window.location.href="/article"
+
+             !article_id&&localStorage.setItem("textarea_article_add","")
             }else{
               alert(data.info)
             }

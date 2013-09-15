@@ -106,7 +106,7 @@ module.exports.controllers =
                 res.send result
   "/add":
     "get":(req,res,next)->
-      
+      if not res.locals.card then next new Error 100,'必须添加花名册后才能发表专栏文章！'
       res.render 'add-article.jade'
     "post":(req,res,next)->
       html = safeConverter.makeHtml req.body.md
@@ -123,6 +123,7 @@ module.exports.controllers =
         is_yuanchuang:1
         is_publish:if res.locals.user.is_admin then 1 else 0
         main_pic:if match then match[1] else null
+        desc:safeConverter.makeHtml req.body.md.substr(0,300)
       result = 
         success:0
       func_article.add data,(error,article)->
@@ -138,6 +139,32 @@ module.exports.controllers =
             target_name:article.title
             action:"发表了专栏文章："
             desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+        res.send result
+  "/:id/edit":
+    "get":(req,res,next)->
+      func_article.getById req.params.id,(error,article)->
+        if error then next error
+        else if res.locals.user.is_admin!=1 && article.user_id != res.locals.user.id then next new Error '没有权限编辑此文章'
+        else
+          res.locals.article = article
+          res.render 'add-article.jade'
+    "post":(req,res,next)->
+      html = safeConverter.makeHtml req.body.md
+      match = html.match(/<img[^>]+?src="([^"]+?)"/)
+      data = 
+        md:req.body.md
+        html:html
+        title:req.body.title
+        publish_time:new Date().getTime()/1000
+        main_pic:if match then match[1] else null
+        desc:safeConverter.makeHtml req.body.md.substr(0,300)
+      result = 
+        success:0
+      func_article.update req.params.id,data,(error,article)->
+        if error 
+          result.info = error.message
+        else
+          result.success = 1
         res.send result
   "/:id":
     "get":(req,res,next)->
@@ -166,6 +193,9 @@ module.exports.controllers =
               res.render 'article.jade'
 module.exports.filters = 
   "/add":
+    get:['checkLogin',"checkCard"]
+    post:['checkLogin',"checkCard"]
+  "/:id/edit":
     get:['checkLogin',"checkCard"]
     post:['checkLogin',"checkCard"]
   "/add/recommend":

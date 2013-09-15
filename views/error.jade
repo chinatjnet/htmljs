@@ -6,4 +6,8 @@ html
       body{text-align:center;padding-top:100px;}
 
   body#404
-    div !{error} <a href="/">返回</a>
+    div !{error} 
+      if locals.code && code ==100
+        |<a href="/add-card">创建名片</a>
+      else
+        |<a href="/">返回首页</a>
