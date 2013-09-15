@@ -33,9 +33,9 @@ app.configure ->
   app.all "*",(req, res, next)->
     res.render '404.jade'
   app.use (err, req, res, next)->
-    console.log err
     res.render 'error.jade'
       error:err.message
+      code:err.code
   
   app.locals.moment= require 'moment'
   app.locals.moment.lang('zh-cn');

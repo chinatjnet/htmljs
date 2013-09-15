@@ -42,6 +42,12 @@ html(xmlns:wb='http://open.weibo.com/wb')
               .entry-title
                 h1.title
                   a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
+                
+              .entry-content.clearfix 
+                if article.main_pic
+                  img.main_pic(src="#{article.main_pic}")
+                |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
+              .entry-foot
                 div.others
                   span.author.vcard.item
                     span.index From：
@@ -61,10 +67,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   if locals.user && (user.is_admin||user.id==article.user_id)
                     span.views.item
                       a.value(href="/article/#{article.id}/edit") 编辑
-              .entry-content.clearfix 
-                if article.main_pic
-                  img.main_pic(src="#{article.main_pic}")
-                |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
         include page
       .right
         .actions.module
