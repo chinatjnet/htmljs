@@ -93,11 +93,16 @@ html
                       span.renling 已被认领
                     else
                       a.renling(data-id="#{card.id}") 认领此名片 
-                a.zan(data-id="#{card.id}")
-                  .icon-heart.icon 
-                  em #{card.zan_count||0}
-                  .icon-eye-open.icon
-                  span #{card.visit_count||0}
+                div.count-infos
+                  a(href="/card/#{card.id}")
+                    .icon-eye-open.icon
+                    span #{card.visit_count||0}
+                  a.zan(data-id="#{card.id}")
+                    .icon-heart.icon 
+                    em #{card.zan_count||0}
+                  a(href="/card/#{card.id}#comment-module")
+                    .icon-comment.icon
+                    span #{card.comment_count||0}
                   
           include page
         .right
