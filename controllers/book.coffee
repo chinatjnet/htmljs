@@ -26,7 +26,7 @@ module.exports.controllers =
           sina=new Sina(config.sdks.sina)
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
-            status:"我在@前端乱炖 免费获得了一本《"+book.title+"》,名额有限，速度来抢！http://t.cn/zQBeZUO"
+            status:"我在@前端乱炖 免费获得了一本《"+book.title+"》,名额有限，速度来抢！http://f2e.html-js.com/book"
           res.redirect 'back'
   "/:id/del":
     get:(req,res,next)->
