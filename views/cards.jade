@@ -110,18 +110,16 @@ html
             .module
               .hd 今日最火
               .bd
-                ol
-                  each hot in hots
-                    li
-                      a(href="/card/#{hot.id}") #{hot.nick}(#{hot.visit_count})
+                each hot in hots
+                  div.item
+                    a(href="/card/#{hot.id}") #{hot.nick}(#{hot.visit_count})
           if locals.recents
             .module
               .hd 最新加入
               .bd
-                ol
-                  each recent in recents
-                    li
-                      a(href="/card/#{recent.id}") #{recent.nick}
+                each recent in recents
+                  .item
+                    a(href="/card/#{recent.id}") #{recent.nick}
           .module.fix-ad
               .hd 广告位
               .bd
