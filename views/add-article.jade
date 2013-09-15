@@ -83,7 +83,7 @@ html
         
         HtmlJS.util.ajax("",$("#form").serialize(),"post",function(data){
             if(data.success){
-             !article.id&&alert("发布成功，等待审核中")
+             if(!article_id) alert("发布成功，等待审核中")
              window.location.href="/article"
 
              !article_id&&localStorage.setItem("textarea_article_add","")
