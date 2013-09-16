@@ -18,27 +18,27 @@ html
       form(action="",method="post")
         fieldset
           label 活动名称
-          input.input-xxlarge(type="text",placeholder="活动名称",name="title")
+          input.input-xxlarge(type="text",placeholder="活动名称",name="title",value="#{locals.act&&act.title}")
           label 人数限制
-          input.input-small(type="number",placeholder="人数限制",name="person_limit")
+          input.input-small(type="number",placeholder="人数限制",name="person_limit",value="#{locals.act&&act.person_limit}")
           label 时间
-          input(type="datetime-local",placeholder="时间",name="time")
+          input(type="datetime-local",placeholder="时间",name="time",value="#{locals.act&&moment(act.time).format("YYYY-MM-DDThh:mm:ss")}")
           label 地址
-          input.input(type="text",placeholder="地址",name="location")
+          input.input(type="text",placeholder="地址",name="location",value="#{locals.act&&act.location}")
           label 地图地址
-          input.input(type="text",placeholder="地图地址",name="map_url")
+          input.input(type="text",placeholder="地图地址",name="map_url",value="#{locals.act&&act.map_url}")
           label banner地址
-          input.input-xxlarge(type="text",placeholder="banner地址",name="banner")
+          input.input-xxlarge(type="text",placeholder="banner地址",name="banner",value="#{locals.act&&act.banner}")
           label 赞助商html
-          textarea.input-xxlarge(placeholder="赞助商html",name="partners")
+          textarea.input-xxlarge(placeholder="赞助商html",name="partners",value="#{locals.act&&act.partners}")
           label 介绍
           .wmd-panel
             #wmd-button-bar
-            textarea.wmd-input#wmd-input(name="desc_md")
+            textarea.wmd-input#wmd-input(name="desc_md") #{locals.act&&act.desc_md}
             .wmd-panel.wmd-preview
               div 预览
               #wmd-preview
-          input#desc_html(type="hidden",name="desc_html")
+          input#desc_html(type="hidden",name="desc_html",value="#{locals.act&&act.desc_html}")
 
           div
             button.btn(type="submit") 提交

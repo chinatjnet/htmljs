@@ -13,7 +13,7 @@ module.exports.controllers =
         else
           result.success = 1
           comments.forEach (comment)->
-            comment.createdAt = moment(comment.createdAt).format("LLL")
+            comment.createdAt = moment(comment.createdAt).fromNow()
           result.comments = comments
         res.send result
   "/add":

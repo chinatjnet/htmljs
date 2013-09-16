@@ -16,6 +16,18 @@ module.exports.controllers =
         if error then next error
         else
           res.redirect '/act'
+  "/:id/edit":
+    get:(req,res,next)->
+      func_act.getById req.params.id,(error,act)->
+        if error then next error
+        else
+          res.locals.act = act
+          res.render 'act/add.jade'
+    post:(req,res,next)->
+      func_act.update req.params.id,req.body,(error,act)->
+        if error then next error
+        else
+          res.redirect '/act'
   "/:id":
     get:(req,res,next)->
       func_act.getById req.params.id,(error,act)->

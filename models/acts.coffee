@@ -9,6 +9,9 @@ module.exports =
   desc_md:"text"
   desc_html:"text"
   banner:"varchar(255)"
+  comment_count:
+    type:"int"
+    defaultValue:0
   is_publish:
     type:"tinyint"
     defaultValue:"0"
