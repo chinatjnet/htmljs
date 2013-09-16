@@ -10,6 +10,9 @@ Question.hasMany Ans,{foreignKey:"question_id"}
 Ans.belongsTo Question,{foreignKey:"question_id"}
 User.hasOne Comment,{foreignKey:"user_id"}
 Comment.belongsTo User,{foreignKey:"user_id"}
+
+Ans.hasMany AnsZanHistory,{foreignKey:"answer_id"}
+AnsZanHistory.belongsTo Ans,{foreignKey:"answer_id"}
 func_answer = 
   addComment:(answer_id,user_id,content,callback)->
     Ans.find
@@ -40,9 +43,12 @@ func_answer =
       callback e
   getByQuestionId:(q_id,page,count,condition,callback)->
     query = 
+      where:
+        question_id:q_id
       offset: (page - 1) * count
       limit: count
-      order: "id+sort desc"
+      order: "zan_count desc,id desc"
+      include:[AnsZanHistory]
     if condition then query.where = condition
     Ans.findAll(query)
     .success (answers)->
@@ -97,18 +103,28 @@ func_answer =
         callback null,ans
     .error (e)->
       callback e
-  addZan:(answerId,userId,callback)->
+  getZan:(answerId,callback)->
+    AnsZanHistory.findAll
+      where:
+        answer_id:answerId
+      include:[User]
+    .success (his)->
+      callback null,his
+    .error (e)->
+      callback e
+  addZan:(answerId,user,callback)->
     AnsZanHistory.find
       where:
         answer_id:answerId
-        user_id:userId
+        user_id:user.id
     .success (his)->
       if his
         callback new Error '已经给本回答点过赞了，如果你点上瘾了，那为毛放弃治疗！'
       else
         AnsZanHistory.create
           answer_id:answerId
-          user_id:userId
+          user_id:user.id
+          user_nick:user.nick
         Ans.find
           where:
             id:answerId

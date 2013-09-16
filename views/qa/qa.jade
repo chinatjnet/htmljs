@@ -60,7 +60,10 @@ html
                           img(src="#{ans.user_headpic}")
                           //.nick #{ans.user_nick}
                           //.time #{moment(ans.createdAt).fromNow()}
-                        a.zan(href="#",data-id="#{ans.id}") 
+                        - var zanHistory = "";
+                        - if(ans.answerZanHistory){ans.answerZanHistory.forEach(function(his){zanHistory+=his.user_nick+"，";})};
+                        - if(zanHistory.length>0){zanHistory=zanHistory.substr(0,zanHistory.length-1)}
+                        a.zan(href="#",data-id="#{ans.id}",data-original-title="此回答被 #{zanHistory} 赞过") 
                           
                           |<i class="icon-thumbs-up"></i>
                           em #{ans.zan_count||0}
@@ -169,6 +172,9 @@ html
     script(src='#{assets_head}/js/mustache.js')
     script(src='#{assets_head}/js/moment.js')
     script
+      $('.zan').tooltip({
+          placement:"bottom"
+      })
       var comment_tpl = $("#comment-tpl").html()
       $(".zan").click(function(e){
         e.preventDefault();

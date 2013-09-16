@@ -117,10 +117,21 @@ module.exports.controllers =
           result.success = 1
         res.send result
   "/answer/:id/zan":
+    get:(req,res,next)->
+      result = 
+        success:0
+      func_answer.getZan req.params.id,(error,his)->
+        console.log his
+        if error
+          result.info = error.message
+        else
+          result.success = 1
+          result.users = his.users
+        res.send result
     post:(req,res,next)->
       result = 
         success:0
-      func_answer.addZan req.params.id,res.locals.user.id,(error,ans)->
+      func_answer.addZan req.params.id,res.locals.user,(error,ans)->
         if error
           result.info = error.message
         else
