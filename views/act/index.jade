@@ -20,7 +20,7 @@ html
             .act-infos
               .ln.act-title 
                 a(href="/act/#{act.id}") #{act.title}
-              .ln.act-time 时间：#{moment(act.time).format("LLL")}
+              .ln.act-time 时间：#{moment(act.time.getTime()-8000*60*60).format("LLL")}
               .ln.act-location 地点：#{act.location}  
               .ln.act-limit 人数上限：#{act.person_limit}
               .ln.act-action 
