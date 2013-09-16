@@ -61,7 +61,7 @@ html
                           //.nick #{ans.user_nick}
                           //.time #{moment(ans.createdAt).fromNow()}
                         - var zanHistory = "";
-                        - if(ans.answerZanHistory){ans.answerZanHistory.forEach(function(his){zanHistory+=his.user_nick+"，";})};
+                        - if(ans.answerZanHistory){ans.answerZanHistory.forEach(function(his){zanHistory+=(his.user_nick||"")+"，";})};
                         - if(zanHistory.length>0){zanHistory=zanHistory.substr(0,zanHistory.length-1)}
                         a.zan(href="#",data-id="#{ans.id}",data-original-title="此回答被 #{zanHistory} 赞过") 
                           
