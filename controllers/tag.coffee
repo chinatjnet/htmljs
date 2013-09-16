@@ -62,6 +62,8 @@ module.exports.controllers =
 module.exports.filters = 
   "/":
     get:['freshLogin','tag/all-tags']
+  "/:id":
+    get:['freshLogin']
   "/add":
     get:["checkLogin"]
     post:["checkLogin"]

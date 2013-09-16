@@ -8,3 +8,6 @@ module.exports =
   qa_count:
     defaultValue:0
     type:"int"
+  comment_count:
+    type:"int"
+    defaultValue:0

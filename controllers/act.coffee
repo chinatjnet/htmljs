@@ -39,8 +39,14 @@ module.exports.controllers =
             res.render 'act/act.jade'
   "/:id/join":
     post:(req,res,next)->
+
       result = 
         success:0
+      if !res.locals.card 
+        result.info = '必须添加花名册并填写真实信息后才能报名，谢谢配合！'
+        result.code = 101
+        res.send result
+        return
       func_act.addJoiner req.params.id,res.locals.user,(error,joiner)->
         if error 
           result.info = error.message
@@ -55,6 +61,9 @@ module.exports.filters =
   "/:id":
     get:['freshLogin']
   "/add":
+    get:['checkLogin','checkAdmin']
+    post:['checkLogin','checkAdmin']
+  "/:id/edit":
     get:['checkLogin','checkAdmin']
     post:['checkLogin','checkAdmin']
   "/:id/join":
