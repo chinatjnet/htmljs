@@ -79,6 +79,14 @@ func_article =
     .error (error)->
       callback error
   getRecent:(callback)->
-    callback null,cache.recent
+    Article.findAll
+      where:
+        is_publish:1
+      order: "id desc"
+      limit:10
+    .success (articles)->
+      callback null,articles
+    .error (error)->
+      callback error
 __FC func_article,Article,['update','count','delete','getById']
 module.exports=func_article

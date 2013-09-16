@@ -203,6 +203,6 @@ module.exports.filters =
     post:['checkLogin',"checkCard"]
   
   "/":
-    get:['freshLogin','getRecent','get_infos']
+    get:['freshLogin','getRecent','get_infos','article/new-comments']
   "/:id":
     get:['freshLogin','getRecent','get_infos']

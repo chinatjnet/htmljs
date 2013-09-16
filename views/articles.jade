@@ -90,6 +90,12 @@ html(xmlns:wb='http://open.weibo.com/wb')
               p 自由职业者: 275182059
               p IOS 乱炖: 292062123
         .module.recent
+          .hd 近期评论
+          .bd
+            if locals.comments
+              each comment in comments
+                div.item #{comment.user_nick}：<a href="/article/#{comment.target_id.split("_")[1]}">!{comment.md.substr(0,70)}</a>
+        .module.recent
           .hd 近期文章
           .bd
             if locals.recents
