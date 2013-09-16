@@ -17,16 +17,16 @@ html
       else
         for act in acts
           .act-item.clearfix
-            .act-pic
-              a(href="/act/#{act.id}")
-                img(src="#{act.banner}")
             .act-infos
-              p.act-title 
+              .ln.act-title 
                 a(href="/act/#{act.id}") #{act.title}
-              p.act-time 时间：#{moment(act.time).format("LLL")}
-              p.act-location 地点：#{act.location}  
-              p.act-action 
-                a(href="/act/#{act.id}") 详情，去报名
+              .ln.act-time 时间：#{moment(act.time).format("LLL")}
+              .ln.act-location 地点：#{act.location}  
+              .ln.act-limit 人数上限：#{act.person_limit}
+              .ln.act-action 
+                a.btn(href="/act/#{act.id}") 
+                  i.icon-arrow-right
+                  |详情，去报名
     p.
       <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
       <script type="text/javascript" id="bdshell_js"></script>
