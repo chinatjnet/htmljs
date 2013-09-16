@@ -106,13 +106,14 @@ html
                   
           include page
         .right
-          if locals.hots
+          if locals.comments
             .module
-              .hd 今日最火
+              .hd 最新评论
               .bd
-                each hot in hots
+                each comment in comments
                   div.item
-                    a(href="/card/#{hot.id}") #{hot.nick}(#{hot.visit_count})
+                    |#{comment.user_nick}：
+                    a(href="/card/#{comment.target_id.split("_")[1]}") #{comment.md.substr(0,70)}
           if locals.recents
             .module
               .hd 最新加入

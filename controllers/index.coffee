@@ -294,7 +294,7 @@ module.exports.filters =
   "/article/add":
     get:['checkLogin',"checkCard"]
   "/cards":
-    get:['freshLogin',"checkCard","card_hot","card_recent"]
+    get:['freshLogin',"checkCard","card_recent","card/new-comments"]
   "/card/:id":
     get:['freshLogin','getBao']
   "/add-card":
