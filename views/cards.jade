@@ -54,8 +54,13 @@ html
           ul.f2er-list
             each card in cards
               li
-                div.head_pic
+                div.head_pic.user
                   img.lazy(data-original='#{card.head_pic||"http://www.gravatar.com/avatar/"+md5(card.email)+"?d=http://ww2.sinaimg.cn/mw690/6663ae3cgw1dw6f3l62w6j.jpg"}', width='50')
+                  if card.sex
+                    if card.sex == '男'
+                      .sex.nan
+                    else
+                      .sex.nv
                 div.infos
                   div
                     span.key 昵称
