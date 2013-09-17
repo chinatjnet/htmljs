@@ -58,10 +58,8 @@ HtmlJS.util = function(){
                   document.body.appendChild(loginLayer)
                   document.body.appendChild(loginIframe)
                 }
-            }else if(data.success){
-            success(data)
-            }else{
-              alert(data.info)
+            }else {
+              success(data)
             }
         },
         error:function(e){
