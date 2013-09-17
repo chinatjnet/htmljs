@@ -50,6 +50,11 @@ module.exports.controllers =
         result.code = 101
         res.send result
         return
+      else if not /[0-9]{11}/.test res.locals.tel
+        result.info = '必须填写有效的手机号后才能报名，谢谢配合！'
+        result.code = 102
+        res.send result
+        return
       func_act.addJoiner req.params.id,res.locals.user,(error,joiner)->
         if error 
           result.info = error.message
