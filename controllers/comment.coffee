@@ -34,7 +34,7 @@ module.exports.controllers =
           result.success = 1
           comment.createdAt = moment(comment.createdAt).format("LLL")
           result.comment = comment
-
+          (__F 'coin').add 1,res.locals.user.id,"添加了评论"
           if match = req.body.target_id.match(/^article_([0-9]*)$/)
             (__F 'article').addComment(match[1])
           else if match = req.body.target_id.match(/^card_([0-9]*)$/)

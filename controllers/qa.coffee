@@ -26,7 +26,7 @@ module.exports.controllers =
           result.success = 1
           if req.body.tags
             func_question.addTagsToQuestion q.id,req.body.tags.split(",")
-          (__F 'coin').add 5,res.locals.user.id,"发布了一条问题"
+          (__F 'coin').add 20,res.locals.user.id,"发布了一条问题"
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
@@ -135,7 +135,7 @@ module.exports.controllers =
         if error
           result.info = error.message
         else
-          (__F 'coin').add 1,ans.user_id,res.locals.user.nick+" 顶了你的回答"
+          (__F 'coin').add 5,ans.user_id,res.locals.user.nick+" 顶了你的回答"
           result.success = 1
           result.answer = ans
         res.send result
