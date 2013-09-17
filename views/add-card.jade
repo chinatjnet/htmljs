@@ -21,14 +21,14 @@ html
               span.label.label-warning 保密
               | ）
             .controls
-              input(type='text', name='name', placeholder='')
+              input(type='text', name='name', placeholder='',required)
           .control-group
             label.control-label
               | 网名，昵称（
               span(style='color: #ff0000;') *
               | ）
             .controls
-              input(type='text', name='nick', placeholder='',value="#{locals.weibo_info&&weibo_info.screen_name}")
+              input(type='text', name='nick', placeholder='',value="#{locals.weibo_info&&weibo_info.screen_name}",required)
           .control-group
             label.control-label
               | 性别（
@@ -62,21 +62,21 @@ html
               span(style='color: #ff0000;') *
               | ）
             .controls
-              input(type='text', name='city', placeholder='',value="#{locals.weibo_info&&weibo_info.location}")
+              input(type='text', name='city', placeholder='',value="#{locals.weibo_info&&weibo_info.location}",required)
           .control-group
             label.control-label
               | 职位（
               span(style='color: #ff0000;') *
               | ）
             .controls
-              input(type='text', name='zhiwei', placeholder='')
+              input(type='text', name='zhiwei', placeholder='',required)
           .control-group
             label.control-label
               | 特长，擅长的技术（
               span(style='color: #ff0000;') *
               | ）
             .controls
-              textarea(name='techang', style='width: 400px; height: 50px;')
+              textarea(name='techang', style='width: 400px; height: 50px;',required)
           .control-group
             label.control-label 博客地址（带上http://）
             .controls
@@ -115,7 +115,7 @@ html
               span.label.label-warning 保密
               | ）
             .controls
-              input(type='text', name='email', placeholder='')
+              input(type='email', name='email', placeholder='',required)
           .control-group
             label.control-label
               | QQ
@@ -125,9 +125,10 @@ html
           .control-group
             label.control-label
               | 手机
+              span(style='color: #ff0000;') *
               span.label.label-warning 保密
             .controls
-              input(type='text', name='tel', placeholder='')
+              input(type='text', name='tel', placeholder='',required)
           .control-group
             label.control-label
               | 收货地址
