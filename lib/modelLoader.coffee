@@ -7,6 +7,7 @@ sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysq
     freezeTableName: true
     charset: 'utf8'
     collate: 'utf8_general_ci'
+  host:config.mysql_host
 )
 module.exports = global.__M= (modelName,defaultMethods)->
   obj = sequelize.define modelName, require path.join config.base_path,"models",modelName+config.script_ext

@@ -37,10 +37,16 @@ html
       #joiners.module
         .hd 报名（#{joiners.length}/#{act.person_limit}）
         .bd 
-          .joiners
+          .joiners.users
             for joiner in joiners
-              a(href="/user/#{joiner.user_id}",target="_blank")
+              a.user(href="/user/#{joiner.user_id}",target="_blank")
                 img(src="#{joiner.user_headpic}",width=50,height=50)
+                if joiner.user
+                  if joiner.user.sex
+                    if joiner.user.sex == '男'
+                      .sex.nan
+                    else
+                      .sex.nv
             if !joiners.length
               div 还没有人报名，快点抢占吧！
           .me-join

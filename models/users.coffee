@@ -13,3 +13,4 @@ module.exports =
     defaultValue:0
     type:"tinyint"
   sex:"varchar(5)"
+  weibo_name:"varchar(50)"

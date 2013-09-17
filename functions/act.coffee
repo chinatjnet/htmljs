@@ -2,6 +2,9 @@ Act = __M 'acts'
 Act.sync()
 ActJoiner = __M 'act_joiners'
 ActJoiner.sync()
+User =__M 'users'
+User.hasMany ActJoiner,{foreignKey:"user_id"}
+ActJoiner.belongsTo User,{foreignKey:"user_id"}
 
 
 func_act = 
@@ -28,6 +31,7 @@ func_act =
     ActJoiner.findAll
       where:
         act_id:act_id
+      include:[User]
     .success (ajs)->
       callback null,ajs
     .error (e)->

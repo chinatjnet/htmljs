@@ -31,8 +31,10 @@ func_user =
             .success ()->
               user.updateAttributes
                 card_id:cardId
+                weibo_name:user.nick
                 nick:card.nick
                 sex:card.sex
+
               .success ()->
                 callback null,user,card
                 
