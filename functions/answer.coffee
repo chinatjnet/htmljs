@@ -13,6 +13,9 @@ Comment.belongsTo User,{foreignKey:"user_id"}
 
 Ans.hasMany AnsZanHistory,{foreignKey:"answer_id"}
 AnsZanHistory.belongsTo Ans,{foreignKey:"answer_id"}
+
+User.hasOne Ans,{foreignKey:"user_id"}
+Ans.belongsTo User,{foreignKey:"user_id"}
 func_answer = 
   addComment:(answer_id,user_id,content,callback)->
     Ans.find
@@ -48,7 +51,7 @@ func_answer =
       offset: (page - 1) * count
       limit: count
       order: "zan_count desc,id desc"
-      include:[AnsZanHistory]
+      include:[AnsZanHistory,User]
     if condition then query.where = condition
     Ans.findAll(query)
     .success (answers)->

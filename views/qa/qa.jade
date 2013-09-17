@@ -58,6 +58,11 @@ html
                       .ans-user.clearfix
                         a.user(href="/user/#{ans.user_id}")
                           img(src="#{ans.user_headpic}")
+                          if ans.user&&ans.user.sex
+                            if ans.user.sex == '男'
+                              .sex.nan
+                            else
+                              .sex.nv
                           //.nick #{ans.user_nick}
                           //.time #{moment(ans.createdAt).fromNow()}
                         - var zanHistory = "";
