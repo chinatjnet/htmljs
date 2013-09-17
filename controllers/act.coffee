@@ -50,7 +50,7 @@ module.exports.controllers =
         result.code = 101
         res.send result
         return
-      else if not /[0-9]{11}/.test res.locals.tel
+      else if not /[0-9]{11}/.test res.locals.card.tel
         result.info = '必须填写有效的手机号后才能报名，谢谢配合！'
         result.code = 102
         res.send result
