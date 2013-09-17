@@ -36,9 +36,17 @@ func_question =
         QuestionTag.create
           questionId:question_id
           tagId:tagid
-
-      
-  getTagsById:(question_id,callback)->
-    
-__FC func_question,Question,['delete','update','add','getAll','count']
+  getAll: (page,count,condition,order,callback)->
+    query = 
+      offset: (page - 1) * count
+      limit: count
+      order: order || "id desc"
+      include:[User]
+    if condition then query.where = condition
+    Question.findAll(query)
+    .success (ms)->
+      callback null,ms
+    .error (e)->
+      callback e
+__FC func_question,Question,['delete','update','add','count']
 module.exports = func_question

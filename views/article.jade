@@ -21,6 +21,7 @@ html
               
             .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2").replace(/<code>/g,"<code class='language-javascript'>")}
             .entry-meta
+              p 本站专栏文章皆为原创，转载请注明出处和本文链接(<a href="http://f2e.html-js.com/article/#{article.id}">http://f2e.html-js.com/article/#{article.id}</a>)，本站和作者保留随时要求删除文章的权利！
           .comment.module
             .hd 评论
             .bd
@@ -79,10 +80,7 @@ html
               if locals.recents
                 each recent in recents
                   div.item <a href="http://p.html-js.com/article/#{recent.id}">#{recent.title}</a>
-          .module.text
-            .hd 微信公众账号
-            .bd
-              img(src="#{assets_head}/images/qrcode.jpg")
+          
       - locals.shareImgs = article.html.match(/img\s*?src=["|'](.*?)["|']/);
       p.
         <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>

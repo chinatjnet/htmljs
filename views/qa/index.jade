@@ -67,6 +67,11 @@ html
                   div.user
                     a(data-original-title="#{question.user_nick}")
                       img(src="#{question.user_headpic}")
+                      if question.user&&question.user.sex
+                        if question.user.sex == '男'
+                          .sex.nan
+                        else
+                          .sex.nv
           include ../page
       .right
         .module
