@@ -1,8 +1,9 @@
+Sequelize = require 'sequelize'
 module.exports = 
   id:"int"
   title:"varchar(200)"
   person_limit:"int"
-  time:"datetime"
+  time:Sequelize.DATE
   location:"varchar(255)"
   map_url:"varchar(1000)"
   partner:"text"

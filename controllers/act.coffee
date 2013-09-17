@@ -1,4 +1,7 @@
 func_act = __F 'act'
+config = require './../config.coffee'
+
+Sina=require("./../lib/sdk/sina.js")
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
@@ -52,6 +55,13 @@ module.exports.controllers =
           result.info = error.message
           res.send result
         else
+          func_act.getById req.params.id,(error,act)->
+            if not error
+              sina=new Sina(config.sdks.sina)
+              sina.statuses.update 
+                access_token:res.locals.user.weibo_token
+                status:"我在@前端乱炖 报名了【"+act.title+"】的活动，欢迎关注：http://f2e.html-js.com/act/"+req.params.id
+          
           result.success = 1
           result.data = joiner
           res.send result
