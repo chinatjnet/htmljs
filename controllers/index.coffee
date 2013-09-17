@@ -138,6 +138,7 @@ module.exports.controllers =
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
             status:"我在@前端乱炖 的《前端花名册》添加了我的名片，欢迎收藏：http://f2e.html-js.com/user/"+res.locals.user.id
+          (__F 'coin').add 40,res.locals.user.id,"创建了名片"
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
