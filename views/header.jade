@@ -18,9 +18,10 @@
               a(href="/cards") 花名册
 
             li(class="#{locals.pageId==5?'active':''}")
-              a(href="/act") 活动平台
-            li(class="#{locals.pageId==6?'active':''}")
-              a(href="/book") 免费送书
+              a(href="/act") 活动
+            //
+              li(class="#{locals.pageId==6?'active':''}")
+                a(href="/book") 免费送书
             
           if locals.user
             ul.right-nav
