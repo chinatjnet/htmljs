@@ -32,6 +32,7 @@ func_user =
               user.updateAttributes
                 card_id:cardId
                 nick:card.nick
+                sex:card.sex
               .success ()->
                 callback null,user,card
                 

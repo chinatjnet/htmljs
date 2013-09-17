@@ -12,3 +12,4 @@ module.exports =
   is_admin:
     defaultValue:0
     type:"tinyint"
+  sex:"varchar(5)"
