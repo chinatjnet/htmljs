@@ -113,7 +113,6 @@ module.exports.controllers =
         else
           result.comment = comment.selectedValues
           result.comment.user = res.locals.user
-          console.log comment
           result.success = 1
         res.send result
   "/answer/:id/zan":
@@ -121,7 +120,6 @@ module.exports.controllers =
       result = 
         success:0
       func_answer.getZan req.params.id,(error,his)->
-        console.log his
         if error
           result.info = error.message
         else

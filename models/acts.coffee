@@ -13,6 +13,9 @@ module.exports =
   comment_count:
     type:"int"
     defaultValue:0
+  visit_count:
+    type:"int"
+    defaultValue:0
   is_publish:
     type:"tinyint"
     defaultValue:"0"

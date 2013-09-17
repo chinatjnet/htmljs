@@ -36,5 +36,6 @@ func_act =
       callback null,ajs
     .error (e)->
       callback e
-__FC func_act,Act,['delete','update','add','getById','getAll','count']
+
+__FC func_act,Act,['delete','update','add','getById','getAll','count','addCount']
 module.exports = func_act

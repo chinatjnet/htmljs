@@ -37,6 +37,8 @@ module.exports.controllers =
         if error then next error
         else
           res.locals.act = act
+          func_act.addCount req.params.id,"visit_count",(error)->
+            
           func_act.getAllJoiners req.params.id,(error,joiners)->
             res.locals.joiners = joiners ||[]
             res.render 'act/act.jade'

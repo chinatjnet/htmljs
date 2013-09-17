@@ -90,4 +90,18 @@ global.__FC = (func,model,methods)->
             callback error
         .error (error)->
           callback error
-          
+    else if m == 'addCount'
+      func.addCount = (id,field,callback)->
+        model.find
+          where:
+            id:id
+        .success (m)->
+          updates = {}
+          updates[field]=m[field]*1+1
+          m.updateAttributes(updates)
+          .success ()->
+            callback&&callback null,m
+          .error (error)->
+            callback&&callback error
+        .error (error)->
+          callback&&callback error

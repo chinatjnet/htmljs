@@ -39,6 +39,8 @@ module.exports.controllers =
             (__F 'article').addComment(match[1])
           else if match = req.body.target_id.match(/^card_([0-9]*)$/)
             (__F 'card').addComment(match[1])
+          else if match = req.body.target_id.match(/^act_([0-9]*)$/)
+            (__F 'act').addCount(match[1],"comment_count")
         res.send result
 
 module.exports.filters = 
