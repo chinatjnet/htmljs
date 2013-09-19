@@ -14,7 +14,17 @@ func_user =
       callback null,user
     .error (error)->
       callback error
- 
+  getByNick:(nick,callback)->
+    User.find
+      where:
+        nick:nick
+    .success (user)->
+      if not user
+        callback new Error '不存在的用户昵称'
+      else
+        callback null,user
+    .error (error)->
+      callback error
   connectCard:(uid,cardId,callback)->
     User.find
       where:

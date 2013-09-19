@@ -1,4 +1,8 @@
 func_comment = __F 'comment'
+func_info = __F 'info'
+func_article = __F 'article'
+func_card = __F 'card'
+func_user = __F 'user'
 pagedown = require("pagedown")
 safeConverter = pagedown.getSanitizingConverter()
 moment = require 'moment'
@@ -35,12 +39,54 @@ module.exports.controllers =
           comment.createdAt = moment(comment.createdAt).format("LLL")
           result.comment = comment
           (__F 'coin').add 1,res.locals.user.id,"添加了评论"
+          match = null
           if match = req.body.target_id.match(/^article_([0-9]*)$/)
-            (__F 'article').addComment(match[1])
+            func_article.addComment(match[1])
+            func_article.getById match[1],(error,article)->
+
+              if article
+                console.log func_info
+                func_info.add 
+                  target_user_id:article.user_id
+                  type:2
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:'/article/'+article.id
+                  action_name:"评论了您的原创文章"
+                  target_path_name:article.title
+                  content:req.body.html
           else if match = req.body.target_id.match(/^card_([0-9]*)$/)
-            (__F 'card').addComment(match[1])
+            func_card.addComment(match[1])
+            func_card.getById match[1],(error,card)->
+              if card
+                func_info.add 
+                  target_user_id:card.user_id
+                  type:2
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:"/card/"+card.id
+                  action_name:"评论了您的名片"
+                  target_path_name:card.nick+"的名片"
+                  content:req.body.html
           else if match = req.body.target_id.match(/^act_([0-9]*)$/)
             (__F 'act').addCount(match[1],"comment_count")
+
+          if atname = req.body.md.match(/\@([^\s]*)/)
+            atname = atname[1]
+            func_user.getByNick atname,(error,user)->
+              if user
+                func_info.add 
+                  target_user_id:user.id
+                  type:6
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:"/"+req.body.target_id.replace("_","/")
+                  action_name:"在评论中提到了你"
+                  target_path_name:"查看出处"
+                  content:req.body.html
         res.send result
 
 module.exports.filters = 

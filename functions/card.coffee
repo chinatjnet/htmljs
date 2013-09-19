@@ -48,7 +48,7 @@ func_card =
     Visit_log.findAll
       where:
         card_id:cardId
-      limit:20
+      limit:30
       order: "updatedAt desc"
     .success (logs)->
       callback null,logs

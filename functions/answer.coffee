@@ -16,8 +16,11 @@ AnsZanHistory.belongsTo Ans,{foreignKey:"answer_id"}
 
 User.hasOne Ans,{foreignKey:"user_id"}
 Ans.belongsTo User,{foreignKey:"user_id"}
+
+func_info = __F 'info'
+func_user  = __F 'user'
 func_answer = 
-  addComment:(answer_id,user_id,content,callback)->
+  addComment:(answer_id,user_id,user_nick,content,callback)->
     Ans.find
       where:
         id:answer_id
@@ -31,6 +34,30 @@ func_answer =
           user_id:user_id
           content:content
         .success (comment)->
+          func_info.add 
+            target_user_id:ans.user_id
+            type:2
+            source_user_id:user_id
+            source_user_nick:user_nick
+            time:new Date()
+            target_path:"/qa/"+ans.question_id+"#answer-"+ans.id
+            action_name:"评论了你的回答"
+            target_path_name:ans.md.replace(/\s/g," ").substr(0,100)
+            content:content
+          if atname = content.match(/\@([^\s]*)/)
+            atname = atname[1]
+            func_user.getByNick atname,(error,user)->
+              if user
+                func_info.add 
+                  target_user_id:user.id
+                  type:6
+                  source_user_id:user_id
+                  source_user_nick:user_nick
+                  time:new Date()
+                  target_path:"/qa/"+ans.question_id+"#answer-"+ans.id
+                  action_name:"在评论中提到了你"
+                  target_path_name:"查看出处"
+                  content:content
           callback null,comment
         .error (e)->
           callback e

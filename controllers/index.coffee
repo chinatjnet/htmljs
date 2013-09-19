@@ -173,7 +173,7 @@ module.exports.controllers =
               res.locals.visitors = visitors
               func_card.addVisit card.id,res.locals.user||null
               if card then res.locals.card = card
-              if card.user_id && res.locals.user
+              if card.user_id && res.locals.user && card.user_id!=res.locals.user.id
                 func_info.add 
                   target_user_id:card.user_id
                   type:1
@@ -181,7 +181,8 @@ module.exports.controllers =
                   source_user_nick:res.locals.user.nick
                   time:new Date()
                   target_path:req.originalUrl
-                  target_path_name:"名片"
+                  action_name:"访问了您的名片"
+                  target_path_name:card.user_nick+"的名片"
                 ,()->
                   console.log 'success'
                 func_article.getByUserIdAndType (card.user_id||-1),1,(error,articles)->

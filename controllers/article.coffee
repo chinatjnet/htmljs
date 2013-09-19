@@ -106,7 +106,7 @@ module.exports.controllers =
                 res.send result
   "/add":
     "get":(req,res,next)->
-      if not res.locals.card then next new Error 100,'必须添加花名册后才能发表专栏文章！'
+      if not res.locals.card then next new Error '必须添加花名册后才能发表专栏文章！',100
       res.render 'add-article.jade'
     "post":(req,res,next)->
       html = safeConverter.makeHtml req.body.md
@@ -186,9 +186,8 @@ module.exports.controllers =
                   source_user_nick:res.locals.user.nick
                   time:new Date()
                   target_path:req.originalUrl
-                  target_path_name:"原创文章:"+article.title
-                ,()->
-                  console.log 'success'
+                  action_name:"访问了您的原创文章"
+                  target_path_name:article.title
               res.locals.article = article
               func_article.addVisit req.params.id,res.locals.user||null
               res.render 'article.jade'

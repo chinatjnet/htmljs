@@ -1,32 +1,47 @@
 #user{
   background: #efefef;
   .top-info{
+    width:950px;
+    background: #fff;
+    border-radius: 5px;
+    .left{
+      float:left;
+    width:680px;
+    }
+    .right{
+      float:left;
+    width:250px;
+    margin-left: 10px;
+    }
+  }
+  .baseinfo{
+    
     .head-pic{
       float:left;
       width:100px;
-      margin:20px 0;
+      height:100px;
+      margin:10px 0;
     }
-  }
-  .my_card{
-    float:left;
-    width:800px;
-    margin:20px 0;
+    .base-info{
+      float:left;
+      width:520px;
+
+    }
     .item{
-      margin-right:50px;
-      margin-bottom: 20px;
-      font-size: 13px;
-      padding-left: 5px;
-      line-height: 18px;
-      .key{
-        color:#404040;
-        padding-right: 10px;
+      margin-top: 7px;
+      color: #eee;
+      width:520px;
+      a{
+        padding:0 5px;
       }
-      .value{
-        color:#999;
+      span{
+        color: #999;
+        padding: 0 5px;
+        display: inline-block;
       }
     }
     .sns{
-    a{padding-left:5px;}
+    a{padding-right:5px;}
     .blog{
       background: url(http://htmljs.b0.upaiyun.com/images/icon-blog.png) no-repeat center center;
       height: 15px;
@@ -52,5 +67,88 @@
       overflow: hidden;
     }
   }
+  }
+  .visit-info{
+    .visitor{
+      float:left;
+      margin-right:5px;
+      margin-bottom:5px;
+      img{
+        width:30px;
+        height:30px;
+      }
+    }
+  }
+  .my_card{
+    width:650px;
+    margin:20px 0;
+    .item{
+      margin-right:50px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      padding-left: 5px;
+      line-height: 18px;
+      word-break:break-all;
+      .key{
+        color:#404040;
+        padding-right: 10px;
+      }
+      .value{
+        color:#999;
+      }
+    }
+    
+  }
+  .main{
+    margin-top: 20px;
+    width:950px;
+    .left{
+      float:left;
+      width:200px;
+
+    }
+    .right{
+      width:740px;
+      float:left;
+      margin-left: 10px;
+    }
+    .nav{
+      a{
+        display: block;
+        line-height: 30px;
+        font-size: 14px;
+        color: #666;
+      }
+      a:hover,a.active{
+        color:@green;
+        font-weight: bold;
+      }
+    }
+    .infos{
+      .info-item {
+        border-top: 1px dotted #eee;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding:10px;
+        .t{
+          color: #999;
+          line-height: 20px;
+        }
+        .con{
+          background: #f3f3f3;
+          border-radius: 3px;
+          padding:10px;
+          color:#666;
+          p{
+            margin:0;
+          }
+        }
+      }
+      .info-item.noread{
+        background: #f8faf7;
+        .con{
+        }
+      }
+    }
   }
 }

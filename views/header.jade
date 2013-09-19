@@ -27,6 +27,7 @@
             ul.right-nav
               li 
                 a(href="/user") #{user.nick}
+                a.unread(href="/user",title="有#{unread_count}条未读消息") #{unread_count}
               li
                 a(href="/user/logout?redirect=#{encodeURIComponent(locals.url)}") 退出
           else
@@ -34,7 +35,7 @@
               li
                 a(href="/user/login?redirect=#{encodeURIComponent(locals.url)}") 登录
 if locals.user && (!locals.user.card_id)
-  #tips(style="width:950px;margin:0 auto;margin-top:40px;")
+  #tips(style="width:940px;margin:0 auto;margin-top:40px;")
     .module
       .bd 
         |您还没有加入 花名册 ，加入花名册后，可以享受更多功能，现在加入，<a href="/add-card">加入花名册</a>。<br/>

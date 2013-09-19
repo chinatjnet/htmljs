@@ -1,7 +1,7 @@
 config = require("./../config.coffee")
 path = require 'path'
 Sequelize = require("sequelize")
-sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysql_password,
+global.sequelize = sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysql_password,
   define:
     underscored: false
     freezeTableName: true

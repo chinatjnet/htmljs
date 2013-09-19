@@ -1,4 +1,5 @@
-func_user = require './../functions/user.coffee'
+func_user = __F 'user'
+func_info = __F 'info'
 md5 = require 'MD5'
 module.exports=(req,res,next)->
     if req.cookies._p
@@ -10,7 +11,10 @@ module.exports=(req,res,next)->
           if user 
             if md5(user.weibo_token)==token
               res.locals.user = user
-              next();
+              func_info.count {target_user_id:user.id,is_read:0},(error,count)->
+                console.log count
+                res.locals.unread_count = count
+                next();
             else
               next();
           else

@@ -1,5 +1,6 @@
 func_user = __F 'user'
 func_card = __F 'card'
+func_info = __F 'info'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js")
 Sina=require("./../lib/sdk/sina.js")
@@ -121,7 +122,8 @@ module.exports.controllers =
         res.send result
   "/":
     get:(req,res,next)->
-      res.render 'me.jade'
+      
+      res.render 'user/index.jade'
   "/:id":
     get:(req,res,next)->
       res.locals.md5 = md5
@@ -138,7 +140,7 @@ module.exports.controllers =
     
 module.exports.filters = 
   "/":
-    get:['checkLogin',"checkCard"]
+    get:['checkLogin',"checkCard",'card/visitors','user/infos']
   "/:id":
     get:['freshLogin']
   "/connet-card":

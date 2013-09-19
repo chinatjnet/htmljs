@@ -1,6 +1,7 @@
 func_question = __F 'question'
 func_timeline = __F 'timeline'
 func_answer = __F 'answer'
+func_info = __F 'info'
 pagedown = require("pagedown")
 safeConverter = pagedown.getSanitizingConverter()
 moment = require 'moment'
@@ -107,12 +108,13 @@ module.exports.controllers =
     "post":(req,res,next)->
       result = 
         success:0
-      func_answer.addComment req.params.id,res.locals.user.id,req.body.content,(error,comment)->
+      func_answer.addComment req.params.id,res.locals.user.id,res.locals.user.nick,req.body.content,(error,comment)->
         if error 
           result.info = error.message
         else
           result.comment = comment.selectedValues
           result.comment.user = res.locals.user
+          
           result.success = 1
         res.send result
   "/answer/:id/zan":
@@ -151,6 +153,16 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
+          func_info.add 
+            target_user_id:q.user_id
+            type:5
+            source_user_id:res.locals.user.id
+            source_user_nick:res.locals.user.nick
+            time:new Date()
+            target_path:"/qa/"+q.id
+            action_name:"回答了您提问的问题"
+            target_path_name:q.title
+            content:req.body.html
         res.send result
 
 module.exports.filters = 

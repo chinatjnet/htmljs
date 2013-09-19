@@ -11,29 +11,12 @@ func_info =
     .error (e)->
       callback e
   add:(data,callback)->
-    if data.type == 1
-      Info.find
-        where:
-          is_read:0
-          target_user_id:data.target_user_id
-          source_user_id:data.source_user_id
-          target_path:data.target_path
+    Info.create(data)
       .success (info)->
-        if info
-          info.updateAttributes(data)
-          .success ()->
-            callback null,info
-          .error (e)->
-            callback e
-        else
-          Info.create(data)
-          .success (info)->
-            callback null,info
-          .error (e)->
-            callback e
+        callback&&callback null,info
       .error (e)->
-        callback e
-
-
-__FC func_info,Info,['getAll','getById','delete','update']
+        callback&&callback e
+  read:(user_id,callback)->
+    sequelize.query 'update infos set is_read = 1 where target_user_id = ?', null, {raw: true},[user_id]
+__FC func_info,Info,['getAll','getById','delete','update','count']
 module.exports = func_info
