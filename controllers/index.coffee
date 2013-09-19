@@ -182,7 +182,7 @@ module.exports.controllers =
                   time:new Date()
                   target_path:req.originalUrl
                   action_name:"【访问】了您的名片"
-                  target_path_name:card.user_nick+"的名片"
+                  target_path_name:card.nick+"的名片"
                 ,()->
                   console.log 'success'
                 func_article.getByUserIdAndType (card.user_id||-1),1,(error,articles)->
