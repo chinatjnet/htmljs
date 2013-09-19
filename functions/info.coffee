@@ -11,6 +11,8 @@ func_info =
     .error (e)->
       callback e
   add:(data,callback)->
+    if data.target_user_id == data.source_user_id
+      return
     Info.create(data)
       .success (info)->
         callback&&callback null,info
