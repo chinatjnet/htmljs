@@ -14,33 +14,14 @@ html(xmlns:wb='http://open.weibo.com/wb')
     include article_cats
     #content.clearfix
       .left
-        //
-          if locals.infos && locals.infos.length
-            .module.infos
-              .hd 你有#{infos.length}条提醒消息
-                a#info_read.right_more(href="") 已阅
-              .bd
-                for info in locals.infos
-                  if info.type == 1
-                  .info-item 
-                    a(href="/user/#{info.source_user_id}") #{info.source_user_nick}
-                    |访问了您的
-                    a(href="#{info.target_path}") #{info.target_path_name} 
-                    |（#{moment(info.time).format("LLL")}）
-        
-        //
-          .cats
-            a(href="/article",class="#{locals.filter_type?'':'active'}") 所有
-            for cat,i in cats
-              a(href="/article?filter=type|#{i}",class="#{locals.filter_type==i?'active':''}") #{cat}
-            a.rss(href="/rss")
-              img(src="#{assets_head}/images/rss.png")
         
         ul.article-list
           each article in articles
             article.post(id="post-#{article.id}")
               .entry-title
                 h1.title
+                  if article.sort == 100000
+                      span.label.tip.top 置顶
                   a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                 
               .entry-content.clearfix 
