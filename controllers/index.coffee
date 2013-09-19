@@ -220,21 +220,22 @@ module.exports.controllers =
     post:(req,res,next)->
       result = 
         success:1
-      func_card.addZan req.params.id,res.locals.user.id,(error,count)->
+      func_card.addZan req.params.id,res.locals.user.id,(error,card)->
         if error 
           result.info = error.message
           result.success = 0
         else
-          func_info.add 
-            target_user_id:req.params.id
-            type:4
-            source_user_id:res.locals.user.id
-            source_user_nick:res.locals.user.nick
-            time:new Date()
-            target_path:"/card/"+req.params.id
-            action_name:"【赞】了您的名片"
-            target_path_name:"我的名片"
-          result.zan_count = count
+          if card.user_id
+            func_info.add 
+              target_user_id:card.user_id
+              type:4
+              source_user_id:res.locals.user.id
+              source_user_nick:res.locals.user.nick
+              time:new Date()
+              target_path:"/card/"+req.params.id
+              action_name:"【赞】了您的名片"
+              target_path_name:"我的名片"
+          result.zan_count = card.zan_count
         res.send result
   "/upload":
     "post":(req,res,next)->

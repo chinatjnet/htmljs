@@ -73,7 +73,7 @@ func_card =
           if card
             card.updateAttributes
               zan_count: if card.zan_count then (card.zan_count+1) else 1
-          callback null,card.zan_count
+          callback null,card
         .error (e)->
           callback e
   addComment:(cardId)->
