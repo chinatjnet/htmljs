@@ -53,7 +53,7 @@ module.exports.controllers =
                   source_user_nick:res.locals.user.nick
                   time:new Date()
                   target_path:'/article/'+article.id
-                  action_name:"评论了您的原创文章"
+                  action_name:"【评论】了您的原创文章"
                   target_path_name:article.title
                   content:req.body.html
           else if match = req.body.target_id.match(/^card_([0-9]*)$/)
@@ -67,7 +67,7 @@ module.exports.controllers =
                   source_user_nick:res.locals.user.nick
                   time:new Date()
                   target_path:"/card/"+card.id
-                  action_name:"评论了您的名片"
+                  action_name:"【评论】了您的名片"
                   target_path_name:card.nick+"的名片"
                   content:req.body.html
           else if match = req.body.target_id.match(/^act_([0-9]*)$/)
@@ -84,7 +84,7 @@ module.exports.controllers =
                   source_user_nick:res.locals.user.nick
                   time:new Date()
                   target_path:"/"+req.body.target_id.replace("_","/")
-                  action_name:"在评论中提到了你"
+                  action_name:"在评论中【提到】了你"
                   target_path_name:"查看出处"
                   content:req.body.html
         res.send result

@@ -41,7 +41,7 @@ func_answer =
             source_user_nick:user_nick
             time:new Date()
             target_path:"/qa/"+ans.question_id+"#answer-"+ans.id
-            action_name:"评论了你的回答"
+            action_name:"【评论】了你的回答"
             target_path_name:ans.md.replace(/\s/g," ").substr(0,100)
             content:content
           if atname = content.match(/\@([^\s]*)/)
@@ -55,7 +55,7 @@ func_answer =
                   source_user_nick:user_nick
                   time:new Date()
                   target_path:"/qa/"+ans.question_id+"#answer-"+ans.id
-                  action_name:"在评论中提到了你"
+                  action_name:"在评论中【提到】了你"
                   target_path_name:"查看出处"
                   content:content
           callback null,comment
@@ -105,7 +105,7 @@ func_answer =
           q.updateAttributes
             answer_count:q.answer_count*1+1
           
-          callback null,ans
+          callback null,q,ans
         .error (e)->
           callback e
     .error (e)->

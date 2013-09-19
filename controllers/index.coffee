@@ -181,7 +181,7 @@ module.exports.controllers =
                   source_user_nick:res.locals.user.nick
                   time:new Date()
                   target_path:req.originalUrl
-                  action_name:"访问了您的名片"
+                  action_name:"【访问】了您的名片"
                   target_path_name:card.user_nick+"的名片"
                 ,()->
                   console.log 'success'
@@ -225,7 +225,15 @@ module.exports.controllers =
           result.info = error.message
           result.success = 0
         else
-
+          func_info.add 
+            target_user_id:req.params.id
+            type:4
+            source_user_id:res.locals.user.id
+            source_user_nick:res.locals.user.nick
+            time:new Date()
+            target_path:"/card/"+req.params.id
+            action_name:"【赞】了您的名片"
+            target_path_name:"我的名片"
           result.zan_count = count
         res.send result
   "/upload":

@@ -136,6 +136,15 @@ module.exports.controllers =
           result.info = error.message
         else
           (__F 'coin').add 5,ans.user_id,res.locals.user.nick+" 顶了你的回答"
+          func_info.add 
+            target_user_id:req.params.id
+            type:4
+            source_user_id:res.locals.user.id
+            source_user_nick:res.locals.user.nick
+            time:new Date()
+            target_path:"/qa/"+ans.question_id+"#answer-"+ans.id
+            action_name:"【赞】了您的回答"
+            target_path_name:ans.md.substr(0,100)
           result.success = 1
           result.answer = ans
         res.send result
@@ -148,7 +157,7 @@ module.exports.controllers =
       req.body.user_headpic = res.locals.user.head_pic
       req.body.user_nick = res.locals.user.nick
       req.body.question_id = req.params.id
-      func_answer.add req.body,(error,q)->
+      func_answer.add req.body,(error,q,ans)->
         if error 
           result.info = error.message
         else
@@ -160,7 +169,7 @@ module.exports.controllers =
             source_user_nick:res.locals.user.nick
             time:new Date()
             target_path:"/qa/"+q.id
-            action_name:"回答了您提问的问题"
+            action_name:"【回答】了您提问的问题"
             target_path_name:q.title
             content:req.body.html
         res.send result
