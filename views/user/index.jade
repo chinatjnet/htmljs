@@ -1,0 +1,137 @@
+!!! 5
+html
+  head
+    include ./../head
+    title 前端乱炖-我
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    
+  body#user
+    - locals.pageId=8;
+    include ./../header
+    #content
+      if locals.card
+        .top-info.clearfix
+          .left
+            .baseinfo.module.clearfix
+              .hd #{card.nick}
+              .bd 
+                
+              .main-info.clearfix
+                .head-pic
+                  img(src="#{user.head_pic}",width="80",height="80")
+                .base-info
+                  .item 
+                    span #{card.city}
+                    |  | 
+                    span #{card.sex}
+                    |  |
+                    span #{card.is_dan}
+                  .item 
+                    span #{card.zhiwei}
+                    |  |
+                    span #{card.gongsi}
+                  .item 
+                    if card.blog || card.github || card.weibo
+                      span.sns
+                        if card.blog
+                          a.blog(href='#{card.blog}', target='_blank',title="博客地址") blog
+                        if card.github
+                          a.github(href='#{card.github}', target='_blank',title="github地址") github
+                        if card.weibo
+                          a.weibo(href='#{card.weibo}', target='_blank',title="微博地址") weibo
+                  .item 
+                    span #{card.desc}
+                  .item 
+                    a#more_info(href="#") 展开更多
+                    if locals.card && locals.card.id == card.id
+                      a(href="/edit-card") 编辑
+              .my_card.hidden
+                .hd 详细信息
+                if locals.card
+                  p.line
+                    span.item
+                      span.key 姓名
+                      span.value #{card.name}
+                    span.item
+                      span.key 昵称
+                      span.value #{card.nick}
+                    span.item
+                      span.key 性别
+                      span.value #{card.sex}
+                    span.item
+                      span.key 感情状况
+                      span.value #{card.is_dan}
+                  p.line
+                    span.item
+                      span.key 城市
+                      span.value #{card.city}
+                    span.item
+                      span.key 职位
+                      span.value #{card.zhiwei}
+                    span.item
+                      span.key 公司
+                      span.value #{card.gongsi}
+                    span.item
+                      span.key 每天工作时长
+                      span.value #{card.shijian}
+                  p.line
+                    span.item
+                      span.key email
+                      span.value #{card.email}
+                    span.item
+                      span.key QQ
+                      span.value #{card.qq}
+                    span.item
+                      span.key 手机号
+                      span.value #{card.tel}
+                  p.line
+                    span.item
+                      span.key 特长
+                      span.value #{card.techang}
+                  p.line
+                    span.item
+                      span.key 简介(工作经历)
+                      span.value #{card.desc}
+          .right
+            .visit-info.module
+              .hd 最近访问（#{locals.card&&card.visit_count||1}）
+              .bd.clearfix
+                div 
+                  if locals.visitors
+                    each visitor in locals.visitors
+                      div.visitor
+                        a(href="/user/#{visitor.user_id}",title="#{visitor.user_nick}")
+                          img(src="#{visitor.user_headpic}")
+      .main.clearfix
+        .left
+          .module.nav
+            .bd
+              a.active() 和我相关的状态
+              a() 消息
+              a() 经验值记录
+              a() 我的专栏
+              a() 我的问答
+
+        .right
+          .infos.module
+            .hd 和我有关的状态
+            .bd
+              if !locals.infos
+                p 暂无动态
+              else
+                each info in infos
+                  .info-item(class="#{info.is_read?'':'noread'}")
+                    .t 
+                      a(href="/user/#{info.source_user_id}") #{info.source_user_nick} 
+                      |  #{info.action_name}：
+                      a(href="#{info.target_path}") #{info.target_path_name}
+                    if info.content
+                      .con !{info.content}
+              include ../page
+
+    include ../footer
+        
+    script
+      $("#more_info").click(function(){
+        $(".my_card").toggleClass("hidden")
+        })
