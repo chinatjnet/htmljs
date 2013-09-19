@@ -120,6 +120,15 @@ module.exports.controllers =
         else
           result.success = 1
         res.send result
+  "/coinhis":
+    get:(req,res,next)->
+      res.render 'user/coinhis.jade'
+  "/myarticles":
+    get:(req,res,next)->
+      res.render 'user/myarticles.jade'
+  "/myqa":
+    get:(req,res,next)->
+      res.render 'user/myqa.jade'
   "/":
     get:(req,res,next)->
       
@@ -140,7 +149,13 @@ module.exports.controllers =
     
 module.exports.filters = 
   "/":
-    get:['checkLogin',"checkCard",'card/visitors','user/infos']
+    get:['checkLogin',"checkCard",'card/visitors','user/infos','user/article-count','user/qa-count']
+  "/coinhis":
+    get:['checkLogin',"checkCard",'card/visitors','user/coinhistories','user/article-count','user/qa-count']
+  "/myarticles":
+    get:['checkLogin',"checkCard",'card/visitors','user/myarticles','user/article-count','user/qa-count']
+  "/myqa":
+    get:['checkLogin',"checkCard",'card/visitors','user/myqa','user/article-count','user/qa-count']
   "/:id":
     get:['freshLogin']
   "/connet-card":

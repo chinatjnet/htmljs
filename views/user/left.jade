@@ -1,0 +1,9 @@
+.module.nav
+  .bd
+    a(href="/user",class="#{user_page_id==1?'active':''}") 和我相关的状态
+      if unread_count
+        |（#{unread_count}）
+    a(class="#{user_page_id==2?'active':''}") 消息
+    a(href="/user/coinhis",class="#{user_page_id==3?'active':''}") 经验值记录（#{user.coin}）
+    a(href="/user/myarticles",class="#{user_page_id==4?'active':''}") 我的专栏（#{article_count}）
+    a(href="/user/myqa",class="#{user_page_id==5?'active':''}") 我的提问（#{qa_count}）

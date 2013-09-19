@@ -1026,7 +1026,6 @@ width:310px;
       a{
 overflow: hidden;
 height: 30px;
-display: block;
       }
       }
     .cats{
@@ -1064,7 +1063,7 @@ display: block;
 #add-article{
   background: #efefef;
 }
-#articles,#me
+#articles
 {
   background: #efefef;
   .article-list{
@@ -1093,7 +1092,30 @@ display: block;
         }
         
       }
-      
+      .tip{
+      // position: absolute;
+      right:0;
+      top:0;
+      width:40px;
+      height:20px;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      background: @blue;
+      color: #fff;
+      z-index: 10;
+      padding:3px 6px;
+      font-weight: normal;
+      font-size: 12px;
+      vertical-align: 2px;
+      margin-right: 5px;
+    }
+    .tip.new{
+      background: #cb7a65;
+    }
+    .tip.hot{
+      background: #f74360;
+    }
     }
     .entry-content{
       padding:10px 0;

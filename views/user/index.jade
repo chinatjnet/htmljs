@@ -7,18 +7,14 @@ html
     
   body#user
     - locals.pageId=8;
+    - locals.user_page_id = 1;
     include ./../header
     #content
       include topinfo
       .main.clearfix
         .left
-          .module.nav
-            .bd
-              a.active() 和我相关的状态
-              a() 消息
-              a() 经验值记录
-              a() 我的专栏
-              a() 我的问答
+
+          include left
 
         .right
           .infos.module
@@ -33,6 +29,7 @@ html
                       a(href="/user/#{info.source_user_id}") #{info.source_user_nick} 
                       |  #{info.action_name}：
                       a(href="#{info.target_path}") #{info.target_path_name}
+                      span.time  #{moment(info.createdAt).fromNow()}
                     if info.content
                       .con !{info.content}
               include ../page

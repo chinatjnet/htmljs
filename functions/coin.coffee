@@ -34,4 +34,5 @@ func_coin =
             callback&&callback e
     .error (e)->
       callback&&callback e
+__FC func_coin,CoinHistory,['getAll','count']
 module.exports = func_coin

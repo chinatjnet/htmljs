@@ -1363,24 +1363,24 @@
             buttons.italic = makeButton("wmd-italic-button", "Italic - Ctrl+I", "icon-italic", bindCommand("doItalic"), group1);
             
             group2 = makeGroup(2);
-            buttons.link = makeButton("wmd-link-button", "Link - Ctrl+L", "icon-link", bindCommand(function (chunk, postProcessing) {
+            buttons.link = makeButton("wmd-link-button", "插入链接 - Ctrl+L", "icon-link", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, false);
             }), group2);
-            buttons.quote = makeButton("wmd-quote-button", "Blockquote - Ctrl+Q", "icon-blockquote", bindCommand("doBlockquote"), group2);
-            buttons.code = makeButton("wmd-code-button", "Code Sample - Ctrl+K", "icon-code", bindCommand("doCode"), group2);
-            buttons.image = makeButton("wmd-image-button", "Image - Ctrl+G", "icon-picture", bindCommand(function (chunk, postProcessing) {
+            buttons.quote = makeButton("wmd-quote-button", "插入块 - Ctrl+Q", "icon-blockquote", bindCommand("doBlockquote"), group2);
+            buttons.code = makeButton("wmd-code-button", "插入代码 - Ctrl+K", "icon-code", bindCommand("doCode"), group2);
+            buttons.image = makeButton("wmd-image-button", "插入图片 - Ctrl+G", "icon-picture", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, true);
             }), group2);
 
             group3 = makeGroup(3);
-            buttons.olist = makeButton("wmd-olist-button", "Numbered List - Ctrl+O", "icon-list", bindCommand(function (chunk, postProcessing) {
+            buttons.olist = makeButton("wmd-olist-button", "数字列表 - Ctrl+O", "icon-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }), group3);
-            buttons.ulist = makeButton("wmd-ulist-button", "Bulleted List - Ctrl+U", "icon-bullet-list", bindCommand(function (chunk, postProcessing) {
+            buttons.ulist = makeButton("wmd-ulist-button", "无序列表 - Ctrl+U", "icon-bullet-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }), group3);
-            buttons.heading = makeButton("wmd-heading-button", "Heading - Ctrl+H", "icon-header", bindCommand("doHeading"), group3);
-            buttons.hr = makeButton("wmd-hr-button", "Horizontal Rule - Ctrl+R", "icon-hr-line", bindCommand("doHorizontalRule"), group3);
+            buttons.heading = makeButton("wmd-heading-button", "标题 - Ctrl+H", "icon-header", bindCommand("doHeading"), group3);
+            buttons.hr = makeButton("wmd-hr-button", "插入一根虚线 - Ctrl+R", "icon-hr-line", bindCommand("doHorizontalRule"), group3);
             
             group4 = makeGroup(4);
             buttons.undo = makeButton("wmd-undo-button", "Undo - Ctrl+Z", "icon-undo", null, group4);
@@ -1392,7 +1392,8 @@
 
             buttons.redo = makeButton("wmd-redo-button", redoTitle, "icon-share-alt", null, group4);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
-
+            group5 = makeGroup(5);
+            buttons.time = makeButton("wmd-time-button", "插入现在的时间", "icon-time", bindCommand("nowTime"), group5);
             if (helpOptions) {
                 group5 = makeGroup(5);
                 group5.className = group5.className + " pull-right";
@@ -2040,7 +2041,12 @@
         chunk.selection = chunk.selection.replace(/\n/g, "\n" + spaces);
 
     };
-
+    commandProto.nowTime = function(chunk, postProcessing){
+        chunk.startTag = "";
+        var d = new Date();
+        chunk.selection = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+        chunk.endTag = "";
+    }
     commandProto.doHeading = function (chunk, postProcessing) {
 
         // Remove leading/trailing whitespace and reduce internal spaces to single spaces.

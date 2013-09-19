@@ -39,6 +39,7 @@
         padding: 0 5px;
         display: inline-block;
       }
+      
     }
     .sns{
     a{padding-right:5px;}
@@ -133,6 +134,10 @@
         .t{
           color: #999;
           line-height: 20px;
+          .time{
+        padding-left: 10px;
+        color:#ccc;
+      }
         }
         .con{
           background: #f3f3f3;
@@ -149,6 +154,63 @@
         .con{
         }
       }
+      .entry-title{
+      padding-bottom: 5px;
+      .headpic{
+        float: left;
+        margin-right: 20px;
+      }
+      .title{
+        margin:0;
+         font-size:14px;
+        line-height: 20px;
+        a{
+          font-size:14px;
+        line-height: 20px;
+        margin:0;
+        color: #333;
+        font-weight: normal;
+        }
+        
+      }
+      .tip{
+      // position: absolute;
+      right:0;
+      top:0;
+      width:40px;
+      height:20px;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      background: @blue;
+      color: #fff;
+      z-index: 10;
+      padding:3px 6px;
+      font-weight: normal;
+      font-size: 12px;
+      vertical-align: 2px;
+      margin-right: 5px;
+    }
+    .tip.new{
+      background: #cb7a65;
+    }
+    .tip.hot{
+      background: #f74360;
+    }
+    }
+    .entry-foot{
+      line-height: 30px;
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+        .index{
+          color:#bbb;
+        }
+        .value{
+          color:#999;
+        }
+      }
+    }
     }
   }
 }

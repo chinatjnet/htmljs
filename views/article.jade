@@ -68,12 +68,13 @@ html
                 a.bds_renren
                 a.shareCount
           .module.count
-            span.views.item
-              span.index View：
-              a.value #{article.visit_count}
-            span.views.item
-              span.index 评论：
-              a.value #{article.comment_count}
+            .item
+              span.views
+                span.index View：
+                a.value #{article.visit_count}
+              span.views
+                span.index 评论：
+                a.value #{article.comment_count}
           .module.recent
             .hd 近期文章
             .bd

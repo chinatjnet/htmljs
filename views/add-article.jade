@@ -36,7 +36,7 @@ html
             .control-group
               .wmd-panel
                 #wmd-button-bar
-                textarea.wmd-input#wmd-input(name="md",placeholder="文章内容，markdown语法") #{locals.article?article.md:''}
+                textarea.wmd-input#wmd-input(name="md",placeholder="文章内容，markdown语法。如果没有写完，可以直接关闭页面，下次打开内容仍然会在。") #{locals.article?article.md:''}
                 .wmd-panel.wmd-preview
                   div 预览
                   #wmd-preview
