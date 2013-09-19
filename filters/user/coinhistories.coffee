@@ -8,7 +8,7 @@ module.exports = (req,res,next)->
       res.locals.total=_count
       res.locals.totalPage=Math.ceil(_count/count)
       res.locals.page = (req.query.page||1)
-      func_coin.getAll page,count,{user_id:res.locals.user.id},"id desc",(error,coinhis)->
+      func_coin.getAll page,count,{user_id:res.locals.user.id},"createdAt desc",(error,coinhis)->
         if error then next error
         else
           res.locals.coinhis = coinhis
