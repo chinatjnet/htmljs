@@ -27,8 +27,8 @@
             ul.right-nav
               li 
                 a(href="/user",title="有#{unread_count}条未读消息") #{user.nick}
-                if locals.unread_count
-                  span.unread(href="/user",) #{unread_count}
+                  if locals.unread_count
+                    span.unread(href="/user",) #{unread_count}
               li
                 a(href="/user/logout?redirect=#{encodeURIComponent(locals.url)}") 退出
           else
