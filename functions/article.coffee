@@ -1,9 +1,11 @@
 
 Article = __M 'articles'
-Article.sync()
+User = __M "users"
 Visit_log = __M 'article_visit_logs'
 Visit_log.sync()
-
+User.hasOne Article,{foreignKey:"user_id"}
+Article.belongsTo User,{foreignKey:"user_id"}
+Article.sync()
 cache = 
   recent:[]
 func_article =  
@@ -12,6 +14,7 @@ func_article =
       offset: (page - 1) * count
       limit: count
       order: "sort desc,id desc"
+      include:[User]
     if condition then query.where = condition
     Article.findAll(query)
     .success (articles)->

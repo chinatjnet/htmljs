@@ -20,8 +20,11 @@ html(xmlns:wb='http://open.weibo.com/wb')
             article.post(id="post-#{article.id}")
               .entry-title
                 h1.title
+                  a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
+                    img(src="#{article.user.head_pic}",width="20")
                   if article.sort == 100000
                       span.label.tip.top 置顶
+                  
                   a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                 
               .entry-content.clearfix 
@@ -92,6 +95,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
             .bd 暂无
     script
       $('.actions a').tooltip({
+          placement:"bottom"
+      })
+      $('.t-user').tooltip({
           placement:"bottom"
       })
       $("#info_read").click(function(e){
