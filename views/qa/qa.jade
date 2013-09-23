@@ -162,13 +162,16 @@ html
               a.bds_douban
               a.bds_renren
               a.shareCount
-        if locals.ehis
+        if locals.ehis 
           .module.edithistory
             .hd 问题修改记录
             .bd
-              each eh in ehis
-                .item
-                  span 此问题在 <em>#{moment(eh.createdAt).fromNow()}</em> 被 <em>#{eh.user.nick}</em> 修改。<br/>理由：<em>#{eh.reason}</em>
+              if locals.ehis.length
+                each eh in ehis
+                  .item
+                    span 此问题在 <em>#{moment(eh.createdAt).fromNow()}</em> 被 <em>#{eh.user.nick}</em> 修改。<br/>理由：<em>#{eh.reason}</em>
+              else
+                .item 暂无修改记录
     script#comment-tpl(type="text/template")
       .comment-item.clearfix
         div.con 
