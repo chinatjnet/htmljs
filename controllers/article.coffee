@@ -205,4 +205,4 @@ module.exports.filters =
   "/":
     get:['freshLogin','getRecent','get_infos','article/new-comments']
   "/:id":
-    get:['freshLogin','getRecent','get_infos']
+    get:['freshLogin','getRecent','get_infos','article/comments']
