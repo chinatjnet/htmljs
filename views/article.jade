@@ -43,7 +43,8 @@ html
                       span.author.vcard.item
                         a.value.url.fn(rel='author', href='/user/{{user_id}}') {{user_nick}}：
                       | {{{html}}}
-                    .time {{createdAt}}
+                    .time {{createdAt}} 
+                      a.reply(data-nick="{{user_nick}}") 回复
         .right
           div.module.user
             a.headpic
@@ -121,6 +122,10 @@ html
             var comment = data.comments[i]
               var html = Mustache.render(comment_tpl,comment);
               $(".comment-list").append(html)
+              $(".reply").click(function(){
+        $("#comment-text").val("@"+$(this).attr("data-nick")+" ").focus()
+         $("#comment-text")[0].setSelectionRange($("#comment-text")[0].value.length, $("#comment-text")[0].value.length)
+        })
             }
             }else{
             alert(data.info)
@@ -128,6 +133,8 @@ html
             
         }
         })
+
+
       $("#comment-submit").click(function(){
         var text = $("#comment-text").val();
         if(!text){
