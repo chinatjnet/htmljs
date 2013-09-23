@@ -64,7 +64,6 @@ module.exports.controllers =
       func_question.getById req.params.id,(error,question)->
         if error then next error
         else if not question then next new Error '不存在的问题'
-        else if !res.locals.user.is_admin && question.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的问题'
         else
           
           res.locals.question = question
@@ -75,9 +74,12 @@ module.exports.controllers =
         if error 
           next error
         else
-          if req.body.tags
-            func_question.addTagsToQuestion question.id,req.body.tags.split(",")
-          res.redirect '/qa/'+req.params.id
+          if not req.body.reason then next new Error '必须填写修改原因'
+          else
+            func_question.addEditHistory question.id,res.locals.user.id,req.body.reason,(error,qeh)->
+              if req.body.tags
+                func_question.addTagsToQuestion question.id,req.body.tags.split(",")
+              res.redirect '/qa/'+req.params.id
   "/answer/:id/edit":
     get:(req,res,next)->
       func_answer.getByIdWithQuestion req.params.id,(error,ans)->
@@ -185,7 +187,7 @@ module.exports.filters =
   "/answer/:id/update":
     get:['checkLogin','checkAdmin']
   "/:id":
-    get:['freshLogin','qa/get-answers']
+    get:['freshLogin','qa/get-answers','qa/all-edit-history']
   "/:id/edit":
     get:['checkLogin','tag/all-tags']
     post:['checkLogin']

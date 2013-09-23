@@ -30,7 +30,7 @@ html
             .desc !{question.html.replace(/<code>/g,"<code class='language-javascript'>")}
           .qa-user.clearfix
             .action
-              if (locals.user&&locals.user.is_admin) || (locals.user && locals.user.id==question.user_id)
+              if locals.user
                 a(href="/qa/#{question.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
               a#bdshare.bdshare_t.bds_tools.get-codes-bdshare(style="float:none;") 
                 span.bds_more(style="background:none !important;float:none;display:inline;padding:0;") 分享
@@ -162,6 +162,13 @@ html
               a.bds_douban
               a.bds_renren
               a.shareCount
+        if locals.ehis
+          .module.edithistory
+            .hd 问题修改记录
+            .bd
+              each eh in ehis
+                .item
+                  span 此问题在 <em>#{moment(eh.createdAt).fromNow()}</em> 被 <em>#{eh.user.nick}</em> 修改。<br/>理由：<em>#{eh.reason}</em>
     script#comment-tpl(type="text/template")
       .comment-item.clearfix
         div.con 

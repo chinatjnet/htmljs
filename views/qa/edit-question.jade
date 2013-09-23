@@ -10,7 +10,7 @@ html
     script(src='#{assets_head}/js/Markdown.Converter.js')
     script(src='#{assets_head}/js/Markdown.Sanitizer.js')
     script(src='#{assets_head}/js/Markdown.Editor.js')
-    
+    title 编辑问题-前端乱炖
     style
       #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
       #insertImageDialog h4 { margin-bottom: 10px; }
@@ -33,9 +33,12 @@ html
                 .wmd-panel
                   #wmd-button-bar
                   textarea.wmd-input#wmd-input(name="md",placeholder='详细问题') #{question.md}
-                  .wmd-panel.wmd-preview
-                    div 预览
-                    #wmd-preview
+              .control-group
+                input.reason(type="text",name="reason",required,placeholder="编辑原因")
+              .wmd-panel.wmd-preview
+                div 预览
+                #wmd-preview
+
               if locals.tags
                 .control-group
                   .tags
