@@ -96,7 +96,7 @@ module.exports.controllers =
                 if titlematch then t=titlematch[1] 
                 result.data= 
                   url:url
-                  title:(parseResult.title||t).replace(/^\s*|\s*$/,"")
+                  title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
                   content:parseResult.content
                   desc:parseResult.desc
                   real_url:s.request.href
@@ -104,6 +104,40 @@ module.exports.controllers =
                 result.success = 1
                 result.is_realtime = 1 #表示是实时抓取而不是从数据库提取的
                 res.send result
+  "/online_to_storage":
+    "post":(req,res,next)->
+      url = req.body.url.replace(/#.*$/,"") #替换掉符号后的字符
+      result = 
+        success:0
+        info:""
+      #先查找数据中是否已经存在
+      func_article.getByUrl url,(error,art)->
+        if art
+          result.data = art
+          result.success = 1
+          res.send result
+        else
+          request.get url,(e,s,entry)->
+            if e 
+              result.info = e.message
+              res.send result
+            else
+              read.parse entry,"",(parseResult)->
+                titlematch = entry.match(/<title>(.*?)<\/title>/)
+                t = ""
+                if titlematch then t=titlematch[1] 
+                data= 
+                  quote_url:url
+                  title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
+                  html:parseResult.content
+                  desc:parseResult.desc
+                  is_publish:0
+                  is_yuanchuang:0
+                func_article.add data,(error,art)->
+                  result.data = art;
+                  result.success = 1
+                  result.is_realtime = 1 #表示是实时抓取而不是从数据库提取的
+                  res.send result
   "/add":
     "get":(req,res,next)->
       if not res.locals.card then next new Error '必须添加花名册后才能发表专栏文章！',100
