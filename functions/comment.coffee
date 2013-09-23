@@ -6,6 +6,8 @@ func_comment =
       offset: (page - 1) * count
       limit: count
       order: "id desc"
+      where:
+        target_id:target_id
     if condition then query.where = condition
     Comment.findAll(query)
     .success (ms)->
