@@ -1,6 +1,6 @@
 module.exports = 
   id:"int"
-  type:"int" #1=访问 2=评论 3=分享 4=赞 5=回答 6= 提到你
+  type:"int" #1=访问 2=评论 3=分享 4=赞 5=回答 6= 提到你 7 =修改
   source_user_id:"int"
   source_user_nick:"varchar(100)"
   target_user_id:"int"

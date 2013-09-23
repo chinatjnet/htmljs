@@ -77,6 +77,15 @@ module.exports.controllers =
           if not req.body.reason then next new Error '必须填写修改原因'
           else
             func_question.addEditHistory question.id,res.locals.user.id,req.body.reason,(error,qeh)->
+              func_info.add 
+                target_user_id:question.user_id
+                type:7
+                source_user_id:res.locals.user.id
+                source_user_nick:res.locals.user.nick
+                time:new Date()
+                target_path:"/qa/"+question.id
+                action_name:"【修改】了您提问的问题"
+                target_path_name:question.title
               if req.body.tags
                 func_question.addTagsToQuestion question.id,req.body.tags.split(",")
               res.redirect '/qa/'+req.params.id
