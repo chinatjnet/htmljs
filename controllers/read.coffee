@@ -4,39 +4,11 @@ func_timeline = __F 'timeline'
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
-      page = req.query.page || 1
-      count = 20
-      condition = {is_yuanchuang:0}
-      res.locals.cat = "all"
-      func_article.count condition,(error,total)->
-        if error then next error
-        else
-          res.locals.total=total
-          res.locals.totalPage=Math.ceil(total/count)
-          res.locals.page = (req.query.page||1)
-          func_article.getAll page,count,condition,(error,articles)->
-            if error then next error
-            else
-              res.locals.articles = articles
-              res.render 'reads.jade'
-    post:(req,res,next)->
+      res.render 'reads.jade'
+
   "/me":
     get:(req,res,next)->
-      page = req.query.page || 1
-      count = 30
-      condition = {is_yuanchuang:0,user_id:res.locals.user.id}
-      res.locals.cat = "me"
-      func_article.count condition,(error,count)->
-        if error then next error
-        else
-          res.locals.total=count
-          res.locals.totalPage=Math.ceil(count/20)
-          res.locals.page = (req.query.page||1)
-          func_article.getAll page,count,condition,(error,articles)->
-            if error then next error
-            else
-              res.locals.articles = articles
-              res.render 'reads.jade'
+      res.render 'my-reads.jade'
   "/:id":
     "get":(req,res,next)->
       
@@ -48,17 +20,7 @@ module.exports.controllers =
             if error then next error
             else if not article then next new Error '不存在的阅读'
             else
-              if article.user_id && res.locals.user
-                func_info.add 
-                  target_user_id:article.user_id
-                  type:1
-                  source_user_id:res.locals.user.id
-                  source_user_nick:res.locals.user.nick
-                  time:new Date()
-                  target_path:req.originalUrl
-                  target_path_name:" 收藏的文章:"+article.title
-                ,()->
-                  console.log 'success'
+              
               res.locals.article = article
               func_article.addVisit req.params.id,res.locals.user||null
               res.render 'read.jade'
@@ -93,8 +55,10 @@ module.exports.controllers =
             desc:article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
         res.send result
 module.exports.filters = 
+  '/':
+    get:['freshLogin','read/all-reads']
   "/me":
-    get:['checkLogin','checkCard']
+    get:['checkLogin','read/my-reads']
     post:[]
   "/:id":
     get:['freshLogin']

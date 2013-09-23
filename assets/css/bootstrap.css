@@ -3988,7 +3988,7 @@ input[type="submit"].btn.btn-mini {
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
   color: #ffffff;
-  background-color: #0088cc;
+  background-color: #5bb793;
 }
 
 .nav-list [class^="icon-"],
@@ -4085,7 +4085,7 @@ input[type="submit"].btn.btn-mini {
 .nav-pills > .active > a:hover,
 .nav-pills > .active > a:focus {
   color: #ffffff;
-  background-color: #0088cc;
+  background-color: #5bb793;
 }
 
 .nav-stacked > li {

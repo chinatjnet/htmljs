@@ -7,15 +7,7 @@ html
       #bdshare a{}
   body#read
     - locals.pageId=4;
-    header
-      a.logo(href="/read") 
-        img(src="#{assets_head}/images/suiyue-logo.png",width=150)
-      .actions
-          a(href="/read",class="cat #{locals.cat=='all'?'active':''}") 大家在读
-          a(href="/read/me",class="cat #{locals.cat!='all'?'active':''}") 我的阅读
-          a(href="/") 回->前端乱炖
-          //a.publish(href="javascript:window.location.href='http://www.html-js.com/read/add/recommend?url='+encodeURIComponent(window.location.href);",data-original-title="收集按钮，拖动到浏览器收藏栏，看到喜欢的文章点击即可收藏") 收集到前端乱炖
-          //a(href="https://chrome.google.com/webstore/detail/%E5%89%8D%E7%AB%AF%E4%B9%B1%E7%82%96-%E9%98%85%E8%AF%BB%E6%94%B6%E8%97%8F%E5%B7%A5%E5%85%B7/lehlponmkllmkdnkcehbpbofldpmklki",target="_blank",style="padding-left:10px;") chrome插件版收藏工具
+    include header
     #content.clearfix
       if !article
         p.alert 不存在的阅读篇章

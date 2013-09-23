@@ -41,9 +41,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
       //-   include page
       .actions.clearfix
         ul.nav.nav-pills.left-actions
-          li.active
-            a(href="/read") 大家的收藏
           li
+            a(href="/read") 大家的收藏
+          li.active
             a(href="/read/me") 我的收藏
         .right-actions
           a.btn(href="/read/add/recommend") 
@@ -53,8 +53,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
         #canvas
          
         ul.article-list.left-list
-          if all_reads.length
-            each article,index in all_reads
+          if my_reads.length
+            each article,index in my_reads
               if index%2==1
                 article.post(id="post-#{article.id}",class="#{index%2==1?'left-post':'right-post'}")
                   .entry-title
@@ -78,8 +78,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
                       img(src="#{article.user_headpic}")
                     .time #{moment(article.createdAt).fromNow()}
         ul.article-list.right-list
-          if all_reads.length
-            each article,index in all_reads
+          if my_reads.length
+            each article,index in my_reads
               if index%2==0
                 article.post(id="post-#{article.id}",class="#{index%2==1?'left-post':'right-post'}")
                   .entry-title

@@ -1,6 +1,6 @@
 module.exports = (req,res,next)->
   condition = 
-    is_yuanchuang:1
+    is_yuanchuang:0
   page = req.query.page || 1
   count = req.query.count || 30
   (__F 'read').count condition,(error,_count)->
@@ -12,5 +12,5 @@ module.exports = (req,res,next)->
       (__F 'read').getAll page,count,condition,(error,articles)->
         if error then next error
         else
-          res.locals.articles = articles
+          res.locals.all_reads = articles
           next()
