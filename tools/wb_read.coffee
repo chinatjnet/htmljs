@@ -37,7 +37,7 @@ check = ()->
 
                 if status.text.indexOf('mark') !=-1
                   console.log text
-                  urls = text.match /http:\/\/t\.cn\/[^ $]*/
+                  urls = text.match /http:\/\/t\.cn\/[^ ]*/
                   if urls
                     url = urls[0]
                   if not url
@@ -117,7 +117,7 @@ check = ()->
                     text = comment.status.retweeted_status.text
 
                   if comment.text.indexOf('mark') !=-1
-                    urls = text.match /http:\/\/t\.cn\/[^ $]*/
+                    urls = text.match /http:\/\/t\.cn\/[^ ]*/
                     if urls
                       url = urls[0]
                     if not url
