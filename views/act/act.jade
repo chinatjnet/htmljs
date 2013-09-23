@@ -85,6 +85,20 @@ html
             textarea.input-block-level#comment-text(placeholder="参与讨论。支持markdown语法")
             .btn.comment-submit#comment-submit 发表评论
           .comment-list
+            if comments.length
+              each comment in comments
+                .comment-item.clearfix
+                  a.headpic
+                    img(src="#{comment.user_headpic}",width=70,height=70)
+                  .comment-right
+                    div.con 
+                      span.author.vcard.item
+                        a.value.url.fn(rel='author', href='/user/#{comment.user_id}') #{comment.user_nick}：
+                      | !{comment.html}
+                    .time #{moment(comment.createdAt).fromNow()}
+                      a.reply(data-nick="#{comment.user_nick}") 回复
+            else
+              div 暂无评论
       .comment-layer.hidden
         span.count
           i.icon-comment
@@ -168,24 +182,28 @@ html
         $(".comment textarea").focus()
         })
       var comment_tpl = $("#comment-tpl").html()
-      loadingTip.show("评论加载中")
-      $.ajax({
-        url:"/comment/act_#{act.id}",
-        type:"get",
-        dataType:"json",
-        success:function(data){
-          loadingTip.hide("正在提交中")
-            if(data.success){
-            for(var i=0;i<data.comments.length;i++){
-            var comment = data.comments[i]
-              var html = Mustache.render(comment_tpl,comment);
-              $(".comment-list").append(html)
-            }
-            }else{
-            alert(data.info)
-            }
+      //- loadingTip.show("评论加载中")
+      //- $.ajax({
+      //-   url:"/comment/act_#{act.id}",
+      //-   type:"get",
+      //-   dataType:"json",
+      //-   success:function(data){
+      //-     loadingTip.hide("正在提交中")
+      //-       if(data.success){
+      //-       for(var i=0;i<data.comments.length;i++){
+      //-       var comment = data.comments[i]
+      //-         var html = Mustache.render(comment_tpl,comment);
+      //-         $(".comment-list").append(html)
+      //-       }
+      //-       }else{
+      //-       alert(data.info)
+      //-       }
             
-        }
+      //-   }
+      //-   })
+        $(".reply").click(function(){
+        $("#comment-text").val("@"+$(this).attr("data-nick")+" ").focus()
+         $("#comment-text")[0].setSelectionRange($("#comment-text")[0].value.length, $("#comment-text")[0].value.length)
         })
       $("#comment-submit").click(function(){
         var text = $("#comment-text").val();

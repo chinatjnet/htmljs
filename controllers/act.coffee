@@ -76,7 +76,7 @@ module.exports.filters =
   "/":
     get:['freshLogin']
   "/:id":
-    get:['freshLogin']
+    get:['freshLogin','act/comments']
   "/add":
     get:['checkLogin','checkAdmin']
     post:['checkLogin','checkAdmin']
