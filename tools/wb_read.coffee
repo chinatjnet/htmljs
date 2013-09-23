@@ -187,6 +187,6 @@ check = ()->
 
 
 check()
-setInterval check,1000*120
+setInterval check,1000*240
 
 
