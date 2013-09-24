@@ -35,7 +35,7 @@ check = ()->
                 if status.retweeted_status
                   text = status.retweeted_status.text
 
-                if status.text.indexOf('mark') !=-1
+                if status.text.replace(/\/.*$/,"").indexOf('mark') !=-1
                   console.log text
                   urls = text.match /http:\/\/t\.cn\/[^ $]*/
                   if urls
