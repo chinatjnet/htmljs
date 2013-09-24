@@ -73,3 +73,9 @@ HtmlJS.util = function(){
     }
   }
 }();
+
+$(document).ready(function(){
+  $(".new-function").each(function(i,div){
+    $(div).append($("<span class='label label-danger new-function-label' data-original-title='"+$(div).attr("data-t")+"'>New!<i></i></span>").tooltip({placement:"bottom"}))
+  })
+})
