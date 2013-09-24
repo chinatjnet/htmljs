@@ -67,38 +67,36 @@ check = ()->
                               id:status.id
                           else
                             request.get url,(e,s,entry)->
-                              if e 
-                                result.info = e.message
-                                res.send result
-                              else
-                                read.parse entry,"",(parseResult)->
-                                  titlematch = entry.match(/<title>(.*?)<\/title>/)
-                                  t = ""
-                                  if titlematch then t=titlematch[1] 
-                                  data= 
-                                    quote_url:url
-                                    title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
-                                    html:parseResult.content
-                                    desc:parseResult.desc
-                                    is_publish:0
-                                    is_yuanchuang:0
-                                    user_id:nowUser.id
-                                    user_nick:nowUser.nick
-                                    user_headpic:nowUser.head_pic
-                                  func_article.add data,(error,art)->
-                                    if not error
-                                      func_timeline.add 
-                                        who_id:nowUser.id
-                                        who_headpic:nowUser.head_pic
-                                        who_nick:nowUser.nick
-                                        target_url:"/read/"+art.id
-                                        target_name:art.title
-                                        action:"收藏了文章："
-                                        desc:art.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
-                                      sina.comments.create
-                                        access_token:user.weibo_token
-                                        comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
-                                        id:status.id
+                              if not e 
+                                if entry.indexOf 'unable to parse article content' == -1
+                                  read.parse entry,"",(parseResult)->
+                                    titlematch = entry.match(/<title>(.*?)<\/title>/)
+                                    t = ""
+                                    if titlematch then t=titlematch[1] 
+                                    data= 
+                                      quote_url:url
+                                      title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
+                                      html:parseResult.content
+                                      desc:parseResult.desc
+                                      is_publish:0
+                                      is_yuanchuang:0
+                                      user_id:nowUser.id
+                                      user_nick:nowUser.nick
+                                      user_headpic:nowUser.head_pic
+                                    func_article.add data,(error,art)->
+                                      if not error
+                                        func_timeline.add 
+                                          who_id:nowUser.id
+                                          who_headpic:nowUser.head_pic
+                                          who_nick:nowUser.nick
+                                          target_url:"/read/"+art.id
+                                          target_name:art.title
+                                          action:"收藏了文章："
+                                          desc:art.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+                                        sina.comments.create
+                                          access_token:user.weibo_token
+                                          comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
+                                          id:status.id
         sina=new Sina(config.sdks.sina)
         sina.comments.mentions 
           access_token:user.weibo_token
@@ -151,39 +149,37 @@ check = ()->
                                 cid:comment.id
                             else
                               request.get url,(e,s,entry)->
-                                if e 
-                                  result.info = e.message
-                                  res.send result
-                                else
-                                  read.parse entry,"",(parseResult)->
-                                    titlematch = entry.match(/<title>(.*?)<\/title>/)
-                                    t = ""
-                                    if titlematch then t=titlematch[1] 
-                                    data= 
-                                      quote_url:url
-                                      title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
-                                      html:parseResult.content
-                                      desc:parseResult.desc
-                                      is_publish:0
-                                      is_yuanchuang:0
-                                      user_id:nowUser.id
-                                      user_nick:nowUser.nick
-                                      user_headpic:nowUser.head_pic
-                                    func_article.add data,(error,art)->
-                                      if not error
-                                        func_timeline.add 
-                                          who_id:nowUser.id
-                                          who_headpic:nowUser.head_pic
-                                          who_nick:nowUser.nick
-                                          target_url:"/read/"+art.id
-                                          target_name:art.title
-                                          action:"收藏了文章："
-                                          desc:art.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
-                                        sina.comments.reply
-                                          access_token:user.weibo_token
-                                          comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
-                                          id:comment.status.id
-                                          cid:comment.id
+                                if not e 
+                                  if entry.indexOf 'unable to parse article content' == -1
+                                    read.parse entry,"",(parseResult)->
+                                      titlematch = entry.match(/<title>(.*?)<\/title>/)
+                                      t = ""
+                                      if titlematch then t=titlematch[1] 
+                                      data= 
+                                        quote_url:url
+                                        title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
+                                        html:parseResult.content
+                                        desc:parseResult.desc
+                                        is_publish:0
+                                        is_yuanchuang:0
+                                        user_id:nowUser.id
+                                        user_nick:nowUser.nick
+                                        user_headpic:nowUser.head_pic
+                                      func_article.add data,(error,art)->
+                                        if not error
+                                          func_timeline.add 
+                                            who_id:nowUser.id
+                                            who_headpic:nowUser.head_pic
+                                            who_nick:nowUser.nick
+                                            target_url:"/read/"+art.id
+                                            target_name:art.title
+                                            action:"收藏了文章："
+                                            desc:art.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+                                          sina.comments.reply
+                                            access_token:user.weibo_token
+                                            comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
+                                            id:comment.status.id
+                                            cid:comment.id
 
 
 check()
