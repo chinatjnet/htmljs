@@ -20,7 +20,16 @@ module.exports.controllers =
             if error then next error
             else if not article then next new Error '不存在的阅读'
             else
-              
+              if article.user_id && res.locals.user
+                func_info.add 
+                  target_user_id:article.user_id
+                  type:1
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:req.originalUrl
+                  action_name:"【访问】了您收藏的文章"
+                  target_path_name:article.title
               res.locals.article = article
               func_article.addVisit req.params.id,res.locals.user||null
               res.render 'read.jade'
