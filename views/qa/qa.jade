@@ -32,6 +32,7 @@ html
             .action
               if locals.user
                 a(href="/qa/#{question.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
+              a#q_comment_add(href="#",data-question-id="#{question.id}") <i class="icon-comment icon-gray"></i>评论 #{question.comment_count}
               a#bdshare.bdshare_t.bds_tools.get-codes-bdshare(style="float:none;") 
                 span.bds_more(style="background:none !important;float:none;display:inline;padding:0;") 分享
               if question.tagNames
@@ -45,6 +46,11 @@ html
                 a(href="/user/#{question.user_id}") #{question.user_nick} 
                 em(title="经验值") #{question.user.coin||0}
               .time #{moment(question.createdAt).fromNow()}
+          .con-comments.comment.hidden#q_comment_con(data-question-id="#{question.id}")
+            .comment-list#q_comment_list(data-question-id="#{question.id}") 
+            .comment-publish
+              textarea#q_comment_content.input-block-level(placeholder="发表一些对此回答的看法",data-question-id="#{question.id}")
+              .btn#q_comment_submit(data-question-id="#{question.id}") 提交评论
         .qa-answers.module
           .hd 回答
           .bd 
@@ -181,6 +187,17 @@ html
           span.time {{createdAt}}
           span.action 
             a.reply(data-nick="{{user.nick}}") 回复
+    script#comment-tpl-q(type="text/template")
+      .comment-item.clearfix
+        a.headpic
+          img(src="{{user_headpic}}",width=70,height=70)
+        .comment-right
+          div.con 
+            span.author.vcard.item
+              a.value.url.fn(rel='author', href='/user/{{user_id}}') {{user_nick}}：
+            | {{{html}}}
+          .time {{createdAt}} 
+            a.reply(data-nick="{{user_nick}}") 回复
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
@@ -191,6 +208,7 @@ html
           placement:"bottom"
       })
       var comment_tpl = $("#comment-tpl").html()
+      var comment_tpl_1 = $("#comment-tpl-q").html()
       $(".zan").click(function(e){
         e.preventDefault();
         var self=this;
@@ -371,7 +389,62 @@ html
           })
         };
         return true; // tell the editor that we'll take care of getting the image url
-      });    
+      });   
+      $("#q_comment_add").click(function(e){
+        e.preventDefault()
+        var con_comments= $("#q_comment_con")
+        if(con_comments.hasClass("hidden")){
+          loadingTip.show("努力加载中")
+          HtmlJS.util.ajax("/comment/question_"+$(this).attr("data-question-id")+"",{},"get",function(data){
+              if(data.success){
+                if(data.comments.length>0){
+                $(".comment-list",con_comments).html("")
+                }else{
+                $(".comment-list",con_comments).html("暂无评论")
+                }
+                data.comments.forEach(function(comment){
+                  comment.createdAt=moment(comment.createdAt).fromNow();
+                  var html = Mustache.render(comment_tpl_1,comment);
+                  
+                  $(".comment-list",con_comments).append(html)
+                  })
+              }else{
+                alert(data.info)
+              }
+              con_comments.removeClass("hidden")
+                loadingTip.hide("努力加载中")
+            },function(){
+              loadingTip.hide("努力加载中")
+            })
+        }else{
+          con_comments.addClass("hidden")
+        }
+        
+          
+        }) 
+      $("#q_comment_submit").click(function(){
+        loadingTip.show("努力提交中")
+          var self = this;
+        HtmlJS.util.ajax("/comment/add",{md:$("#q_comment_content").val(),target_id:"question_#{question.id}"},"post",function(data){
+            if(data.success){
+              if($("#q_comment_list .comment-item").length==0){
+                $("#q_comment_list").html("")
+              }
+              data.comment.createdAt=moment(data.comment.createdAt).fromNow();
+                var html = Mustache.render(comment_tpl_1,data.comment);
+                
+                $("#q_comment_list").append(html)
+                $("#q_comment_content").val("")
+            }else{
+              alert(data.info)
+            }
+            loadingTip.hide("努力加载中")
+          },function(){
+            loadingTip.hide("努力加载中")
+          },$(this),function(){
+            
+        })
+        })
     p.
       <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
       <script type="text/javascript" id="bdshell_js"></script>

@@ -12,6 +12,9 @@ module.exports =
   answer_count:
     type:"int"
     defaultValue:0
+  comment_count:
+    type:"int"
+    defaultValue:0
   is_answered:
     type:"tinyint"
     defaultValue:0

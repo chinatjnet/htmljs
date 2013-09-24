@@ -85,7 +85,6 @@ background:#efefef;
       background: #f74360;
     }
     .entry-title{
-      height:50px;
       position: relative;
       .headpic{
         float: left;
@@ -97,9 +96,13 @@ background:#efefef;
         margin:0;
         font-weight: bold;
         font-weight: normal;
+        padding-right:50px;
         a{
           color: #333;
         }
+      }
+      .others{
+        margin-top: 10px;
       }
       .item{
         font-size: 12px;
@@ -179,6 +182,7 @@ background:#efefef;
         padding-right: 10px;
       }
     }
+    
   }
   .tags-hd{
     float:left;
@@ -190,8 +194,16 @@ background:#efefef;
       cursor: pointer;
       margin-bottom: 5px;
     }
+    a{
+     float:left;
+      margin:0px 3px;
+      cursor: pointer;
+      margin-bottom: 5px; 
+    }
   }
-
+  .reason{
+    width:100%;
+  }
 }
 #qa{
   background:#efefef;
@@ -218,9 +230,42 @@ background:#efefef;
         padding-right: 10px;
       }
     }
+    .edithistory{
+      
+      .item{
+        color:#999;
+      }
+      em{
+        color:#666;
+        font-style: normal;
+      }
+    }
+    .item{
+        border-bottom: 1px solid #eee;
+        padding:5px 0;
+        a{
+      color:@lightgreen;
+    }
+  }
   }
   .main{
     margin-top: 20px;
+    .con-comments{
+      margin-top: 10px;
+    }
+    .comment{
+      background: #f7f7f7;
+      padding: 10px;
+      .comment-list{
+        margin:0;
+      }
+      .comment-item{
+        padding-bottom: 5px;
+      }
+      .comment-publish{
+        margin-top: 10px;
+      }
+    }
   }
   .qa-title{
     border-bottom: 1px solid #ddd;

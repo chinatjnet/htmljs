@@ -3,6 +3,7 @@ func_info = __F 'info'
 func_article = __F 'article'
 func_card = __F 'card'
 func_user = __F 'user'
+func_question = __F 'question'
 pagedown = require("pagedown")
 safeConverter = pagedown.getSanitizingConverter()
 moment = require 'moment'
@@ -69,6 +70,20 @@ module.exports.controllers =
                   target_path:"/card/"+card.id
                   action_name:"【评论】了您的名片"
                   target_path_name:card.nick+"的名片"
+                  content:req.body.html
+          else if match = req.body.target_id.match(/^question_([0-9]*)$/)
+            func_question.addComment(match[1])
+            func_question.getById match[1],(error,question)->
+              if question
+                func_info.add 
+                  target_user_id:question.user_id
+                  type:2
+                  source_user_id:res.locals.user.id
+                  source_user_nick:res.locals.user.nick
+                  time:new Date()
+                  target_path:"/qa/"+question.id
+                  action_name:"【评论】了您的问题"
+                  target_path_name:question.title
                   content:req.body.html
           else if match = req.body.target_id.match(/^act_([0-9]*)$/)
             (__F 'act').addCount(match[1],"comment_count")

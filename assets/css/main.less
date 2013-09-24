@@ -198,7 +198,7 @@
       margin-left:10px;
       float:left;
       a{
-        
+        display: block;
       }
       .unread{
     display: inline-block;
@@ -799,196 +799,7 @@ width:310px;
       }
     }
 }
-#reads{
-  background: #f7fcfc;
-  #content{
-    margin-top: 20px;
-    padding-top: 0;
-  }
-  header{
-    width:900px;
-    margin:0 auto;
-    position: relative;
-    .logo{
-      color:#bc7311;
-      margin-top: 20px;
-      display: block;
-    }
-  }
-    .actions{
-      float:left;
-      position: absolute;
-      top:30px;
-      left:180px;
-    padding:10px;
-    width:700px;
-    margin-bottom: 10px;
-    border-radius: 3px;
-    a{
-      
-      color:#aaa;
-      font-size: 16px;
-      padding-right: 10px;
-    }
-    a.active,a:hover{
-      color:#b2571a;
-    }
-    a.tool{
-      float:right;
-      width:60px;
-      height:60px;
-      font-size: 12px;
-      text-align: center;
-      border-radius: 120px;
-      border: 3px solid #b2571a;
-      color:#666;
-      cursor: pointer;
-      padding:0;
-      margin-top: -30px;
-      line-height:60px;
-    }
-      .publish{
-        height:30px;
-        line-height: 30px;
-        background: #5bb793 url(../images/button+.png) no-repeat 0 -1px;
-        padding-left: 30px;
-        padding-right: 10px;
-        border-radius: 3px;
-        display: inline-block;
-        color: #fff;
-        margin-left:10px;
-      }
-      .publish:hover{
-          background-color: #35b382; 
-      }
-    }
-  .article-list{
-    margin:0;
-    padding:0;
-    width:1000px;
-  }
-    .post{
-    margin-bottom: 20px;
-    padding:10px;
-    border-radius:3px;
-    width:220px;
-    display: inline-block;
-    vertical-align: top;
-    .title{
-        font-size:16px;
-        line-height: 20px;
-        margin:10px 0;
-        color: #404040;
-        font-weight: normal;
-        a{
-          color:#b2571a;
-        }
-      }
-    .entry-title{
-      height:40px;
-      overflow: hidden;
-      .headpic{
-        float: left;
-        margin-right: 20px;
-      }
 
-      .item{
-        font-size: 12px;
-        margin-right: 20px;
-        .index{
-          color:#aaa;
-        }
-        .value{
-          color:#888;
-        }
-      }
-    }
-    .entry-content{
-      padding:0px 0;
-      color:#404040;
-      word-break: break-all;
-      max-height: 125px;
-      overflow: hidden;
-      color:#999;
-      h1,h2,h3,h4,h5{
-        font-size:1.5em;
-      }
-      p{
-        font-size:14px;
-        line-height:20px;
-        margin:10px 0;
-      }
-    }
-    .entry-others{
-      margin-top: 10px;
-      .item{
-        font-size: 12px;
-        margin-right: 20px;
-        .index{
-          color:#aaa;
-        }
-        .value{
-          color:#888;
-        }
-      }
-    }
-  }
-    
-
-}
-#reads{
-  .post{
-
-    .entry-content{
-      font-size: 12px;
-      line-height: 18px;
-      br{
-        height:0;
-        line-height: 0;
-        font-size: 0;
-      }
-    }
-  }
-}
-#read{
-  article.post{
-    border-radius: 5px;
-    padding:20px;
-    .share{
-      margin-top:0 !important;
-    }
-    .entry-title{
-      height:70px;
-
-      .headpic{
-        float: left;
-        margin-right: 20px;
-      }
-      .title{
-        font-size:18px;
-        line-height: 30px;
-        margin:0;
-        color: #b2571a;
-        font-weight: normal;
-      }
-      .item{
-        font-size: 12px;
-        margin-right: 20px;
-        .index{
-          color:#aaa;
-        }
-        .value{
-          color:#888;
-        }
-      }
-    }
-    .entry-content{
-      padding:20px 0;
-      color:#633c09;
-    }
-  }
-
-}
 #articles,#article{
 .actions{
     background: #fff;
@@ -1077,6 +888,7 @@ height: 30px;
     .entry-title{
       border-bottom: 1px solid #eee;
       padding-bottom: 5px;
+     
       .headpic{
         float: left;
         margin-right: 20px;
@@ -1090,7 +902,18 @@ height: 30px;
         color: #111;
         font-weight: normal;
         }
-        
+         .t-user{
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: -2px;
+        background: #fff;
+        box-shadow: 1px 1px 1px #ddd;
+        width:20px;
+        height:20px;
+        img{
+          display: block;
+        }
+      }
       }
       .tip{
       // position: absolute;
@@ -1475,5 +1298,5 @@ height: 30px;
 @import 'qa.less';
 @import 'tag.less';
 @import 'user.less';
-
+@import 'read.less';
 

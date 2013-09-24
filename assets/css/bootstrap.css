@@ -231,13 +231,13 @@ body {
 }
 
 a {
-  color: #4da07f;
+  color: #19add8;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #6fb79b;
+  color: #19add8;
   text-decoration: underline;
 }
 

@@ -70,5 +70,14 @@ func_question =
       callback null,ms
     .error (e)->
       callback e
+   addComment:(id)->
+    Question.find
+      where:
+        id:id
+    .success (q)->
+      if q
+        q.updateAttributes
+          comment_count: if q.comment_count then (q.comment_count+1) else 1
+    .error (e)->
 __FC func_question,Question,['delete','update','add','count']
 module.exports = func_question

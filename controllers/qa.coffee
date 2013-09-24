@@ -2,6 +2,7 @@ func_question = __F 'question'
 func_timeline = __F 'timeline'
 func_answer = __F 'answer'
 func_info = __F 'info'
+func_comment = __F 'comment'
 pagedown = require("pagedown")
 safeConverter = pagedown.getSanitizingConverter()
 moment = require 'moment'
@@ -37,6 +38,29 @@ module.exports.controllers =
             action:"发起了一个提问："
             desc:q.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
         
+        res.send result
+  "/:id/comment":
+    get:(req,res,next)->
+      result = 
+        success:0
+      func_comment.getAllByTargetId "qa_"+req.params.id,1,20,null,(error,comments)->
+        if error 
+          result.info = error.message
+        else
+          result.comments = comments
+          result.success = 1
+        res.send result
+    "post":(req,res,next)->
+      result = 
+        success:0
+      func_answer.addComment req.params.id,res.locals.user.id,res.locals.user.nick,req.body.content,(error,comment)->
+        if error 
+          result.info = error.message
+        else
+          result.comment = comment.selectedValues
+          result.comment.user = res.locals.user
+          
+          result.success = 1
         res.send result
   "/:id":
     "get":(req,res,next)->
