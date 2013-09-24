@@ -24,7 +24,7 @@ html
                   a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
                 span.time.item
                   span.index 时间：
-                  a.value #{moment(article.createdAt*1000).format("LLL")}
+                  a.value #{moment(article.createdAt).format("LLL")}
                 span.views.item
                   span.index View：
                   a.value #{article.visit_count}
