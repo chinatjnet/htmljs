@@ -14,5 +14,8 @@ module.exports =
   is_publish:
     defaultValue:0
     type:"tinyint"
-
-  
+  is_public:
+    defaultValue:1
+    type:"tinyint"
+  desc_md:"text"
+  desc_html:"text"

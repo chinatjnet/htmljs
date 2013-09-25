@@ -2,6 +2,7 @@ func_user = __F 'user'
 func_article = __F 'article'
 func_info = __F 'info'
 func_timeline = __F 'timeline'
+func_column = __F 'column'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
 md5 = require 'MD5'
@@ -141,12 +142,16 @@ module.exports.controllers =
         type:req.body.type
         user_id:res.locals.user.id
         user_nick:res.locals.user.nick
+        column_id:req.body.column_id
         user_headpic:res.locals.user.head_pic
         publish_time:new Date().getTime()/1000
         is_yuanchuang:1
         is_publish:if res.locals.user.is_admin then 1 else 0
         main_pic:if match then match[1] else null
         desc:safeConverter.makeHtml req.body.md.substr(0,300)
+      if req.body.column_id
+        func_column.addCount req.body.column_id,"article_count",()->
+
       result = 
         success:0
       func_article.add data,(error,article)->
@@ -213,10 +218,45 @@ module.exports.controllers =
                   target_path_name:article.title
               res.locals.article = article
               func_article.addVisit req.params.id,res.locals.user||null
+              if article.column_id
+                func_column.addCount article.column_id,"visit_count",()->
+                  
               res.render 'article.jade'
+  "/column/add":
+    get:(req,res,next)->
+      if not res.locals.card
+        next new Error '必须添加“花名册”后才能添加自己的专栏'
+      res.render 'article/add-column.jade'
+    post:(req,res,next)->
+      if not res.locals.card
+        next new Error '必须添加“花名册”后才能添加自己的专栏'
+      req.body.desc_html = safeConverter.makeHtml req.body.desc_md
+      req.body.user_id = res.locals.user.id
+      if res.locals.user.is_admin then req.body.is_publish = 1
+      func_column.add req.body,(error,column)->
+        if error then next error
+        else 
+          res.redirect '/article/column/'+column.id
+  "/column/:id":
+    get:(req,res,next)->
+      condition = 
+        is_publish:1
+        is_yuanchuang:1
+        column_id:req.params.id
+      func_article.count condition,(error,count)->
+        if error then next error
+        else
+          res.locals.total=count
+          res.locals.totalPage=Math.ceil(count/20)
+          res.locals.page = (req.query.page||1)
+          func_article.getAll res.locals.page,20,condition,(error,articles)->
+            if error then next error
+            else
+              res.locals.articles = articles
+              res.render 'articles.jade'
 module.exports.filters = 
   "/add":
-    get:['checkLogin',"checkCard"]
+    get:['checkLogin',"checkCard","article/all-pub-columns"]
     post:['checkLogin',"checkCard"]
   "/:id/edit":
     get:['checkLogin',"checkCard"]
@@ -229,3 +269,12 @@ module.exports.filters =
     get:['freshLogin','getRecent','get_infos','article/new-comments','article/index-columns']
   "/:id":
     get:['freshLogin','getRecent','get_infos','article/comments']
+  "/column/add":
+    get:['checkLogin',"checkCard"]
+    post:['checkLogin',"checkCard"]
+  "/column/:id":
+    get:['freshLogin','getRecent','get_infos','article/new-comments','article/index-columns',"article/get-column"]
+
+
+
+

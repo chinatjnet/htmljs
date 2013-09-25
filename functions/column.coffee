@@ -5,11 +5,11 @@ Column.belongsTo User,{foreignKey:"user_id"}
 Column.sync()
 
 func_column = 
-  getAll:(page,count,condition,callback)->
+  getAll:(page,count,condition,desc,callback)->
     query = 
       offset: (page - 1) * count
       limit: count
-      order: "article_count desc"
+      order: if desc then desc else "article_count desc"
       include:[User]
     if condition then query.where = condition
     Column.findAll(query)
@@ -17,6 +17,14 @@ func_column =
       callback null,columns
     .error (error)->
       callback error
-
-__FC func_column,Column,['delete','add']
+  getById:(id,callback)->
+    Column.find
+      where:
+        id:id
+      include:[User]
+    .success (column)->
+      callback null,column
+    .error (e)->
+      callback e
+__FC func_column,Column,['delete','add','addCount']
 module.exports = func_column

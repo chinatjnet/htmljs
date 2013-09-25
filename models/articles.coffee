@@ -28,4 +28,5 @@ module.exports =
   desc:"text"
   main_pic:"varchar(255)"
   tagNames:"varchar(255)"
+  column_id:"int"
   

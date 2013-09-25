@@ -14,25 +14,39 @@ html(xmlns:wb='http://open.weibo.com/wb')
     include article_cats
     #content.clearfix
       .left
-
-        .column-list.module.clearfix
-          .hd 热门专栏
-          .bd 
-            if locals.columns
-              each column in columns
-                .column-item 
-                  a.title #{column.name}
-                  .user 创建者：<a href="/user/#{column.user.id}">#{column.user.nick}</a>
-                  .others
-                    span.item
-                      span.key 文章数：
-                      span.value #{column.article_count}
-                    span.item
-                      span.key 总浏览数：
-                      span.value #{column.visit_count}
-                  .actions
-                    if locals.user.id == column.user.id
-                      a 编辑
+        if !locals.column
+          .column-list.clearfix
+            .hd 热门专栏
+            .bd
+              if locals.columns
+                each column in columns
+                  .column-item 
+                    a.title(href="/article/column/#{column.id}") #{column.name}
+                    .user.hidden <a href="/user/#{column.user.id}">#{column.user.nick}</a>
+                    .others
+                      span.item
+                        span.key <i class="icon-white icon-list"></i>
+                        span.value #{column.article_count}
+                      span.item
+                        span.key <i class="icon-white icon-eye-open"></i>
+                        span.value #{column.visit_count}
+                      span.item
+                        span.key <i class="icon-white icon-heart"></i>
+                        span.value #{column.zan_count}
+                      if !column.is_public 
+                        span.item 
+                          span.key <i class="icon-white icon-lock"></i>
+                    .actions.hidden
+                      if locals.user.id == column.user.id
+                        a 编辑
+            .other-column
+              a.column-item.more-column(href="/article/column") <i class="icon-white icon-th"></i>更多专栏
+              a.column-item.create-column(href="/article/column/add") <i class="icon-white icon-plus"></i>创建专栏
+        else
+          .column
+            .col-title 专栏名：#{column.name}
+            .col-user 所有者：#{column.user.nick}
+            .col-desc 简 介：!{column.desc_html}
         ul.article-list
           each article in articles
             article.post(id="post-#{article.id}")
@@ -76,7 +90,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
             i.icon-plus.icon-white
             |发表文章
 
-          a.btn.blue(href="",data-original-title="在发表五篇审核通过的文章后，即可自动成为专栏作者") 创建专栏
         //
           .module.text
             .hd 订阅和交流

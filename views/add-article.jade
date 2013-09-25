@@ -37,9 +37,16 @@ html
               .wmd-panel
                 #wmd-button-bar
                 textarea.wmd-input#wmd-input(name="md",placeholder="文章内容，markdown语法。如果没有写完，可以直接关闭页面，下次打开内容仍然会在。") #{locals.article?article.md:''}
-                .wmd-panel.wmd-preview
-                  div 预览
-                  #wmd-preview
+            .control-group
+              .columns
+                input#column(type="hidden",name="column_id",value="")
+                div.hd 发表到何专栏：
+                div.bd 
+                  each column,i in columns
+                    span.label(data-id="#{column.id}",data-original-title="#{column.desc_md&&column.desc_md.substr(0,100)}",title="#{column.desc_md&&column.desc_md.substr(0,100)}") #{column.name}
+            .wmd-panel.wmd-preview
+              div 预览
+              #wmd-preview
             .control-group
               button.btn#submit(type='submit') 发表
         #myModal.modal.hide.fade.
@@ -58,8 +65,14 @@ html
     script(src='#{assets_head}/js/loadingTip.js')
     script(src='#{assets_head}/js/messageTip.js')
     script
-      $("#layer").css({width:$(document.body).width(),height:$(document.body).height()})
-      $("#login_popup").css({left:$(window).width()/2-125})
+      $(".columns .label").click(function(){
+        $(".columns .label").removeClass("label-success")
+        $(this).addClass("label-success");
+       $("#column").val($(this).attr("data-id"))
+        })
+      $('.columns .label').tooltip({
+          placement:"bottom"
+      })
       var converter1 = Markdown.getSanitizingConverter();
       var editor1 = new Markdown.Editor(converter1);
       editor1.run();
