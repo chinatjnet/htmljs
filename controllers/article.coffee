@@ -18,18 +18,7 @@ module.exports.controllers =
       condition = 
         is_publish:1
         is_yuanchuang:1
-      if req.query.filter
-        condition=condition||{}
-        req.query.filter.split(":").forEach (f)->
-          kv = f.split '|'
-          if kv.length
-            condition[kv[0]]=kv[1]
-            res.locals["filter_"+kv[0]]=kv[1]
-      res.locals.types=
-        1:"原创"
-        2:"精品推荐"
-        3:"实例学习"
-
+      
       func_article.count condition,(error,count)->
         if error then next error
         else
@@ -237,6 +226,6 @@ module.exports.filters =
     post:['checkLogin',"checkCard"]
   
   "/":
-    get:['freshLogin','getRecent','get_infos','article/new-comments']
+    get:['freshLogin','getRecent','get_infos','article/new-comments','article/index-columns']
   "/:id":
     get:['freshLogin','getRecent','get_infos','article/comments']

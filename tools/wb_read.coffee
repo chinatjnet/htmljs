@@ -9,6 +9,7 @@ request = require 'request'
 func_article = __F 'article'
 read = require("readability")
 func_timeline = __F 'timeline'
+func_coin = __F 'coin'
 ReadHistory = __M 'read_wb_history'
 ReadHistory.sync()
 check = ()->
@@ -61,9 +62,10 @@ check = ()->
                         #先查找数据中是否已经存在
                         func_article.getByUrl url,(error,art)->
                           if art
+                            func_coin.add 5,nowUser.id,"收藏了一篇文章"
                             sina.comments.create
                               access_token:user.weibo_token
-                              comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
+                              comment:"恭喜您在@前端乱炖 成功收藏本文，并且获得5个经验值，点击查看："+config.base_host+"/read/"+art.id
                               id:status.id
                           else
                             request.get url,(e,s,entry)->
@@ -93,9 +95,10 @@ check = ()->
                                         #   target_name:art.title
                                         #   action:"收藏了文章："
                                         #   desc:art.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+                                        func_coin.add 5,nowUser.id,"收藏了一篇文章"
                                         sina.comments.create
                                           access_token:user.weibo_token
-                                          comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
+                                          comment:"恭喜您在@前端乱炖 成功收藏本文，并且获得5个经验值，点击查看："+config.base_host+"/read/"+art.id
                                           id:status.id
         sina=new Sina(config.sdks.sina)
         sina.comments.mentions 
@@ -142,9 +145,10 @@ check = ()->
                           #先查找数据中是否已经存在
                           func_article.getByUrl url,(error,art)->
                             if art
+                              func_coin.add 5,nowUser.id,"收藏了一篇文章"
                               sina.comments.reply
                                 access_token:user.weibo_token
-                                comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
+                                comment:"恭喜您在@前端乱炖 成功收藏本文，并且获得5个经验值，点击查看："+config.base_host+"/read/"+art.id
                                 id:comment.status.id
                                 cid:comment.id
                             else
@@ -175,9 +179,10 @@ check = ()->
                                           #   target_name:art.title
                                           #   action:"收藏了文章："
                                           #   desc:art.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+                                          func_coin.add 5,nowUser.id,"收藏了一篇文章"
                                           sina.comments.reply
                                             access_token:user.weibo_token
-                                            comment:"恭喜您在@前端乱炖 成功收藏本文,点击查看："+config.base_host+"/read/"+art.id
+                                            comment:"恭喜您在@前端乱炖 成功收藏本文，并且获得5个经验值，点击查看："+config.base_host+"/read/"+art.id
                                             id:comment.status.id
                                             cid:comment.id
 

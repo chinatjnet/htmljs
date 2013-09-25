@@ -112,16 +112,20 @@
 #read .actions a.tool{float:right;width:60px;height:60px;font-size:12px;text-align:center;border-radius:120px;border:3px solid #b2571a;color:#666;cursor:pointer;padding:0;margin-top:-30px;line-height:60px;}
 #read .actions .publish{height:30px;line-height:30px;background:#5bb793 url(../images/button+.png) no-repeat 0 -1px;padding-left:30px;padding-right:10px;border-radius:3px;display:inline-block;color:#fff;margin-left:10px;}
 #read .actions .publish:hover{background-color:#35b382;}
-#articles .actions,#article .actions{background:#fff;padding:10px;margin-bottom:10px;border-radius:3px;}#articles .actions .publish,#article .actions .publish{height:30px;line-height:30px;background:#5bb793 url(../images/button+.png) no-repeat 0 -1px;padding-left:30px;padding-right:10px;border-radius:3px;display:inline-block;color:#fff;margin-right:10px;}
-#articles .actions .publish:hover,#article .actions .publish:hover{background-color:#35b382;}
 #articles .left,#article .left{float:left;width:680px;}#articles .left .infos,#article .left .infos{margin-left:0;}
 #articles .left .new_warning,#article .left .new_warning{margin-left:0;width:640px;}
 #articles .left .title a,#article .left .title a{overflow:hidden;height:30px;}
 #articles .left .cats,#article .left .cats{background:#fff;padding:10px;margin-bottom:10px;border-radius:3px;}#articles .left .cats a,#article .left .cats a{border-right:1px solid #ddd;padding:0 10px;font-size:16px;color:#999;}
 #articles .left .cats a.active,#article .left .cats a.active{color:#333;}
-#articles .right,#article .right{float:left;width:250px;margin-left:10px;}#articles .right .item,#article .right .item{border-bottom:1px solid #eee;padding:5px 0;}#articles .right .item a,#article .right .item a{color:#6fb79b;}
+#articles .right,#article .right{float:left;width:250px;margin-left:10px;}#articles .right .actions,#article .right .actions{background:#fff;padding:10px;margin-bottom:10px;border-radius:3px;}#articles .right .actions .publish,#article .right .actions .publish{height:30px;line-height:30px;background:#5bb793 url(../images/button+.png) no-repeat 0 -1px;padding-left:30px;padding-right:10px;border-radius:3px;display:inline-block;color:#fff;margin-right:10px;}
+#articles .right .actions .publish:hover,#article .right .actions .publish:hover{background-color:#35b382;}
+#articles .right .item,#article .right .item{border-bottom:1px solid #eee;padding:5px 0;}#articles .right .item a,#article .right .item a{color:#6fb79b;}
 #add-article{background:#efefef;}
-#articles{background:#efefef;}#articles .article-list{margin:0;padding:0;}#articles .article-list .post{background:#fff;margin-bottom:10px;padding:20px;border-radius:5px;}#articles .article-list .post .entry-title{border-bottom:1px solid #eee;padding-bottom:5px;}#articles .article-list .post .entry-title .headpic{float:left;margin-right:20px;}
+#articles{background:#efefef;}#articles .column-list{background:#fff;border-radius:5px;margin-bottom:20px;}#articles .column-list .column-item{float:left;width:200px;background:#f3f3f3;border-radius:5px;padding:10px;margin-top:10px;margin-right:10px;}#articles .column-list .column-item .title{font-size:14px;font-weight:bold;}
+#articles .column-list .column-item .user{color:#444;line-height:30px;}
+#articles .column-list .column-item .others .item{margin-right:10px;color:#999;}
+#articles .column-list .column-item:hover{background:#efefef;}
+#articles .article-list{margin:0;padding:0;}#articles .article-list .post{background:#fff;margin-bottom:10px;padding:20px;border-radius:5px;}#articles .article-list .post .entry-title{border-bottom:1px solid #eee;padding-bottom:5px;}#articles .article-list .post .entry-title .headpic{float:left;margin-right:20px;}
 #articles .article-list .post .entry-title .title{margin:0;}#articles .article-list .post .entry-title .title a{font-size:18px;line-height:30px;margin:0;color:#111;font-weight:normal;}
 #articles .article-list .post .entry-title .title .t-user{display:inline-block;margin-right:5px;vertical-align:-2px;background:#fff;box-shadow:1px 1px 1px #ddd;width:20px;height:20px;}#articles .article-list .post .entry-title .title .t-user img{display:block;}
 #articles .article-list .post .entry-title .tip{right:0;top:0;width:40px;height:20px;line-height:20px;text-align:center;background:#68a4d1;color:#fff;z-index:10;padding:3px 6px;font-weight:normal;font-size:12px;vertical-align:2px;margin-right:5px;}

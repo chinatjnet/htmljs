@@ -13,7 +13,7 @@ func_coin =
         his.forEach (h)->
           total+=h.step
         if total>__C.day_coin_max
-          callback new Error '已经达到本日最高积分（'+__C.day_coin_max+'）'
+          callback&&callback new Error '已经达到本日最高积分（'+__C.day_coin_max+'）'
         else
           User.find
             where:

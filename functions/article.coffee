@@ -6,6 +6,7 @@ Visit_log.sync()
 User.hasOne Article,{foreignKey:"user_id"}
 Article.belongsTo User,{foreignKey:"user_id"}
 Article.sync()
+
 cache = 
   recent:[]
 func_article =  

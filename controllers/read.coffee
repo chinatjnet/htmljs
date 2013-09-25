@@ -1,6 +1,7 @@
 func_article = __F 'article'
 func_info = __F 'info'
 func_timeline = __F 'timeline'
+func_coin = __F 'coin'
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
@@ -54,6 +55,7 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
+          func_coin.add 5,res.locals.user.id,"收藏了一篇文章"
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
