@@ -37,7 +37,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                         span.item 
                           span.key <i class="icon-white icon-lock"></i>
                     .actions.hidden
-                      if locals.user.id == column.user.id
+                      if locals.user&&locals.user.id == column.user.id
                         a 编辑
             .other-column
               a.column-item.more-column(href="/article/column") <i class="icon-white icon-th"></i>更多专栏
