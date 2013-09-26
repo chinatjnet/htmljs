@@ -16,8 +16,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
       .left
         if !locals.column
           .column-list.clearfix
-            .hd 热门专栏
-            .bd
+            .clearfix
               if locals.columns
                 each column in columns
                   .column-item 
@@ -42,6 +41,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
             .other-column
               a.column-item.more-column(href="/article/column") <i class="icon-white icon-th"></i>更多专栏
               a.column-item.create-column(href="/article/column/add") <i class="icon-white icon-plus"></i>创建专栏
+              a.column-item.publish-column(href="/article/add",data-original-title="",style="margin-right:10px;") 
+                i.icon-plus.icon-white
+                |发表文章
         else
           .column
             .col-title 专栏名：#{column.name}
@@ -85,11 +87,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
                       a.value(href="/article/#{article.id}/edit") 编辑
         include page
       .right
-        .actions.module
-          a.btn(href="/article/add",data-original-title="",style="margin-right:10px;") 
-            i.icon-plus.icon-white
-            |发表文章
-
         //
           .module.text
             .hd 订阅和交流
