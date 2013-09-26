@@ -4,7 +4,7 @@ module.exports = (req,res,next)->
       is_yuanchuang:0
       user_id:res.locals.user.id
     page = req.query.page || 1
-    count = req.query.count || 10
+    count = req.query.count || 30
     (__F 'read').count condition,(error,_count)->
       if error then next error
       else
