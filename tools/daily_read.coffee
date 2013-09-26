@@ -22,6 +22,8 @@ tpl = "
 \n
 ###其他\n
 \n
+本类型文章每日自动由系统生成，如果发生错误，请见谅！\n
+\n
 更多信息请关注本网站的官方微博：[http://weibo.com/htmljs](http://weibo.com/htmljs)\n
 
   "
