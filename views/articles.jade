@@ -13,8 +13,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
     include header
     include article_cats
     #content.clearfix
-      .left
-        if !locals.column
+      if !locals.column
           .column-list.clearfix
             .clearfix
               if locals.columns
@@ -49,6 +48,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
             .col-title 专栏名：#{column.name}
             .col-user 所有者：#{column.user.nick}
             .col-desc 简 介：!{column.desc_html}
+      .left
+
         ul.article-list
           each article in articles
             article.post(id="post-#{article.id}")
