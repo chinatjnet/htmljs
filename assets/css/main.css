@@ -334,13 +334,13 @@
 #read article.post .entry-title .title{font-size:18px;line-height:30px;margin:0;color:#b2571a;font-weight:normal;}
 #read article.post .entry-title .item{font-size:12px;margin-right:20px;}#read article.post .entry-title .item .index{color:#aaa;}
 #read article.post .entry-title .item .value{color:#888;}
-#read article.post .entry-content{padding:20px 0;color:#404040;}
+#read article.post .entry-content{padding:20px 0;color:#404040;font-size:13px;}
 #articles{background:#efefef;}#articles .column{background:#5bb793;color:#fff;padding:10px;border-radius:3px;margin-bottom:10px;}#articles .column .col-title{font-size:16px;color:#fff;}
 #articles .column .col-desc{color:#eee;font-size:12px;margin-top:5px;}
 #articles .column .col-user{margin:10px 0;color:#eee;font-size:12px;}
-#articles .column-list{border-radius:5px;margin-bottom:20px;width:800px;}#articles .column-list .hd{font-size:14px;font-weight:bold;}
+#articles .column-list{border-radius:5px;margin-bottom:20px;}#articles .column-list .hd{font-size:14px;font-weight:bold;}
 #articles .column-list .bd{margin-top:20px;}
-#articles .column-list .column-item{display:inline-block;border-radius:3px;padding:12px 15px;margin-bottom:10px;margin-right:5px;border:1px solid #eee;background:#5bb793;vertical-align:top;width:134px;color:#fff;}#articles .column-list .column-item .title{font-size:14px;font-weight:bold;color:#fff;}
+#articles .column-list .column-item{display:inline-block;border-radius:3px;padding:12px 15px;margin-bottom:10px;margin-right:5px;border:1px solid #eee;background:#5bb793;vertical-align:top;width:151px;color:#fff;}#articles .column-list .column-item .title{font-size:14px;font-weight:bold;color:#fff;}
 #articles .column-list .column-item .user{color:#fff;line-height:25px;}
 #articles .column-list .column-item .others{color:#eee;font-size:12px;line-height:20px;opacity:0.8;margin-left:-2px;}#articles .column-list .column-item .others .item{margin-right:10px;}#articles .column-list .column-item .others .item i{transform:scale(0.7);-webkit-transform:scale(0.7);-moz-transform:scale(0.7);-ms-transform:scale(0.7);-o-transform:scale(0.7);vertical-align:-2px;padding-right:2px;}
 #articles .column-list .other-column{display:inline-block;}
