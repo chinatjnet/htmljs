@@ -32,7 +32,7 @@ html
             .action
               if locals.user
                 a(href="/qa/#{question.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
-              a.new-function#q_comment_add(href="#",data-t="所有和“问”“答”无关的讨论都应在此",data-question-id="#{question.id}") <i class="icon-comment icon-gray"></i>评论 #{question.comment_count}
+              a#q_comment_add(href="#",data-t="所有和“问”“答”无关的讨论都应在此",data-question-id="#{question.id}") <i class="icon-comment icon-gray"></i>评论 #{question.comment_count}
               a#bdshare.bdshare_t.bds_tools.get-codes-bdshare(style="float:none;") 
                 span.bds_more(style="background:none !important;float:none;display:inline;padding:0;") 分享
               if question.tagNames
