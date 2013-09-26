@@ -79,7 +79,7 @@ check = ()->
                                       quote_url:url
                                       title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
                                       html:parseResult.content
-                                      desc:parseResult.desc
+                                      desc:text
                                       is_publish:0
                                       is_yuanchuang:0
                                       user_id:nowUser.id
@@ -163,7 +163,7 @@ check = ()->
                                         quote_url:url
                                         title:(if parseResult.title then parseResult.title else t).replace(/^\s*|\s*$/,"")
                                         html:parseResult.content
-                                        desc:parseResult.desc
+                                        desc:text
                                         is_publish:0
                                         is_yuanchuang:0
                                         user_id:nowUser.id
