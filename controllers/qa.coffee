@@ -36,7 +36,7 @@ module.exports.controllers =
             target_url:"/qa/"+q.id
             target_name:q.title
             action:"发起了一个提问："
-            desc:q.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/[^\n]\n+[^\n]/g,"<br/>")
+            desc:q.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
         
         res.send result
   "/:id/comment":
