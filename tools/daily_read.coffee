@@ -1,5 +1,6 @@
 require './../lib/modelLoader.coffee'
 require './../lib/functionLoader.coffee'
+func_timeline = __F 'timeline'
 moment = require 'moment'
 func_article = __F 'article'
 func_column = __F 'column'
@@ -63,4 +64,14 @@ check = ()->
     func_column.addCount 3,"article_count",()->
     func_article.add data,(error,article)->
       if error then console.log error
+      else
+        func_timeline.add 
+          who_id:34
+          who_headpic:"http://tp2.sinaimg.cn/1734409185/50/40022299601/1"
+          who_nick:"前端乱炖"
+          target_url:"/article/"+article.id
+          target_name:article.title
+          action:"发表了专栏文章："
+          desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.desc
+      
 check()
