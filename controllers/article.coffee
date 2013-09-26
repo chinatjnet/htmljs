@@ -259,7 +259,7 @@ module.exports.filters =
     get:['checkLogin',"checkCard","article/all-pub-columns"]
     post:['checkLogin',"checkCard"]
   "/:id/edit":
-    get:['checkLogin',"checkCard"]
+    get:['checkLogin',"checkCard","article/all-pub-columns"]
     post:['checkLogin',"checkCard"]
   "/add/recommend":
     get:['checkLogin',"checkCard"]
