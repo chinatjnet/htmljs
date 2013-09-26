@@ -1,12 +1,14 @@
 
 Article = __M 'articles'
+Column = __M 'columns'
 User = __M "users"
 Visit_log = __M 'article_visit_logs'
 Visit_log.sync()
 User.hasOne Article,{foreignKey:"user_id"}
 Article.belongsTo User,{foreignKey:"user_id"}
 Article.sync()
-
+Column.hasOne Article,{foreignKey:"column_id"}
+Article.belongsTo Column,{foreignKey:"column_id"}
 cache = 
   recent:[]
 func_article =  
@@ -92,5 +94,14 @@ func_article =
       callback null,articles
     .error (error)->
       callback error
-__FC func_article,Article,['update','count','delete','getById']
+  getById:(id,callback)->
+    Article.find
+      where:
+        id:id
+      include:[User,Column]
+    .success (article)->
+      callback null,article
+    .error (error)->
+      callback error
+__FC func_article,Article,['update','count','delete']
 module.exports=func_article
