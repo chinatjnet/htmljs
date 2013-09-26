@@ -60,7 +60,7 @@ html
               .answer-list
                 each ans,i in answers
                   if !ans.is_unused
-                    .answer-item.clearfix(id="answer-#{ans.id}",style="opacity:#{(10-i)/10}")
+                    .answer-item.clearfix(id="answer-#{ans.id}",style="opacity:#{(10-i)/20}")
                       .ans-user.clearfix
                         a.user(href="/user/#{ans.user_id}")
                           img(src="#{ans.user_headpic}")
