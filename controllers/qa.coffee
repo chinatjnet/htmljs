@@ -118,7 +118,7 @@ module.exports.controllers =
       func_answer.getByIdWithQuestion req.params.id,(error,ans)->
         if error then next error
         else if not ans then next new Error '不存在的回答'
-        else if ans.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的回答'
+        else if !res.locals.user.is_admin && ans.user_id != res.locals.user.id then next new Error '没有权限，这不是您发布的回答'
         else
           res.locals.answer = ans
           res.render 'qa/edit-answer.jade'
