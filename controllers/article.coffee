@@ -60,7 +60,7 @@ module.exports.controllers =
             target_url:"/read/"+article.id
             target_name:article.title
             action:"收藏了文章："
-            desc:article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+            desc:article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,200).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
         res.send result
   "/online_to_local":
     "post":(req,res,next)->
@@ -148,7 +148,7 @@ module.exports.controllers =
         is_yuanchuang:1
         is_publish:if res.locals.user.is_admin then 1 else 0
         main_pic:if match then match[1] else null
-        desc:safeConverter.makeHtml req.body.md.substr(0,300)
+        desc:safeConverter.makeHtml req.body.md.substr(0,200)
       if req.body.column_id
         func_column.addCount req.body.column_id,"article_count",()->
 
@@ -167,7 +167,7 @@ module.exports.controllers =
             target_url:"/article/"+article.id
             target_name:article.title
             action:"发表了专栏文章："
-            desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")
+            desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.desc
         res.send result
   "/:id/edit":
     "get":(req,res,next)->
@@ -186,7 +186,7 @@ module.exports.controllers =
         title:req.body.title
         publish_time:new Date().getTime()/1000
         main_pic:if match then match[1] else null
-        desc:safeConverter.makeHtml req.body.md.substr(0,300)
+        desc:safeConverter.makeHtml req.body.md.substr(0,200)
       result = 
         success:0
       func_article.update req.params.id,data,(error,article)->
