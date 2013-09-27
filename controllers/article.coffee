@@ -187,6 +187,7 @@ module.exports.controllers =
         publish_time:new Date().getTime()/1000
         main_pic:if match then match[1] else null
         desc:safeConverter.makeHtml req.body.md.substr(0,200)
+        column_id:req.body.column_id
       result = 
         success:0
       func_article.update req.params.id,data,(error,article)->
