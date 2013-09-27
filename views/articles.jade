@@ -51,8 +51,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
       .left
 
         ul.article-list
-          each article in articles
-            article.post(id="post-#{article.id}")
+          each article,i in articles
+            article.post(id="post-#{article.id}",class="#{i%2==1?'yooo':''} ")
               .entry-title
                 h1.title
                   a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
@@ -60,17 +60,23 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   if article.sort == 100000
                       span.label.tip.top 置顶
                   
-                  a(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
+                  a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                 
-              .entry-content.clearfix 
-                if article.main_pic
-                  img.main_pic(src="#{article.main_pic}")
-                |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
+              //- .entry-content.clearfix 
+              //-   if article.main_pic
+              //-     img.main_pic(src="#{article.main_pic}")
+              //-   |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
               .entry-foot
                 div.others
+                  span.item
+                    span.index 专栏：
+                    if article.column
+                      span.value #{article.column.name}
+                    else
+                      span.value 无
                   span.author.vcard.item
-                    span.index From：
-                    a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}的专栏
+                    span.index 作者：
+                    a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
                   span.time.item
                     span.index 时间：
                     a.value #{moment(article.publish_time*1000).format("LLL")}
