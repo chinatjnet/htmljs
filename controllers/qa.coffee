@@ -172,7 +172,7 @@ module.exports.controllers =
         else
           (__F 'coin').add 5,ans.user_id,res.locals.user.nick+" 顶了你的回答"
           func_info.add 
-            target_user_id:req.params.id
+            target_user_id:ans.user_id
             type:4
             source_user_id:res.locals.user.id
             source_user_nick:res.locals.user.nick
