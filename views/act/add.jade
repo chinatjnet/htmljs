@@ -22,7 +22,7 @@ html
           label 人数限制
           input.input-small(type="number",placeholder="人数限制",name="person_limit",value="#{locals.act&&act.person_limit}")
           label 时间
-          input(type="datetime-local",placeholder="时间",name="time",value="#{locals.act&&moment(act.time-8000*60*60).format("YYYY-MM-DDThh:mm:ss")}")
+          input(type="datetime-local",placeholder="时间",name="time",value="#{locals.act&&moment(act.time+8000*60*60).format("YYYY-MM-DDThh:mm:ss")}")
           label 地址
           input.input(type="text",placeholder="地址",name="location",value="#{locals.act&&act.location}")
           label 地图地址
