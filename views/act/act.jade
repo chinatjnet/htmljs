@@ -39,7 +39,7 @@ html
         .bd 
           .joiners.users
             for joiner in joiners
-              a.user(href="/user/#{joiner.user_id}",target="_blank")
+              a.user(href="/user/#{joiner.user_id}",target="_blank",data-original-title="#{joiner.user_nick}")
                 img(src="#{joiner.user_headpic}",width=50,height=50)
                 if joiner.user
                   if joiner.user.sex
@@ -168,6 +168,9 @@ html
     script(src="#{assets_head}/js/messageTip.js")
     script(src="#{assets_head}/js/loadingTip.js")
     script
+       $('.user').tooltip({
+          placement:"bottom"
+      })
       //- $(window).scroll(function(){
       //-   if($(window).scrollTop()+$(window).height()>=$(".comment").offset().top){
       //-     $(".comment-layer").addClass("hidden")
