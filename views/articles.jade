@@ -59,7 +59,10 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     img(src="#{article.user.head_pic}",width="20")
                   if article.sort == 100000
                       span.label.tip.top 置顶
-                  
+                  if article.visit_count <= 30
+                    span.label.tip.new New
+                  else if question.visit_count >=200
+                    span.label.tip.hot HOT
                   a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                 
               //- .entry-content.clearfix 
