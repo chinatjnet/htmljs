@@ -75,7 +75,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     span.index 专栏：
                     if article.column
                       span.value 
-                        a(href="/article/column/#{article.column.id}")#{article.column.name}
+                        a(href="/article/column/#{article.column.id}") #{article.column.name}
                     else
                       span.value 无
                   span.author.vcard.item
