@@ -87,10 +87,23 @@ html
                         .con-action
                           if locals.user && (locals.user.id == ans.user_id||locals.user.is_admin)
                             a.edit(href="/qa/answer/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
-                          a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.comment_count}
+                          - console.log(ans)
+                          a.add_comment(href="#",data-answer-id="#{ans.id}") <i class="icon-comment icon-gray"></i>评论 #{ans.answerComment.length}
                           a(target="_blank",href="http://service.weibo.com/share/share.php?url=#{encodeURIComponent("http://f2e.html-js.com/qa/"+question.id+"#answer-"+ans.id)}&title=分享自@前端乱炖 的精彩回答【#{question.title}】#{ans.user_nick}：#{ans.md.substr(0,100)}&appkey=659341943") 分享
                           if locals.user&&locals.user.is_admin
                             a(href="/qa/answer/#{ans.id}/update?is_unused=1") 无用
+                        //- if ans.answerComment.length
+                        //-   .con-comments
+                        //-     .comment-list
+                        //-       each comment in ans.answerComment
+                        //-         if comment.user_nick
+                        //-           .comment-item.clearfix
+                        //-             div.con 
+                        //-               span.author.vcard.item
+                        //-                 a.value.url.fn(rel='author', href='/user/#{comment.user_id}') #{comment.user_nick}：
+                        //-               span.content !{comment.content}
+                        //-               span.time #{moment(comment.createdAt).fromNow()}
+                        //-     a.more(href="#") 更多评论 (#{ans.answerComment.length})
                         .con-comments.hidden(data-answer-id="#{ans.id}")
                           .comment-list(data-answer-id="#{ans.id}") 
                           .comment-publish
