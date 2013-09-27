@@ -19,3 +19,6 @@ module.exports =
   is_publish:
     type:"tinyint"
     defaultValue:"0"
+  is_down:
+    type:"tinyint"
+    defaultValue:"0"

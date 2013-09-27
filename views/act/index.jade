@@ -16,7 +16,7 @@ html
         .no-act 暂无活动，敬请关注
       else
         for act in acts
-          .act-item.clearfix
+          .act-item.clearfix(class="#{act.is_down?'isdown':''}")
             .act-infos
               .ln.act-title 
                 a(href="/act/#{act.id}") #{act.title}
@@ -24,9 +24,12 @@ html
               .ln.act-location 地点：#{act.location}  
               .ln.act-limit 人数上限：#{act.person_limit}
               .ln.act-action 
-                a.btn(href="/act/#{act.id}") 
-                  i.icon-arrow-right
-                  |详情，去报名
+                if act.is_down
+                  a.btn(href="/act/#{act.id}") 已结束，去看看
+                else
+                  a.btn(href="/act/#{act.id}") 
+                    i.icon-arrow-right
+                    |详情，去报名
                 if locals.user && user.is_admin
                   a.btn(href="/act/#{act.id}/edit",style="margin-left:10px;") 编辑
     p.
