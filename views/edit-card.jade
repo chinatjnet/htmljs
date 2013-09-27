@@ -18,29 +18,26 @@ html
       form.form-horizontal(method='post')
         fieldset
           legend 填写以下信息
-          span.label.label-warning(style='margin-bottom: 20px;') 您的关键信息不会被暴露，我们只会在《前端花名册》中暴露极少量信息，请放心填写。我们会利用这些信息来为您推荐工作、推荐活动、和其他服务。
+          p.alert(style='margin-bottom: 20px;') 您的关键信息不会被暴露，我们只会在《前端花名册》中暴露极少量信息，请放心填写。我们会利用这些信息来为您推荐工作、推荐活动、和其他服务。
           input(type="hidden",name="head_pic",value="#{card.head_pic||user.head_pic}")
           input(type="hidden",name="id",value="#{card.id}")
           .control-group
             label.control-label
-              | 姓名（
+              | 姓名
               span(style='color: #ff0000;') *
               span.label.label-warning 保密
-              | ）
             .controls
               input(type='text', name='name', placeholder='',value="#{card.name}")
           .control-group
             label.control-label
-              | 网名，昵称（
+              | 网名，昵称
               span(style='color: #ff0000;') *
-              | ）
             .controls
               input(type='text', name='nick', placeholder='',value="#{card.nick}")
           .control-group
             label.control-label
-              | 性别（
+              | 性别
               span(style='color: #ff0000;') *
-              | ）
             .controls
               label.radio.inline
                 | <input type='radio' name='sex' value='男' #{card.sex=="男"?"checked":""}/> 男
@@ -48,9 +45,8 @@ html
                 | <input type='radio' name='sex' value='女' #{card.sex=="女"?"checked":""}/> 女
           .control-group
             label.control-label
-              | 感情状况（
+              | 感情状况
               span(style='color: #ff0000;') *
-              | ）
             .controls
               label.radio.inline
                 | <input type='radio' name='is_dan' value='单身' #{card.is_dan=="单身"?"checked":""}/> 单身
@@ -60,23 +56,20 @@ html
                 | <input type='radio' name='is_dan' value='恋爱中' #{card.is_dan=="恋爱中"?"checked":""}/> 恋爱中
           .control-group
             label.control-label
-              | 所在城市（
+              | 所在城市
               span(style='color: #ff0000;') *
-              | ）
             .controls
               input(type='text', name='city', placeholder='',value="#{card.city}")
           .control-group
             label.control-label
-              | 职位（
+              | 职位
               span(style='color: #ff0000;') *
-              | ）
             .controls
               input(type='text', name='zhiwei', placeholder='',value="#{card.zhiwei}")
           .control-group
             label.control-label
-              | 特长，擅长的技术（
+              | 特长，擅长的技术
               span(style='color: #ff0000;') *
-              | ）
             .controls
               textarea(name='techang', style='width: 400px; height: 50px;') #{card.techang}
           .control-group
@@ -108,10 +101,9 @@ html
               input(type='text', name='github', placeholder='',value="#{card.github}")
           .control-group
             label.control-label
-              | 常用邮箱（
+              | 常用邮箱
               span(style='color: #ff0000;') *
               span.label.label-warning 保密
-              | ）
             .controls
               input(type='text', name='email', placeholder='',value="#{card.email}")
           .control-group
@@ -132,6 +124,12 @@ html
               span.label.label-warning 保密
             .controls
               input.input-xxlarge(type='text', name='address', placeholder='详细收货地址+邮编+姓名,用于收取礼物或者实物卡片，填了有惊喜')
+          .control-group
+            label.control-label
+              | 支付宝收款地址
+              span.label.label-warning 保密
+            .controls
+              input.input-xxlarge(type='text', name='alipay', placeholder='http://me.alipay.com/***,在me.alipay.com可以获取到自己的地址，用于接收捐助',value="#{card.alipay}")
           .control-group
             label.control-label 介绍下自己
             .controls

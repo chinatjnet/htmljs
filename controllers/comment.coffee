@@ -46,7 +46,6 @@ module.exports.controllers =
             func_article.getById match[1],(error,article)->
 
               if article
-                console.log func_info
                 func_info.add 
                   target_user_id:article.user_id
                   type:2

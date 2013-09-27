@@ -36,3 +36,4 @@ module.exports =
   comment_count:
     type:"int"
     defaultValue:0
+  alipay:"varchar(200)"
