@@ -17,7 +17,7 @@ func_article =
       offset: (page - 1) * count
       limit: count
       order: "sort desc,id desc"
-      include:[User]
+      include:[User,Column]
     if condition then query.where = condition
     Article.findAll(query)
     .success (articles)->
