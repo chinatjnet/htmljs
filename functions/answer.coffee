@@ -82,7 +82,7 @@ func_answer =
       offset: (page - 1) * count
       limit: count
       order: "zan_count desc,id"
-      include:[AnsZanHistory,User,Comment]
+      include:[AnsZanHistory,User]
     if condition then query.where = condition
     Ans.findAll(query)
     .success (answers)->
