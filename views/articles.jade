@@ -80,15 +80,15 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   span.author.vcard.item
                     span.index 作者：
                     a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
-                  span.time.item
-                    span.index 时间：
-                    a.value #{moment(article.publish_time*1000).format("LLL")}
+                  
                   span.views.item
                     span.index View：
                     a.value #{article.visit_count}
                   span.views.item
                     span.index 评论：
                     a.value #{article.comment_count}
+                  span.time.item
+                    a.value #{moment(article.publish_time*1000).format("LLL")}
                   if article.quote_url
                     span.views.item
                       a.value(href="#{article.quote_url}",target="_blank") 原文链接
