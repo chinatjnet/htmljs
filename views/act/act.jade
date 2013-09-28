@@ -50,10 +50,13 @@ html
             if !joiners.length
               div 还没有人报名，快点抢占吧！
           .me-join
-            if joiners.length >= act.person_limit
-              a.btn.disabled() 名额已满
+            if act.is_down
+              a.btn.disabled() 活动已结束
             else
-              a#join_submit.btn(data-original-title="报名的前提是登录并且创建花名册并且具有手机，email等联系方式") 报名
+              if joiners.length >= act.person_limit
+                a.btn.disabled() 名额已满
+              else
+                a#join_submit.btn(data-original-title="报名的前提是登录并且创建花名册并且具有手机，email等联系方式") 报名
             p
               .alert 希望报名后可以准时参加，现场会签到记录，不能参加提前告知。
       //
