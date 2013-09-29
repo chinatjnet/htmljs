@@ -67,6 +67,7 @@ check = ()->
     func_article.add data,(error,article)->
       if error then console.log error
       else
+
         func_timeline.add 
           who_id:34
           who_headpic:"http://tp2.sinaimg.cn/1734409185/50/40022299601/1"
@@ -75,5 +76,5 @@ check = ()->
           target_name:article.title
           action:"发表了专栏文章："
           desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.desc
-      
+        fs.writeFileSync 'last_read_date.txt',(new Date().getTime())
 check()
