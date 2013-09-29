@@ -47,7 +47,13 @@ html(xmlns:wb='http://open.weibo.com/wb')
           .column
             .col-title 专栏名：#{column.name}
             .col-user 所有者：#{column.user.nick}
-            .col-desc 简 介：!{column.desc_html}
+            .col-desc !{column.desc_html}
+            if column.is_public || (locals.user&&user.id==column.user_id)
+              .col-action
+                a.btn(href="/article/add?column_id=#{column.id}",data-original-title="",style="margin-right:10px;") 
+                  i.icon-plus.icon-white
+                  |在此专栏发表文章
+
       .left
 
         ul.article-list
@@ -59,7 +65,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
                     img(src="#{article.user.head_pic}",width="20")
                   
-                  if article.column
+                  if  !locals.column&&article.column
                     a(href="/article/column/#{article.column.id}") 【#{article.column.name}】
                   a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                   if article.sort == 100000

@@ -131,6 +131,7 @@ module.exports.controllers =
   "/add":
     "get":(req,res,next)->
       if not res.locals.card then next new Error '必须添加花名册后才能发表专栏文章！',100
+      res.locals.column_id = if req.query.column_id then req.query.column_id else ""
       res.render 'add-article.jade'
     "post":(req,res,next)->
       html = safeConverter.makeHtml req.body.md
@@ -225,8 +226,10 @@ module.exports.controllers =
               res.render 'article.jade'
   "/column/add":
     get:(req,res,next)->
+
       if not res.locals.card
         next new Error '必须添加“花名册”后才能添加自己的专栏'
+
       res.render 'article/add-column.jade'
     post:(req,res,next)->
       if not res.locals.card
@@ -244,6 +247,7 @@ module.exports.controllers =
         is_publish:1
         is_yuanchuang:1
         column_id:req.params.id
+
       func_article.count condition,(error,count)->
         if error then next error
         else

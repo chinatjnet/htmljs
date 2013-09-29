@@ -39,11 +39,11 @@ html
                 textarea.wmd-input#wmd-input(name="md",placeholder="文章内容，markdown语法。如果没有写完，可以直接关闭页面，下次打开内容仍然会在。") #{locals.article?article.md:''}
             .control-group
               .columns
-                input#column(type="hidden",name="column_id",value="#{locals.article?article.column_id:''}")
+                input#column(type="hidden",name="column_id",value="#{locals.article?article.column_id:column_id}")
                 div.hd 发表到何专栏：
                 div.bd 
                   each column,i in columns
-                    span.label(data-id="#{column.id}",class="#{locals.article?(article.column_id==column.id?'label-success':''):''}",data-original-title="#{column.desc_md&&column.desc_md.substr(0,100)}",title="#{column.desc_md&&column.desc_md.substr(0,100)}") #{column.name}
+                    span.label(data-id="#{column.id}",class="#{locals.article?(article.column_id==column.id?'label-success':''):(column.id==column_id?'label-success':'')}",data-original-title="#{column.desc_md&&column.desc_md.substr(0,100)}",title="#{column.desc_md&&column.desc_md.substr(0,100)}") #{column.name}
             .wmd-panel.wmd-preview
               div 预览
               #wmd-preview

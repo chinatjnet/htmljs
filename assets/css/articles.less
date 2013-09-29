@@ -2,24 +2,27 @@
 {
   background: #efefef;
   .column{
-    background: @green;
-    color:#fff;
-    padding:10px;
+    background: #fff;
+    color:#333;
+    padding:15px;
     border-radius: 3px;
     margin-bottom: 10px;
     .col-title{
       font-size: 16px;
-      color:#fff;
+      color:#666;
+      font-weight: bold;
+      line-height:30px;
     }
     .col-desc{
-      color:#eee;
+      color:#999;
       font-size: 12px;
-      margin-top: 5px;
     }
     .col-user{
-      margin:10px 0;
-      color:#eee;
+      color:#999;
       font-size: 12px;
+    }
+    .col-action{
+      margin-top: 10px;
     }
   }
   .column-list{
@@ -96,35 +99,73 @@
       background: @blue;
     }
   }
-  .article-list{
-    margin:0;
-    padding:0;
-    .post{
+  .post{
     background: #fff;
-    margin-bottom: 10px;
-    padding:20px;
-    border-radius:5px;
+    padding:10px;
+    position: relative;
+    .tip{
+      // position: absolute;
+      right:0;
+      top:0;
+      width:40px;
+      height:16px;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      background: @blue;
+      color: #fff;
+      z-index: 10;
+      padding:1px 4px;
+      font-weight: normal;
+      font-size: 12px;
+      vertical-align: 2px;
+      margin-left: 10px;
+    }
+    .tip.new{
+      background: #cb7a65;
+    }
+    .tip.hot{
+      background: #f74360;
+    }
+    .fang-eye{
+          display: inline-block;
+          width:13px;
+          height:13px;
+          background: url(../images/fang-eye.png) no-repeat;
+          background-size: 100%;
+        }
     .entry-title{
-      border-bottom: 1px solid #eee;
-      padding-bottom: 5px;
-     
+      position: relative;
       .headpic{
         float: left;
         margin-right: 20px;
       }
       .title{
+        font-size:15px;
+        line-height: 30px;
+        margin:0;
+        font-weight: bold;
+        font-weight: normal;
+        padding-right:50px;
+        a{
+          color: #333;
+        }
+      }
+      .title{
         margin:0;
         a{
-          font-size:18px;
         line-height: 30px;
         margin:0;
         color: #111;
         font-weight: normal;
         }
+        .real-title{
+          margin-left: 10px;
+        }
          .t-user{
         display: inline-block;
         margin-right: 5px;
-        vertical-align: -2px;
+        vertical-align: -4px;
         background: #fff;
         box-shadow: 1px 1px 1px #ddd;
         width:20px;
@@ -134,45 +175,49 @@
         }
       }
       }
-      .tip{
-      // position: absolute;
-      right:0;
-      top:0;
-      width:40px;
-      height:20px;
-      font-size: 12px;
-      line-height: 20px;
-      text-align: center;
-      background: @blue;
-      color: #fff;
-      z-index: 10;
-      padding:3px 6px;
-      font-weight: normal;
-      font-size: 12px;
-      vertical-align: 2px;
-      margin-right: 5px;
-    }
-    .tip.new{
-      background: #cb7a65;
-    }
-    .tip.hot{
-      background: #f74360;
-    }
+      .others{
+        margin-top: 10px;
+      }
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+
+        .index{
+          color:#aaa;
+        }
+        .value{
+          color:#999;
+        }
+      }
+      .actions{
+        a{
+          margin-right: 5px;
+        }
+      }
+      .tags{
+        a{
+          margin-right: 5px;
+        }
+      }
+      .user{
+        position: absolute;
+        right:10px;
+        top:7px;
+        a{
+          display: block;
+        }
+        img{
+          width:40px;
+          height:40px;
+        }
+      }
     }
     .entry-content{
-      padding:10px 0;
+      padding:20px 0;
       word-break: break-all;
-      color:#666;
-      .main_pic{
-          float:left;
-          max-width:250px;
-          max-height:250px;
-          margin:10px;
-          margin-left: 0;
-        }
+      color:#404040;
       h1,h2,h3,h4,h5{
-        font-size:14px;
-        line-height: 20px;
+        font-size:1.5em;
       }
       p{
         font-size:14px;
@@ -194,10 +239,89 @@
       }
     }
   }
+  .post.yooo{
+    background: #F7F7F7;
+  }
+  .article-list{
+    margin:0;
+    padding:0;
+  
   }
   
 }
+#article
+{
+  background: #efefef;
+  .right{
+    .module.count{
+      span{
+        padding-right: 10px;
+        color: #999;
+      }
+    }
+    .module.user{
+      .item{
+        margin-top: 10px;
+        font-size: 12px;
+        color:#999;
+      }
+    }
+  }
+  .post{
+    .entry-title{
+       border-bottom: 1px solid #eee;
+       padding-bottom: 10px;
+      .headpic{
+        float: left;
+        margin-right: 20px;
+        margin-top:10px;
+      }
+      .title{
+        font-size:20px;
+        line-height: 30px;
+        margin:0;
+        color: #404040;
+        font-weight: normal;
 
+      }
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+        .index{
+          color:#aaa;
+        }
+        .value{
+          color:#888;
+        }
+      }
+    }
+    .entry-content{
+      color:#555;
+      padding:20px 0;
+      font-size:13px;
+      line-height:25px;
+      h1,h2,h3,h4,h5{
+        font-size:1.5em;
+      }
+      word-wrap: break-word; 
+      word-break:break-all;
+      p{
+        
+        line-height:25px;
+        margin:20px 0;
+      }
+      img{
+        display: block;
+
+      }
+    }
+    .entry-meta{
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+      color:#999;
+    }
+  }
+}
 #add-article{
   background: #efefef;
   .columns{
