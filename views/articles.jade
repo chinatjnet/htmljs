@@ -58,16 +58,16 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   
                   a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
                     img(src="#{article.user.head_pic}",width="20")
+                  
+                  if article.column
+                    span 【#{article.column.name}】
+                  a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                   if article.sort == 100000
                       span.label.tip.top 置顶
                   if article.visit_count <= 30
                     span.label.tip.new New
                   else if article.visit_count >=200
                     span.label.tip.hot HOT
-                  if article.column
-                    span 【#{article.column.name}】
-                  a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
-                
               //- .entry-content.clearfix 
               //-   if article.main_pic
               //-     img.main_pic(src="#{article.main_pic}")
