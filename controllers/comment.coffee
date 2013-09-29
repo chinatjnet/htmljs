@@ -97,7 +97,7 @@ module.exports.controllers =
                   source_user_id:res.locals.user.id
                   source_user_nick:res.locals.user.nick
                   time:new Date()
-                  target_path:"/"+req.body.target_id.replace("_","/")
+                  target_path:"/"+req.body.target_id.replace("_","/").replace("question","qa")
                   action_name:"在评论中【提到】了你"
                   target_path_name:"查看出处"
                   content:req.body.html
