@@ -30,14 +30,15 @@ html
                 
                 .entry-title
                   h1.title
+                    
+                    a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
+                      |#{question.title}
                     if question.answer_count == 0
                       span.label.tip.new New
                     else if question.answer_count >=7 || question.is_hot
                       span.label.tip.hot HOT
                     else if question.sort == 10000
                       span.label.tip.top 置顶
-                    a(href='/qa/#{question.id}', title='#{question.title}', rel='bookmark') 
-                      |#{question.title}
                   div.others
                     //
                       span.author.vcard.item
