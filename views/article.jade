@@ -22,6 +22,14 @@ html
             .entry-content !{article.html.replace(/([^>])\r\n\r\n([^<])/g,"$1<br/>$2").replace(/<code>/g,"<code class='language-javascript'>")}
             .entry-meta
               p 本站专栏文章皆为原创，转载请注明出处和本文链接(<a href="http://f2e.html-js.com/article/#{article.id}">http://f2e.html-js.com/article/#{article.id}</a>)，本站和作者保留随时要求删除文章的权利！
+          if article.card && article.card.alipay 
+            .module(style="margin-top:10px;")
+              .hd 如果本文对您有帮助，本站希望您能为作者赞助一点心意，
+              .bd
+                p(style="color:#999;") 本站推荐按照您的情况，为作者捐助一下金额：1元，5元，10元，20元，或者更多。
+                p 
+                  a(href="#{article.card.alipay}",target="_blank") 点击这里用支付宝捐助
+
           .comment.module
             .hd 评论
             .bd

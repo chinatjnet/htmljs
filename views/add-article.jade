@@ -25,6 +25,8 @@ html
     include header
     #content
       .module
+        if !locals.card || !locals.card.alipay
+          p.alert() 你还没有填写你的支付宝收款账号，无法接受读者的赞助，请去花名册完善自己的信息。<a href="/edit-card">去完善</a>
         form.form-horizontal#form(method='post')
           input(type='hidden', name='is_yuanchuang',value="1")
           fieldset

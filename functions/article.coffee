@@ -2,6 +2,7 @@
 Article = __M 'articles'
 Column = __M 'columns'
 User = __M "users"
+Card = __M 'cards'
 Visit_log = __M 'article_visit_logs'
 Visit_log.sync()
 User.hasOne Article,{foreignKey:"user_id"}
