@@ -60,7 +60,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     img(src="#{article.user.head_pic}",width="20")
                   
                   if article.column
-                    span 【#{article.column.name}】
+                    a(href="/article/column/#{article.column.id}") 【#{article.column.name}】
                   a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
                   if article.sort == 100000
                       span.label.tip.top 置顶
@@ -74,12 +74,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
               //-   |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
               .entry-foot
                 div.others
-                  span.item
-                    span.index 专栏：
-                    if article.column
-                      a.value(href="/article/column/#{article.column.id}") #{article.column.name}
-                    else
-                      span.value 无
                   span.author.vcard.item
                     span.index 作者：
                     a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
