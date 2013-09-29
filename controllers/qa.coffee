@@ -128,6 +128,18 @@ module.exports.controllers =
         if error 
           next error
         else
+          func_question.getById req.body.question_id,(error,question)->
+            if question
+              func_info.add 
+                target_user_id:question.user_id
+                type:7
+                source_user_id:res.locals.user.id
+                source_user_nick:res.locals.user.nick
+                time:new Date()
+                target_path:"/qa/"+question.id+"#answer-"+req.params.id
+                action_name:"【修改】了TA针对您问题的回答"
+                target_path_name:question.title
+                content:req.body.html
           res.redirect '/qa/'+req.body.question_id+"#answer-"+req.params.id
   "/answer/:id/comment":
     get:(req,res,next)->
