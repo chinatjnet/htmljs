@@ -191,7 +191,7 @@
 #index .timeline-item .entry-title .title .t-user{display:inline-block;margin-right:5px;vertical-align:-4px;background:#fff;box-shadow:1px 1px 1px #ddd;width:20px;height:20px;}#index .timeline-item .entry-title .title .t-user img{display:block;}
 #index .timeline-item .entry-title .others{margin-top:10px;}
 #index .timeline-item .entry-title .item{font-size:12px;margin-right:20px;}#index .timeline-item .entry-title .item .index{color:#aaa;}
-#index .timeline-item .entry-title .item .value{color:#999;}
+#index .timeline-item .entry-title .item .value{color:#aaa;}
 #index .timeline-item .entry-title .item a.value{color:#5bb793;}
 #index .timeline-item .entry-title .actions a{margin-right:5px;}
 #index .timeline-item .entry-title .tags a{margin-right:5px;}
@@ -199,12 +199,13 @@
 #index .timeline-item .entry-title .user img{width:40px;height:40px;}
 #index .timeline-item .entry-content{padding:20px 0;word-break:break-all;color:#404040;}#index .timeline-item .entry-content h1,#index .timeline-item .entry-content h2,#index .timeline-item .entry-content h3,#index .timeline-item .entry-content h4,#index .timeline-item .entry-content h5{font-size:1.5em;}
 #index .timeline-item .entry-content p{font-size:14px;line-height:20px;margin:10px 0;}
-#index .timeline-item .entry-foot{line-height:30px;}#index .timeline-item .entry-foot .item{font-size:12px;margin-right:20px;}#index .timeline-item .entry-foot .item .index{color:#bbb;}
-#index .timeline-item .entry-foot .item .value{color:#999;}
+#index .timeline-item .entry-foot{line-height:30px;}#index .timeline-item .entry-foot .item{font-size:12px;margin-right:20px;}#index .timeline-item .entry-foot .item .index{color:#aaa;}
+#index .timeline-item .entry-foot .item .value{color:#aaa;}
 #index .timeline-item .entry-foot .item a.value{color:#68a4d1;}
 #index .timeline-item.yooo{background:#F7F7F7;}
-#index .card-item .index{color:#bbb;}
-#index .card-item .value{color:#999;}
+#index .card-item .t-user{margin-right:10px;}
+#index .card-item .index{color:#aaa;}
+#index .card-item .value{color:#aaa;}
 #index .card-item a.value{color:#68a4d1;}
 #index .article-list{margin:0;padding:0;}
 #qas{background:#efefef;}#qas .actions{padding-bottom:5px;}#qas .actions .right-actions{float:right;}#qas .actions .right-actions a{padding:0 10px;line-height:30px;color:#5bb793;}

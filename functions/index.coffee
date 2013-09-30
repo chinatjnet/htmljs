@@ -25,6 +25,7 @@ module.exports =
 
  card.id as card_id,
  card.user_id as card_user_id,
+ card.head_pic as card_head_pic,
  card.nick as card_nick,
 
  question.id as question_id,

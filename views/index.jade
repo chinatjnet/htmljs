@@ -6,6 +6,7 @@ html
     style
       #bdshare a{}
     script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
   body#index
     - locals.pageId=0;
     include header
@@ -18,10 +19,12 @@ html
           each timeline in timelines
             if timeline.card_id
               .card-item.timeline-item.clearfix
+                a.t-user(href="/user/#{timeline.card_user_id}",data-original-title="#{timeline.card_nick}")
+                  img(src="#{timeline.card_head_pic}",width="20")
                 span.value  #{moment(timeline.createdAt).fromNow()} 
                 a(href="/card/#{timeline.card_id}") #{timeline.card_nick} 
-                span 添加了自己的花名册：
-                a(href="/card/#{timeline.card_id}") #{timeline.card_nick}的花名册 
+                span 添加了自己的名片：
+                a(href="/card/#{timeline.card_id}") 查看名片 
                 
             else if timeline.article_id
               .article-item.timeline-item.clearfix
@@ -99,8 +102,9 @@ html
               img(src="#{assets_head}/images/qrcode.jpg")
     include footer
     script
-      var css = "width:10px;height:10px;display:block;-webkit-box-shadow:1px 1px 2px #ff6700;color:#aaa;background:#aaa;"
-      console.log ("%ca",css)
+      $('.t-user').tooltip({
+          placement:"bottom"
+      })
       
 
       
