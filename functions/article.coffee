@@ -47,8 +47,10 @@ func_article =
     .error (error)->
       callback error
   add:(data,callback)->
+    data.uuid = uuid.v4()
     Article.create(data)
     .success (article)->
+      
       article.updateAttributes
         sort:article.id
       callback null,article

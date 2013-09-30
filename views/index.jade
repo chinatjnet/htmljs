@@ -16,18 +16,57 @@ html
           div.alert.alert-warning 本站第一次线下活动【中秋节杭州基层前端大聚会】，开始报名！<a href="/act/1">戳我去报名</a>！
         .module.timelines
           each timeline in timelines
-            .timeline-item.clearfix
-              .user
-                .headpic(href="/user/#{timeline.who_id}") 
-                  img(src="#{timeline.who_headpic}")
-              .infos
-                .action 
-                  a.nick(href="/user/#{timeline.who_id}") #{timeline.who_nick}
-                  |#{timeline.action}
-                  a.title(href="#{timeline.target_url}") #{timeline.target_name}
-                  span.time #{moment(timeline.createdAt).fromNow()}
-                if timeline.desc
-                  .desc.clearfix !{timeline.desc}
+            if timeline.card_id
+              .card-item.timeline-item.clearfix
+                span.value  #{moment(timeline.createdAt).fromNow()} 
+                a(href="/card/#{timeline.card_id}") #{timeline.card_nick} 
+                span 添加了自己的花名册：
+                a(href="/card/#{timeline.card_id}") #{timeline.card_nick}的花名册 
+                
+            else if timeline.article_id
+              .article-item.timeline-item.clearfix
+                .entry-title
+                  h1.title
+                    a.t-user(href="/user/#{timeline.article_user_id}",data-original-title="#{timeline.article_user_nick}")
+                      img(src="#{timeline.article_user_headpic}",width="20")
+                    a.real-title(href='/article/#{timeline.article_id}', title='#{timeline.article_title}', rel='bookmark') #{timeline.article_title}
+                .entry-foot
+                  div.others
+                    span.time.item
+                      span.value #{moment(timeline.createdAt).fromNow()} 由
+                      a.value.url.fn(rel='author', href='/user/#{timeline.article_user_id}')  #{timeline.article_user_nick} 
+                      span.value 
+                        | 发布在 
+                        if timeline.article_column_id && locals.columns
+                          each column in columns
+                            if column.id == timeline.article_column_id
+                              a(href="/article/column/#{column.id}") #{column.name}
+                        |  专栏
+            else if timeline.question_id
+              .question-item.timeline-item.clearfix
+                .entry-title
+                  h1.title
+                    a.t-user(href="/user/#{timeline.question_user_id}",data-original-title="#{timeline.question_user_nick}")
+                      img(src="#{timeline.question_user_headpic}",width="20")
+                    a.real-title(href='/question/#{timeline.question_id}', title='#{timeline.question_title}', rel='bookmark') #{timeline.question_title}
+                .entry-foot
+                  div.others
+                    span.time.item
+                      span.value #{moment(timeline.createdAt).fromNow()} 由
+                      a.value.url.fn(rel='author', href='/user/#{timeline.question_user_id}')  #{timeline.question_user_nick} 
+                      span.value 发布在 问答区
+            //- .timeline-item.clearfix
+            //-   .user
+            //-     .headpic(href="/user/#{timeline.who_id}") 
+            //-       img(src="#{timeline.who_headpic}")
+            //-   .infos
+            //-     .action 
+            //-       a.nick(href="/user/#{timeline.who_id}") #{timeline.who_nick}
+            //-       |#{timeline.action}
+            //-       a.title(href="#{timeline.target_url}") #{timeline.target_name}
+            //-       span.time #{moment(timeline.createdAt).fromNow()}
+            //-     if timeline.desc
+            //-       .desc.clearfix !{timeline.desc}
           include page
       .right
         .module

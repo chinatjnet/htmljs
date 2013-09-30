@@ -15,7 +15,6 @@
     overflow: hidden;
   }
   .timeline-item{
-    margin-top: 20px;
     font-size: 13px;
     .user{
       .headpic{
@@ -136,5 +135,141 @@
         }
       }
     }
+  }
+  .timeline-item{
+    background: #fff;
+    padding:10px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    .entry-title{
+      position: relative;
+      .headpic{
+        float: left;
+        margin-right: 20px;
+      }
+      .title{
+        font-size:15px;
+        line-height: 30px;
+        margin:0;
+        font-weight: bold;
+        font-weight: normal;
+        padding-right:50px;
+        a{
+          color: #333;
+        }
+      }
+      .title{
+        margin:0;
+        a{
+        line-height: 30px;
+        margin:0;
+        color: #111;
+        font-weight: normal;
+        }
+        .real-title{
+          margin-left: 10px;
+        }
+         .t-user{
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: -4px;
+        background: #fff;
+        box-shadow: 1px 1px 1px #ddd;
+        width:20px;
+        height:20px;
+        img{
+          display: block;
+        }
+      }
+      }
+      .others{
+        margin-top: 10px;
+      }
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+
+        .index{
+          color:#aaa;
+        }
+        .value{
+          color:#999;
+        }
+        a.value{
+          color:@green;
+        }
+      }
+      .actions{
+        a{
+          margin-right: 5px;
+        }
+      }
+      .tags{
+        a{
+          margin-right: 5px;
+        }
+      }
+      .user{
+        position: absolute;
+        right:10px;
+        top:7px;
+        a{
+          display: block;
+        }
+        img{
+          width:40px;
+          height:40px;
+        }
+      }
+    }
+    .entry-content{
+      padding:20px 0;
+      word-break: break-all;
+      color:#404040;
+      h1,h2,h3,h4,h5{
+        font-size:1.5em;
+      }
+      p{
+        font-size:14px;
+        line-height:20px;
+        margin:10px 0;
+      }
+    }
+    .entry-foot{
+      line-height: 30px;
+      .item{
+        font-size: 12px;
+        margin-right: 20px;
+        .index{
+          color:#bbb;
+        }
+        .value{
+          color:#999;
+        }
+        a.value{
+          color:@blue;
+        }
+      }
+    }
+  }
+  .timeline-item.yooo{
+    background: #F7F7F7;
+  }
+  .card-item{
+        .index{
+          color:#bbb;
+        }
+        .value{
+          color:#999;
+        }
+        a.value{
+          color:@blue;
+        }
+  }
+  .article-list{
+    margin:0;
+    padding:0;
+  
   }
 }

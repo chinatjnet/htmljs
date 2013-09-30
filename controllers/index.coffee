@@ -4,6 +4,8 @@ func_bao = __F 'bao'
 func_article = __F 'article'
 func_info = __F 'info'
 func_timeline = __F 'timeline'
+func_index = __F 'index'
+func_column = __F 'column'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js");
 #md5 = require 'MD5'
@@ -25,18 +27,16 @@ module.exports.controllers =
     get:(req,res,next)->
       page = req.query.page || 1
       count = req.query.count || 20
-      func_timeline.count null,(error,_count)->
+        
+      func_index.count (error,_count)->
         if error then next error
         else
           res.locals.total=_count
           res.locals.totalPage=Math.ceil(_count/count)
           res.locals.page = (req.query.page||1)
-          func_timeline.getAll page,count,null,(error,timelines)->
+          func_index.getAll page,count,(error,timelines)->
             if error then next error
             else
-              if timelines.length < 0
-                res.redirect '/article'
-                return
               res.locals.timelines = timelines
               res.render 'index.jade'
   "/rss":
@@ -135,6 +135,7 @@ module.exports.controllers =
       func_card.add req.body,(error,card)->
         if error then next error
         else
+          func_index.add card.uuid
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
             status:"我在@前端乱炖 的《前端花名册》添加了我的名片，欢迎收藏：http://f2e.html-js.com/user/"+res.locals.user.id
@@ -314,7 +315,7 @@ module.exports.filters =
   "/edit-card":
     get:['checkLogin',"checkCard"]
   "/":
-    get:['freshLogin','getRecent']
+    get:['freshLogin','getRecent','article/index-columns']
   "/card/:id/zan":
     post:['checkLoginJson']
   "/card/:id/bao":

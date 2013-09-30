@@ -26,6 +26,7 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
+          (__F 'index').add q.uuid
           if req.body.tags
             func_question.addTagsToQuestion q.id,req.body.tags.split(",")
           (__F 'coin').add 20,res.locals.user.id,"发布了一条问题"

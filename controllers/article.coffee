@@ -161,6 +161,7 @@ module.exports.controllers =
           result.info = error.message
         else
           result.success = 1
+          (__F 'index').add article.uuid
           (__F 'coin').add 40,article.user_id,"发表了一篇专栏文章"
           func_timeline.add 
             who_id:res.locals.user.id

@@ -1,6 +1,7 @@
 config = require("./../config.coffee")
 path = require 'path'
 Sequelize = require("sequelize")
+uuid = require 'node-uuid'
 global.sequelize = sequelize = new Sequelize(config.mysql_table, config.mysql_username, config.mysql_password,
   define:
     underscored: false
@@ -15,7 +16,7 @@ module.exports = global.__M= (modelName,defaultMethods)->
   	defaultMethods.forEach (method)->
 
   return obj
-
+global.uuid = require 'node-uuid'
 global.__FC = (func,model,methods)->
   methods.forEach (m)->
     if m == 'getById'
@@ -50,6 +51,7 @@ global.__FC = (func,model,methods)->
           callback e
     else if m == 'add'
       func.add = (data,callback)->
+        data.uuid = uuid.v4()
         model.create(data)
         .success (m)->
           callback&&callback null,m

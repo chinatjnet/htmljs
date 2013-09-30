@@ -25,3 +25,4 @@ module.exports =
     type:"int"
     defaultValue:0
   tagNames:"varchar(255)"
+  uuid:"varchar(40)"
