@@ -26,7 +26,7 @@ module.exports.controllers =
   "/":
     get:(req,res,next)->
       page = req.query.page || 1
-      count = req.query.count || 20
+      count = req.query.count || 30
         
       func_index.count (error,_count)->
         if error then next error
