@@ -33,7 +33,7 @@ module.exports =
  question.user_nick as question_user_nick,
  question.user_headpic as question_user_headpic ,
  question.title as question_title,
- question.comment_count as question_comment_count,
+ question.answer_count as question_answer_count,
  question.visit_count as question_visit_count
 
  from indexinfos indexinfo

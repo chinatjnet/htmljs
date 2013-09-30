@@ -45,6 +45,13 @@ html
                             if column.id == timeline.article_column_id
                               a(href="/article/column/#{column.id}") #{column.name}
                         |  专栏
+                    span.item
+                      span.index 浏览 
+                      span.value #{timeline.article_visit_count}
+                    span.item
+                      span.index 评论 
+                      span.value #{timeline.article_comment_count}
+                    
             else if timeline.question_id
               .question-item.timeline-item.clearfix
                 .entry-title
@@ -58,6 +65,13 @@ html
                       span.value #{moment(timeline.createdAt).fromNow()} 由
                       a.value.url.fn(rel='author', href='/user/#{timeline.question_user_id}')  #{timeline.question_user_nick} 
                       span.value 发布在 问答区
+                    span.item
+                      span.index 浏览 
+                      span.value #{timeline.question_visit_count}
+                    span.item
+                      span.index 回答 
+                      span.value #{timeline.question_answer_count}
+                    
             //- .timeline-item.clearfix
             //-   .user
             //-     .headpic(href="/user/#{timeline.who_id}") 
