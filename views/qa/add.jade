@@ -31,7 +31,7 @@ html
               .control-group
                 .wmd-panel
                   #wmd-button-bar
-                  textarea.wmd-input#wmd-input(name="md",placeholder='详细问题')
+                  textarea.expand.wmd-input#wmd-input(name="md",placeholder='详细问题')
                   .wmd-panel.wmd-preview
                     div 预览
                     #wmd-preview
@@ -45,6 +45,10 @@ html
                       each tag,i in tags
                         span.label(data-id="#{tag.id}",data-original-title="#{tag.desc_md.substr(0,100)}",title="#{tag.desc_md.substr(0,100)}") #{tag.name}
                       a(href="/tag/add",target="_blank",style="padding-left:10px;font-size:12px;") 添加新标签
+              .control-group
+                label.checkbox
+                  input(type="checkbox",name="to_weibo",checked="true")
+                  |分享到微博
               .control-group
                 button.btn#submit(type='submit') 发表
           #myModal.modal.hide.fade.
@@ -65,10 +69,17 @@ html
         .module
           .hd 提示
           .bd 
-            div 标题中需带有问号和疑问语气。
-            div 可以使用markdown语法，可以插入图片。
-            div 分享到微博可以让更多人关注并回答问题。
-            div 提问前请阅读：<a href="/qa/7" target="_blank">问答系统指南</a>
+            div.item 标题中需带有问号和疑问语气。
+            div.item 可以使用markdown语法，可以插入图片。
+            div.item 分享到微博可以让更多人关注并回答问题。
+            div.item 提问前请阅读：<a href="/qa/7" target="_blank">问答系统指南</a>
+        .module
+          .hd 提问三原则
+          .bd 
+            div.item 一。请确保描述清楚以便别人可以回答您的问题。例如直击本质的现象，所有表现形式，报错信息，发生场景等。
+            div.item 二。不要吝啬多贴代码，推荐使用 <a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net/</a> 演示代码。
+            div.item 三。请带着求教或者请教的态度问问题，没有人有回答你问题的义务，如果有人回答你，请感谢他，并且给他点上一个赞，作者会收到感谢并为别人解决更多问题。
+
     include ../footer
     script(src='#{assets_head}/js/ajaxfileupload.js')
     script(src='#{assets_head}/js/loadingTip.js')
