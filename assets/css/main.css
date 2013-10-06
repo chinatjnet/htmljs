@@ -28,6 +28,7 @@
 .action a{padding:0 5px;}
 #header .navbar-inner{height:30px;min-height:30px;background:#5bb793;border:none;color:#fff;line-height:30px;}#header .navbar-inner a{text-shadow:none;color:#fff;line-height:30px;padding-top:0;font-size:13px;padding-bottom:0;}
 #header .navbar-inner .active a{color:#5bb793;background:#fff;}
+#header .navbar-inner i{vertical-align:-2px;margin-right:5px;}
 #header .right-nav{float:right;margin:0;}#header .right-nav li{list-style:none;line-height:30px;margin-left:10px;float:left;}#header .right-nav li a{display:block;}
 #header .right-nav li .unread{display:inline-block;height:15px;padding:0 5px;background:#ef5e5e;color:#fff;border-radius:20px;font-size:12px;line-height:15px;text-align:center;font-style:normal;font-weight:normal;margin:0 5px;vertical-align:2px;}
 #footer .wrapper{width:940px;margin:30px auto;}#footer .wrapper .module{margin-left:0;}#footer .wrapper .module .bd{padding:0;}
@@ -76,6 +77,7 @@
 #cards .f2er-list .sns .weibo{background:url(http://htmljs.b0.upaiyun.com/images/icon-weibo.png?d) no-repeat center center;height:15px;width:15px;display:inline-block;text-indent:-1000px;overflow:hidden;}
 #cards .f2er-list li{width:360px;background:#fff;border-radius:5px;list-style:none;margin:0;display:inline-block;vertical-align:top;margin-top:10px;padding:15px;font-size:12px;color:#666;margin-right:10px;box-shadow:1px 1px 2px #ddd;position:relative;}
 #cards .f2er-list li a{word-wrap:normal;word-break:break-all;}
+#cards .f2er-list li .head_pic{width:50px;height:50px;}
 #cards .f2er-list li .key{color:#aaa;margin-left:10px;}
 #cards .f2er-list li .shanchang .key{float:left;}
 #cards .f2er-list li .shanchang .value{float:left;width:260px;}
@@ -176,7 +178,7 @@
 #index .timeline-item .infos .desc .card .key:first-child{margin-left:0;}
 #index .timeline-item .infos .desc .card .shanchang .key{float:left;}
 #index .timeline-item .infos .desc .card .shanchang .value{float:left;width:350px;}
-#index .timeline-item{background:#fff;padding:10px;position:relative;border-bottom:1px solid #eee;font-size:12px;}#index .timeline-item .entry-title{position:relative;}#index .timeline-item .entry-title .headpic{float:left;margin-right:20px;}
+#index .timeline-item{background:#fff;padding:10px;padding-left:18px;position:relative;border-bottom:1px solid #eee;font-size:12px;}#index .timeline-item .entry-title{position:relative;}#index .timeline-item .entry-title .headpic{float:left;margin-right:20px;}
 #index .timeline-item .entry-title .title{font-size:15px;line-height:30px;margin:0;font-weight:bold;font-weight:normal;padding-right:50px;}#index .timeline-item .entry-title .title a{color:#333;}
 #index .timeline-item .entry-title .title{margin:0;}#index .timeline-item .entry-title .title a{line-height:30px;margin:0;color:#111;font-weight:normal;}
 #index .timeline-item .entry-title .title .real-title{margin-left:10px;}
@@ -194,11 +196,13 @@
 #index .timeline-item .entry-foot{line-height:30px;}#index .timeline-item .entry-foot .item{font-size:12px;margin-right:20px;}#index .timeline-item .entry-foot .item .index{color:#aaa;}
 #index .timeline-item .entry-foot .item .value{color:#aaa;}
 #index .timeline-item .entry-foot .item a.value{color:#68a4d1;}
+#index .timeline-item .entry-name{position:absolute;top:14px;left:-5px;line-height:18px;font-size:12px;color:#aaa;padding:0 5px;}
 #index .timeline-item.yooo{background:#F7F7F7;}
 #index .card-item .t-user{margin-right:10px;}
 #index .card-item .index{color:#aaa;}
 #index .card-item .value{color:#aaa;}
 #index .card-item a.value{color:#68a4d1;}
+#index .card-item .entry-name{top:12px;}
 #index .article-list{margin:0;padding:0;}
 #qas{background:#efefef;}#qas .actions{padding-bottom:5px;}#qas .actions .right-actions{float:right;}#qas .actions .right-actions a{padding:0 10px;line-height:30px;color:#5bb793;}
 #qas .actions .right-actions a.active,#qas .actions .right-actions a:hover{color:#666;}
@@ -406,4 +410,4 @@
 #add-article #title{width:630px;}
 #add-article .columns .bd{padding-top:10px;}
 #add-article .columns .label{margin-right:5px;float:left;cursor:pointer;}
-@media screen and (min-width:100px) and (max-width:800px){body{padding:20px;} #content,#header,#footer{width:100% !important;}#content .left,#header .left,#footer .left{width:100% !important;} #content .right,#header .right,#footer .right{width:100% !important;margin-left:0;}#content .right .module,#header .right .module,#footer .right .module{margin-left:0;} #content .wrapper,#header .wrapper,#footer .wrapper{width:100% !important;} #content .main,#header .main,#footer .main{width:100% !important;} .navbar .container{width:100% !important;} #index .timeline-item .others{margin-top:10px;} #index .timeline-item .entry-foot{line-height:25px;} #index .timeline-item .item{line-height:14px;} #index .timeline-item .time{display:block;} #header .navbar li[pageId="4"]{display:none !important;} #header .navbar li[pageId="9"]{display:none !important;} #articles .column-item{width:90% !important;} #cards .f2er-list{width:100% !important;}#cards .f2er-list li{width:90% !important;margin:10px 0 !important;padding:5%;}}
+@media screen and (min-width:100px) and (max-width:800px){body{padding:10px;} #gotop{right:10px;bottom:10px;} #content,#header,#footer{width:100% !important;}#content .left,#header .left,#footer .left{width:100% !important;} #content .right,#header .right,#footer .right{width:100% !important;margin-left:0;}#content .right .module,#header .right .module,#footer .right .module{margin-left:0;} #content .module,#header .module,#footer .module{padding:10px;} #content .wrapper,#header .wrapper,#footer .wrapper{width:100% !important;} #content .main,#header .main,#footer .main{width:100% !important;} .navbar .container{width:100% !important;} #index .timeline-item .others{margin-top:10px;} #index .timeline-item .entry-foot{line-height:25px;} #index .timeline-item .item{line-height:14px;} #index .timeline-item .time{display:block;} #header .navbar li[pageId="4"]{display:none !important;} #header .navbar li[pageId="9"]{display:none !important;} #header .navbar .right-nav{position:absolute;right:0px;top:30px;background:#5bb793;padding-right:10px;} #articles .column-item{width:90% !important;} #cards .f2er-list{width:100% !important;}#cards .f2er-list li{width:90% !important;margin:10px 0 !important;padding:5%;}}

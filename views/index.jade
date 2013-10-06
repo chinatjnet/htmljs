@@ -5,7 +5,6 @@ html
     title 前端乱炖 - 首页
     style
       #bdshare a{}
-    script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
   body#index
     - locals.pageId=0;
@@ -20,18 +19,18 @@ html
             if timeline.card_id
               .card-item.timeline-item.clearfix
                 a.t-user(href="/user/#{timeline.card_user_id}",data-original-title="#{timeline.card_nick}")
-                  img(src="#{timeline.card_head_pic}",width="20")
+                  img(data-original="#{timeline.card_head_pic}",width="20")
                 span.value  #{moment(timeline.createdAt).fromNow()} 
                 a(href="/card/#{timeline.card_id}") #{timeline.card_nick} 
                 span 添加了自己的名片：
                 a(href="/card/#{timeline.card_id}") 查看名片 
-                
+                .entry-name <i class="icon-nameplate"></i>
             else if timeline.article_id
               .article-item.timeline-item.clearfix
                 .entry-title
                   h1.title
                     a.t-user(href="/user/#{timeline.article_user_id}",data-original-title="#{timeline.article_user_nick}")
-                      img(src="#{timeline.article_user_headpic}",width="20")
+                      img(data-original="#{timeline.article_user_headpic}",width="20")
                     a.real-title(href='/article/#{timeline.article_id}', title='#{timeline.article_title}', rel='bookmark') #{timeline.article_title}
                 .entry-foot
                   div.others
@@ -51,13 +50,14 @@ html
                     span.item
                       span.index 评论 
                       span.value #{timeline.article_comment_count}
+                .entry-name <i class="icon-book-open"></i>
                     
             else if timeline.question_id
               .question-item.timeline-item.clearfix
                 .entry-title
                   h1.title
                     a.t-user(href="/user/#{timeline.question_user_id}",data-original-title="#{timeline.question_user_nick}")
-                      img(src="#{timeline.question_user_headpic}",width="20")
+                      img(data-original="#{timeline.question_user_headpic}",width="20")
                     a.real-title(href='/qa/#{timeline.question_id}', title='#{timeline.question_title}', rel='bookmark') #{timeline.question_title}
                 .entry-foot
                   div.others
@@ -71,7 +71,7 @@ html
                     span.item
                       span.index 回答 
                       span.value #{timeline.question_answer_count}
-                    
+                .entry-name <i class="icon-lightbulb"></i>
             //- .timeline-item.clearfix
             //-   .user
             //-     .headpic(href="/user/#{timeline.who_id}") 
@@ -117,6 +117,7 @@ html
       $('.t-user').tooltip({
           placement:"bottom"
       })
+      $("img").lazyload();
       
 
       
