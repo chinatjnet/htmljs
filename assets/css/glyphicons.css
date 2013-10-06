@@ -23,6 +23,7 @@ html .halflings {
   text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
   *margin-right: .3em;
+  background: none !important;
 }
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
