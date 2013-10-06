@@ -4,26 +4,26 @@
       .container
         .nav-collapse.collapse
           ul.nav
-            li(class="#{locals.pageId==0?'active':''}")
+            li(class="#{locals.pageId==0?'active':''}",pageId="0")
               a(href="/") 乱炖首页
-            li(class="#{locals.pageId==1?'active':''}")
+            li(class="#{locals.pageId==1?'active':''}",pageId="1")
               a(href="/article") 专栏
-            li(class="#{locals.pageId==7?'active':''}")
+            li(class="#{locals.pageId==7?'active':''}",pageId="7")
               a(href="/qa") 问答
             //
-              li(class="#{locals.pageId==8?'active':''}")
+              li(class="#{locals.pageId==8?'active':''}",pageId="8")
                 a(href="/tag") 标签
-            li(class="#{locals.pageId==4?'active':''}")
+            li(class="#{locals.pageId==4?'active':''}",pageId="4")
               a(href="/read") 阅读
-            li(class="#{locals.pageId==2?'active':''}")
+            li(class="#{locals.pageId==2?'active':''}",pageId="2")
               a(href="/cards") 花名册
 
-            li(class="#{locals.pageId==5?'active':''}")
+            li(class="#{locals.pageId==5?'active':''}",pageId="5")
               a(href="/act") 活动
-            li(class="#{locals.pageId==9?'active':''}")
+            li(class="#{locals.pageId==9?'active':''}",pageId="9")
               a(href="/tools") 常用工具
             //
-              li(class="#{locals.pageId==6?'active':''}")
+              li(class="#{locals.pageId==6?'active':''}",pageId="6")
                 a(href="/book") 免费送书
             
           if locals.user
