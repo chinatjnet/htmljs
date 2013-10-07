@@ -5,6 +5,7 @@ moment = require 'moment'
 func_article = __F 'article'
 func_column = __F 'column'
 pagedown = require("pagedown")
+fs = require 'fs'
 safeConverter = pagedown.getSanitizingConverter()
 tpl = "
 ###如何给前端乱炖投稿？\n
@@ -31,12 +32,17 @@ jade = require('jade')
 
 check = ()->
   now = new Date()
-  minDay = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0)
+  try
+    ld = fs.readFileSync 'last_read_date.txt'
+  catch e
+    ld = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0).getTime()
+  minDay = new Date(ld*1)
+  console.log minDay
   maxDay = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,0)
-  minDay = moment(minDay).format("YYYY-MM-DD 00:00:00")
-  maxDay = moment(maxDay).format("YYYY-MM-DD 00:00:00")
+  minDay = moment(minDay).format("YYYY-MM-DD HH:mm:ss")
+  console.log minDay
+  maxDay = moment(maxDay).format("YYYY-MM-DD HH:mm:ss")
   func_article.getAll 1,100,['  articles.createdAt > ? and articles.createdAt < ?',minDay,maxDay],(error,articles)->
-    console.log articles
     if error then console.log error
     _articles = ""
     _reads = ""
