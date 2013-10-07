@@ -58,46 +58,56 @@ html(xmlns:wb='http://open.weibo.com/wb')
 
         ul.article-list
           each article,i in articles
-            article.post(id="post-#{article.id}",class="#{i%2==1?'yooo':''} ")
-              .entry-title
-                h1.title
-                  
-                  a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
-                    img(src="#{article.user.head_pic}",width="20")
-                  
-                  if  !locals.column&&article.column
-                    a(href="/article/column/#{article.column.id}") 【#{article.column.name}】
-                  a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
-                  if article.sort == 100000
-                      span.label.tip.top 置顶
-                  if article.visit_count <= 30
-                    span.label.tip.new New
-                  else if article.visit_count >=200
-                    span.label.tip.hot HOT
-              //- .entry-content.clearfix 
-              //-   if article.main_pic
-              //-     img.main_pic(src="#{article.main_pic}")
-              //-   |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
-              .entry-foot
-                div.others
-                  span.author.vcard.item
-                    span.index 作者：
-                    a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
-                  
-                  span.views.item
-                    span.index View：
-                    a.value #{article.visit_count}
-                  span.views.item
-                    span.index 评论：
-                    a.value #{article.comment_count}
-                  span.time.item
-                    a.value #{moment(article.publish_time*1000).format("LLL")}
-                  if article.quote_url
+            - var showA = false;
+            if article.is_publish
+              showA = true
+            else if locals.user && locals.user.id == article.user_id
+              showA = true
+
+
+            if showA
+              article.post(id="post-#{article.id}",class="#{i%2==1?'yooo':''} ")
+                .entry-title
+                  h1.title
+                    
+                    a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
+                      img(src="#{article.user.head_pic}",width="20")
+                    
+                    if  !locals.column&&article.column
+                      a(href="/article/column/#{article.column.id}") 【#{article.column.name}】
+                    a.real-title(href='/article/#{article.id}', title='#{article.title}', rel='bookmark') #{article.title}
+                    if !article.is_publish
+                      span.label.tip 此文正在审核中
+                    if article.sort == 100000
+                        span.label.tip.top 置顶
+                    if article.visit_count <= 30
+                      span.label.tip.new New
+                    else if article.visit_count >=200
+                      span.label.tip.hot HOT
+                //- .entry-content.clearfix 
+                //-   if article.main_pic
+                //-     img.main_pic(src="#{article.main_pic}")
+                //-   |!{article.desc||article.html.replace(/<p>(.*?)<\/p>/g,"$1\n").replace(/<[^>]*?>/g,"").substr(0,300).replace(/([^\n])\n+([^\n])/g,"$1<br/>$2")}
+                .entry-foot
+                  div.others
+                    span.author.vcard.item
+                      span.index 作者：
+                      a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+                    
                     span.views.item
-                      a.value(href="#{article.quote_url}",target="_blank") 原文链接
-                  if locals.user && (user.is_admin||user.id==article.user_id)
+                      span.index View：
+                      a.value #{article.visit_count}
                     span.views.item
-                      a.value(href="/article/#{article.id}/edit") 编辑
+                      span.index 评论：
+                      a.value #{article.comment_count}
+                    span.time.item
+                      a.value #{moment(article.publish_time*1000).format("LLL")}
+                    if article.quote_url
+                      span.views.item
+                        a.value(href="#{article.quote_url}",target="_blank") 原文链接
+                    if locals.user && (user.is_admin||user.id==article.user_id)
+                      span.views.item
+                        a.value(href="/article/#{article.id}/edit") 编辑
         include page
       .right
         //

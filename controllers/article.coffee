@@ -18,7 +18,6 @@ module.exports.controllers =
   "/":
     "get":(req,res,next)->
       condition = 
-        is_publish:1
         is_yuanchuang:1
       
       func_article.count condition,(error,count)->
@@ -171,6 +170,15 @@ module.exports.controllers =
             target_name:article.title
             action:"发表了专栏文章："
             desc:(if article.main_pic then "<img src='"+article.main_pic+"' class='main_pic'/>" else "")+article.desc
+        func_info.add 
+            target_user_id:1
+            type:8
+            source_user_id:res.locals.user.id
+            source_user_nick:res.locals.user.nick
+            time:new Date()
+            target_path:'/article/'+article.id
+            action_name:"发表了一篇文章待审核"
+            target_path_name:article.title
         res.send result
   "/:id/edit":
     "get":(req,res,next)->
@@ -242,14 +250,23 @@ module.exports.controllers =
       req.body.desc_html = safeConverter.makeHtml req.body.desc_md
       req.body.user_id = res.locals.user.id
       if res.locals.user.is_admin then req.body.is_publish = 1
+      
       func_column.add req.body,(error,column)->
         if error then next error
         else 
+          func_info.add 
+            target_user_id:1
+            type:8
+            source_user_id:res.locals.user.id
+            source_user_nick:res.locals.user.nick
+            time:new Date()
+            target_path:'/article/column/'+column.id
+            action_name:"请求开通专栏"
+            target_path_name:column.name
           res.redirect '/article/column/'+column.id
   "/column/:id":
     get:(req,res,next)->
       condition = 
-        is_publish:1
         is_yuanchuang:1
         column_id:req.params.id
 

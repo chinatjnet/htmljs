@@ -112,8 +112,12 @@ html
         HtmlJS.util.ajax("",$("#form").serialize(),"post",function(data){
             if(data.success){
              if(!article_id) alert("发布成功，等待审核中")
+             
+             if($("#column").val()){
+             window.location.href="/article/column/"+$("#column").val()
+             }else{
              window.location.href="/article"
-
+             }
              !article_id&&localStorage.setItem("textarea_article_add","")
             }else{
               alert(data.info)
