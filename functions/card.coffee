@@ -21,6 +21,15 @@ func_card =
       callback null,card
     .error (error)->
       callback error
+  getByUUID:(id,callback)->
+    Card.find
+      where:
+        uuid:id
+      include:[User]
+    .success (card)->
+      callback null,card
+    .error (error)->
+      callback error
   addVisit:(cardId,visitor)->
     Card.find
       where:

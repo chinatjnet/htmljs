@@ -1,0 +1,175 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title 花名册-#{locals.card?card.nick:""}
+    include ../head
+    script(src='#{assets_head}/js/lazyload.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    style
+  body#card
+    - locals.pageId=2;
+    include ../header
+    #content.clearfix
+        if !locals.card
+          p.alert.alert-warnint 此用户还没有创建名片
+        else
+          include card_topinfo
+          //- if locals.card
+          //-   div.module.actions
+          //-     .bd.clearfix
+          //-       .item
+          //-         a 私信联系
+          //-       //- .item
+          //-       //-   span.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix
+          //-       //-     a.bds_tsina
+          //-       //-     a.bds_qzone
+          //-       //-     a.bds_tqq
+          //-       //-     a.bds_douban
+          //-       //-     a.bds_renren
+          //-       //-     a.shareCount
+          .comment.module#comment-module
+            .hd 评论
+            .bd
+              .publish 
+                textarea.input-block-level#comment-text(placeholder="参与讨论，共创奇迹。支持markdown语法")
+                .btn.comment-submit#comment-submit 发表评论
+              .comment-list
+                if comments.length
+                  each comment in comments
+                    .comment-item.clearfix
+                      a.headpic
+                        img(src="#{comment.user_headpic}",width=70,height=70)
+                      .comment-right
+                        div.con 
+                          span.author.vcard.item
+                            a.value.url.fn(rel='author', href='/user/#{comment.user_id}') #{comment.user_nick}：
+                          | !{comment.html}
+                        .time #{moment(comment.createdAt).fromNow()}
+                          a.reply(data-nick="#{comment.user_nick}") 回复
+                else
+                  div 暂无评论
+          
+              script#comment-tpl(type="text/template")
+                .comment-item.clearfix
+                  a.headpic
+                    img(src="{{user_headpic}}",width=70,height=70)
+                  .comment-right
+                    div.con 
+                      span.author.vcard.item
+                        a.value.url.fn(rel='author', href='/user/{{user_id}}') {{user_nick}}：
+                      | {{{html}}}
+                    .time {{createdAt}}
+        
+          
+          
+                          
+                          
+          
+    include ../footer
+    if locals.card
+      //
+        div.
+        <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+        var bds_config={"bdText":"这小子不错啊，分享给大家，快来吃他！@前端乱炖","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+        </script>
+      script(src='#{assets_head}/js/ajaxfileupload.js')
+      script(src='#{assets_head}/js/loadingTip.js')
+      script(src='#{assets_head}/js/messageTip.js')
+      script(src='#{assets_head}/js/card.js')
+      script
+        $("a.zan").click(function(){
+        var id = $(this).data("id");
+          var self=this;
+          HtmlJS.util.ajax("/card/"+id+"/zan",{},"post",function(data){
+              if(data.success){
+                messageTip.show("Great!")
+                $("em",$(self)).html(data.zan_count)
+              }else{
+                alert(data.info)
+              }
+            },function(){
+              
+            },null,function(){
+            HtmlJS.util.ajax("/card/"+id+"/zan",{},"post",function(data){
+                if(data.success){
+                  messageTip.show("Great!")
+                  $("em",$(self)).html(data.zan_count)
+                }else{
+                }
+              },function(){
+                alert(data.info)
+              })
+           
+          
+          })
+         
+        })
+      script(src="#{assets_head}/js/mustache.js")
+      script
+        $(window).scroll(function(){
+          if($(window).scrollTop()+$(window).height()>=$(".comment").offset().top){
+            $(".comment-layer").addClass("hidden")
+          }else{
+          $(".comment-layer").removeClass("hidden")
+          }
+          })
+        $(".comment-layer").click(function(){
+          $("html,body").animate({
+            scrollTop:$(".comment").offset().top-200
+            })
+          $(".comment textarea").focus()
+          })
+        var comment_tpl = $("#comment-tpl").html()
+        $('.visitor a').tooltip({
+          placement:"bottom"
+        })
+        $(".reply").click(function(){
+        $("#comment-text").val("@"+$(this).attr("data-nick")+" ").focus()
+         $("#comment-text")[0].setSelectionRange($("#comment-text")[0].value.length, $("#comment-text")[0].value.length)
+        })
+        $("#comment-submit").click(function(){
+          var text = $("#comment-text").val();
+          if(!text){
+            messageTip.show("请输入评论内容");
+          }else{
+            loadingTip.show("正在提交中")
+            HtmlJS.util.ajax("/comment/add",{
+              md:text,
+              target_id:"card_#{card.id}"
+            },"post",function(data){
+              loadingTip.hide()
+                if(data.success){
+                $("#comment-text").val("")
+                var html = Mustache.render(comment_tpl,data.comment);
+                  $(".comment-list").prepend(html)
+                }else{
+                  alert(data.info)
+                }
+            },function(){
+
+            },null,function(){
+            HtmlJS.util.ajax("/comment/add",{
+              md:text,
+              target_id:"card_#{card.id}"
+            },"post",function(data){
+              loadingTip.hide()
+                if(data.success){
+                $("#comment-text").val("")
+                var html = Mustache.render(comment_tpl,data.comment);
+                  $(".comment-list").prepend(html)
+                }else{
+                  alert(data.info)
+                }
+            },function(){
+
+            },null,function(){
+            
+          })
+          })
+          }
+          })
+      

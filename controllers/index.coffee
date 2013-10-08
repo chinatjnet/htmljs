@@ -190,9 +190,9 @@ module.exports.controllers =
                   if error then next error
                   else
                     res.locals.articles = articles
-                    res.render 'p.jade'
+                    res.render 'user/p.jade'
               else
-                res.render 'p.jade'
+                res.render 'user/p.jade'
   "/card/:id/bao":
     post:(req,res,next)->
       data = 

@@ -107,11 +107,7 @@ html
                           a.reply(data-nick="#{comment.user_nick}") 回复
                 else
                   div 暂无评论
-          .comment-layer
-            span.count
-              i.icon-comment
-              |#{card.comment_count}
-            span.input 看着不错？点评几句把，TA需要您的鼓励和支持。
+          
               script#comment-tpl(type="text/template")
                 .comment-item.clearfix
                   a.headpic
