@@ -1,6 +1,7 @@
 func_user = __F 'user'
 func_card = __F 'card'
 func_info = __F 'info'
+func_index = __F 'index'
 config = require './../config.coffee'
 authorize=require("./../lib/sdk/authorize.js")
 Sina=require("./../lib/sdk/sina.js")
@@ -101,6 +102,7 @@ module.exports.controllers =
             access_token:res.locals.user.weibo_token
             status:"我在@前端乱炖 的《前端花名册》认领了我的名片，这里是我的名片，欢迎收藏：http://f2e.html-js.com/user/"+res.locals.user.id
           (__F 'coin').add 40,res.locals.user.id,"创建了名片"
+          func_index.add card.uuid
           func_timeline.add 
             who_id:res.locals.user.id
             who_headpic:res.locals.user.head_pic
