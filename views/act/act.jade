@@ -81,7 +81,7 @@ html
               .topic 主题：<em>《第一次分享第一次分享》</em>
               .desc 介绍：五一前我说要把前端乱炖整个改版的，其实我本地已经在跑一个新的前端乱炖了，跟现在的已经完全不是一个东西了，变成了一个平台化的产品，只是自
       
-      #talk.module.comment
+      .module.comment
         .hd 讨论
         .bd
           .publish 
@@ -102,11 +102,6 @@ html
                       a.reply(data-nick="#{comment.user_nick}") 回复
             else
               div 暂无评论
-      .comment-layer.hidden
-        span.count
-          i.icon-comment
-          |#{act.comment_count}
-        span.input 看着不错？点评几句把，TA需要您的鼓励和支持。      
           script#comment-tpl(type="text/template")
             .comment-item.clearfix
               a.headpic
@@ -117,7 +112,7 @@ html
                     a.value.url.fn(rel='author', href='/user/{{user_id}}') {{user_nick}}：
                   | {{{html}}}
                 .time {{createdAt}}
-          
+    include ../footer     
     p.
       <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
       <script type="text/javascript" id="bdshell_js"></script>
