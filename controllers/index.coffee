@@ -308,7 +308,7 @@ module.exports.filters =
   "/cards":
     get:['freshLogin',"checkCard","card_recent","card/new-comments"]
   "/card/:id":
-    get:['freshLogin','getBao','card/comments']
+    get:['freshLogin','getBao','card/comments','card/zans']
   "/add-card":
     get:['checkLogin',"checkCard"]
     post:['checkLogin']

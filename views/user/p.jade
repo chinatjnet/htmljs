@@ -38,7 +38,7 @@ html
                 if comments.length
                   each comment in comments
                     .comment-item.clearfix
-                      a.headpic
+                      a.headpic.user(href="/user/#{comment.user_id}",data-original-title="#{comment.user_nick}")
                         img(src="#{comment.user_headpic}",width=70,height=70)
                       .comment-right
                         div.con 
@@ -125,6 +125,9 @@ html
           })
         var comment_tpl = $("#comment-tpl").html()
         $('.visitor a').tooltip({
+          placement:"bottom"
+        })
+        $('.user').tooltip({
           placement:"bottom"
         })
         $(".reply").click(function(){

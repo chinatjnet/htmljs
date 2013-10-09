@@ -4,12 +4,16 @@ Visit_log = __M 'card_visit_log'
 
 User = __M 'users'
 CardZanHistory = __M 'card_zan_history'
-CardZanHistory.sync()
+
 User.hasOne Card,{foreignKey:"user_id"}
 Card.belongsTo User,{foreignKey:"user_id"}
+
+User.hasOne CardZanHistory,{foreignKey:"user_id"}
+CardZanHistory.belongsTo User,{foreignKey:"user_id"}
 Card.sync()
 User.sync()
 Visit_log.sync()
+CardZanHistory.sync()
 User.sync()
 #Card.hasOne User,{foreignKey:"card_id"}
 func_card =  
@@ -63,6 +67,16 @@ func_card =
       callback null,logs
     .error (error)->
       callback error
+  getZans:(cardId,callback)->
+    CardZanHistory.findAll
+      where:
+        card_id:cardId
+      limit:50
+      include:[User]
+    .success (zans)->
+      callback null,zans
+    .error (e)->
+      callback e
   addZan:(cardId,userId,callback)->
     CardZanHistory.find
       where:

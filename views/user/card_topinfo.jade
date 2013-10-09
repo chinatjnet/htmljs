@@ -71,6 +71,10 @@ if locals.card
             span.item
               i.icon-heart 
               a.zan(data-id="#{card.id}") 赞TA一个（#{card.zan_count||0}）
+              if locals.zans
+                each zan in zans
+                  a.user(style="display:inline-block;",href="/user/#{zan.user.id}",data-original-title="#{zan.user.nick}") 
+                    img(src="#{zan.user.head_pic}",width="20")
             span.item
               i.icon-message-lock
               a(href="/talk/#{card.uuid}") 私信联系
