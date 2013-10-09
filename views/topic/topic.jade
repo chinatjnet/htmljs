@@ -51,7 +51,7 @@ html
                   if !ans.is_unused
                     .comment-item.clearfix(id="comment-#{ans.id}",style="opacity:#{(40-i)/40}")
                       .ans-user.clearfix
-                        a.user(href="/user/#{ans.user_id}")
+                        a.user(href="/user/#{ans.user_id}",data-original-title="#{ans.user_nick}")
                           img(src="#{ans.user_headpic}")
                           if ans.user&&ans.user.sex
                             if ans.user.sex == '男'
@@ -144,7 +144,7 @@ html
     script(src='#{assets_head}/js/mustache.js')
     script(src='#{assets_head}/js/moment.js')
     script
-      $('.zan').tooltip({
+      $('.user').tooltip({
           placement:"bottom"
       })
       var comment_tpl = $("#comment-tpl").html()
