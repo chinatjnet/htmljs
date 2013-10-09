@@ -100,7 +100,7 @@ module.exports.controllers =
           sina=new Sina(config.sdks.sina)
           sina.statuses.update 
             access_token:res.locals.user.weibo_token
-            status:"我在@前端乱炖 的《前端花名册》认领了我的名片，这里是我的名片，欢迎收藏：http://f2e.html-js.com/user/"+res.locals.user.id
+            status:"我在@前端乱炖 的《前端花名册》认领了我的名片，这里是我的名片，欢迎收藏：http://www.html-js.com/user/"+res.locals.user.id
           (__F 'coin').add 40,res.locals.user.id,"创建了名片"
           func_index.add card.uuid
           func_timeline.add 

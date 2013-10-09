@@ -51,16 +51,16 @@ check = ()->
     if error then console.log error
     _questions = ""
     qs.forEach (q)->
-      _questions += " - ["+q.title+"](http://f2e.html-js.com/qa/"+ q.id+")\n"
+      _questions += " - ["+q.title+"](http://www.html-js.com/qa/"+ q.id+")\n"
     func_article.getAll 1,100,['  articles.createdAt > ? and articles.createdAt < ?',minDay,maxDay],(error,articles)->
       if error then console.log error
       _articles = ""
       _reads = ""
       articles.forEach (article)->
         if article.is_yuanchuang
-          _articles += " - ["+article.title+"](http://f2e.html-js.com/article/"+ article.id+")\n"
+          _articles += " - ["+article.title+"](http://www.html-js.com/article/"+ article.id+")\n"
         else
-          _reads += " - ["+article.title+"](http://f2e.html-js.com/read/"+ article.id+")\n"
+          _reads += " - ["+article.title+"](http://www.html-js.com/read/"+ article.id+")\n"
       if _reads == "" then _reads = "暂无"
       if _articles == "" then _articles = "暂无"
       if _questions == "" then _questions = "暂无"

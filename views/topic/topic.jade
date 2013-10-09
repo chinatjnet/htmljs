@@ -71,7 +71,7 @@ html
                             if locals.user && (locals.user.id == ans.user_id||locals.user.is_admin)
                               a.edit(href="/topic/comment/#{ans.id}/edit") <i class="icon-pencil icon-gray"></i>编辑
                           a.reply(href="",data-md="#{ans.md}",data-nick="#{ans.user_nick}") <i class="icon-retweet-2 icon-gray"></i>引用
-                          a(target="_blank",href="http://service.weibo.com/share/share.php?url=#{encodeURIComponent("http://f2e.html-js.com/topic/"+topic.id+"#comment-"+ans.id)}&title=分享自@前端乱炖 的精彩跟帖【#{topic.title}】#{ans.user_nick}：#{ans.md.replace(/>/g,'').substr(0,100)}&appkey=659341943") 分享
+                          a(target="_blank",href="http://service.weibo.com/share/share.php?url=#{encodeURIComponent("http://www.html-js.com/topic/"+topic.id+"#comment-"+ans.id)}&title=分享自@前端乱炖 的精彩跟帖【#{topic.title}】#{ans.user_nick}：#{ans.md.replace(/>/g,'').substr(0,100)}&appkey=659341943") 分享
                       .ans-lou #{(locals.page-1)*30+i+1} 楼
               include ../page
         .add-comment.module

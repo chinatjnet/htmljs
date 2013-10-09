@@ -68,7 +68,7 @@ module.exports.controllers =
               sina=new Sina(config.sdks.sina)
               sina.statuses.update 
                 access_token:res.locals.user.weibo_token
-                status:"我在@前端乱炖 报名了【"+act.title+"】的活动，活动时间："+moment(act.time.getTime()-8000*60*60).format("LLL")+"，欢迎关注：http://f2e.html-js.com/act/"+req.params.id
+                status:"我在@前端乱炖 报名了【"+act.title+"】的活动，活动时间："+moment(act.time.getTime()-8000*60*60).format("LLL")+"，欢迎关注：http://www.html-js.com/act/"+req.params.id
           
           result.success = 1
           result.data = joiner
