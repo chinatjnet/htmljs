@@ -73,6 +73,26 @@ html
                       span.index 回答 
                       span.value #{timeline.question_answer_count}
                 .entry-name <i class="icon-lightbulb"></i>
+            else if timeline.topic_id
+              .topic-item.timeline-item.clearfix
+                .entry-title
+                  h1.title
+                    a.t-user(href="/user/#{timeline.topic_user_id}",data-original-title="#{timeline.topic_user_nick}")
+                      img(data-original="#{timeline.topic_user_headpic}",width="20")
+                    a.real-title(href='/topic/#{timeline.topic_id}', title='#{timeline.topic_title}', rel='bookmark') #{timeline.topic_title}
+                .entry-foot
+                  div.others
+                    span.time.item
+                      span.value #{moment(timeline.createdAt).fromNow()} 由
+                      a.value.url.fn(rel='author', href='/user/#{timeline.topic_user_id}')  #{timeline.topic_user_nick} 
+                      span.value 发布在 话题区
+                    span.item
+                      span.index 浏览 
+                      span.value #{timeline.topic_visit_count}
+                    span.item
+                      span.index 跟帖
+                      span.value #{timeline.topic_comment_count}
+                .entry-name <i class="icon-conversation"></i>
             //- .timeline-item.clearfix
             //-   .user
             //-     .headpic(href="/user/#{timeline.who_id}") 
