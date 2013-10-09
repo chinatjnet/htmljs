@@ -2,7 +2,7 @@
 html
   head
     meta(charset='utf-8')
-    title 花名册-#{locals.card?card.nick:""}
+    title #{locals.card?card.nick:""} - 花名册 - 前端乱炖
     include ../head
     script(src='#{assets_head}/js/lazyload.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
