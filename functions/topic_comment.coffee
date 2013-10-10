@@ -22,6 +22,7 @@ func_comment =
       where:
         topic_id:topic_id
         user_id:user_id
+      order:"id desc"
     .success (comment)->
       if comment then callback null,comment
       else
