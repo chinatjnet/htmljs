@@ -47,28 +47,34 @@ module.exports.controllers =
       req.body.user_headpic = res.locals.user.head_pic
       req.body.user_nick = res.locals.user.nick
       req.body.topic_id = req.params.id
-      func_topic_comment.add req.body,(error,comment,topic)->
-        if error 
-          result.info = error.message
-        else
-          result.success = 1
-          topic.updateAttributes
-            last_comment_time:new Date()
-            last_comment_user_id:res.locals.user.id
-            last_comment_user_nick:res.locals.user.nick
-            comment_count:topic.comment_count*1+1
-          (__F 'coin').add 1,res.locals.user.id,"发布了一个话题的跟帖"
-          func_info.add 
-            target_user_id:topic.user_id
-            type:5
-            source_user_id:res.locals.user.id
-            source_user_nick:res.locals.user.nick
-            time:new Date()
-            target_path:"/topic/"+topic.id
-            action_name:"【回复】了您的话题"
-            target_path_name:topic.title
-            content:req.body.html
-        res.send result
+      func_topic_comment.getLast req.params.id,req.locals.user.id,(error,c)->
+        if c
+          if (new Date()).getTime()-c.createdAt.getTime() <30000
+            result.info = '跟帖间隔不能小于30秒'
+            res.send result
+            return
+        func_topic_comment.add req.body,(error,comment,topic)->
+          if error 
+            result.info = error.message
+          else
+            result.success = 1
+            topic.updateAttributes
+              last_comment_time:new Date()
+              last_comment_user_id:res.locals.user.id
+              last_comment_user_nick:res.locals.user.nick
+              comment_count:topic.comment_count*1+1
+            (__F 'coin').add 1,res.locals.user.id,"发布了一个话题的跟帖"
+            func_info.add 
+              target_user_id:topic.user_id
+              type:5
+              source_user_id:res.locals.user.id
+              source_user_nick:res.locals.user.nick
+              time:new Date()
+              target_path:"/topic/"+topic.id
+              action_name:"【回复】了您的话题"
+              target_path_name:topic.title
+              content:req.body.html
+          res.send result
 module.exports.filters = 
   "/":
     get:['freshLogin','topic/all-topics']

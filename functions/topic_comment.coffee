@@ -17,6 +17,16 @@ func_comment =
           callback e
     .error (e)->
       callback e
-
+  getLast:(topic_id,user_id,callback)->
+    TopicComment.find
+      where:
+        topic_id:topic_id
+        user_id:user_id
+    .success (comment)->
+      if comment then callback null,comment
+      else
+        callback new Error 'no comment'
+    .error (e)->
+      callback e
 __FC func_comment,TopicComment,['update','delete','count','getAll']
 module.exports = func_comment
