@@ -73,6 +73,10 @@ html
                           a.reply(href="",data-md="#{ans.md}",data-nick="#{ans.user_nick}") <i class="icon-retweet-2 icon-gray"></i>引用
                           a(target="_blank",href="http://service.weibo.com/share/share.php?url=#{encodeURIComponent("http://www.html-js.com/topic/"+topic.id+"#comment-"+ans.id)}&title=分享自@前端乱炖 的精彩跟帖【#{topic.title}】#{ans.user_nick}：#{ans.md.replace(/>/g,'').substr(0,100)}&appkey=659341943") 分享
                       .ans-lou #{(locals.page-1)*30+i+1} 楼
+                        if topic.id ==3
+                          - var shulie = [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300, 325, 351, 378, 406, 435, 465, 496, 528, 561, 595, 630, 666, 703, 741, 780, 820, 861, 903, 946, 990];
+                          - if(shulie.indexOf((locals.page-1)*30+i+1)!=-1)
+                            |  中奖
               include ../page
         .add-comment.module
           .hd 说几句
