@@ -53,6 +53,7 @@ func_act =
     if include then query.include = include
     Act.findAll(query)
     .success (ms)->
+
       callback null,ms
     .error (e)->
       callback e

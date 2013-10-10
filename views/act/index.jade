@@ -15,7 +15,7 @@ html
       if !locals.acts || !locals.acts.length 
         .no-act 暂无活动，敬请关注
       else
-        for act in acts
+        each act in acts
           .act-item.clearfix(class="#{act.is_down?'isdown':''}")
             .act-infos
               .ln.act-title 
@@ -32,12 +32,5 @@ html
                     |详情，去报名
                 if locals.user && user.is_admin
                   a.btn(href="/act/#{act.id}/edit",style="margin-left:10px;") 编辑
-    p.
-      <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
-      <script type="text/javascript" id="bdshell_js"></script>
-      <script type="text/javascript">
-      var bds_config={"bdText":"《》@前端乱炖","bdPic":"","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
-      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-      </script>
               
 

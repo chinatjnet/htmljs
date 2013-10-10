@@ -7,7 +7,7 @@ module.exports.controllers =
   "/":
     get:(req,res,next)->
       page = req.params.page || 1
-      count = 20
+      count = 200000
       func_act.getAll page,count,{is_publish:1},(error,acts)->
         res.locals.acts = acts
         res.render 'act/index.jade'
