@@ -39,6 +39,9 @@ html
                     span.views.item
                       span.index View：
                       a.value #{topic.visit_count}
+                    span.views.item
+                      span.index 跟帖：
+                      a.value #{topic.comment_count}
                     span.time.item
                       a.value 发布于：#{moment(topic.createdAt).fromNow()}
                     if topic.last_comment_user_id
