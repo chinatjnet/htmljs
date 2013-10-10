@@ -154,7 +154,10 @@ module.exports.controllers =
               res.redirect '/user'
   "/edit-card":
     get:(req,res,next)-> 
-      res.render 'edit-card.jade'
+      if not res.locals.card
+        res.redirect '/add-card'
+      else
+        res.render 'edit-card.jade'
     post:(req,res,next)->
       func_card.update req.body.id,req.body,(error,card)->
         if error then next error
