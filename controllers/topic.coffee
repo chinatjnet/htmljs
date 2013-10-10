@@ -3,6 +3,7 @@ safeConverter = pagedown.getSanitizingConverter()
 func_topic = __F 'topic'
 func_topic_comment = __F 'topic_comment'
 func_info = __F 'info'
+moment = require 'moment'
 module.exports.controllers = 
   "/":
     get:(req,res,next)->
@@ -49,9 +50,9 @@ module.exports.controllers =
       req.body.topic_id = req.params.id
       func_topic_comment.getLast req.params.id,res.locals.user.id,(error,c)->
         if c
-          console.log c.createdAt
+          console.log moment(c.createdAt).valueOf()
           console.log new Date()
-          if (new Date()).getTime()-c.createdAt.getTime() <60000
+          if (new Date()).getTime()-moment(c.createdAt).valueOf() <60000
             result.info = '跟帖间隔不能小于60秒'
             res.send result
             return
