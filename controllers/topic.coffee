@@ -49,8 +49,10 @@ module.exports.controllers =
       req.body.topic_id = req.params.id
       func_topic_comment.getLast req.params.id,res.locals.user.id,(error,c)->
         if c
-          if (new Date()).getTime()-c.createdAt.getTime() <30000
-            result.info = '跟帖间隔不能小于30秒'
+          console.log c.createdAt
+          console.log new Date()
+          if (new Date()).getTime()-c.createdAt.getTime() <60000
+            result.info = '跟帖间隔不能小于60秒'
             res.send result
             return
         func_topic_comment.add req.body,(error,comment,topic)->
