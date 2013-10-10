@@ -5,8 +5,8 @@ ActJoiner.sync()
 User =__M 'users'
 User.hasMany ActJoiner,{foreignKey:"user_id"}
 ActJoiner.belongsTo User,{foreignKey:"user_id"}
-
-
+Act.hasMany ActJoiner,{foreignKey:"act_id"}
+ActJoiner.belongsTo Act,{foreignKey:"act_id"}
 func_act = 
   addJoiner:(act_id,user,callback)->
     ActJoiner.find
@@ -36,6 +36,25 @@ func_act =
       callback null,ajs
     .error (e)->
       callback e
-
-__FC func_act,Act,['delete','update','add','getById','getAll','count','addCount']
+  getAll:(page,count,condition,order,include,callback)->
+    if arguments.length == 4
+      callback = order
+      order = null
+      include = null
+    else if arguments.length == 5
+      callback = include
+      include = null
+    query = 
+      offset: (page - 1) * count
+      limit: count
+      order: order || "id desc"
+      include:[ActJoiner]
+    if condition then query.where = condition
+    if include then query.include = include
+    Act.findAll(query)
+    .success (ms)->
+      callback null,ms
+    .error (e)->
+      callback e
+__FC func_act,Act,['delete','update','add','getById','count','addCount']
 module.exports = func_act

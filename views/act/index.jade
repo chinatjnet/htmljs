@@ -22,7 +22,7 @@ html
                 a(href="/act/#{act.id}") #{act.title}
               .ln.act-time 时间：#{moment(act.time.getTime()-8000*60*60).format("LLL")}
               .ln.act-location 地点：#{act.location}  
-              .ln.act-limit 人数上限：#{act.person_limit}
+              .ln.act-limit 报名人数：#{act.actJoiners.length}/#{act.person_limit}  浏览人数：#{act.visit_count} 
               .ln.act-action 
                 if act.is_down
                   a.btn(href="/act/#{act.id}") 已结束，去看看
