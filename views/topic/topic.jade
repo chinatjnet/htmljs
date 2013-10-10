@@ -49,7 +49,7 @@ html
               .comment-list
                 each ans,i in comments
                   if !ans.is_unused
-                    .comment-item.clearfix(id="comment-#{ans.id}",style="opacity:#{(40-i)/40}")
+                    .comment-item.clearfix(id="comment-#{ans.id}")
                       .ans-user.clearfix
                         a.user(href="/user/#{ans.user_id}",data-original-title="#{ans.user_nick}")
                           img(src="#{ans.user_headpic}")
