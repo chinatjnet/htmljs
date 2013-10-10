@@ -47,7 +47,7 @@ module.exports.controllers =
       req.body.user_headpic = res.locals.user.head_pic
       req.body.user_nick = res.locals.user.nick
       req.body.topic_id = req.params.id
-      func_topic_comment.getLast req.params.id,req.locals.user.id,(error,c)->
+      func_topic_comment.getLast req.params.id,res.locals.user.id,(error,c)->
         if c
           if (new Date()).getTime()-c.createdAt.getTime() <30000
             result.info = '跟帖间隔不能小于30秒'
