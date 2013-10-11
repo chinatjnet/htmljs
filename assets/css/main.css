@@ -469,7 +469,8 @@
 #topic .main .comment .comment-item{padding-bottom:5px;}
 #topic .main .comment .comment-publish{margin-top:10px;}
 #topic .topic-title{border-bottom:1px solid #ddd;}#topic .topic-title .title{font-size:20px;line-height:50px;}
-#topic .topic-content{padding:10px;font-size:14px;color:#404040;}
+#topic .topic-content{padding:10px;font-size:13px;color:#404040;}#topic .topic-content p{line-height:25px;margin:0;}
+#topic .topic-content blockquote p{line-height:25px;margin:0;font-size:12px;}
 #topic .topic-user .action{float:left;}#topic .topic-user .action a{line-height:40px;margin-right:10px;color:#999;font-size:14px;}#topic .topic-user .action a i{-webkit-transform:scale(0.9);-moz-transform:scale(0.9);}
 #topic .topic-user .action .tags a{padding:1px 4px;margin-right:5px;color:#fff;font-weight:normal;font-size:12px;background:#aaa;}
 #topic .topic-user .action .tags a:hover{background:#5bb793;}

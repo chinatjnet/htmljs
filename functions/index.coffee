@@ -13,7 +13,7 @@ module.exports =
       callback e
   getAll:(page,count,callback)->
     #select * from indexinfos  left join articles  on articles.uuid = indexinfos.info_id left join questions on questions.uuid = indexinfos.info_id;
-    sequelize.query("select indexinfo.createdAt AS createdAt,
+    sequelize.query("select indexinfo.createdAt AS createdAt,indexinfo.sort AS sort,indexinfo.id AS id,
  article.id as article_id,
  article.user_id as article_user_id,
  article.user_nick as article_user_nick,
@@ -49,10 +49,24 @@ module.exports =
  left join questions  question on question.uuid = indexinfo.info_id 
  left join cards  card on card.uuid = indexinfo.info_id 
  left join topics  topic on topic.uuid = indexinfo.info_id 
- order by indexinfo.createdAt desc limit "+(page-1)*count+","+count+";",null, {raw: true})
+ order by indexinfo.sort desc,indexinfo.createdAt desc limit "+(page-1)*count+","+count+";",null, {raw: true})
     .success (data)->
       callback null,data
     .error (e)->
       callback e
   add:(id)->
     Index.create({info_id:id})
+  update:(id,data,callback)->
+    Index.find
+      where:
+        id:id
+    .success (index)->
+      if not index then callback new Error 'no found'
+      else
+        index.updateAttributes(data)
+        .success ()->
+          callback null,index
+        .error (e)->
+          callback e
+    .error (e)->
+      callback e

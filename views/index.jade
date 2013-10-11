@@ -51,6 +51,13 @@ html
                     span.item
                       span.index 评论 
                       span.value #{timeline.article_comment_count}
+                    if locals.user&&locals.user.is_admin
+                      span.actions.item
+                        span.index 操作：
+                        if timeline.sort ==10000
+                          a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
+                        else
+                          a(href="/index/#{timeline.id}/update?sort=10000") 置顶
                 .entry-name <i class="icon-book-open"></i>
                     
             else if timeline.question_id
@@ -72,6 +79,13 @@ html
                     span.item
                       span.index 回答 
                       span.value #{timeline.question_answer_count}
+                    if locals.user&&locals.user.is_admin
+                      span.actions.item
+                        span.index 操作：
+                        if timeline.sort ==10000
+                          a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
+                        else
+                          a(href="/index/#{timeline.id}/update?sort=10000") 置顶
                 .entry-name <i class="icon-lightbulb"></i>
             else if timeline.topic_id
               .topic-item.timeline-item.clearfix
@@ -92,6 +106,13 @@ html
                     span.item
                       span.index 跟帖
                       span.value #{timeline.topic_comment_count}
+                    if locals.user&&locals.user.is_admin
+                      span.actions.item
+                        span.index 操作：
+                        if timeline.sort ==10000
+                          a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
+                        else
+                          a(href="/index/#{timeline.id}/update?sort=10000") 置顶
                 .entry-name <i class="icon-conversation"></i>
             //- .timeline-item.clearfix
             //-   .user

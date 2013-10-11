@@ -39,6 +39,10 @@ module.exports.controllers =
             else
               res.locals.timelines = timelines
               res.render 'index.jade'
+  "/index/:id/update":
+    get:(req,res,next)->
+      func_index.update req.params.id,req.query,(error)->
+        res.redirect '/'
   "/rss":
     "get":(req,res,next)->
       feed = new RSS
