@@ -13,7 +13,7 @@ html
       #main_banner.clearfix
         .infos
           .inner
-            .title #{act.title}
+            h1.title #{act.title}
             div.item 
               span.key 时间：
               span.value #{moment(act.time.getTime()-8000*60*60).format("LLL")}

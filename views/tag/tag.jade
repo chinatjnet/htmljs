@@ -11,8 +11,8 @@ html
     #content.clearfix
       .left
         .module
-          a.tag-name(href="") #{tag.name}
-          a.tag-edit(href="/tag/#{tag.id}/edit") <i class="icon-edit icon-gray"></i>
+          h1.tag-name(href="") #{tag.name}
+            a.tag-edit(href="/tag/#{tag.id}/edit") <i class="icon-edit icon-gray" style="background:none;font-size:13px;"></i>
           .tag-keywords 别名：#{tag.keywords}
           .tag-desc !{tag.desc}
           .tag-action
