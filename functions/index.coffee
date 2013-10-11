@@ -42,13 +42,20 @@ module.exports =
  topic.user_headpic as topic_user_headpic ,
  topic.title as topic_title,
  topic.comment_count as topic_comment_count,
- topic.visit_count as topic_visit_count
+ topic.visit_count as topic_visit_count,
+
+ act.id as act_id,
+ act.title as act_title,
+ act.person_limit as act_person_limit,
+ act.comment_count as act_comment_count,
+ act.visit_count as act_visit_count
 
  from indexinfos indexinfo
  left join articles  article on article.uuid = indexinfo.info_id
  left join questions  question on question.uuid = indexinfo.info_id 
  left join cards  card on card.uuid = indexinfo.info_id 
  left join topics  topic on topic.uuid = indexinfo.info_id 
+ left join acts act on act.uuid = indexinfo.info_id
  order by indexinfo.sort desc,indexinfo.createdAt desc limit "+(page-1)*count+","+count+";",null, {raw: true})
     .success (data)->
       callback null,data

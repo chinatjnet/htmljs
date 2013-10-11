@@ -22,3 +22,4 @@ module.exports =
   is_down:
     type:"tinyint"
     defaultValue:"0"
+  uuid:"varchar(40)"

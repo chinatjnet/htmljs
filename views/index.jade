@@ -114,6 +114,30 @@ html
                         else
                           a(href="/index/#{timeline.id}/update?sort=10000") 置顶
                 .entry-name <i class="icon-conversation"></i>
+            else if timeline.act_id
+              .topic-item.timeline-item.clearfix
+                .entry-title
+                  h1.title
+                    a.real-title(href='/topic/#{timeline.act_id}', title='#{timeline.act_title}', rel='bookmark') 【活动】#{timeline.act_title}
+                .entry-foot
+                  div.others
+                    span.time.item
+                      span.value #{moment(timeline.createdAt).fromNow()} 
+                      span.value 发布在 活动区
+                    span.item
+                      span.index 浏览 
+                      span.value #{timeline.act_visit_count}
+                    span.item
+                      span.index 跟帖
+                      span.value #{timeline.act_comment_count}
+                    if locals.user&&locals.user.is_admin
+                      span.actions.item
+                        span.index 操作：
+                        if timeline.sort ==10000
+                          a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
+                        else
+                          a(href="/index/#{timeline.id}/update?sort=10000") 置顶
+                .entry-name <i class="icon-sampler"></i>
             //- .timeline-item.clearfix
             //-   .user
             //-     .headpic(href="/user/#{timeline.who_id}") 
