@@ -15,6 +15,21 @@ html
       .left
         //
           div.alert.alert-warning 本站第一次线下活动【中秋节杭州基层前端大聚会】，开始报名！<a href="/act/1">戳我去报名</a>！
+        .module.search
+          .bd.
+            <script>
+              (function() {
+                var cx = '004549130280129344040:hye4d842ysg';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:search></gcse:search>
         .module.timelines
           each timeline in timelines
             if timeline.card_id
@@ -161,7 +176,7 @@ html
         .module
           .bd
             p 赞助本站：
-              a(href="https://me.alipay.com/mier") https://me.alipay.com/mier  
+              a(href="/alipay/create") 10元 
             p 
               a(href="http://www.html-js.com/qa/75") 给本站提意见
         .module
