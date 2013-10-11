@@ -58,7 +58,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
               if index%2==1
                 article.post(id="post-#{article.id}",class="#{index%2==1?'left-post':'right-post'}")
                   .entry-title
-                    h3.title
+                    h2.title
                       a(href='/read/#{article.id}', title='#{article.title}', rel='bookmark') 
                         |#{article.title}
                   .entry-content
