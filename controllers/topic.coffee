@@ -83,8 +83,8 @@ module.exports.filters =
     get:['freshLogin','topic/all-topics']
   "/add":
     get:['checkLogin']
-    post:['checkLogin']
+    post:['checkLoginJson']
   "/:id":
     get:['freshLogin','topic/all-comments']
   "/:id/add":
-    post:['checkLogin']
+    post:['checkLoginJson']

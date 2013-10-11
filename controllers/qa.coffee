@@ -227,7 +227,7 @@ module.exports.filters =
     get:['freshLogin','qa/all-question','qa/hot-question','qa/recent-answers']
   "/add":
     get:['checkLogin','tag/all-tags']
-    post:['checkLogin']
+    post:['checkLoginJson']
   "/:id/update":
     get:['checkLogin','checkAdmin']
   "/answer/:id/update":

@@ -84,7 +84,7 @@
 #act #main_banner .infos .item{line-height:30px;}#act #main_banner .infos .item .key{color:#666;float:left;}
 #act #main_banner .infos .item .value{color:#333;}
 #act #act_desc{margin-top:20px;}#act #act_desc h1{font-size:16px;}
-#act #joiners{margin-top:20px;}#act #joiners .bd{padding:0;}#act #joiners .bd a{margin-right:10px;display:inline-block;}#act #joiners .bd a img{width:30px;height:30px;}
+#act #joiners{margin-top:20px;}#act #joiners .bd{padding:0;}#act #joiners .bd a{margin-right:10px;margin-bottom:10px;display:inline-block;}#act #joiners .bd a img{width:30px;height:30px;}
 #act #joiners .bd .me-join{margin-top:20px;}#act #joiners .bd .me-join .alert{margin:0;margin-top:20px;}
 #act #supporters{margin-top:20px;}#act #supporters .bd{padding:0;}#act #supporters .bd a{margin-right:10px;}#act #supporters .bd a img{height:50px;border:1px solid #ddd;}
 #act #supporters .bd .me-join{margin-top:20px;}
@@ -93,13 +93,13 @@
 #act #speaker .infos{float:left;margin-left:20px;width:700px;}#act #speaker .infos .who{font-size:14px;margin:0;line-height:25px;}#act #speaker .infos .who .btn{margin-left:10px;height:25px;line-height:20px;}
 #act #speaker .infos .who em{font-weight:bold;font-style:normal;font-size:16px;}
 #act #speaker .infos .topic{font-size:14px;margin:10px 0;}#act #speaker .infos .topic em{font-weight:bold;color:#c54d1a;font-style:normal;font-size:16px;}
-#acts{background:#efefef;}#acts #content{width:700px;margin:30px auto;}
-#acts .act-item{background:#fff;border-radius:3px;margin-bottom:20px;}#acts .act-item .act-infos{font-size:14px;padding:20px;background:#5bb793;color:#fff;}#acts .act-item .act-infos .ln{line-height:20px;margin-bottom:5px;font-size:14px;}#acts .act-item .act-infos .ln a{color:#fff;text-decoration:none;}
-#acts .act-item .act-infos .act-title{font-size:20px;line-height:30px;}
+#acts{background:#efefef;}#acts #content{margin:30px auto;}
+#acts .act-item{background:#fff;border-radius:5px;margin-bottom:20px;display:inline-block;width:450px;margin-right:10px;}#acts .act-item .act-infos{font-size:14px;padding:15px;background:#5bb793;color:#fff;border-radius:3px;}#acts .act-item .act-infos .ln{line-height:20px;margin-bottom:2px;font-size:14px;}#acts .act-item .act-infos .ln a{color:#fff;text-decoration:none;}
+#acts .act-item .act-infos .act-title{font-size:18px;line-height:30px;}
 #acts .act-item .act-infos .act-time{color:#dedede;font-size:12px;}
 #acts .act-item .act-infos .act-location{color:#dedede;font-size:12px;}
 #acts .act-item .act-infos .act-limit{color:#dedede;font-size:12px;}
-#acts .act-item .act-infos .act-action{margin-top:20px;}#acts .act-item .act-infos .act-action a{font-weight:bold;}
+#acts .act-item .act-infos .act-action{margin-top:10px;}#acts .act-item .act-infos .act-action a{font-weight:bold;}
 #acts .act-item .act-infos .act-action .btn{background:#eee;color:#5bb793;box-shadow:1px 1px 2px #999;}
 #acts .act-item .act-infos .act-action .btn:hover{background:#fff;}
 #acts .act-item.isdown .act-infos{background:#73b79c;}#acts .act-item.isdown .act-infos .act-action .btn{background:#aaa;color:#eee;}
@@ -135,6 +135,12 @@
 #q_comment_list .comment-item .con{width:540px;word-break:break-all;}
 #index{background:#efefef;}#index #content{width:940px;}
 #index .left{width:650px;float:left;overflow:hidden;}
+#index .search{padding:0;overflow:hidden;}#index .search .bd{border-radius:5px;}
+#index .search .gsib_a{border:none;padding:0;}
+#index .search .gsc-input-box{background:#fff;border:none;}
+#index .search .gsc-input-box-hover{background:#fff;border:none;box-shadow:none;}
+#index .search input.gsc-input{border:1px solid #ddd !important;height:25px !important;}
+#index .search .gsc-search-button{background:#5bb793;border:none;border-radius:3px;}
 #index .right{width:270px;margin-left:20px;float:left;overflow:hidden;}
 #index .timeline-item{font-size:13px;}#index .timeline-item .user{float:left;width:50px;}#index .timeline-item .user .headpic{border-radius:30px;height:30px;width:30px;display:block;border:2px solid #fff;box-shadow:0px 0px 3px #aaa;}#index .timeline-item .user .headpic img{border-radius:30px;height:30px;width:30px;}
 #index .timeline-item .infos{float:left;width:550px;}#index .timeline-item .infos .action{line-height:30px;height:30px;overflow:hidden;color:#999;}#index .timeline-item .infos .action .time{padding-left:10px;color:#aaa;}
@@ -220,7 +226,7 @@
 #qa .main .comment{background:#f7f7f7;padding:10px;}#qa .main .comment .comment-list{margin:0;}
 #qa .main .comment .comment-item{padding-bottom:5px;}
 #qa .main .comment .comment-publish{margin-top:10px;}
-#qa .qa-title{border-bottom:1px solid #ddd;}#qa .qa-title .title{font-size:20px;line-height:50px;}
+#qa .qa-title{border-bottom:1px solid #ddd;}#qa .qa-title .title{font-size:20px;line-height:50px;font-weight:normal;margin:0;padding:0;}
 #qa .qa-content{padding:10px;font-size:14px;color:#404040;}
 #qa .qa-user .action{float:left;}#qa .qa-user .action a{line-height:40px;margin-right:10px;color:#999;font-size:14px;}#qa .qa-user .action a i{-webkit-transform:scale(0.9);-moz-transform:scale(0.9);}
 #qa .qa-user .action .tags a{padding:1px 4px;margin-right:5px;color:#fff;font-weight:normal;font-size:12px;background:#aaa;}
@@ -468,7 +474,7 @@
 #topic .main .comment{background:#f7f7f7;padding:10px;}#topic .main .comment .comment-list{margin:0;}
 #topic .main .comment .comment-item{padding-bottom:5px;}
 #topic .main .comment .comment-publish{margin-top:10px;}
-#topic .topic-title{border-bottom:1px solid #ddd;}#topic .topic-title .title{font-size:20px;line-height:50px;}
+#topic .topic-title{border-bottom:1px solid #ddd;}#topic .topic-title .title{font-size:20px;line-height:50px;font-weight:normal;margin:0;padding:0;}
 #topic .topic-content{padding:10px;font-size:13px;color:#404040;}#topic .topic-content p{line-height:25px;margin:0;}
 #topic .topic-content blockquote p{line-height:25px;margin:0;font-size:12px;}
 #topic .topic-user .action{float:left;}#topic .topic-user .action a{line-height:40px;margin-right:10px;color:#999;font-size:14px;}#topic .topic-user .action a i{-webkit-transform:scale(0.9);-moz-transform:scale(0.9);}

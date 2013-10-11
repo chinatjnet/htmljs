@@ -324,7 +324,25 @@ html
           },function(){
             loadingTip.hide("努力加载中")
           },$(this),function(){
+            HtmlJS.util.ajax("/comment/add",{md:$("#q_comment_content").val(),target_id:"topic_#{topic.id}"},"post",function(data){
+            if(data.success){
+              if($("#q_comment_list .comment-item").length==0){
+                $("#q_comment_list").html("")
+              }
+              data.comment.createdAt=moment(data.comment.createdAt).fromNow();
+                var html = Mustache.render(comment_tpl_1,data.comment);
+                
+                $("#q_comment_list").append(html)
+                $("#q_comment_content").val("")
+            }else{
+              alert(data.info)
+            }
+            loadingTip.hide("努力加载中")
+          },function(){
+            loadingTip.hide("努力加载中")
+          },$(this),function(){
             
+        })
         })
         })
     p.

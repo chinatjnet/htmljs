@@ -284,13 +284,13 @@ module.exports.controllers =
 module.exports.filters = 
   "/add":
     get:['checkLogin',"checkCard","article/all-pub-columns"]
-    post:['checkLogin',"checkCard"]
+    post:['checkLoginJson',"checkCard"]
   "/:id/edit":
     get:['checkLogin',"checkCard","article/all-pub-columns"]
-    post:['checkLogin',"checkCard"]
+    post:['checkLoginJson',"checkCard"]
   "/add/recommend":
     get:['checkLogin',"checkCard"]
-    post:['checkLogin',"checkCard"]
+    post:['checkLoginJson',"checkCard"]
   
   "/":
     get:['freshLogin','getRecent','get_infos','article/new-comments','article/index-columns']
