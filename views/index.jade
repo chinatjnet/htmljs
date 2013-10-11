@@ -44,7 +44,7 @@ html
             else if timeline.article_id
               .article-item.timeline-item.clearfix
                 .entry-title
-                  h1.title
+                  h2.title
                     a.t-user(href="/user/#{timeline.article_user_id}",data-original-title="#{timeline.article_user_nick}")
                       img(data-original="#{timeline.article_user_headpic}",width="20")
                     a.real-title(href='/article/#{timeline.article_id}', title='#{timeline.article_title}', rel='bookmark') #{timeline.article_title}
@@ -78,7 +78,7 @@ html
             else if timeline.question_id
               .question-item.timeline-item.clearfix
                 .entry-title
-                  h1.title
+                  h2.title
                     a.t-user(href="/user/#{timeline.question_user_id}",data-original-title="#{timeline.question_user_nick}")
                       img(data-original="#{timeline.question_user_headpic}",width="20")
                     a.real-title(href='/qa/#{timeline.question_id}', title='#{timeline.question_title}', rel='bookmark') #{timeline.question_title}
@@ -105,7 +105,7 @@ html
             else if timeline.topic_id
               .topic-item.timeline-item.clearfix
                 .entry-title
-                  h1.title
+                  h2.title
                     a.t-user(href="/user/#{timeline.topic_user_id}",data-original-title="#{timeline.topic_user_nick}")
                       img(data-original="#{timeline.topic_user_headpic}",width="20")
                     a.real-title(href='/topic/#{timeline.topic_id}', title='#{timeline.topic_title}', rel='bookmark') #{timeline.topic_title}
@@ -132,7 +132,7 @@ html
             else if timeline.act_id
               .topic-item.timeline-item.clearfix
                 .entry-title
-                  h1.title
+                  h2.title
                     a.real-title(href='/act/#{timeline.act_id}', title='#{timeline.act_title}', rel='bookmark') 【活动】#{timeline.act_title}
                 .entry-foot
                   div.others
