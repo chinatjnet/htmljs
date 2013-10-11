@@ -118,7 +118,7 @@ html
               .topic-item.timeline-item.clearfix
                 .entry-title
                   h1.title
-                    a.real-title(href='/topic/#{timeline.act_id}', title='#{timeline.act_title}', rel='bookmark') 【活动】#{timeline.act_title}
+                    a.real-title(href='/act/#{timeline.act_id}', title='#{timeline.act_title}', rel='bookmark') 【活动】#{timeline.act_title}
                 .entry-foot
                   div.others
                     span.time.item
@@ -129,7 +129,7 @@ html
                       span.value #{timeline.act_visit_count}
                     span.item
                       span.index 跟帖
-                      span.value #{timeline.act_comment_count}
+                      span.value  #{timeline.act_comment_count}
                     if locals.user&&locals.user.is_admin
                       span.actions.item
                         span.index 操作：
