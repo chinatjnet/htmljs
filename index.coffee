@@ -30,8 +30,9 @@ app.configure ->
     filters:'/filters/',      
     template:'/views/'   
   })
+  #require('./alipay_config').alipay.route(app);
   app.all "*",(req, res, next)->
-    res.render '404.jade'
+    res.render '404.jade',{status: 404}
   app.use (err, req, res, next)->
     res.render 'error.jade'
       error:err.message
