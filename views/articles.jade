@@ -68,7 +68,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
             if showA
               article.post(id="post-#{article.id}",class="#{i%2==1?'yooo':''} ")
                 .entry-title
-                  h1.title
+                  h2.title
                     
                     a.t-user(href="/user/#{article.user.id}",data-original-title="#{article.user.nick}")
                       img(src="#{article.user.head_pic}",width="20")
