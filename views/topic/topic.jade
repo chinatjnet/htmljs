@@ -178,7 +178,7 @@ html
         e.preventDefault();
         var md = $(this).attr("data-md");
         var nick = $(this).attr("data-nick");
-        $(".real-form textarea").val("引用自：@"+nick+"：\n"+"> "+md.replace(/\n/g,"\n> ")+"\n\n")
+        $(".real-form textarea").val("引用自：@"+nick+" ：\n"+"> "+md.replace(/\n/g,"\n> ")+"\n\n")
         editor1.refreshPreview();
         $(".fake-form").addClass("hidden")
         $(".real-form").removeClass("hidden")
