@@ -47,7 +47,7 @@ html
                 a(href="/card/#{timeline.card_id}") #{timeline.card_nick} 
                 span 添加了自己的名片：
                 a(href="/card/#{timeline.card_id}") 查看名片 
-                .entry-name <i class="icon-nameplate"></i>
+                .entry-name <i class="icon-nameplate" title="名片"></i>
             else if timeline.article_id
               .article-item.timeline-item.clearfix
                 .entry-title
@@ -80,7 +80,7 @@ html
                           a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
                         else
                           a(href="/index/#{timeline.id}/update?sort=10000") 置顶
-                .entry-name <i class="icon-book-open"></i>
+                .entry-name <i class="icon-book-open" title="专栏原创文章"></i>
                     
             else if timeline.question_id
               .question-item.timeline-item.clearfix
@@ -108,7 +108,7 @@ html
                           a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
                         else
                           a(href="/index/#{timeline.id}/update?sort=10000") 置顶
-                .entry-name <i class="icon-lightbulb"></i>
+                .entry-name <i class="icon-lightbulb"  title="问答"></i>
             else if timeline.topic_id
               .topic-item.timeline-item.clearfix
                 .entry-title
@@ -135,7 +135,7 @@ html
                           a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
                         else
                           a(href="/index/#{timeline.id}/update?sort=10000") 置顶
-                .entry-name <i class="icon-conversation"></i>
+                .entry-name <i class="icon-conversation" title="话题"></i>
             else if timeline.act_id
               .topic-item.timeline-item.clearfix
                 .entry-title
@@ -159,7 +159,7 @@ html
                           a(href="/index/#{timeline.id}/update?sort=0") 取消置顶
                         else
                           a(href="/index/#{timeline.id}/update?sort=10000") 置顶
-                .entry-name <i class="icon-sampler"></i>
+                .entry-name <i class="icon-sampler" title="活动"></i>
             //- .timeline-item.clearfix
             //-   .user
             //-     .headpic(href="/user/#{timeline.who_id}") 
