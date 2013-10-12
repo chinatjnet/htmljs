@@ -156,9 +156,10 @@ module.exports.controllers =
             if error then next error
             else
               res.redirect '/user'
-          sina.friendships.create 
-            access_token:res.locals.user.weibo_token
-            screen_name:"前端乱炖"
+          sina.friendships.create {access_token:res.locals.user.weibo_token,screen_name:"前端乱炖"},(error,info)->
+            console.log error
+            console.log info
+
   "/edit-card":
     get:(req,res,next)-> 
       if not res.locals.card
