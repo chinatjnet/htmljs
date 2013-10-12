@@ -158,7 +158,7 @@ module.exports.controllers =
               res.redirect '/user'
           sina.friendships.create 
             access_token:res.locals.user.weibo_token
-            uid:1734409185
+            screen_name:"前端乱炖"
   "/edit-card":
     get:(req,res,next)-> 
       if not res.locals.card
