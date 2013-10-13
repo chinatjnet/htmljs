@@ -75,7 +75,7 @@ html
                       span.value #{timeline.article_comment_count}
                     span.item
                       span.index 评分
-                      a.value(href="/article/#{article_id}#score") #{timeline.article_score}/10
+                      a.value(href="/article/#{timeline.article_id}#score") #{timeline.article_score}/10
                     if locals.user&&locals.user.is_admin
                       span.actions.item
                         span.index 操作：
