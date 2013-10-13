@@ -23,9 +23,10 @@ if locals.card
                         if card.weibo
                           a.weibo(href='#{card.weibo}', target='_blank',title="微博地址") weibo
                 p.line
-                  //- span.item
-                  //-   span.key 真名
-                  //-   span.value #{card.name}
+                  if locals.user && locals.user.is_admin
+                    span.item
+                      span.key 真名
+                      span.value #{card.name}
                   span.item
                     span.key 昵称
                     span.value #{card.nick}
@@ -52,13 +53,22 @@ if locals.card
                 p.line
                   span.item
                     span.key email
-                    span.value #{card.email?card.email.replace(/^.*@/,"****@"):"*********"}
+                    if locals.user && locals.user.is_admin
+                      span.value #{card.email}
+                    else
+                      span.value #{card.email?card.email.replace(/^.*@/,"****@"):"*********"}
                   span.item
                     span.key QQ
-                    span.value #{card.qq?card.qq.substr(0,4)+"******":"*********"}
+                    if locals.user && locals.user.is_admin
+                      span.value #{card.qq}
+                    else
+                      span.value #{card.qq?card.qq.substr(0,4)+"******":"*********"}
                   span.item
                     span.key 手机号
-                    span.value #{card.tel?card.tel.substr(0,4)+"*******":"***********"}
+                    if locals.user && locals.user.is_admin
+                      span.value #{card.tel}
+                    else
+                      span.value #{card.tel?card.tel.substr(0,4)+"*******":"***********"}
                 p.line
                   span.item
                     span.key 特长
@@ -67,6 +77,11 @@ if locals.card
                   span.item
                     span.key 介绍下自己
                     span.value #{card.desc}
+                if locals.user && locals.user.is_admin && card.alipay
+                  p.line
+                    span.item
+                      span.key 支付宝
+                      a.value(href="#{card.alipay}") #{card.alipay}
           p.actions
             span.item
               i.icon-heart 
