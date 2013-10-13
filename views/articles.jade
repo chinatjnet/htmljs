@@ -2,7 +2,7 @@
 html(xmlns:wb='http://open.weibo.com/wb')
   head
     include head
-    title 专栏 - 前端乱炖
+    title #{locals.column?locals.column.name+' - ':''}专栏 - 前端乱炖
     script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
