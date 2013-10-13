@@ -22,7 +22,8 @@ module.exports =
  article.comment_count as article_comment_count,
  article.visit_count as article_visit_count,
  article.column_id as article_column_id,
-
+ article.score as article_score,
+ 
  card.id as card_id,
  card.user_id as card_user_id,
  card.head_pic as card_head_pic,
