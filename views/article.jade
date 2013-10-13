@@ -45,7 +45,7 @@ html
                 i.icon-dislikes(data-index="9")
                 i.icon-dislikes(data-index="10")
               span.mark-score <em>0</em>分
-              span.mark-already 您已经评价过，打分：#{locals.zan_score?zan_score:0}
+              span.mark-already 您已经评价过，打分：<em>#{locals.zan_score?zan_score:0}</em>
               .zan-logs
                 if locals.zan_logs
                   each zan in zan_logs
@@ -272,6 +272,7 @@ html
                 if(data.success){
                   markEnable = false;
                   $("#score .bd").addClass("marked")
+                  $(".mark-already em").html($(self).attr("data-index"))
                   messageTip.show("打分成功！")
                 }else{
                   alert(data.info)
