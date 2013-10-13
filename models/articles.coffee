@@ -30,3 +30,6 @@ module.exports =
   tagNames:"varchar(255)"
   column_id:"int"
   uuid:"varchar(40)"
+  score:
+    defaultValue:0
+    type:"double"

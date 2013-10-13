@@ -207,36 +207,42 @@ module.exports.controllers =
         else
           result.success = 1
         res.send result
+  "/:id/zan":
+    post:(req,res,next)->
+      result = 
+        success:0
+      func_article.addZan req.params.id,res.locals.user.id,req.body.score,(error,log)->
+        if error 
+          result.info = error.message
+        else
+          result.success = 1
+        res.send result
   "/:id":
     "get":(req,res,next)->
-
+      article = res.locals.article
       func_article.getVisitors req.params.id,(error,visitors)->
         if error then next error
         else
           res.locals.visitors = visitors
-          func_article.getById req.params.id,(error,article)->
-            if error then next error
-            else if not article then next new Error '不存在的文章'
-            else
-              func_card.getByUserId article.user_id,(error,card)->
-                if card 
-                  article.card = card
-                if article.user_id && res.locals.user
-                  func_info.add 
-                    target_user_id:article.user_id
-                    type:1
-                    source_user_id:res.locals.user.id
-                    source_user_nick:res.locals.user.nick
-                    time:new Date()
-                    target_path:req.originalUrl
-                    action_name:"【访问】了您的原创文章"
-                    target_path_name:article.title
-                res.locals.article = article
-                func_article.addVisit req.params.id,res.locals.user||null
-                if article.column_id
-                  func_column.addCount article.column_id,"visit_count",()->
-                    
-                res.render 'article.jade'
+          func_card.getByUserId article.user_id,(error,card)->
+            if card 
+              article.card = card
+            if article.user_id && res.locals.user
+              func_info.add 
+                target_user_id:article.user_id
+                type:1
+                source_user_id:res.locals.user.id
+                source_user_nick:res.locals.user.nick
+                time:new Date()
+                target_path:req.originalUrl
+                action_name:"【访问】了您的原创文章"
+                target_path_name:article.title
+            res.locals.article = article
+            func_article.addVisit req.params.id,res.locals.user||null
+            if article.column_id
+              func_column.addCount article.column_id,"visit_count",()->
+                
+            res.render 'article.jade'
   "/column/add":
     get:(req,res,next)->
 
@@ -295,7 +301,9 @@ module.exports.filters =
   "/":
     get:['freshLogin','getRecent','get_infos','article/new-comments','article/index-columns']
   "/:id":
-    get:['freshLogin','getRecent','get_infos','article/comments']
+    get:['freshLogin','getRecent','get_infos','article/get-article','article/this-column','article/comments','article/article_zan_logs']
+  "/:id/zan":
+    post:['checkLoginJson']
   "/column/add":
     get:['checkLogin',"checkCard"]
     post:['checkLogin',"checkCard"]

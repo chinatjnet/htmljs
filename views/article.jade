@@ -6,6 +6,7 @@ html
     style
       #bdshare a{}
     script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js')
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
   body#article
     - locals.pageId=1;
     include header
@@ -29,7 +30,28 @@ html
                 p(style="color:#999;") 本站推荐按照您的情况，为作者捐助一下金额：1元，5元，10元，20元，或者更多。
                 p 
                   a(href="#{article.card.alipay}",target="_blank") 点击这里用支付宝捐助
-
+          .module#score(style="margin-top:10px;")
+            .hd 评价（当前分数：#{article.score} 打分次数：#{zan_logs.length}）
+            .bd(class="#{zan_guo?'marked':''}")
+              span.mark 
+                i.icon-dislikes(data-index="1")
+                i.icon-dislikes(data-index="2")
+                i.icon-dislikes(data-index="3")
+                i.icon-dislikes(data-index="4")
+                i.icon-dislikes(data-index="5")
+                i.icon-dislikes(data-index="6")
+                i.icon-dislikes(data-index="7")
+                i.icon-dislikes(data-index="8")
+                i.icon-dislikes(data-index="9")
+                i.icon-dislikes(data-index="10")
+              span.mark-score <em>0</em>分
+              span.mark-already 您已经评价过，打分：#{locals.zan_score?zan_score:0}
+              .zan-logs
+                if locals.zan_logs
+                  each zan in zan_logs
+                    if zan&&zan.user
+                      a.user(style="display:inline-block;",href="/user/#{zan.user.id}",data-original-title="#{zan.user.nick} #{zan.score}分") 
+                        img(src="#{zan.user.head_pic}",width="20")
           .comment.module
             .hd 评论
             .bd
@@ -51,11 +73,6 @@ html
                           a.reply(data-nick="#{comment.user_nick}") 回复
                 else
                   div 暂无评论
-          .comment-layer
-            span.count
-              i.icon-comment
-              |#{article.comment_count}
-            span.input 看着不错？点评几句把，TA需要您的鼓励和支持。      
               script#comment-tpl(type="text/template")
                 .comment-item.clearfix
                   a.headpic
@@ -75,21 +92,29 @@ html
               div.author.vcard.item
                 span.index #{article.quote_url?"推荐者":"作者"}：
                 a.value.url.fn(rel='author', href='/user/#{article.user_id}') #{article.user_nick}
+
               div.time.item
                 span.index 时间：
                 a.value #{moment(article.publish_time*1000).format("LLL")}
-              
+              if article.column_id
+                div.item
+                  span.index 所属专栏：
+                  a.value(href="/article/column/#{article.column_id}") 【#{article.column.name}】
               if article.quote_url
                 div.views.item
                   a.value(href="#{article.quote_url}",target="_blank") 原文链接
-              div.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:0px;")
-                span(style="float:left;line-height:30px;") 分享：
+              div.item.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:0px;")
+                span.index(style="float:left;line-height:30px;") 分享：
                 a.bds_tsina
                 a.bds_qzone
                 a.bds_tqq
                 a.bds_douban
                 a.bds_renren
                 a.shareCount
+              div.item
+                if locals.user && (user.is_admin||user.id==article.user_id)
+                  span.index 管理：
+                  a.value(href="/article/#{article.id}/edit") 编辑
           .module.count
             .item
               span.views
@@ -98,12 +123,18 @@ html
               span.views
                 span.index 评论：
                 a.value #{article.comment_count}
+          if locals.column_articles
+            .module.recent
+              .hd 本专栏其他文章
+              .bd
+                each a in column_articles
+                  div.item <a href="/article/#{a.id}">#{a.title}</a>
           .module.recent
             .hd 近期文章
             .bd
               if locals.recents
                 each recent in recents
-                  div.item <a href="http://www.html-js.com/article/#{recent.id}">#{recent.title}</a>
+                  div.item <a href="/article/#{recent.id}">#{recent.title}</a>
           
       - locals.shareImgs = article.html.match(/img\s*?src=["|'](.*?)["|']/);
       p.
@@ -201,3 +232,57 @@ html
           })
         }
         })
+        var markEnable = true;
+        var markToScore = function(score){
+          score = parseInt(score);
+          $(".mark i").removeClass("icon-star")
+          for(var i=0;i<score;i++){
+            $(".mark i:nth-child("+(i+1)+")").addClass("icon-star")
+          }
+          $(".mark-score em").html(score)
+        }
+        markToScore(#{article.score});
+        !{zan_guo?'markEnable=false;':''}
+
+        $(".mark i").mouseenter(function(){
+          if(!markEnable) return;
+          markToScore($(this).attr("data-index"))
+
+          }).click(function(){
+          if(!markEnable) return;
+          var self = this;
+            HtmlJS.util.ajax("/article/#{article.id}/zan",{
+              score:$(self).attr("data-index")
+            },"post",function(data){
+              loadingTip.hide()
+                if(data.success){
+                  markEnable = false;
+                  $("#score .bd").addClass("marked")
+                  messageTip.show("打分成功！")
+                }else{
+                  alert(data.info)
+                }
+            },function(){
+
+            },null,function(){
+            HtmlJS.util.ajax("/article/#{article.id}/zan",{
+              score:$(self).attr("data-index")
+            },"post",function(data){
+              loadingTip.hide()
+                if(data.success){
+                  markEnable = false;
+                  $("#score .bd").addClass("marked")
+                  messageTip.show("打分成功！")
+                }else{
+                  alert(data.info)
+                }
+            },function(){
+
+            },null,function(){
+            
+          })
+          })
+          })
+          $('.user').tooltip({
+          placement:"bottom"
+          })

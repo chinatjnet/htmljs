@@ -166,7 +166,7 @@
 #index .timeline-item .entry-title .title{font-size:15px;line-height:30px;margin:0;font-weight:bold;font-weight:normal;}#index .timeline-item .entry-title .title a{color:#333;}
 #index .timeline-item .entry-title .title{margin:0;}#index .timeline-item .entry-title .title a{line-height:30px;margin:0;color:#111;font-weight:normal;}
 #index .timeline-item .entry-title .title .real-title{margin-left:0px;}
-#index .timeline-item .entry-title .title .t-user{display:inline-block;margin-right:5px;float:right;vertical-align:-4px;background:#fff;box-shadow:1px 1px 1px #ddd;width:20px;height:20px;}#index .timeline-item .entry-title .title .t-user img{display:block;}
+#index .timeline-item .entry-title .title .t-user{display:inline-block;float:right;vertical-align:-4px;background:#fff;box-shadow:1px 1px 1px #ddd;width:20px;height:20px;}#index .timeline-item .entry-title .title .t-user img{display:block;}
 #index .timeline-item .entry-title .others{margin-top:10px;}
 #index .timeline-item .entry-title .item{font-size:12px;margin-right:20px;}#index .timeline-item .entry-title .item .index{color:#aaa;}
 #index .timeline-item .entry-title .item .value{color:#aaa;}
@@ -182,7 +182,7 @@
 #index .timeline-item .entry-foot .item a.value{color:#68a4d1;}
 #index .timeline-item .entry-name{position:absolute;top:17px;left:-9px;line-height:18px;font-size:16px;color:#aaa;padding:0 5px;}
 #index .timeline-item.yooo{background:#F7F7F7;}
-#index .card-item .t-user{margin-right:10px;}
+#index .card-item .t-user{float:right;}
 #index .card-item .index{color:#aaa;}
 #index .card-item .value{color:#aaa;}
 #index .card-item a.value{color:#68a4d1;}
@@ -388,6 +388,13 @@
 #article .post .entry-content p{line-height:25px;margin:20px 0;}
 #article .post .entry-content img{display:block;}
 #article .post .entry-meta{padding-top:10px;border-top:1px solid #ddd;color:#999;}
+#article #score .bd{color:#999;}
+#article #score .mark i{vertical-align:0px;background:none;}
+#article #score .mark-score{padding-left:10px;font-size:14px;}#article #score .mark-score em{font-style:normal;color:#5bb793;}
+#article #score .mark-already{padding-left:20px;display:none;}
+#article #score .marked{color:#ccc;}#article #score .marked .mark-already{display:inline;}
+#article #score .marked .mark-score{color:#ccc;}
+#article #score .marked i{color:#ccc;}
 #add-article{background:#efefef;}#add-article .left{width:680px;float:left;overflow:hidden;}
 #add-article .right{width:250px;margin-left:10px;float:left;overflow:hidden;}#add-article .right a{color:#6fb79b;}
 #add-article .right .item{border-bottom:1px solid #eee;padding:5px 0;}

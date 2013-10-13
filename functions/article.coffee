@@ -10,6 +10,11 @@ Article.belongsTo User,{foreignKey:"user_id"}
 Article.sync()
 Column.hasOne Article,{foreignKey:"column_id"}
 Article.belongsTo Column,{foreignKey:"column_id"}
+
+ArticleZanLogs = __M 'article_zan_logs'
+User.hasOne ArticleZanLogs,{foreignKey:"user_id"}
+ArticleZanLogs.belongsTo User,{foreignKey:"user_id"}
+ArticleZanLogs.sync()
 cache = 
   recent:[]
 func_article =  
@@ -87,6 +92,38 @@ func_article =
       callback null,logs
     .error (error)->
       callback error
+  addZan:(article_id,user_id,score,callback)->
+    score = score*1
+    ArticleZanLogs.find
+      where:
+        article_id:article_id
+        user_id:user_id
+    .success (log)->
+      if log then callback new  Error '已经给本篇文章打过分了哦'
+      else
+        Article.find
+          where:
+            id:article_id
+        .success (article)->
+          if not article then callback new  Error '不存在的文章'
+          else
+            ArticleZanLogs.create({
+              article_id:article_id
+              user_id:user_id
+              score:parseInt(score)
+            }).success (log)->
+              article.updateAttributes
+                score: if article.score==0 then score else (article.score+score)/2
+              .success ()->
+                callback null,log
+              .error (e)->
+                callback e
+            .error (e)->
+              callback e
+        .error (e)->
+          callback e
+    .error (e)->
+      callback e
   getRecent:(callback)->
     Article.findAll
       where:
@@ -106,5 +143,15 @@ func_article =
       callback null,article
     .error (error)->
       callback error
+  getZansByArticleId:(article_id,callback)->
+    ArticleZanLogs.findAll
+      where:
+        article_id:article_id
+      include:[User]
+      order:"id desc"
+    .success (logs)->
+      callback null,logs
+    .error (e)->
+      callback e
 __FC func_article,Article,['update','count','delete']
 module.exports=func_article
