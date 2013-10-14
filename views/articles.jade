@@ -14,23 +14,23 @@ html(xmlns:wb='http://open.weibo.com/wb')
     include article_cats
     #content.clearfix
       if !locals.column
-          .column-list.clearfix
+          .column-list.clearfix.module
             .clearfix
               if locals.columns
                 each column in columns
                   .column-item 
                     a.title(href="/article/column/#{column.id}") #{column.name}
                     .user.hidden <a href="/user/#{column.user.id}">#{column.user.nick}</a>
-                    .others
+                    span.others
                       span.item
                         span.key <i class="icon-white icon-list"></i>
                         span.value #{column.article_count}
                       span.item
                         span.key <i class="icon-white icon-eye-open"></i>
                         span.value #{column.visit_count}
-                      span.item
-                        span.key <i class="icon-white icon-heart"></i>
-                        span.value #{column.zan_count}
+                      //- span.item
+                      //-   span.key <i class="icon-white icon-heart"></i>
+                      //-   span.value #{column.zan_count}
                       if !column.is_public 
                         span.item 
                           span.key <i class="icon-white icon-lock"></i>
@@ -39,10 +39,10 @@ html(xmlns:wb='http://open.weibo.com/wb')
                         a 编辑
             .other-column
               //- a.column-item.more-column(href="/article/column") <i class="icon-show-thumbnails"></i>更多专栏
-              a.column-item.create-column(href="/article/column/add") <i class="icon-white icon-plus"></i>创建专栏
-              a.column-item.publish-column(href="/article/add",data-original-title="",style="margin-right:10px;") 
+              a.btn(href="/article/column/add") <i class="icon-white icon-book-open"></i> 创建专栏
+              a.btn(href="/article/add",data-original-title="",style="margin-right:10px;") 
                 i.icon-plus.icon-white
-                |发表文章
+                |  发表文章
         else
           .column
             .col-title 专栏名：#{column.name}
