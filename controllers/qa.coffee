@@ -191,7 +191,7 @@ module.exports.controllers =
             source_user_nick:res.locals.user.nick
             time:new Date()
             target_path:"/qa/"+ans.question_id+"#answer-"+ans.id
-            action_name:"【赞】了您的回答"
+            action_name:"【赞】了您的回答，获得 5 经验值"
             target_path_name:ans.md.substr(0,100)
           result.success = 1
           result.answer = ans
@@ -221,7 +221,24 @@ module.exports.controllers =
             target_path_name:q.title
             content:req.body.html
         res.send result
-
+  "/:question_id/good/:answer_id":
+    get:(req,res,next)->
+      func_question.update req.params.question_id,{good_answer_id:req.params.answer_id},(error,question)->
+        if error then next error
+        else
+          func_answer.getById req.params.answer_id,(error,answer)->
+            if answer
+              (__F 'coin').add 20,answer.user_id,res.locals.user.nick+" 采纳了你的回答"
+              func_info.add 
+                target_user_id:answer.user_id
+                type:9
+                source_user_id:res.locals.user.id
+                source_user_nick:res.locals.user.nick
+                time:new Date()
+                target_path:"/qa/"+question.question_id+"#answer-"+answer.id
+                action_name:"【采纳】了你的回答，获得 20 经验值"
+                target_path_name:answer.md.substr(0,100)
+            res.redirect 'back'
 module.exports.filters = 
   "/":
     get:['freshLogin','qa/all-question','qa/hot-question','qa/recent-answers']
@@ -246,3 +263,5 @@ module.exports.filters =
     post:['checkLoginJson']
   "/answer/:id/comment":
     post:['checkLoginJson']
+  "/:question_id/good/:answer_id":
+    get:['checkLogin']

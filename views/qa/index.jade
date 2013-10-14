@@ -40,16 +40,12 @@ html
                     else if question.sort == 10000
                       span.label.tip.top 置顶
                   div.others
-                    //
-                      span.author.vcard.item
-                        span.index 提问者：
-                        a.value.url.fn(rel='author', href='/user/#{question.user_id}') #{question.user_nick}
                     
                     span.views.item
-                      span.index View：
+                      span.index 浏览
                       a.value #{question.visit_count}
                     span.views.item
-                      span.index 回答：
+                      span.index 回答
                       a.value #{question.answer_count}
                     span.time.item
                       a.value #{moment(question.createdAt).fromNow()}
@@ -76,6 +72,13 @@ html
                           .sex.nan
                         else
                           .sex.nv
+                  if question.answer
+                    div.answer.clearfix
+                      .answer-user
+                        a(data-original-title="#{question.answer.user_nick}")
+                          img(src="#{question.answer.user_headpic}")
+                      .answer-con !{question.answer.html.replace(/<[^>]*>/g,"").substr(0,100)}
+                        |<a href="/qa/#{question.id}#answer-#{question.answer.id}">阅读更多</a>
           include ../page
       .right
         .module

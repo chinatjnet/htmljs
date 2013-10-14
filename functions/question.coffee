@@ -2,6 +2,7 @@ Question = __M 'questions'
 
 User = __M 'users'
 Tag = __M 'tags'
+Answer = __M 'answers'
 QuestionTag = __M 'question_tag'
 QuestionTag.sync()
 User.hasOne Question,{foreignKey:"user_id"}
@@ -12,6 +13,8 @@ QuestionEditHistory.belongsTo User,{foreignKey:"user_id"}
 QuestionEditHistory.sync()
 # Tag.hasMany Question,{joinTableName:"question_tag"}
 # Question.hasMany Tag,{joinTableName:"question_tag"}
+Answer.hasOne Question,{foreignKey:"good_answer_id"}
+Question.belongsTo Answer,{foreignKey:"good_answer_id"}
 Question.sync()
 User.sync()
 Tag.sync()
@@ -63,7 +66,7 @@ func_question =
       offset: (page - 1) * count
       limit: count
       order: order || "id desc"
-      include:[User]
+      include:[User,Answer]
     if condition then query.where = condition
     Question.findAll(query)
     .success (ms)->

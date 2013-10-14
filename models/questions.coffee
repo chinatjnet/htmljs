@@ -26,3 +26,5 @@ module.exports =
     defaultValue:0
   tagNames:"varchar(255)"
   uuid:"varchar(40)"
+  good_answer_id:"int"
+  

@@ -75,10 +75,16 @@ html
                         - if(ans.answerZanHistory){ans.answerZanHistory.forEach(function(his){if(his.user_nick) zanHistory+=(his.user_nick||"")+"，";})};
                         - if(zanHistory.length>0){zanHistory=zanHistory.substr(0,zanHistory.length-1)}
                         a.zan(href="#",data-id="#{ans.id}",data-original-title="此回答被 #{zanHistory} 赞过") 
-                          
                           |<i class=""></i>
                           em #{ans.zan_count||0}
-                        
+                        if !question.good_answer_id 
+                          if locals.user && (locals.user.id == question.id||user.is_admin)
+                            a.btn.good(href="/qa/#{question.id}/good/#{ans.id}") 采纳
+                        else if question.good_answer_id == ans.id
+                          span.good-answer
+                            i.icon-certificate
+                            div 最佳
+                          
                       .ans-con 
                         .con-hd 
                           a(href="/user/#{ans.user_id}") #{ans.user_nick}
