@@ -48,6 +48,14 @@ html(xmlns:wb='http://open.weibo.com/wb')
             .col-title 专栏名：#{column.name}
             .col-user 所有者：#{column.user.nick}
             .col-desc !{column.desc_html}
+            .col-share.item.share#bdshare.bdshare_t.bds_tools.get-codes-bdshare.clearfix(style="width:300px;margin-top:10px;float:none;margin-left:0px;")
+                span.index(style="float:left;line-height:30px;") 分享：
+                a.bds_tsina
+                a.bds_qzone
+                a.bds_tqq
+                a.bds_douban
+                a.bds_renren
+                a.shareCount
             if column.is_public || (locals.user&&user.id==column.user_id)
               .col-action
                 a.btn(href="/article/add?column_id=#{column.id}",data-original-title="",style="margin-right:10px;") 
@@ -165,3 +173,11 @@ html(xmlns:wb='http://open.weibo.com/wb')
           })
         })
     include footer
+    if locals.column
+      p.
+        <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script>
+          var bds_config={"bdText":"分享一个@前端乱炖 的系列文章专栏【#{column.name}】，所有者：#{column.user.nick}，简洁：#{column.desc_md}","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+          document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+        </script>
