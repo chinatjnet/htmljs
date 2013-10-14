@@ -10,7 +10,7 @@ html
     script(src='#{assets_head}/js/Markdown.Converter.js')
     script(src='#{assets_head}/js/Markdown.Sanitizer.js')
     script(src='#{assets_head}/js/Markdown.Editor.js')
-    title 添加话题
+    title 编辑话题
     style
       #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
       #insertImageDialog h4 { margin-bottom: 10px; }
@@ -25,13 +25,14 @@ html
         .module
           form.form-horizontal#form(method='post')
             fieldset
-              legend 添加话题
+              legend 编辑话题
               .control-group
-                input#title(type='text', name='title', placeholder='标题')
+                input#title(type='hidden', name='id', placeholder='标题',value="#{topic.id}")
+                input#title(type='text', name='title', placeholder='标题',value="#{topic.title}")
               .control-group
                 .wmd-panel
                   #wmd-button-bar
-                  textarea.expand.wmd-input#wmd-input(name="md",placeholder='话题内容')
+                  textarea.expand.wmd-input#wmd-input(name="md",placeholder='话题内容') #{topic.md}
                   .wmd-panel.wmd-preview
                     div 预览
                     #wmd-preview
@@ -84,23 +85,21 @@ html
       });
       $("#form").submit(function(e){
         e.preventDefault()
-          HtmlJS.util.ajax("/topic/add",$("#form").serialize(),"post",function(data){
+          HtmlJS.util.ajax("/topic/update",$("#form").serialize(),"post",function(data){
             if(data.success){
-              alert("发布成功")
-              window.location.href="/topic"
+              window.location.href="/topic/#{topic.id}"
             }else{
               alert(data.info)
             }
           },function(){
-            HtmlJS.util.ajax("/topic/add",$("#form").serialize(),"post",function(data){
+            HtmlJS.util.ajax("/topic/#{topic.id}/edit",$("#form").serialize(),"post",function(data){
               if(data.success){
-                alert("发布成功")
-                window.location.href="/topic"
+                window.location.href="/topic/#{topic.id}"
               }else{
                 alert(data.info)
               }
             },function(){
-
+              
             },$("#submit"))
           },$("#submit"))
       })

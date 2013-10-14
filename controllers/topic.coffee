@@ -40,6 +40,23 @@ module.exports.controllers =
           res.locals.topic = topic
           func_topic.addCount topic.id,'visit_count'
           res.render 'topic/topic.jade'
+  "/:id/edit":
+    get:(req,res,next)->
+      func_topic.getById req.params.id,(error,topic)->
+        if error then next error
+        else
+          res.locals.topic = topic
+          res.render 'topic/edit.jade'
+    post:(req,res,next)->
+      result = 
+        success:0
+      req.body.html = safeConverter.makeHtml req.body.md
+      func_topic.update req.params.id,req.body,(error,topic)->
+        if error 
+          result.info = error.message
+        else
+          result.success = 1
+        res.send result     
   "/:id/add":
     post:(req,res,next)->
       result = 
