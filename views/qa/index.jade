@@ -25,7 +25,7 @@ html
         if locals.questions
           .qa-list
             each question,i in questions
-              .qa-item(class="#{i%2==1?'yooo':''} #{question.answer_count==0?'':''}")
+              .qa-item(class="#{i%2==1?'yooo':''} #{question.answer_count==0?'new':''}")
                 
                 
                 .entry-title
