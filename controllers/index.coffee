@@ -30,17 +30,18 @@ module.exports.controllers =
       if req.query.p 
         res.render '404.jade',{status: 404},(error,page)->
           res.send page,404  
-      func_index.count (error,_count)->
-        if error then next error
-        else
-          res.locals.total=_count
-          res.locals.totalPage=Math.ceil(_count/count)
-          res.locals.page = (req.query.page||1)
-          func_index.getAll page,count,(error,timelines)->
-            if error then next error
-            else
-              res.locals.timelines = timelines
-              res.render 'index.jade'
+      else
+        func_index.count (error,_count)->
+          if error then next error
+          else
+            res.locals.total=_count
+            res.locals.totalPage=Math.ceil(_count/count)
+            res.locals.page = (req.query.page||1)
+            func_index.getAll page,count,(error,timelines)->
+              if error then next error
+              else
+                res.locals.timelines = timelines
+                res.render 'index.jade'
   "/index/:id/update":
     get:(req,res,next)->
       func_index.update req.params.id,req.query,(error)->
