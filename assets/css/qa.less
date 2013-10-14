@@ -110,6 +110,12 @@ background:#efefef;
         margin-right: 20px;
         .index{
           color:#aaa;
+          font-size: 12px;
+          i{
+            background: none;
+            vertical-align: -2px;
+          }
+          margin-right: 3px;
         }
         .value{
           color:#999;
@@ -151,6 +157,32 @@ background:#efefef;
         margin:10px 0;
       }
     }
+    .answer{
+      font-size: 12px;
+      padding: 10px;
+      border-radius: 3px;
+      margin:10px 10px;
+      margin-bottom: 0px;
+      border:1px solid #eee;
+      background: #fff;
+      .answer-user{
+        float:left;
+        img{
+          width:25px;
+          height:25px;
+        }
+      }
+      .answer-con{
+        float:left;
+        width:500px;
+        margin-left: 10px;
+        color:#999;
+      }
+    }
+  }
+  .qa-item.new{
+    background: #f7fff8;
+    border-bottom: 1px solid #f3f3f3;
   }
 }
 #qa-add{
@@ -449,6 +481,36 @@ background:#efefef;
           }
           i{
             border-color:@green @green #fff @green;
+          }
+        }
+        .good{
+          font-size: 12px;
+          padding:0;
+          width:38px;
+          height:20px;
+          line-height: 20px;
+          margin-top: 10px;
+        }
+        .good-answer{
+          padding:0;
+          width:38px;
+          margin-top: 10px;
+          text-align: center;
+          padding:5px 0;
+          display: inline-block;
+          color:@red;
+          background: #efefef;
+          border: 1px solid #eee;
+          border-radius: 3px;
+          font-size: 12px;
+          div{
+
+          }
+          i{
+            background: none;
+            font-size: 18px;
+            width:18px;
+            height:18px;
           }
         }
         img{

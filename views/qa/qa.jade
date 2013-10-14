@@ -11,7 +11,7 @@ html
     script(src='#{assets_head}/js/Markdown.Converter.js')
     script(src='#{assets_head}/js/Markdown.Sanitizer.js')
     script(src='#{assets_head}/js/Markdown.Editor.js')
-    
+    |<meta name="description" content="#{question.html.replace(/<[^>]*>/g,"").substr(0,140)}">
     style
       #insertImageDialog { display:none; padding: 10px; position:absolute;width:400px;}
       #insertImageDialog h4 { margin-bottom: 10px; }

@@ -3,6 +3,7 @@ html
   head
     meta(charset='utf-8')
     title #{locals.card?card.nick:""} - 花名册 - 前端乱炖
+    |<meta name="description" content="#{locals.card?card.nick:""} 特长：#{locals.card?card.techang:""} 介绍：#{locals.card?card.desc:""}">
     include ../head
     script(src='#{assets_head}/js/lazyload.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')

@@ -3,6 +3,7 @@ html
   head
     include head
     title #{locals.article&&article.title} - 阅读 - 前端乱炖
+    |<meta name="description" content="#{locals.article?article.html.replace(/<[^>]*>/g,'').substr(0,100):""}">
     style
       #bdshare a{}
   body#read

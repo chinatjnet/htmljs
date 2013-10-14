@@ -2,9 +2,9 @@
 html
   head
     include ./../head
-    title #{tag.name} 前端乱炖-标签
+    title #{tag.name} - 标签 - 前端乱炖
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
-    
+    |<meta name="description" content="#{tag.desc.replace(/<[^>]*>/g,"").substr(0,140)}">
   body#tag
     - locals.pageId=8;
     include ./../header

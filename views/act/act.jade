@@ -3,6 +3,7 @@ html
   head
     include ./../head
     title 活动 - 前端乱炖
+    |<meta name="description" content="#{act.desc_html.replace(/<[^>]*>/g,'').substr(0,140)}">
     script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')

@@ -3,6 +3,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
   head
     include head
     title #{locals.column?locals.column.name+' - ':''}专栏 - 前端乱炖
+    |<meta name="description" content="用于展示各种原创文章，原创翻译文章，知识性比较强，内容比较专业和系统。专栏这个称呼是一个总称，而其内部，可以分很多独立的专栏，有私人的，也有公开可以投稿的。每个人都可以申请创建一个专栏，但是需要审核。一个专栏是同一系列文章的一个集合，而这个系列可以是一个技术点（例如NodeJS入门系列），也可以是一种抽象的类别（例如情感专栏）。">
     script(src='#{assets_head}/js/bootstrap/bootstrap-transition.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-modal.js')
     script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
