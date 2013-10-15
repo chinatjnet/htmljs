@@ -179,6 +179,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
         <script id="bdshare_js" data="type=tools&amp;uid=2555549" ></script>
         <script type="text/javascript" id="bdshell_js"></script>
         <script>
-          var bds_config={"bdText":"分享一个@前端乱炖 的系列文章专栏【#{column.name}】，所有者：@#{column.user.nick}，专栏简介：#{column.desc_md}","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
+          var bds_config={"bdText":"分享一个@前端乱炖 的系列文章专栏【#{column.name}】，所有者：@#{column.user.nick}，专栏简介：#{column.desc_md.replace(/\s/g,'')}","snsKey":{'tsina':'659341943','tqq':'','t163':'','tsohu':''}}
           document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
         </script>
