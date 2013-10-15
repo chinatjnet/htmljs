@@ -1,0 +1,28 @@
+!!! 5
+html
+  head
+    include head
+    title 赞助我们 - 前端乱炖
+    |<meta name="description" content="前端乱炖，这里是最专业的前端知识平台，汇集国内大部分前端开发人员的前端花名册，最精彩的原创文章专栏，最专业的问答平台，最火热的话题频道，最丰富的线下线上活动。">
+    style
+      #bdshare a{}
+    script(src='#{assets_head}/js/bootstrap/bootstrap-tooltip.js')
+    script(src='#{assets_head}/js/lazyload.js')
+  body#ad
+    - locals.pageId=0;
+    include header
+
+    #content.clearfix
+      .get.module
+        .title 通过赞助我们，您能获取到什么？
+        .bd
+          .item 网站明显位置的网站链接
+          .item 在网站某些位置投放广告
+          .item 获得诸多在线上和线下的曝光机会
+          .item 免费获得一些需要有偿付费的新功能
+      .set.module
+        .title 赞助途径
+        .bd.clearfix
+          a.left(href="https://me.alipay.com/mier",data-original-title="点击通过支付宝付款，谢谢支持") 个人赞助
+          a.right(href="mailto:xinyu198736@gmail.com",data-original-title="请邮件联系我，最好见面详聊。") 企业赞助
+    include footer

@@ -42,6 +42,10 @@ module.exports.controllers =
               else
                 res.locals.timelines = timelines
                 res.render 'index.jade'
+  "/search/:key":
+    get:(req,res,next)->
+      func_index.searchAll req.params.key.split(" "),1,20,(error)->
+
   "/index/:id/update":
     get:(req,res,next)->
       func_index.update req.params.id,req.query,(error)->
@@ -313,9 +317,9 @@ module.exports.controllers =
         
       .pipe(fs.createWriteStream(targetPath))
           
-  "/test":
+  "/ad":
     "get":(req,res,next)->
-      res.render 'test.jade'
+      res.render 'ad.jade'
 module.exports.filters = 
   "/article/add":
     get:['checkLogin',"checkCard"]

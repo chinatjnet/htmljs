@@ -271,6 +271,35 @@ i{
     list-style:none;
     }
   }
+  .support{
+    li{
+      float:left;
+      margin-right:10px;
+    list-style:none;
+    padding:10px;
+    background: #efefef;
+    img{
+      height:50px;
+      border-radius: 3px;
+    }
+    .desc{
+      text-align: center;
+      line-height: 30px;
+    }
+    }
+    .add{
+      background: none;
+      a{
+        width:80px;
+      height:40px;
+      display: block;
+      font-size: 16px;
+      line-height: 40px;
+      text-align: center;
+      }
+      
+    }
+  }
 }
 .f2er-list li{
   position:relative;
@@ -934,6 +963,49 @@ margin:100px auto;
   }
 
 
+}
+
+#ad{
+  background: #efefef;
+  .module{
+    .bd{
+      padding:40px;
+    }
+    .title{
+      font-size: 30px;
+      color: @green;
+      line-height: 50px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .item{
+      font-size: 18px;
+      line-height: 40px;
+     text-align: center;
+    }
+  }
+  .set{
+    .left,.right{
+      width:200px;
+      text-align: center;
+      padding:20px;
+      font-size: 30px;
+      background: #eee;
+      float: left;
+      height:200px;
+      border-radius: 5px;
+      line-height: 160px;
+      margin-left: 100px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .right{
+      float: right;
+      margin-right: 100px;
+       margin-top: 40px;
+       margin-bottom: 40px;
+    }
+  }
 }
 @import 'comment.less';
 @import 'index.less';
